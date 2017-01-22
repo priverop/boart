@@ -22,9 +22,9 @@ Puedes contactar con otros artistas por medio de mensajes privados.
 * Comentarios.
 
 ## Integrantes 
-Oscar Ballesteros Izquierdo. o.ballesteros@alumnos.urjc.es
-Gabriel Cuenca Moncin. g.cuencam@alumnos.urjc.es
-Pablo Rivero Pulido. p.riverop@alumnos.urjc.es. GitHub: priverop
+* Oscar Ballesteros Izquierdo. o.ballesteros@alumnos.urjc.es
+* Gabriel Cuenca Moncin. g.cuencam@alumnos.urjc.es
+* Pablo Rivero Pulido. p.riverop@alumnos.urjc.es. GitHub: priverop
 
 ## Trello
 https://trello.com/b/fG0uTmVa
