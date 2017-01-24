@@ -4,7 +4,7 @@
 Aplicación web dedicada a la publicación y rating de arte. Podrás subir elementos artísticos (fotos, dibujos, música, videos artísticos...) y votar las publicaciones que más te gusten. Las que más gusten aparecerán en portada. Se podrá filtrar por tipo de arte, género, etiquetas... El usuario también dispondrá de una página personal con su galería personal. 
 
 ### Parte pública
-- La portada tendrá tres vistas: lo mejor valorado, lo más comentado y lo nuevo. Tiene el buscador con etiquetas para filtrar.
+- La portada tendrá tres vistas: lo mejor valorado, lo más comentado y lo nuevo. Tiene el buscador con etiquetas para filtrar. Estas tres pestañas, a la hora de mostrar publicaciones, se basan en un algoritmo que tiene en cuenta la clave principal (más ratio votos positivos /negativos, o comentarios o fecha más reciente), además de tus gustos personales (como se explica en la parte privada), y por supuesto del tiempo; para evitar que siempre estén las mismas en los primeros puestos.
 - Puedes ver las publicaciones (otra vista), donde podrás comentar (si estás logueado) y acceder a los perfiles de los usuarios (si estás logueado; otra vista). 
 - Puedes acceder a la categora de la publicación y entrarás en una vista de la página de categoría.
 - Existirá la vista del registro para usuarios nuevos.
@@ -13,6 +13,7 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 ### Parte privada
 - Perfil de cada usuario, puedes gestionar tus datos personales y tu galería (número limitado de publicaciones destacadas).
 - Puedes contactar con otros artistas por medio de mensajes privados. Todo estaría en una sola vista.
+- Puedes seguir usuarios, categorías y etiquetas, para que tengan más importancia en el algoritmo del usuario. Es decir, para que tengan más prioridad a la hora de mostrarse en tu portada.
 
 ## Entidades:
 
