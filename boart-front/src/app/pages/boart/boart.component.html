@@ -1,0 +1,10 @@
+<div id="wrapper">
+  <div id="columns">
+    <div *ngFor="let publication of publicationsMock" class="publication">
+      <img src="{{ publication.img }}" />
+      <p>
+        {{ publication.text }}
+      </p>
+    </div>
+  </div>
+</div>
