@@ -10,19 +10,21 @@ import { AppComponent } from './app.component';
 
 /* PAGES */
 import { BoartComponent } from './pages/boart/boart.component';
+import { PublicComponent } from './pages/public/public.component';
 
 /* COMPONENTS */
 
 const appRoutes: Routes = [
   { path: 'boart', component: BoartComponent },
-  { path: '', redirectTo: 'boart', pathMatch: 'full' },
+  { path: '', component: PublicComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     BoartComponent,
-    BoartComponent
+    BoartComponent,
+    PublicComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
