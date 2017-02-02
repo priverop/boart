@@ -1,13 +1,19 @@
-<section>
-  <article>
-    <div class="container">
-      <video autoplay>
-        <source src="https://static.videezy.com/system/resources/previews/000/005/487/original/ink_2.mp4" type="video/mp4">
-      </video>
-      <div class="row">
-        <div class=" veil"></div>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <app-header></app-header>
+    </div>
+    <div class="col-xs-12">
+      <div id="wrapper">
+        <div id="columns">
+          <div *ngFor="let publication of publicationsMock" class="publication">
+            <img src="{{ publication.img }}" />
+            <p>
+              {{ publication.text }}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </article>
-</section>
+  </div>
+</div>

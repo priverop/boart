@@ -14,6 +14,8 @@ import { PublicComponent } from './pages/public/public.component';
 import { PublicationComponent } from './pages/publication/publication.component';
 
 /* COMPONENTS */
+import { HeaderComponent } from './components/header/header.component';
+
 
 const appRoutes: Routes = [
   { path: 'publication', component: PublicationComponent},
@@ -28,6 +30,7 @@ const appRoutes: Routes = [
     BoartComponent,
     PublicComponent,
     PublicationComponent
+    HeaderComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
