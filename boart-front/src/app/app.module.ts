@@ -13,6 +13,8 @@ import { BoartComponent } from './pages/boart/boart.component';
 import { PublicComponent } from './pages/public/public.component';
 
 /* COMPONENTS */
+import { HeaderComponent } from './components/header/header.component';
+
 
 const appRoutes: Routes = [
   { path: 'boart', component: BoartComponent },
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     BoartComponent,
     BoartComponent,
-    PublicComponent
+    PublicComponent,
+    HeaderComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

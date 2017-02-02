@@ -1,306 +1,77 @@
 @import "../../../assets/_variables";
 
-body {
-  font-family: 'Barrio', cursive !important;
+#wrapper {
+  width: 90%;
+  max-width: 1100px;
+  min-width: 800px;
+  margin: 50px auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  text-transform: uppercase;
-  font-weight: 900;
-  color: #424242;
-  margin-bottom: 35px;
-  margin-top: 0;
+#columns {
+  -webkit-column-count: 3;
+  -webkit-column-gap: 10px;
+  -webkit-column-fill: auto;
+  -moz-column-count: 3;
+  -moz-column-gap: 10px;
+  -moz-column-fill: auto;
+  column-count: 3;
+  column-gap: 15px;
+  column-fill: auto;
 }
 
-h1 {
-  font-size: 55px;
-}
-
-h2 {
-  font-size: 32px;
-}
-
-h3 {
-  font-size: 21px;
-}
-
-p {
-  font-size: 16px;
-  font-style: italic;
-  color: #818181;
-}
-
-a {
-  transition: all 0.3s ease-in-out;
-}
-
-section {
-  text-align: center;
-}
-
-.blockquote p {
-  font-size: 32px;
-  line-height: 45px;
-  padding-left: 30px;
-  border-left: 3px solid #424242;
-  color: #424242;
-}
-
-.title {
-  position: relative;
-  margin-bottom: 100px;
-  &:after {
-    content: '';
-    height: 5px;
-    width: 40px;
-    background-color: #62aa94;
-    position: absolute;
-    top: 81px;
-    left: calc(50% - 20px);
-  }
-}
-
-/*Bootstrap*/
-
-.navbar-vira {
-  background-image: none;
-  background-color: transparent;
-  margin-bottom: 0;
-  border-radius: 0;
-  border-color: transparent;
-  transition: all 0.3s ease-in-out;
-}
-
-.form-control {
-  option {
-    color: #424242;
-  }
-  border-radius: 0;
-  padding: 25px;
-  font-size: 18px;
-  font-style: italic;
-  background-color: transparent;
-  color: #424242;
-  margin-bottom: 30px;
-  border-color: #51c2b9;
-  &:focus {
-    border-color: #51c2b9;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(81, 194, 185, 0.6);
-  }
-  &::-webkit-input-placeholder {
-    color: #fff;
-  }
-  &:-moz-placeholder {
-    /* Firefox 18- */
-    color: #fff;
-  }
-  &::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #fff;
-  }
-  &:-ms-input-placeholder {
-    color: #fff;
-  }
-}
-
-.element .form-control {
-  &::-webkit-input-placeholder {
-    color: #424242;
-  }
-  &:-moz-placeholder {
-    /* Firefox 18- */
-    color: #424242;
-  }
-  &::-moz-placeholder {
-    /* Firefox 19+ */
-    color: #424242;
-  }
-  &:-ms-input-placeholder {
-    color: #424242;
-  }
-}
-
-/*Helper class*/
-
-.mt80 {
-  margin-top: 80px;
-}
-
-.mb80 {
-  margin-bottom: 80px;
-}
-
-.mr60 {
-  margin-right: 60px;
-}
-
-.bg-img {
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: relative;
-  div {
-    z-index: 1;
-    position: relative;
-  }
-  &:after {
-    position: absolute;
-    content: '';
-    height: 100%;
+.publication {
+  display: inline-block;
+  background: #FEFEFE;
+  border: 2px solid #FAFAFA;
+  box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+  margin: 0 2px 15px;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  column-break-inside: avoid;
+  padding: 15px;
+  padding-bottom: 5px;
+  background: -webkit-linear-gradient(45deg, #FFF, #F9F9F9);
+  opacity: 1;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  img {
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    left: 0;
-    top: 0;
-  }
-}
-
-.section {
-  padding: 100px 0;
-}
-
-/*Vira Card*/
-
-.vira-card {
-  text-align: center;
-  /*margin-bottom: 45px;*/
-  .vira-card-header {
-    margin-bottom: 45px;
-    .card-icon {
-      border: 1px solid #51c2b9;
-      border-radius: 100%;
-      display: inline-block;
-      height: 120px;
-      width: 120px;
-      line-height: 120px;
-      position: relative;
-      .fa {
-        margin-top: 45px;
-        font-size: 30px;
-      }
-      &:after {
-        content: '';
-        height: 100px;
-        width: 100px;
-        background-color: #51c2b9;
-        border-radius: 100%;
-        position: absolute;
-        top: 9px;
-        left: 9px;
-      }
-      span {
-        color: #fff;
-        font-size: 45px;
-        position: relative;
-        z-index: 1;
-      }
-    }
-  }
-  .vira-card-content {
-    h3 {
-      position: relative;
-      margin-bottom: 60px;
-      &:after {
-        content: '';
-        height: 1px;
-        width: 44px;
-        background-color: #62aa94;
-        position: absolute;
-        top: 52px;
-        left: calc(50% - 22px);
-      }
-    }
-    p {
-      font-size: 15px;
-    }
-    .social-icons {
-      margin-top: 30px;
-    }
-  }
-}
-
-/*Button*/
-
-.vira-btn {
-  border-color: #51c2b9;
-  font-style: italic;
-  color: #51c2b9;
-  border-radius: 0;
-  letter-spacing: 3px;
-  padding: 15px 80px;
-  margin-bottom: 30px;
-  background-color: transparent;
-  transition: all 0.3s ease-in-out;
-  margin-right: 10px;
-  &:hover {
-    background-color: #51c2b9;
-    color: #fff;
-  }
-}
-
-.solid {
-  background-color: #51c2b9;
-  color: #fff;
-  &:hover {
-    background-color: #fff;
-    color: #51c2b9;
-  }
-}
-
-.small-btn {
-  padding: 10px 130px;
-}
-
-.navigation-bar {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 15px 0;
-  font-size: 30px;
-  a {
-    color: #fff;
-  }
-}
-
-/*Home page*/
-
-.header {
-  background-image: url(../../../assets/women-697928_1920.jpg);
-  height: 100vh;
-  position: relative;
-  min-height: 659px;
-}
-
-.intro-box {
-  height: 100vh;
-  display: table;
-  text-align: center;
-  width: 100%;
-}
-
-.intro {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.header {
-  h1 {
-    margin: 0;
-    color: #fff;
-    letter-spacing: 2px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
   }
   p {
-    color: #fff;
-    letter-spacing: 2px;
-    font-size: 32px;
-    padding-top: 0;
-    padding-bottom: 40px;
-  }
-  .vira-btn {
-    border-color: #fff;
-    color: #fff;
-    &:hover {
-      background-color: #fff;
-      color: #424242;
-    }
+    font: 12px/18px Arial, sans-serif;
+    color: #333;
+    margin: 0;
   }
 }
+
+@media (min-width: 960px) {
+  #columns{
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+  }
+}
+
+
+@media (min-width: 1100px) {
+  #columns{
+    -webkit-column-count: 5;
+    -moz-column-count: 5;
+    column-count: 5;
+  }
+}
+
+
+#columns:hover .publication:not(:hover) {
+  opacity: 0.4
+}
+
+
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) {

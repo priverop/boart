@@ -1,16 +1,19 @@
-<div class="main">
-  <header class="bg-img header">
-    <div class="container">
-      <div class="row">
-        <div class="intro-box">
-          <div class="intro">
-            <h1>You add the creativity</h1>
-            <p>And we share it with the world</p>
-            <a class="btn vira-btn" href="#">Register</a>
-            <a class="btn vira-btn" href="#">Login</a>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <app-header></app-header>
+    </div>
+    <div class="col-xs-12">
+      <div id="wrapper">
+        <div id="columns">
+          <div *ngFor="let publication of publicationsMock" class="publication">
+            <img src="{{ publication.img }}" />
+            <p>
+              {{ publication.text }}
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
 </div>
