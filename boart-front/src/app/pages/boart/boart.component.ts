@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-boart',
   templateUrl: './boart.component.html',
-  styleUrls: ['./boart.component.sass']
+  styleUrls: ['boart.component.scss']
 })
 export class BoartComponent implements OnInit {
 
