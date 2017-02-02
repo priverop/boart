@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ng serve --host boart.com --port 4200 --live-reload-port 49153",
     "start-dev": "ng serve --host boart-dev.com --port 4200 --live-reload-port 49153",
+    "start-lan": "ng serve --host 0.0.0.0",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -25,6 +26,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ng2-bootstrap": "^1.2.6",
+    "normalize.css": "^5.0.0",
     "rxjs": "5.0.0-beta.12",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"
