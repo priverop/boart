@@ -1,99 +1,306 @@
 @import "../../../assets/_variables";
 
-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  transform: translateX(-50%) translateY(-50%);
-  background-size: cover;
-  transition: 1s opacity;
-}
-.veil {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  background-color: rgba(0, 0, 0, 0.85);
+body {
+  font-family: 'Barrio', cursive !important;
 }
 
-/* Extra small devices (phones, less than 768px) */
-/* No media query since this is the default in Bootstrap */
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #424242;
+  margin-bottom: 35px;
+  margin-top: 0;
+}
 
-.jumbotron{
-  background-color: rgba(0, 0, 0, 0.85);
-  &.vertical_center {
-    margin-bottom: 0;
-    min-height: 100%;
-    min-height: 100vh;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align : center;
-    -webkit-align-items : center;
-    -moz-box-align : center;
-    -ms-flex-align : center;
-    align-items : center;
-    width: 100%;
-    -webkit-box-pack : center;
-    -moz-box-pack : center;
-    -ms-flex-pack : center;
-    -webkit-justify-content : center;
-    justify-content : center;
+h1 {
+  font-size: 55px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+p {
+  font-size: 16px;
+  font-style: italic;
+  color: #818181;
+}
+
+a {
+  transition: all 0.3s ease-in-out;
+}
+
+section {
+  text-align: center;
+}
+
+.blockquote p {
+  font-size: 32px;
+  line-height: 45px;
+  padding-left: 30px;
+  border-left: 3px solid #424242;
+  color: #424242;
+}
+
+.title {
+  position: relative;
+  margin-bottom: 100px;
+  &:after {
+    content: '';
+    height: 5px;
+    width: 40px;
+    background-color: #62aa94;
+    position: absolute;
+    top: 81px;
+    left: calc(50% - 20px);
   }
-  .container {
-    .login_singup{
-      min-height: 300px;
-      padding: 50px 40px;
-      &#left{
-        background-color: $color-primary-0;
-        -webkit-border-top-left-radius: 5px;
-        -webkit-border-top-right-radius: 5px;
-        -moz-border-radius-topleft: 5px;
-        -moz-border-radius-topright: 5px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        img{
-          width: 80%;
-        }
-        .register_text{
-          padding: 10px;
-          margin-top: 20px;
-          a{
-            color: $white-color;
-          }
-        }
+}
+
+/*Bootstrap*/
+
+.navbar-vira {
+  background-image: none;
+  background-color: transparent;
+  margin-bottom: 0;
+  border-radius: 0;
+  border-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-control {
+  option {
+    color: #424242;
+  }
+  border-radius: 0;
+  padding: 25px;
+  font-size: 18px;
+  font-style: italic;
+  background-color: transparent;
+  color: #424242;
+  margin-bottom: 30px;
+  border-color: #51c2b9;
+  &:focus {
+    border-color: #51c2b9;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(81, 194, 185, 0.6);
+  }
+  &::-webkit-input-placeholder {
+    color: #fff;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: #fff;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #fff;
+  }
+  &:-ms-input-placeholder {
+    color: #fff;
+  }
+}
+
+.element .form-control {
+  &::-webkit-input-placeholder {
+    color: #424242;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: #424242;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #424242;
+  }
+  &:-ms-input-placeholder {
+    color: #424242;
+  }
+}
+
+/*Helper class*/
+
+.mt80 {
+  margin-top: 80px;
+}
+
+.mb80 {
+  margin-bottom: 80px;
+}
+
+.mr60 {
+  margin-right: 60px;
+}
+
+.bg-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  div {
+    z-index: 1;
+    position: relative;
+  }
+  &:after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    top: 0;
+  }
+}
+
+.section {
+  padding: 100px 0;
+}
+
+/*Vira Card*/
+
+.vira-card {
+  text-align: center;
+  /*margin-bottom: 45px;*/
+  .vira-card-header {
+    margin-bottom: 45px;
+    .card-icon {
+      border: 1px solid #51c2b9;
+      border-radius: 100%;
+      display: inline-block;
+      height: 120px;
+      width: 120px;
+      line-height: 120px;
+      position: relative;
+      .fa {
+        margin-top: 45px;
+        font-size: 30px;
       }
-      &#right{
-        background-color: $white-color;
-        -webkit-border-bottom-right-radius: 5px;
-        -webkit-border-bottom-left-radius: 5px;
-        -moz-border-radius-bottomright: 5px;
-        -moz-border-radius-bottomleft: 5px;
-        border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 5px;
-        .login_text{
-          padding: 10px;
-          margin-top: 20px;
-          a{
-            color: $black-color;
-          }
-        }
+      &:after {
+        content: '';
+        height: 100px;
+        width: 100px;
+        background-color: #51c2b9;
+        border-radius: 100%;
+        position: absolute;
+        top: 9px;
+        left: 9px;
       }
+      span {
+        color: #fff;
+        font-size: 45px;
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+  .vira-card-content {
+    h3 {
+      position: relative;
+      margin-bottom: 60px;
+      &:after {
+        content: '';
+        height: 1px;
+        width: 44px;
+        background-color: #62aa94;
+        position: absolute;
+        top: 52px;
+        left: calc(50% - 22px);
+      }
+    }
+    p {
+      font-size: 15px;
+    }
+    .social-icons {
+      margin-top: 30px;
     }
   }
 }
 
+/*Button*/
 
+.vira-btn {
+  border-color: #51c2b9;
+  font-style: italic;
+  color: #51c2b9;
+  border-radius: 0;
+  letter-spacing: 3px;
+  padding: 15px 80px;
+  margin-bottom: 30px;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  margin-right: 10px;
+  &:hover {
+    background-color: #51c2b9;
+    color: #fff;
+  }
+}
+
+.solid {
+  background-color: #51c2b9;
+  color: #fff;
+  &:hover {
+    background-color: #fff;
+    color: #51c2b9;
+  }
+}
+
+.small-btn {
+  padding: 10px 130px;
+}
+
+.navigation-bar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 0;
+  font-size: 30px;
+  a {
+    color: #fff;
+  }
+}
+
+/*Home page*/
+
+.header {
+  background-image: url(../../../assets/women-697928_1920.jpg);
+  height: 100vh;
+  position: relative;
+  min-height: 659px;
+}
+
+.intro-box {
+  height: 100vh;
+  display: table;
+  text-align: center;
+  width: 100%;
+}
+
+.intro {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.header {
+  h1 {
+    margin: 0;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  p {
+    color: #fff;
+    letter-spacing: 2px;
+    font-size: 32px;
+    padding-top: 0;
+    padding-bottom: 40px;
+  }
+  .vira-btn {
+    border-color: #fff;
+    color: #fff;
+    &:hover {
+      background-color: #fff;
+      color: #424242;
+    }
+  }
+}
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: $screen-sm-min) {
@@ -101,25 +308,10 @@ video {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: $screen-md-min) {
-  .login_singup{
-    &#left{
-      -webkit-border-top-left-radius: 5px;
-      -webkit-border-bottom-left-radius: 5px;
-      -moz-border-radius-topleft: 5px;
-      -moz-border-radius-bottomleft: 5px;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
-    &#right{
-      -webkit-border-top-right-radius: 5px;
-      -webkit-border-bottom-right-radius: 5px;
-      -moz-border-radius-topright: 5px;
-      -moz-border-radius-bottomright: 5px;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-    }
-  }
-}
+
 
 /* Large devices (large desktops, 1200px and up) */
-@media (min-width: $screen-lg-min) {}
+@media (min-width: $screen-lg-min) {
+
+}
+}
