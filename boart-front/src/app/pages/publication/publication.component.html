@@ -1,0 +1,37 @@
+<!-- Publicación -->
+
+<!-- header gabri -->
+<div class="container" id="header">
+  <div class="row">
+    <div class="col-xs-12 head">CABECERA</div>
+  </div>
+</div>
+
+<!--
+  Un primer bloque con los textos.
+  Segundo bloque con la publicación y los tags
+  Tercero con los comentarios
+      -->
+<div *ngFor="let info of publicationInfo" class="container" id="main">
+  <div class="row info">
+    <div class="col-xs-12 col-md-8 title_container">
+      <div class="row">
+        <div class="col-xs-8 title">{{ info.title }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 subtitle">{{ info.description }}</div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4 user">{{ info.user }}</div>
+  </div>
+	<div class="row publication">
+		 <div class="col-xs-12 frame"><img src="{{info.url}}"></div>
+		 <div class="col-xs-12 tags">#Skate #Urban #Photo</div>
+	</div>
+	<div class="row comments_holder">
+		<blockquote *ngFor="let comment of commentsMocks" class="col-xs-12 comment">
+		<p>{{ comment.text }}</p>
+		<small>{{ comment.user }}</small>
+		</blockquote>
+	</div>
+</div>
