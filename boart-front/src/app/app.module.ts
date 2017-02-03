@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     BoartComponent,
     BoartComponent,
     PublicComponent,
-    PublicationComponent
+    PublicationComponent,
     HeaderComponent
   ],
   imports: [
