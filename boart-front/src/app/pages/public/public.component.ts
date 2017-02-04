@@ -12,38 +12,30 @@ export class PublicComponent implements OnInit {
   constructor() {
     this.publicationsMock = [
       {
-        img: "http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
+        img: "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       },
       {
-        img: "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
+        img: "http://mamiverse.com/es/wp-content/uploads/2016/01/T%C3%A9cnicas-fotogr%C3%A1ficas-El-arte-de-las-fotos-art%C3%ADsticas-Photo3.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       },
       {
-        img: "http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
+        img: "https://fografiasartisticas.files.wordpress.com/2013/04/fotografias-artisticas-2.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       },
       {
-        img: "http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
+        img: "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       },
       {
-        img: "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
+        img: "http://mamiverse.com/es/wp-content/uploads/2016/01/T%C3%A9cnicas-fotogr%C3%A1ficas-El-arte-de-las-fotos-art%C3%ADsticas-Photo3.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       },
       {
-        img: "http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
+        img: "https://fografiasartisticas.files.wordpress.com/2013/04/fotografias-artisticas-2.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       },      {
-        img: "http://cssdeck.com/uploads/media/items/6/6f3nXse.png",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "http://cssdeck.com/uploads/media/items/2/2v3VhAp.png",
+        img: "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg",
         text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
       }
     ]

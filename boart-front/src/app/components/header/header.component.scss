@@ -1,13 +1,41 @@
 @import "../../../assets/_variables";
 
-header{
-	min-height: 100px;
-	padding: 10px 10px 105px 10px;
-  	border-bottom: 1px solid $white-color;
-	nav{
-	    padding: 50px 0 0 0;
-	}
-	.register{
-		padding: 40px 0 0 0;
-	}
+.menu {
+  background-color: $background-header;
+  border-bottom: 2px solid $color-primary-3;
+  width: 100%;
+  height: auto;
+  padding: 5px 10px;
+  position: fixed;
+  margin: 0px;
+  z-index: 1;
+  opacity: 0.9;
+  .navbar-nav > {
+    .active > a {
+      background-color: $color-primary-3;
+      color: white;
+      font-weight: bold;
+    }
+    li > a {
+      font-size: 13px;
+      color: white;
+      padding: 10px 35px;
+      &:hover {
+        background-color: $color-primary-3;
+      }
+    }
+  }
+}
+
+.navbar-header > a {
+  padding: 0px;
+  margin: 0px;
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  padding: 5px 30px;
+  &:hover {
+    text-decoration: none;
+    color: $color-primary-0;
+  }
 }
