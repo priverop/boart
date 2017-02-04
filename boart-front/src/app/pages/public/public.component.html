@@ -1,20 +1,26 @@
 <app-header></app-header>
 <article class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12">
-      <div id="wrapper">
-        <div id="columns">
-          <div *ngFor="let publication of publicationsMock" class="publication">
-            <img src="{{ publication.img }}" />
-            <p>
-              {{ publication.text }}
-            </p>
-            <div class="rating">
-              <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">5</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication">
+        <ul>
+            <li><a href="#" class="active">Más nuevos</a></li>
+            <li><a href="#">Más valorados</a></li>
+            <li><a href="#">Más comentados</a></li>
+        </ul>
+        <app-search></app-search>
+        <app-tag-list></app-tag-list>
     </div>
-  </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+        <div id="columns">
+            <div *ngFor="let publication of publicationsMock" class="publication">
+                <img src="{{ publication.img }}" />
+                <p>
+                    {{ publication.text }}
+                </p>
+                <div class="rating">
+                    <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">5</span></p>
+                </div>
+                <app-tag-list></app-tag-list>
+            </div>
+        </div>
+    </div>
 </article>

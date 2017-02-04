@@ -15,6 +15,8 @@ import { PublicationComponent } from './pages/publication/publication.component'
 
 /* COMPONENTS */
 import { HeaderComponent } from './components/header/header.component';
+import { SearchComponent } from './components/search/search.component';
+import { TagListComponent } from './components/tag-list/tag-list.component';
 
 
 const appRoutes: Routes = [
@@ -30,7 +32,9 @@ const appRoutes: Routes = [
     BoartComponent,
     PublicComponent,
     PublicationComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent,
+    TagListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
