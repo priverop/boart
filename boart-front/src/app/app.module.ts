@@ -13,6 +13,9 @@ import { BoartComponent } from './pages/boart/boart.component';
 import { PublicComponent } from './pages/public/public.component';
 import { PublicationComponent } from './pages/publication/publication.component';
 import { SingupComponent } from './pages/singup/singup.component';
+import { LoginComponent } from './pages/login/login.component';
+
+
 
 /* COMPONENTS */
 import { HeaderComponent } from './components/header/header.component';
@@ -20,11 +23,11 @@ import { SearchComponent } from './components/search/search.component';
 import { TagListComponent } from './components/tag-list/tag-list.component';
 
 
-
 const appRoutes: Routes = [
   { path: 'publication', component: PublicationComponent},
   { path: 'boart', component: BoartComponent },
   { path: 'singup', component: SingupComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', component: PublicComponent}
 ];
 
@@ -38,7 +41,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     SearchComponent,
     TagListComponent,
-    SingupComponent
+    SingupComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

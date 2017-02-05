@@ -18,10 +18,10 @@
     border-style: solid
 }
 
-#labelRegistro {
+#labelEntrar {
     margin-left: 20px;
     margin-top: 20px;
-    color: #286090;
+    color: #BBBBBB;
     font-size: 25px
 }
 
@@ -29,9 +29,9 @@
     text-align: left
 }
 
-#box{
+#box {
     text-align: center;
-    padding:20px;
+    padding: 20px;
 }
 
 .container {
@@ -39,24 +39,22 @@
 }
 
 span {
-    background-color: #286090;
-}
-
-#arroba {
-    color: white;
+    background-color: #BBBBBB;
 }
 
 #enviar {
     margin-top: 15px;
+    background-color: #BBBBBB;
 }
+
 
 /* Small devices (tablets, 768px and up) */
 
 @media (max-width: $screen-sm-min) {
-    #labelRegistro {
+    #labelEntrar {
         margin-left: 20px;
         margin-top: 20px;
-        color: #286090;
+        color: #BBBBBB;
         font-size: 15px
     }
     
