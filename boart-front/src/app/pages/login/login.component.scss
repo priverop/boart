@@ -21,8 +21,7 @@
 #labelEntrar {
     margin-left: 20px;
     margin-top: 20px;
-    color: #BBBBBB;
-    font-size: 25px
+    font-size: 25px;
 }
 
 #containerForm {
@@ -39,12 +38,13 @@
 }
 
 span {
-    background-color: #BBBBBB;
+    background-color: $font_contrast;
 }
 
 #enviar {
     margin-top: 15px;
-    background-color: #BBBBBB;
+    background-color: $font_contrast;
+    border-style: none;
 }
 
 
@@ -54,7 +54,7 @@ span {
     #labelEntrar {
         margin-left: 20px;
         margin-top: 20px;
-        color: #BBBBBB;
+        color: $font_contrast;
         font-size: 15px
     }
     
