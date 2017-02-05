@@ -9,23 +9,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 /* PAGES */
-import { BoartComponent } from './pages/boart/boart.component';
 import { PublicComponent } from './pages/public/public.component';
 import { PublicationComponent } from './pages/publication/publication.component';
 import { SingupComponent } from './pages/singup/singup.component';
 import { LoginComponent } from './pages/login/login.component';
-
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SelfProfileComponent } from './pages/self-profile/self-profile.component';
 
 
 /* COMPONENTS */
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { TagListComponent } from './components/tag-list/tag-list.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 const appRoutes: Routes = [
+  { path: 'profile', component: ProfileComponent},
+  { path: 'selfprofile', component: SelfProfileComponent},
   { path: 'publication', component: PublicationComponent},
-  { path: 'boart', component: BoartComponent },
   { path: 'singup', component: SingupComponent },
   { path: 'login', component: LoginComponent },
   { path: '', component: PublicComponent}
@@ -34,15 +36,16 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    BoartComponent,
-    BoartComponent,
     PublicComponent,
     PublicationComponent,
     HeaderComponent,
     SearchComponent,
     TagListComponent,
     SingupComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    CommentsComponent,
+    SelfProfileComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

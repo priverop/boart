@@ -1,0 +1,13 @@
+@import "../../../assets/_variables";
+
+.comments_box{
+  padding: 20px 40px;
+  margin: 25px 0px;
+  .comment{
+    display: inline-block;
+    margin: 10px 0px;
+  }
+  textarea{
+    width: 100%;
+  }
+}
