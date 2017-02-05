@@ -1,6 +1,6 @@
 <app-header></app-header>
 <article class="container-fluid">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
         <ul>
             <li><a href="#" class="active">Más nuevos</a></li>
             <li><a href="#">Más valorados</a></li>
@@ -11,7 +11,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
         <div id="columns">
-            <div *ngFor="let publication of publicationsMock" class="publication">
+            <div *ngFor="let publication of publicationsMock" class="publication app_box">
                 <img src="{{ publication.img }}" />
                 <p>
                     {{ publication.text }}
