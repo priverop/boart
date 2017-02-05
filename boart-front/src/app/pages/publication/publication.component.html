@@ -1,38 +1,35 @@
-<!-- Publicación -->
-<div class="container-fluid">
-	<div class="row">
-		<app-header></app-header>
+<app-header></app-header>
+<article class="container-fluid">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+		Aside
 	</div>
-
-	<!--
-	  Un primer bloque con los textos.
-	  Segundo bloque con la publicación y los tags
-	  Tercero con los comentarios
-	      -->
-
-
-	<!-- GABRI: PONER H1 y tal para SEO? -->
-	<div *ngFor="let info of publicationInfo">   
-		<div class="row info">
-			<div class="col-xs-12 col-md-10 title_container">
-			    <div class="col-xs-8 syncopate"><h1>{{ info.title }}</h1></div>
-			    <div class="col-xs-12"><h2><em>{{ info.description }}</em></h2></div>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 app_box">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 info_publication">
+				<p class="title"><strong>{{ publicationInfo.title }}</strong></p>
+				<p class="description">{{ publicationInfo.description }}</p>
+				<p class="user"><span><strong>@{{publicationInfo.user}}</strong></span></p>
+				<app-tag-list></app-tag-list>
+				<div class="share_publication">
+					<span>Comparte esta publicación: </span>
+					<a href="#"><i class="icofont icofont_social icofont-social-twitter"></i></a>
+					<a href="#"><i class="icofont icofont_social icofont-social-facebook"></i></a>
+					<a href="#"><i class="icofont icofont_social icofont-social-google-plus"></i></a>
+				</div>
 			</div>
-			<div class="col-xs-12 col-md-2 user syncopate"><h3>{{ info.user }}</h3></div>     <!-- MOVERLO ABAJO DONDE LAS ETIQUETAS A LA DERECHA????? -->
-		</div>
-
-		<div class="row publication text-center">
-			 <div class="col-xs-12 frame gabri_box">
-			 	<img class="img-responsive" src="{{info.url}}">
-			 	<p class="tags syncopate"><a href="#">#Skate</a> <a href="#">#Urban</a> <a href="#">#Photo</a></p>
-			 </div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 publication">
+				<img class="col-xs-12" src="{{ publicationInfo.url }}">
+			</div>
 		</div>
 	</div>
-
-	<div class="row comments_holder">
-		<p class="lead">Comentarios</p>
-		<blockquote *ngFor="let comment of commentsMocks" class="col-xs-12 comment"> <!-- GABRI BOX??? -->
-		<p>{{ comment.text }}</p>
-		<small class="syncopate">{{ comment.user }}</small>
-		</blockquote>
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
+		<div *ngFor="let comment of commentsMocks" class="comment">
+			<p><span class="font_contrast"><strong>@{{comment.user}}</strong>: </span><span>{{comment.text}}</span></p>
+		</div>
+		<form>
+			<div class="form-group">
+				<textarea placeholder="Comentario"></textarea>
+			</div>
+		</form>
 	</div>
+</article>
