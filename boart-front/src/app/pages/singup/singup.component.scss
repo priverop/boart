@@ -21,7 +21,7 @@
 #labelRegistro {
     margin-left: 20px;
     margin-top: 20px;
-    color: #286090;
+    color: $font_contrast;
     font-size: 25px
 }
 
@@ -39,7 +39,7 @@
 }
 
 span {
-    background-color: #286090;
+    background-color: $font_contrast;
 }
 
 #arroba {
@@ -48,6 +48,8 @@ span {
 
 #enviar {
     margin-top: 15px;
+    background-color: $font_contrast;
+    border-style: none;
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -56,7 +58,7 @@ span {
     #labelRegistro {
         margin-left: 20px;
         margin-top: 20px;
-        color: #286090;
+        color: $font_contrast;
         font-size: 15px
     }
     
