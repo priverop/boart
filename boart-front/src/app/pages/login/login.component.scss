@@ -1,0 +1,64 @@
+@import "../../../assets/_variables";
+.glyphicon {
+    position: static;
+    color: white;
+}
+
+.input-group {
+    margin: 10px;
+}
+
+#logo {
+    margin: auto;
+}
+
+.jumbotron {
+    text-align: center;
+    border: 1px;
+    border-style: solid
+}
+
+#labelEntrar {
+    margin-left: 20px;
+    margin-top: 20px;
+    color: #BBBBBB;
+    font-size: 25px
+}
+
+#containerForm {
+    text-align: left
+}
+
+#box {
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    padding-top: 5%;
+}
+
+span {
+    background-color: #BBBBBB;
+}
+
+#enviar {
+    margin-top: 15px;
+    background-color: #BBBBBB;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+
+@media (max-width: $screen-sm-min) {
+    #labelEntrar {
+        margin-left: 20px;
+        margin-top: 20px;
+        color: #BBBBBB;
+        font-size: 15px
+    }
+    
+    img{
+        width: 70%;
+    }
+}
