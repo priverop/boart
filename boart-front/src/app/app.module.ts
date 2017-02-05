@@ -15,6 +15,7 @@ import { SingupComponent } from './pages/singup/singup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SelfProfileComponent } from './pages/self-profile/self-profile.component';
+import { GroupComponent } from './pages/group/group.component';
 
 
 /* COMPONENTS */
@@ -24,12 +25,14 @@ import { TagListComponent } from './components/tag-list/tag-list.component';
 import { CommentsComponent } from './components/comments/comments.component';
 
 
+
 const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent},
   { path: 'selfprofile', component: SelfProfileComponent},
   { path: 'publication', component: PublicationComponent},
   { path: 'singup', component: SingupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'group', component: GroupComponent },
   { path: '', component: PublicComponent}
 ];
 
@@ -45,7 +48,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ProfileComponent,
     CommentsComponent,
-    SelfProfileComponent
+    SelfProfileComponent,
+    GroupComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
