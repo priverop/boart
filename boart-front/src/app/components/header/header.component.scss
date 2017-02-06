@@ -9,32 +9,14 @@
   position: static;
   margin: 0px;
   z-index: 1;
-  .navbar-nav > {
-    .active > a {
-      background-color: $background-border;
-      color: white;
-      font-weight: bold;
-    }
-    li > a {
-      font-size: 13px;
-      color: white;
-      padding: 10px 35px;
-      &:hover {
-        background-color: $background-border;
-        color: $black-color;
-      }
-    }
-  }
 }
 
 .navbar-header > a {
-  padding: 0px;
+  padding: 5px 30px;
   margin: 0px;
   text-decoration: none;
-  color: white;
+  color: $white-color;
   font-size: 25px;
-  padding: 5px 30px;
-  color: $black-color;
   img{
     height: 40px;
     padding-bottom: 5px;

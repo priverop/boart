@@ -1,27 +1,36 @@
 <app-header></app-header>
 <article class="container-fluid">
 	<div *ngFor="let info of userInfoMock" class="col-xs-12 app_box user_info">
-				<div class="col-xs-12 col-md-4">
-					<div class="row">
-						<img class="img-responsive" src="{{ info.avatar }}">
-					</div>
-					<div class="row">
-						<div class="col-xs-12">
-							<h1>{{ info.name }} {{ info.surname }}</h1>
-							<h2><em>{{ info.nickname }}</em></h2>  			
-			  				<blockquote><em>{{ info.aboutme }}</em></blockquote>
-		  				</div>
-		  				<!-- <div *ngFor="let red_social of info.redes" class="col-xs-12 social_nets">
-		  					<img src="{{ red_social.url }}">
-		  				</div> -->
-		  			</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="row edit-img">
+				<img class="img-responsive" src="{{ info.avatar }}">
+				<div class="veil">
+					<i class="icofont icofont-pencil-alt-5"></i>
 				</div>
-				<div class="col-xs-12 col-md-8">
-	  				<div class="col-xs-12">
-	  					<div class="profile_gallery app_box" *ngFor="let galeria of userGalleryMock">
-	  						<img src="{{ galeria.url }}">
-	  					</div>
-	  				</div>
-	  			</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h1 class="edit-icon">{{ info.name }} {{ info.surname }} <i class="icofont icofont-pencil-alt-5"></i></h1>
+					<h2 class="edit-icon"><em>{{ info.nickname }} <i class="icofont icofont-pencil-alt-5"></i></em></h2>  			
+	  				<blockquote class="edit-icon"><em>{{ info.aboutme }}</em> <i class="icofont icofont-pencil-alt-5"></i></blockquote>
+  				</div>
+  				<div class="col-xs-12 social_nets">
+  					<i class="icofont icofont_social icofont-social-500px"></i>
+  					<i class="icofont icofont_social icofont-social-facebook"></i>
+  					<i class="icofont icofont_social icofont-social-twitter"></i>
+  					<i class="icofont icofont_social icofont-social-instagram"></i>
+  					<i class="icofont icofont_social icofont-social-linkedin"></i>
+  					<i class="icofont icofont_social icofont-social-youtube-play"></i>
+  				</div>
+  				<div class="col-xs-12 public_button">
+  					<a class="custom_button" href="#">Ver perfil público</a>
+  				</div>
+  			</div>
 		</div>
+		<div class="col-xs-12 col-md-8 profile_gallery">
+			<div class="publication app_box" *ngFor="let galeria of userGalleryMock">
+				<img src="{{ galeria.url }}">
+			</div>
+		</div>
+	</div>
 </article>

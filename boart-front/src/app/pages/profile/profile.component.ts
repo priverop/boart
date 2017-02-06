@@ -14,32 +14,21 @@ export class ProfileComponent implements OnInit {
 	
   constructor() {
 
-  	this.userInfoMocks = [
+  	this.userInfoMocks = 
   		{
   			avatar: "http://www.dagmedya.net/wp-content/uploads/2013/07/Mariano-Rajoy.jpg",
   			nickname: "@perrorojo",
   			name: "Alfonso",
   			surname: "Felipe Muñoz",
   			aboutme: "Aficionado a la fotografía, me gusta fotografiar naturaleza, en especial aves."
-  		}
-  	],
+  		},
+  	
 
   	this.userPublicationMocks = [
   		{
   			name: "Anochecer con V",
   			description: "Fotografía de un anochecer en Vallekas City.",
-  			url: "#",
-  			redes : [
-  						{
-							  url: "https://image.flaticon.com/icons/png/128/59/59439.png"
-							},
-							{
-								url: "https://image.flaticon.com/icons/png/128/33/33671.png"
-							},
-							{
-								url: "https://image.flaticon.com/icons/png/128/34/34227.png"
-							}
-				]
+  			url: "#"
 			}
 		],
   			

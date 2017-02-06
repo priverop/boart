@@ -1,19 +1,22 @@
 <app-header></app-header>
 <article class="container-fluid">
 	<div class="row">
-		<div *ngFor="let info of userInfoMocks" class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
 				<div class="col-xs-12 col-md-4">
-					<img class="img-responsive" src="{{ info.avatar }}">
+					<img class="img-responsive" src="{{ userInfoMocks.avatar }}">
 				</div>
 				<div class="col-xs-12 col-md-8">
 					<div class="col-xs-12">
-						<h1>{{ info.name }} {{ info.surname }}</h1>
-						<h2><em>{{ info.nickname }}</em></h2>  			
-		  				<blockquote><em>{{ info.aboutme }}</em></blockquote>
+						<h1>{{ userInfoMocks.name }} {{ userInfoMocks.surname }}</h1>
+						<h2><em>{{ userInfoMocks.nickname }}</em></h2>  			
+		  				<blockquote><em>{{ userInfoMocks.aboutme }}</em></blockquote>
 	  				</div>
-	  				<div *ngFor="let red_social of info.redes" class="col-xs-12 social_nets">
-	  				{{ red_social.url }}
-	  					<img src="{{ red_social.url }}">
+	  				<div class="col-xs-12 social_nets">
+	  					<i class="icofont icofont_social icofont-social-500px"></i>
+	  					<i class="icofont icofont_social icofont-social-facebook"></i>
+	  					<i class="icofont icofont_social icofont-social-twitter"></i>
+	  					<i class="icofont icofont_social icofont-social-instagram"></i>
+	  					<i class="icofont icofont_social icofont-social-linkedin"></i>
 	  				</div>
 	  			</div>
 	  		
