@@ -77,9 +77,9 @@ body {
     } 
   }
 
-  .box_login_singup{
+  .box_login, .box_singup{
 
-    .icofont-lock{
+    .icofont-lock, .icofont-user{
       color: $font-contrast;
       font-size: 3em;
     }

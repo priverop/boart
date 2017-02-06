@@ -2,12 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-        <div class="box_login_singup app_box">
+        <div class="box_login app_box">
           <i class="icofont icofont-lock"></i>
           <form>
             <input type='text' placeholder='Usuario:'/>
             <input type='text' placeholder='Contraseña:'/>
-            <input type='submit' placeholder='SUBMIT'/>
+            <input type='submit' placeholder='SUBMIT' (click)="submit($event)" />
+          </form>
+        </div>
+        <div class="box_singup app_box">
+          <i class="icofont icofont-user"></i>
+          <form>
+            <input type='text' placeholder='Nombre:'/>
+            <input type='text' placeholder='Apellidos:'/>
+            <input type='text' placeholder='Usuario:'/>
+            <input type='text' placeholder='Contraseña:'/>
+            <input type='submit' placeholder='SUBMIT' (click)="submit($event)"/>
           </form>
         </div>
       </div>

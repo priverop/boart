@@ -12,4 +12,13 @@ export class LoginOverlayComponent implements OnInit {
   ngOnInit() {
   }
 
+  submit(){
+    let loginComponent = <HTMLElement>document.querySelector('.box_login');
+    loginComponent.style.display = "none";
+    let singUpComponent = <HTMLElement>document.querySelector('.box_singup');
+    singUpComponent.style.display = "none";
+    let overlay = <HTMLElement>document.querySelector('.overlay');
+    overlay.style.display = "none";
+  }
+
 }

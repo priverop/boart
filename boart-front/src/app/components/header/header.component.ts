@@ -12,4 +12,18 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  login(){
+    let loginComponent = <HTMLElement>document.querySelector('.box_login');
+    loginComponent.style.display = "block";
+    let overlay = <HTMLElement>document.querySelector('.overlay');
+    overlay.style.display = "flex";
+  }
+
+  singUp(){
+    let singUpComponent = <HTMLElement>document.querySelector('.box_singup');
+    singUpComponent.style.display = "block";
+    let overlay = <HTMLElement>document.querySelector('.overlay');
+    overlay.style.display = "flex";
+  }
+
 }
