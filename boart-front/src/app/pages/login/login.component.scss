@@ -1,52 +1,46 @@
 @import "../../../assets/_variables";
+
+.container {
+  padding-top: 5%;
+  #box {
+    text-align: center;
+    padding: 20px;
+    #logo {
+      margin: auto;
+      width: 50%;
+    }
+    #containerForm {
+      text-align: left;
+      #labelEntrar {
+        margin-left: 20px;
+        margin-top: 20px;
+        font-size: 25px;
+      }
+      .input-group {
+        margin: 10px;
+        span {
+          background-color: $font_contrast;
+        }
+      }
+    }
+    #enviar {
+      margin-top: 15px;
+      background-color: $font_contrast;
+      border-style: none;
+    }
+  }
+}
+
 .glyphicon {
     position: static;
     color: white;
 }
 
-.input-group {
-    margin: 10px;
-}
-
-#logo {
-    margin: auto;
-}
-
 .jumbotron {
     text-align: center;
     border: 1px;
-    border-style: solid
+    border-style: solid;
 }
-
-#labelEntrar {
-    margin-left: 20px;
-    margin-top: 20px;
-    font-size: 25px;
-}
-
-#containerForm {
-    text-align: left
-}
-
-#box {
-    text-align: center;
-    padding: 20px;
-}
-
-.container {
-    padding-top: 5%;
-}
-
-span {
-    background-color: $font_contrast;
-}
-
-#enviar {
-    margin-top: 15px;
-    background-color: $font_contrast;
-    border-style: none;
-}
-
 
 /* Small devices (tablets, 768px and up) */
 
