@@ -23,6 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     CommentsComponent,
     SelfProfileComponent,
-    GroupComponent
+    GroupComponent,
+    FooterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
