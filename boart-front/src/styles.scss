@@ -1,14 +1,14 @@
 /* IMPORTS */
 
 @import "/assets/_variables";
-@import url('https://fonts.googleapis.com/css?family=Syncopate');
-@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
+
 
 /* DIVS */
 
 body {
 
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Alegreya Sans SC', sans-serif !important;
   background-color: $background!important;
 /*  background: url(assets/social-1989152_1920_web.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -30,6 +30,18 @@ body {
   }
 
   /* FONTS */
+
+  .syncopate{
+    font-family: 'Syncopate', sans-serif;
+  }
+
+  .barrio{
+    font-family: 'Barrio', cursive;
+  }
+
+  .alegreya{
+    font-family: 'Alegreya Sans SC', sans-serif;
+  }
 
   .icofont_social{
     color: $background-header;

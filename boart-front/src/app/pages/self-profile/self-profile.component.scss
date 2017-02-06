@@ -1,6 +1,6 @@
 @import "../../../assets/_variables";
 
-.user_info{
+.user_profile{
 	padding: 10px;
 	img{
 		max-width: 300px;
@@ -47,15 +47,11 @@
 		img{
 			max-height: 300px;
 		}
-	  opacity: 1;
-	  -webkit-transition: all .2s ease;
-	  -moz-transition: all .2s ease;
-	  -o-transition: all .2s ease;
-	  transition: all .2s ease;
 	}
-	.profile_gallery:hover .publication:not(:hover) {
-  	opacity: 0.4
+	.user_info{
+		margin: 0 0 10px 0;
 	}
+
 	.edit-icon{
 		cursor: pointer;
 		i{
@@ -81,6 +77,39 @@
 		cursor: pointer;
 		position: relative;
 		width: 300px;
+		.veil{
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			opacity: 0;
+			-webkit-transition: all .5s ease;
+		  -moz-transition: all .5s ease;
+		  -o-transition: all .5s ease;
+		  transition: all .5s ease;
+		  font-size: 2em;
+		}
+		&:hover{
+			color: $black-color-transparent;
+			.veil{
+				color: $black-color-soft;
+				opacity: 1;
+				-webkit-transition: all .5s ease;
+			  -moz-transition: all .5s ease;
+			  -o-transition: all .5s ease;
+			  transition: all .5s ease;
+			}
+			img{
+		  	opacity: 0.5;
+				-webkit-transition: all .5s ease;
+			  -moz-transition: all .5s ease;
+			  -o-transition: all .5s ease;
+			  transition: all .5s ease;
+			 }
+		}
+	}
+	.edit-gallery{
+		cursor: pointer;
+		position: relative;
 		.veil{
 			position: absolute;
 			bottom: 10px;
