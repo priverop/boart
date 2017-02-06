@@ -38,10 +38,25 @@ body {
     -moz-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
+    padding: 0px 3px;
     &:hover{
       color: $black-color;
     }
   }
+
+  .icofont_social_aternative{
+    color: $white-color;
+    font-size: 2em;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    padding: 0px 10px;
+    &:hover{
+      color: $font-contrast;
+    }
+  }
+
   .font_contrast{
     color: $font-contrast!important;
   }
