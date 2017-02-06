@@ -1,26 +1,57 @@
 <app-header></app-header>
 <article class="container-fluid">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2" id="menuleft">
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
-            <div class="app_box" id="boxDesc">
-                <img id="imgCabecera" src="https://farm1.staticflickr.com/527/18050905254_bd5018dbe4_z_d.jpg" />
-                <p id="descGroup">Fotógrafos de Vallekas</p>
+        <div class="flex-row row">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
+                <div class="app_box menuleft" id="boxDesc">
+                    <img id="imgCabecera" src="https://farm1.staticflickr.com/527/18050905254_bd5018dbe4_z_d.jpg" />
+                    <p class="title">Fotógrafos de Vallekas</p>                          
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
+                <div class="app_box menuleft">
+                    <p class="title">MIEMBROS</p>
+                    <div class="panel panel-default">
+                        <div class="panel-body miembro">
+                            <a class="username" href="/profile"><img src="http://images.eldiario.es/galicia/Pablo-Iglesias_EDIIMA20130920_0396_4.jpg" /><b>@PabloIglesias</b></a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body miembro">
+                            <a class="username" href="/profile"><img src="http://www.dagmedya.net/wp-content/uploads/2013/07/Mariano-Rajoy.jpg" /><b>@perrorojo</b></a>
+                        </div>
+                    </div>
+                    <div id="vermas">
+                        <a href="#">Ver todos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
+                <div class="filter_publication app_box">
+                    <ul>
+                        <li><a href="#" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>Más nuevos</a></li>
+                        <li><a href="#"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>Más valorados</a></li>
+                        <li><a href="#"><i aria-hidden="true" class="icofont icofont-comment"></i>Más comentados</a></li>
+                    </ul>
+                    <app-search></app-search>
+                    <app-tag-list></app-tag-list>
+                </div>
             </div>
         </div>
-
-        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
-            <div class="filter_publication app_box">
-                <ul>
-                    <li><a href="#" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>Más nuevos</a></li>
-                    <li><a href="#"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>Más valorados</a></li>
-                    <li><a href="#"><i aria-hidden="true" class="icofont icofont-comment"></i>Más comentados</a></li>
-                </ul>
-                <app-search></app-search>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+        <div id="columns">
+            <div *ngFor="let publication of publicationsMock" class="publication app_box">
+                <img src="{{ publication.img }}" />
+                <p>
+                    {{ publication.text }}
+                </p>
+                <div class="rating">
+                    <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">5</span></p>
+                </div>
                 <app-tag-list></app-tag-list>
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 app_box">
-        <div id="descGroup">HOLA</div>
-    </div>
 </article>
+<app-comments></app-comments>
