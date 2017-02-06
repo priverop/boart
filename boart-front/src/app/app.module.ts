@@ -16,6 +16,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SelfProfileComponent } from './pages/self-profile/self-profile.component';
 import { GroupComponent } from './pages/group/group.component';
+import { UploadComponent } from './pages/upload/upload.component';
+
 
 
 /* COMPONENTS */
@@ -24,7 +26,6 @@ import { SearchComponent } from './components/search/search.component';
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UploadComponent } from './pages/upload/upload.component';
 import { LoginOverlayComponent } from './components/login-overlay/login-overlay.component';
 
 
@@ -33,8 +34,7 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent},
   { path: 'selfprofile', component: SelfProfileComponent},
   { path: 'publication', component: PublicationComponent},
-  { path: 'singup', component: SingupComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'upload', component: UploadComponent },
   { path: 'group', component: GroupComponent },
   { path: '', component: PublicComponent}
 ];
