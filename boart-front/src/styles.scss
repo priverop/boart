@@ -77,5 +77,41 @@ body {
     } 
   }
 
+  .box_login_singup{
 
+    .icofont-lock{
+      color: $font-contrast;
+      font-size: 3em;
+    }
+
+    [type=text] {
+      display: block;
+      margin: 0 auto;
+      width: 80%;
+      border: 0;
+      border-bottom: 1px solid rgba(0,0,0,.2);
+      height: 45px;
+      line-height: 45px;
+      margin-bottom: 10px;
+      font-size: 1em;
+      color: $black-color;
+    }
+
+    [type=submit] {
+      margin-top: 25px;
+      width: 80%;
+      border: 0;
+      background-color: $font-contrast;
+      border-radius: 5px;
+      height: 50px;
+      color: white;
+      font-weight: 400;
+      font-size: 1em;
+    }
+
+    [type='text']:focus {
+      outline: none;
+      border-color: $font-contrast;
+    }
+  }
 }

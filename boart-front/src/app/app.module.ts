@@ -24,6 +24,8 @@ import { SearchComponent } from './components/search/search.component';
 import { TagListComponent } from './components/tag-list/tag-list.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UploadComponent } from './pages/upload/upload.component';
+import { LoginOverlayComponent } from './components/login-overlay/login-overlay.component';
 
 
 
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
     CommentsComponent,
     SelfProfileComponent,
     GroupComponent,
-    FooterComponent
+    FooterComponent,
+    UploadComponent,
+    LoginOverlayComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
