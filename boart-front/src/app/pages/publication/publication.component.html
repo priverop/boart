@@ -1,23 +1,23 @@
 <app-header></app-header>
 <article class="container-fluid">
-	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2 app_box">
-		<div class="row">
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 info_publication">
-				<p class="title"><strong>{{ publicationInfo.title }}</strong></p>
-				<p class="description">{{ publicationInfo.description }}</p>
-				<p class="user"><span><strong>@{{publicationInfo.user}}</strong></span></p>
-				<app-tag-list></app-tag-list>
+	
+		<div class="col-xs-12 col-sm-4 app_box user_wrapper">
+				<img class="img-responsive" src="{{publicationInfo.avatar}}">
+				<h2 class="user"><a href="/profile">@{{publicationInfo.user}}</a></h2>
 				<div class="share_publication">
 					<a href="#"><i class="icofont icofont_social icofont-social-twitter"></i></a>
 					<a href="#"><i class="icofont icofont_social icofont-social-facebook"></i></a>
 					<a href="#"><i class="icofont icofont_social icofont-social-google-plus"></i></a>
 				</div>
-			</div>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 publication">
-				<img class="col-xs-12" src="{{ publicationInfo.url }}">
-			</div>
 		</div>
-	</div>
+
+		<div class="col-xs-12 col-sm-8 app_box publication_wrapper">
+			<h1 class="title">{{ publicationInfo.title }}</h1>
+			<h3 class="description">{{ publicationInfo.description }}</h3>
+			<img class="img-responsive" src="{{ publicationInfo.url }}">
+			<app-tag-list></app-tag-list>
+		</div>
+
 	<app-comments></app-comments>
 </article>
 <app-footer></app-footer>

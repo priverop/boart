@@ -13,6 +13,7 @@ export class PublicationComponent implements OnInit {
 
   	this.publicationInfo =
   		{
+        avatar: "https://i1.sndcdn.com/avatars-000183688573-hdws3e-t500x500.jpg",
   			title: "Anocheciendo en V",
   			description: "Un anochecer en Las Tetas de Vallecas (de ahí la V).",
   			user: "NicoMisery",

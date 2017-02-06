@@ -53,6 +53,11 @@ article{
         .rating-value{
           padding: 0px 5px;
         }
+        &:hover{
+          .like_icon{
+            color: red;
+          }
+        }
       }
     }
   }
