@@ -22,6 +22,8 @@ $rgba-primary-4: rgba(  0, 83, 83,1);
 
 $white-color: rgba(255, 255, 255, 1);
 $black-color: rgba(0, 0, 0, 1);
+$black-color-soft: rgba(0, 0, 0, .7);
+$black-color-transparent: rgba(0, 0, 0, .5);
 $background-white: #f8f8ff;
 $background-black: #333333;
 
@@ -31,6 +33,7 @@ $background: #fbfbfb;
 $background-publication: #efefef;
 $background-border: #FFFFFF;
 $font-contrast: rgba(88, 165, 15, 0.75);
+$background-footer: rgba(60, 60, 60, 1);
 
 
 $screen-sm-min: 768px;

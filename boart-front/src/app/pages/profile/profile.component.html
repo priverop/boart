@@ -1,4 +1,36 @@
 <app-header></app-header>
 <article class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
+				<div class="col-xs-12 col-md-4">
+					<img class="img-responsive" src="{{ userInfoMocks.avatar }}">
+				</div>
+				<div class="col-xs-12 col-md-8">
+					<div class="col-xs-12">
+						<h1>{{ userInfoMocks.name }} {{ userInfoMocks.surname }}</h1>
+						<h2><em>{{ userInfoMocks.nickname }}</em></h2>  			
+		  				<blockquote><em>{{ userInfoMocks.aboutme }}</em></blockquote>
+	  				</div>
+	  				<div class="col-xs-12 social_nets">
+	  					<i class="icofont icofont_social icofont-social-500px"></i>
+	  					<i class="icofont icofont_social icofont-social-facebook"></i>
+	  					<i class="icofont icofont_social icofont-social-twitter"></i>
+	  					<i class="icofont icofont_social icofont-social-instagram"></i>
+	  					<i class="icofont icofont_social icofont-social-linkedin"></i>
+	  				</div>
+	  			</div>
+	  		
+		</div>
+		<div *ngFor="let publicaciones of userPublicationMocks" class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
+			<p class="title"><a href="{{ publicaciones.url }}"><span class="glyphicon glyphicon-picture"></span> {{ publicaciones.name }}</a></p>
+			<p class="description"><em>{{ publicaciones.description }}</em></p>
+		</div>
+	</div>
+	
+	<!-- Gallery -->
+	<div class="row" id="columns">
+		<div *ngFor="let galeria of userGalleryMocks" class="app_box publication"><img src="{{galeria.url}}"></div>
+	</div>
+
 	<app-comments></app-comments>
 </article>
