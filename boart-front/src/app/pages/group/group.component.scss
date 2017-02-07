@@ -69,9 +69,23 @@
 }
 
 .miembro {
+    background-color: transparent;
+    padding: 15px;
     text-align: center;
     height: 100%;
+    a{
+        color: $font-contrast;
+        text-decoration: none;
+        &:hover{
+            color: $black-color;
+            -webkit-transition: all .2s ease;
+            -moz-transition: all .2s ease;
+            -o-transition: all .2s ease;
+            transition: all .2s ease;
+        }
+    }
     img {
+        width: 40px;
         height: 40px;
         margin-right: 10px
     }
@@ -96,6 +110,9 @@
 #vermas {
     margin: 10px;
     text-align: center;
+    a{
+        color: $black-color;
+    }
 }
 
 #columns {
