@@ -34,24 +34,37 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 https://trello.com/b/fG0uTmVa
 
 ## Navegación
-http://i.imgur.com/3QFtfaP.png
+![Navegacion]
+(http://i.imgur.com/3QFtfaP.png)
 
 # Portada
+![Portada]
+(http://i.imgur.com/ctAYy4y.png)
 
 # Login
-http://imgur.com/K9At1Jq
+![Login]
+(http://i.imgur.com/K9At1Jq.png)
 
 # Registro
-http://imgur.com/wVqqBVL
+![Registro]
+(http://i.imgur.com/wVqqBVL.png)
 
-# Publicacin
+# Publicación
+![Publicación]
+(http://i.imgur.com/9pztOTQ.png)
 
 # Grupo
-http://imgur.com/7jsh5zp
+![Grupo]
+(http://i.imgur.com/7jsh5zp.png)
 
 # Perfil privado
+![Perfil privado]
+(http://i.imgur.com/17KxRZr.png)
 
 # Perfil público
+![Perfil público]
+(http://i.imgur.com/17KxRZr.png)
 
 # Upload
-http://imgur.com/ktObUo0
+![Upload]
+(http://i.imgur.com/ktObUo0.png)
