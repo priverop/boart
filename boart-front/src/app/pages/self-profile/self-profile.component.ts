@@ -9,6 +9,8 @@ export class SelfProfileComponent implements OnInit {
 
 	private userInfoMock;
 	private userGalleryMock;
+    private userGroupsMock;
+
 
   constructor() { 
 
@@ -38,7 +40,15 @@ export class SelfProfileComponent implements OnInit {
 			{
 			  url: "http://cssdeck.com/uploads/media/items/1/1swi3Qy.png"
 			}
+		],
+        
+        this.userGroupsMock = [
+			{
+              name: "Fotógrafos en Vallekas",
+			  url: "/group"
+			}
 		]
+        
 		
   }
 
