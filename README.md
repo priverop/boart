@@ -6,21 +6,21 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 ### Parte pública
 - La portada tendrá tres vistas: lo mejor valorado, lo más comentado y lo nuevo. Tiene el buscador con etiquetas para filtrar. Estas tres pestañas, a la hora de mostrar publicaciones, se basan en un algoritmo que tiene en cuenta la clave principal (más ratio votos positivos /negativos, o comentarios o fecha más reciente), además de tus gustos personales (como se explica en la parte privada), y por supuesto del tiempo; para evitar que siempre estén las mismas en los primeros puestos.
 - Puedes ver las publicaciones (otra vista), donde podrás comentar (si estás logueado) y acceder a los perfiles de los usuarios (si estás logueado; otra vista). 
-- Puedes acceder a la categora de la publicación y entrarás en una vista de la página de categoría.
+- Puedes acceder al grupo de la publicación y entrarás en una vista de la página de grupo.
 - Existirá la vista del registro para usuarios nuevos.
 - Vista del login (ventana modal).
 
 ### Parte privada
 - Perfil de cada usuario, puedes gestionar tus datos personales y tu galería (número limitado de publicaciones destacadas).
 - Puedes contactar con otros artistas por medio de mensajes privados. Todo estaría en una sola vista.
-- Puedes seguir usuarios, categorías y etiquetas, para que tengan más importancia en el algoritmo del usuario. Es decir, para que tengan más prioridad a la hora de mostrarse en tu portada.
+- Puedes seguir usuarios, grupos y etiquetas, para que tengan más importancia en el algoritmo del usuario. Es decir, para que tengan más prioridad a la hora de mostrarse en tu portada.
 
 ## Entidades:
 
-* Publicación: Constará de un elemento multimedia (fotografa, vídeo, audio...), un título de la obra y un texto más extenso que la describa. Cada publicación podrá tener una categoría determinada y etiquetas que ayuden a su búsqueda. Existirá la opción de permitir comentarios de otros usuarios.
+* Publicación: Constará de un elemento multimedia (fotografa, vídeo, audio...), un título de la obra y un texto más extenso que la describa. Cada publicación podrá tener un grupo determinada y etiquetas que ayuden a su búsqueda. Existirá la opción de permitir comentarios de otros usuarios.
 * Usuario: Constará de un nick, contraseña, nombre, apellidos y correo electrónico. Cada usuario tendrá una página personal con sus datos, publicaciones y galera.
 * Galería: Los usuarios tienen derecho a un número limitado de publicaciones a destacar en su perfil.
-* Categoría: Página a la que podrán suscribirse los usuarios. Tendrá una foto y breve descripción de encabezado. Por ejemplo: categoría fotografa, música, dibujo...
+* Grupo: Página a la que podrán suscribirse los usuarios. Tendrá una foto y breve descripción de encabezado. Por ejemplo: grupo fotografa, música, dibujo...
 * Etiqueta: Palabras que los usuarios podrán usar en sus publicaciones para que el resto de personas encuentren sus obras con más facilidad. Las etiquetas también servirán para ver publicaciones referentes a un mismo tema (filtro).
 * Votos.
 * Comentarios.
@@ -32,3 +32,26 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 
 ## Trello
 https://trello.com/b/fG0uTmVa
+
+## Navegación
+http://i.imgur.com/3QFtfaP.png
+
+# Portada
+
+# Login
+http://imgur.com/K9At1Jq
+
+# Registro
+http://imgur.com/wVqqBVL
+
+# Publicacin
+
+# Grupo
+http://imgur.com/7jsh5zp
+
+# Perfil privado
+
+# Perfil público
+
+# Upload
+http://imgur.com/ktObUo0
