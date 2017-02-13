@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  db:
+    image: mysql:latest
+    volumes:
+      - /Usuarios/nexmaniosis/boart/docker/db_data:/var/lib/mysql
+    ports:
+      - 8200:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: db
+      MYSQL_DATABASE: db
+      MYSQL_USER: db
+      MYSQL_PASSWORD: db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - db:mysql
+    ports:
+      - 8181:80
+    restart: always
+    environment:
+      MYSQL_USERNAME: db
+      MYSQL_ROOT_PASSWORD: db      
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+
+volumes:
+    db_data:
