@@ -1,0 +1,11 @@
+.comments_box {
+  padding: 20px 40px;
+  margin: 15px;
+}
+.comments_box .comment {
+  display: inline-block;
+  margin: 10px 0px;
+}
+.comments_box textarea {
+  width: 100%;
+}
