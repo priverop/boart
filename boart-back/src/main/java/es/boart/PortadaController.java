@@ -1,17 +1,40 @@
 package es.boart;
 
+import java.sql.Date;
+import java.util.Calendar;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.boart.model.Publicacion;
+
 @Controller
 public class PortadaController {
+	
+	@Autowired
+	private PortadaRepository repository;
+
+	@PostConstruct
+	public void init(){
+
+		// Creamos los datos iniciales
+		
+		repository.save(new Publicacion("Pepe", "Holacaracola", "Descripcion1", 
+				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
+				Calendar.getInstance().getTime(), 0));
+		repository.save(new Publicacion("Juan", "Holacar2acola", "Descr2ipcion1", 
+				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
+				Calendar.getInstance().getTime(), 0));
+	}
 	
 	@RequestMapping("/")
 	public String greeting(Model modelo) {
 
-		modelo.addAttribute("publication.img", "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg");
-		modelo.addAttribute("publication.text", "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.");
+		modelo.addAttribute("publicaciones", repository.findAll());
 		
 		return "portada_template";
 	}

@@ -60,10 +60,11 @@
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
 			<div id="columns">
+			{{#publicaciones}}
 				<div
 					class="publication app_box">
-					<img src="{{ publication.img }}" />
-					<p>{{ publication.text }}</p>
+					<img src="{{ media }}" />
+					<p>{{ descripcion }}</p>
 					<div class="rating">
 						<p>
 							<span class="glyphicon glyphicon-heart-empty like_icon"
@@ -78,6 +79,7 @@
 							aria-hidden="true"></span>dibujo</span>
 					</div>
 				</div>
+			{{/publicaciones}}
 			</div>
 		</div>
 	</article>
