@@ -6,11 +6,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="../static/css/globals.css">
-<link rel="stylesheet" href="../static/css/header.css">
-<link rel="stylesheet" href="../static/css/search.css">
-<link rel="stylesheet" href="../static/css/tag-list.css">
-<link rel="stylesheet" href="../static/css/portada.css">
+<link rel="stylesheet" href="C:\Users\oSCAR\Documents\boart\boart-back\src\main\resources\static\css\globals.css">
+<link rel="stylesheet" href="C:\Users\oSCAR\Documents\boart\boart-back\src\main\resources\static\css\header.css">
+<link rel="stylesheet" href="C:\Users\oSCAR\Documents\boart\boart-back\src\main\resources\static\css\search.css">
+<link rel="stylesheet" href="C:\Users\oSCAR\Documents\boart\boart-back\src\main\resources\static\css\tag-list.css">
+<link rel="stylesheet" href="C:\Users\oSCAR\Documents\boart\boart-back\src\main\resources\static\css\portada.css">
 </head>
 <body>
 	<div class="menu">
@@ -60,11 +60,11 @@
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
 			<div id="columns">
-			<!-- {{#publicaciones}} -->
+			{{#publicaciones}}
 				<div
 					class="publication app_box">
-					<img src="../static/img/grito.jpg" />
-					<p>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</p>
+					<img src="{{ media }}" />
+					<p>{{ descripcion }}</p>
 					<div class="rating">
 						<p>
 							<span class="glyphicon glyphicon-heart-empty like_icon"
@@ -79,7 +79,7 @@
 							aria-hidden="true"></span>dibujo</span>
 					</div>
 				</div>
-			<!-- {{/publicaciones}} -->
+			{{/publicaciones}}
 			</div>
 		</div>
 	</article>
