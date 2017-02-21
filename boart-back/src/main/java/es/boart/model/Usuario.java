@@ -28,16 +28,12 @@ public class Usuario {
 	private Timestamp fechaRegistro;
 	private Timestamp fechaUltimoLogin;
 	@OneToMany(mappedBy="usuario")
-	@OrderColumn
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
-	@OrderColumn
 	private List<MiembroGrupo> miembroGrupos;
 	@OneToMany(mappedBy="usuario")
-	@OrderColumn
 	private List<ComentarioPerfil> comentariosEscritos;
 	@OneToMany(mappedBy="usuarioDestino")
-	@OrderColumn
 	private List<ComentarioPerfil> comentariosRecibidos;
 	
 	/**

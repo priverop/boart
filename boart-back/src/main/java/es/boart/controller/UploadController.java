@@ -1,5 +1,6 @@
 package es.boart.controller;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -33,7 +34,7 @@ public class UploadController {
 	@PostMapping("/upload")
 	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("titulo") String titulo,@RequestParam("descripcion") String descripcion) {
 		// modelo.addAttribute("", repository.findAll());
-		Publicacion publicacion = new Publicacion("m0scar", titulo, descripcion, file.getOriginalFilename(), 0, new Date(), 0);
+		Publicacion publicacion = new Publicacion("m0scar", titulo, descripcion, file.getOriginalFilename(), 0, new Timestamp(new Date().getTime()), 0);
 		System.out.println(publicacion.getAutor() + " " + publicacion.getTitulo() + " " + publicacion.getDescripcion() + " " + publicacion.getMedia());
 		repository.save(publicacion);
 		return "publicacion_template";

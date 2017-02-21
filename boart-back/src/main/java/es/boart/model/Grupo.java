@@ -20,7 +20,6 @@ public class Grupo {
 	private String descripcion;
 	private String imgPerfil;
 	@OneToMany(mappedBy="grupo")
-	@OrderColumn
 	private List<MiembroGrupo> miembroGrupos;
 	/**
 	 * @return the titulo
