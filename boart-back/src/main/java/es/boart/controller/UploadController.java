@@ -18,13 +18,11 @@ import es.boart.repository.UploadRepository;
 
 @Controller
 public class UploadController {
+	
+	
 
 	@Autowired
 	private UploadRepository repository;
-
-	@PostConstruct
-	public void init() {
-	}
 
 	@RequestMapping("/subir")
 	public String greeting(Model modelo) {
@@ -34,10 +32,10 @@ public class UploadController {
 	}
 
 	@PostMapping("/upload")
-	public String upload(@RequestParam("titulo") String titulo,@RequestParam("descripcion") String descripcion) {
+	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("titulo") String titulo,@RequestParam("descripcion") String descripcion) {
 		// modelo.addAttribute("", repository.findAll());
-		Publicacion publicacion = new Publicacion("m0scar", titulo, descripcion, "hola.jpg", 0, new Date(), 0);
-		System.out.println(publicacion.getAutor() + " " + publicacion.getTitulo() + " " + publicacion.getDescripcion() );
+		Publicacion publicacion = new Publicacion("m0scar", titulo, descripcion, file.getOriginalFilename(), 0, new Date(), 0);
+		System.out.println(publicacion.getAutor() + " " + publicacion.getTitulo() + " " + publicacion.getDescripcion() + " " + publicacion.getMedia());
 		repository.save(publicacion);
 		return "publicacion_template";
 	}
