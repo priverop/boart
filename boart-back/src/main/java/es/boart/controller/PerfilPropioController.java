@@ -18,10 +18,10 @@ public class PerfilPropioController {
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/perfilpropio")
+	@RequestMapping("/perfil_privado/")
 	public String greeting() {
 
-		//modelo.addAttribute("", repository.findAll());
+		//SESIÓN DEL USUARIO
 		
 		return "perfil_privado_template";
 	}
