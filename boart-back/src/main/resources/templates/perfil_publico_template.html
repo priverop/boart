@@ -33,15 +33,16 @@
     </div>
     <article class="container-fluid">
 	<div class="row">
+		{{#usuario}}
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
 				<div class="col-xs-12 col-sm-4">
-					<img class="img-responsive" src="http://www.dagmedya.net/wp-content/uploads/2013/07/Mariano-Rajoy.jpg">
+					<img class="img-responsive" src="{{img}}">
 				</div>
 				<div class="col-xs-12 col-sm-8">
 					<div class="col-xs-12">
-						<h1>Alfonso Felipe Muñoz</h1>
-						<h2><em>@perrorojo</em></h2>  			
-		  				<blockquote><em>Aficionado a la fotografía, me gusta fotografiar naturaleza, en especial aves.</em></blockquote>
+						<h1>{{nombre}}</h1>
+						<h2><em>@{{nombreUsuario}}</em></h2>  			
+		  				<blockquote><em>{{descripcion}}</em></blockquote>
 	  				</div>
 	  				<div class="col-xs-12 social_nets">
 	  					<i class="icofont icofont_social icofont-social-500px"></i>
@@ -53,6 +54,7 @@
 	  			</div>
 	  		
 		</div>
+		{{/usuario}}
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
 			<p class="title"><a href="#"><span class="glyphicon glyphicon-picture"></span>Anochecer con V</a></p>
 			<p class="description"><em>Fotografía de un anochecer en Vallekas City.</em></p>

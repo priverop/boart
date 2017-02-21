@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ public class Usuario {
 	private String nombreUsuario;
 	private String nombre;
 	private String apellido;
+	private String descripcion;
 	private String contraseña;
 	private String img;
 	private int visitas; 
@@ -24,18 +26,28 @@ public class Usuario {
 	private Timestamp fechaRegistro;
 	private Timestamp fechaUltimoLogin;
 	
-	public Usuario(String nombreUsuario, String nombre, String apellido, String contraseña, String img, int visitas,
-			int nivelSeguridad, java.util.Date date) {
-		super();
+	public Usuario(){}
+	
+	public Usuario(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
+			int visitas, int nivelSeguridad, Date date, Date date2) {
 		this.nombreUsuario = nombreUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.descripcion = descripcion;
 		this.contraseña = contraseña;
 		this.img = img;
 		this.visitas = visitas;
 		this.nivelSeguridad = nivelSeguridad;
 		this.fechaRegistro = new Timestamp(date.getTime());;
 		this.fechaUltimoLogin = null;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public String getNombreUsuario() {

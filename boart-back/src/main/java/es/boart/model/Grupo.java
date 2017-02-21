@@ -17,6 +17,8 @@ public class Grupo {
 	private String imgPerfil;
 	private String miembroGrupo;
 	
+	public Grupo(){}
+	
 	public Grupo(String titulo, String descripcion, String imgPerfil, String miembroGrupo) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;

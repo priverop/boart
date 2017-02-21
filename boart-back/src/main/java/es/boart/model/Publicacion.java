@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Publicacion {
 	
 	public Publicacion(){}
 	
-	public Publicacion(String autor, String titulo, String descripcion, String media, int tipo_media, java.util.Date date, int num_visitas){
+	public Publicacion(String autor, String titulo, String descripcion, String media, int tipo_media, Date date, int num_visitas){
 		this.autor = autor;
 		this.titulo = titulo;
 		this.descripcion = descripcion;

@@ -24,7 +24,6 @@ public class PublicacionController {
 	@RequestMapping("/publicacion/{id}")
 	public String greeting(Model modelo, @PathVariable long id) {
 
-		// Tenemos que llamar a la publicación con el ID correspondiente
 		Publicacion publicacion = repository.findOne(id);
 		
 		modelo.addAttribute("publicacion", publicacion);

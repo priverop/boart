@@ -7,19 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.boart.repository.UploadRepository;
+import es.boart.repository.SubirRepository;
 
 @Controller
-public class UploadController {
+public class SubirController {
 	
 	@Autowired
-	private UploadRepository repository;
+	private SubirRepository repository;
 	
 	@PostConstruct
 	public void init(){}
 	
 	@RequestMapping("/subir")
-	public String greeting(Model modelo) {
+	public String greeting() {
 
 		//modelo.addAttribute("", repository.findAll());
 		
