@@ -15,15 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.boart.model.Publicacion;
-import es.boart.repository.UploadRepository;
+import es.boart.repository.SubirRepository;
 
 @Controller
-public class UploadController {
-	
-	
+public class SubirController {
 
 	@Autowired
-	private UploadRepository repository;
+	private SubirRepository repository;
 
 	@RequestMapping("/subir")
 	public String greeting(Model modelo) {

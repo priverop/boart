@@ -1,6 +1,7 @@
 package es.boart.controller;
 
-import java.util.Calendar;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -21,11 +22,13 @@ public class PerfilController {
 	
 	@PostConstruct
 	public void init(){
+		Date date = new Date();
+		
 		repository.save(new Usuario("usuario1", "prueba", "prueba", 
 				"Aficionado a la fotografía, me gusta fotografiar naturaleza, en especial aves.",
 				"pass", 
 				"https://yt3.ggpht.com/-9lTuNU-MLtM/AAAAAAAAAAI/AAAAAAAAAAA/SjXmBhMb9PA/s176-c-k-no-mo-rj-c0xffffff/photo.jpg",
-				0, 0, Calendar.getInstance().getTime(), Calendar.getInstance().getTime()));
+				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime())));
 	}
 	
 	@RequestMapping("/perfil_publico/{nombreUsuario}")

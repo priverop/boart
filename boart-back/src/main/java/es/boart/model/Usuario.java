@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -21,6 +22,7 @@ public class Usuario {
 	private String nombreUsuario;
 	private String nombre;
 	private String apellido;
+	private String descripcion;
 	private String contraseña;
 	private String img;
 	private int visitas; 
@@ -44,21 +46,22 @@ public class Usuario {
 	 * @param img
 	 * @param visitas
 	 * @param nivelSeguridad
-	 * @param fechaRegistro
-	 * @param fechaUltimoLogin
+	 * @param date
+	 * @param date2
 	 * @param likes
 	 */
-	public Usuario(String nombreUsuario, String nombre, String apellido, String contraseña, String img, int visitas,
-			int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaUltimoLogin) {
+	public Usuario(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
+			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin) {
 		this.nombreUsuario = nombreUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.descripcion = descripcion;
 		this.contraseña = contraseña;
 		this.img = img;
 		this.visitas = visitas;
 		this.nivelSeguridad = nivelSeguridad;
 		this.fechaRegistro = fechaRegistro;
-		this.fechaUltimoLogin = fechaUltimoLogin;
+		this.fechaUltimoLogin = fechaLogin;
 	}
 
 	/**
@@ -101,6 +104,18 @@ public class Usuario {
 	 */
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+	/**
+	 * return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	/**
