@@ -27,7 +27,6 @@ public class UploadController {
 	@RequestMapping("/subir")
 	public String greeting(Model modelo) {
 		// modelo.addAttribute("", repository.findAll());
-		System.out.println("No pulsado");
 		return "subir_template";
 	}
 
