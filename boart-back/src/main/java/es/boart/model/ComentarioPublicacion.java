@@ -1,21 +1,27 @@
-// package es.boart.model;
+package es.boart.model;
 
-// import java.sql.Timestamp;
+import java.sql.Timestamp;
 
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-// @Entity
-// public class ComentarioPublicacion extends Comentario {
+@Entity
+public class ComentarioPublicacion {
 	
-// 	private Publicacion publicacion;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
+	@ManyToOne
+	private Usuario usuario;
+	private String text;
+	private Timestamp fechaPublicacion;
+	@ManyToOne
+	private Publicacion publicacion;
 
-// 	public ComentarioPublicacion(Usuario usuario, String text, Timestamp fechaPublicacion, Publicacion publicacion) {
-// 		super(usuario, text, fechaPublicacion);
-// 		// TODO Auto-generated constructor stub
-// 		this.publicacion = publicacion; 
-// 	}
+	
 
-// }
+}

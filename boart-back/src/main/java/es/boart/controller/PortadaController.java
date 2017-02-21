@@ -1,6 +1,8 @@
 package es.boart.controller;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
@@ -23,12 +25,15 @@ public class PortadaController {
 
 		// Creamos los datos iniciales
 		
+		Date date = new Date();
+		
 		repository.save(new Publicacion("Pepe", "Holacaracola", "Descripcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
-				Calendar.getInstance().getTime(), 0));
+				new Timestamp(date.getTime()), 0));
+		
 		repository.save(new Publicacion("Juan", "Holacar2acola", "Descr2ipcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
-				Calendar.getInstance().getTime(), 0));
+				new Timestamp(date.getTime()), 0));
 	}
 	
 	@RequestMapping("/")
