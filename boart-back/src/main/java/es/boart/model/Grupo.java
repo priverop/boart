@@ -1,9 +1,13 @@
 package es.boart.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 @Entity
 public class Grupo {
@@ -15,46 +19,57 @@ public class Grupo {
 	private String titulo;
 	private String descripcion;
 	private String imgPerfil;
-	private String miembroGrupo;
-	
-	public Grupo(){}
-	
-	public Grupo(String titulo, String descripcion, String imgPerfil, String miembroGrupo) {
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.imgPerfil = imgPerfil;
-		this.miembroGrupo = miembroGrupo;
-	}
-
+	@OneToMany(mappedBy="grupo")
+	@OrderColumn
+	private List<MiembroGrupo> miembroGrupos;
+	/**
+	 * @return the titulo
+	 */
 	public String getTitulo() {
 		return titulo;
 	}
-
+	/**
+	 * @param titulo the titulo to set
+	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
+	/**
+	 * @return the descripcion
+	 */
 	public String getDescripcion() {
 		return descripcion;
 	}
-
+	/**
+	 * @param descripcion the descripcion to set
+	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
+	/**
+	 * @return the imgPerfil
+	 */
 	public String getImgPerfil() {
 		return imgPerfil;
 	}
-
+	/**
+	 * @param imgPerfil the imgPerfil to set
+	 */
 	public void setImgPerfil(String imgPerfil) {
 		this.imgPerfil = imgPerfil;
 	}
-
-	public String getMiembroGrupo() {
-		return miembroGrupo;
+	/**
+	 * @return the miembroGrupos
+	 */
+	public List<MiembroGrupo> getMiembroGrupos() {
+		return miembroGrupos;
 	}
-
-	public void setMiembroGrupo(String miembroGrupo) {
-		this.miembroGrupo = miembroGrupo;
+	/**
+	 * @param miembroGrupos the miembroGrupos to set
+	 */
+	public void setMiembroGrupos(List<MiembroGrupo> miembroGrupos) {
+		this.miembroGrupos = miembroGrupos;
 	}
+	
+	
 }

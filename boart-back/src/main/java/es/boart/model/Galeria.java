@@ -1,41 +1,78 @@
-// package es.boart.model;
+package es.boart.model;
 
-// import java.sql.Timestamp;
+import java.sql.Timestamp;
 
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
-// import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
-// @Entity
-// public class Galeria {
+@Entity
+public class Galeria {
 	
-// 	@Id
-// 	@GeneratedValue(strategy = GenerationType.AUTO)
-// 	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
-// 	private Usuario usuario;
-// 	private Publicacion publicacion;
+	private String titulo;
+	private String descripcion;
+	private String imgPerfil;
 	
-// 	public Galeria(Usuario usuario, Publicacion publicacion) {
-// 		super();
-// 		this.usuario = usuario;
-// 		this.publicacion = publicacion;
-// 	}
+	/**
+	 * @param titulo
+	 * @param descripcion
+	 * @param imgPerfil
+	 * @param miembroGrupo
+	 */
+	public Galeria(String titulo, String descripcion, String imgPerfil) {
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.imgPerfil = imgPerfil;
+	}
 
-// 	public Usuario getUsuario() {
-// 		return usuario;
-// 	}
+	/**
+	 * @return the titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
 
-// 	public void setUsuario(Usuario usuario) {
-// 		this.usuario = usuario;
-// 	}
+	/**
+	 * @param titulo the titulo to set
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-// 	public Publicacion getPublicacion() {
-// 		return publicacion;
-// 	}
+	/**
+	 * @return the descripcion
+	 */
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-// 	public void setPublicacion(Publicacion publicacion) {
-// 		this.publicacion = publicacion;
-// 	}
-// }
+	/**
+	 * @param descripcion the descripcion to set
+	 */
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	/**
+	 * @return the imgPerfil
+	 */
+	public String getImgPerfil() {
+		return imgPerfil;
+	}
+
+	/**
+	 * @param imgPerfil the imgPerfil to set
+	 */
+	public void setImgPerfil(String imgPerfil) {
+		this.imgPerfil = imgPerfil;
+	}
+
+}
