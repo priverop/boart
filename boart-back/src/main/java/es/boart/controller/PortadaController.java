@@ -1,6 +1,5 @@
-package es.boart;
+package es.boart.controller;
 
-import java.sql.Date;
 import java.util.Calendar;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.model.Publicacion;
+import es.boart.repository.PortadaRepository;
 
 @Controller
 public class PortadaController {

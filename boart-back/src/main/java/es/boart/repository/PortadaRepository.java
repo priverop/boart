@@ -1,4 +1,4 @@
-package es.boart;
+package es.boart.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

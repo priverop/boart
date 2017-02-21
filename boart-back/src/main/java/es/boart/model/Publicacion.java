@@ -1,6 +1,5 @@
 package es.boart.model;
 
-import java.util.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;

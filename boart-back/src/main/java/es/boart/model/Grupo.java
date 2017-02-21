@@ -1,7 +1,5 @@
 package es.boart.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +15,9 @@ public class Grupo {
 	private String titulo;
 	private String descripcion;
 	private String imgPerfil;
-	private MiembroGrupo miembroGrupo;
+	private String miembroGrupo;
 	
-	public Grupo(String titulo, String descripcion, String imgPerfil, MiembroGrupo miembroGrupo) {
-		super();
+	public Grupo(String titulo, String descripcion, String imgPerfil, String miembroGrupo) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.imgPerfil = imgPerfil;
@@ -51,11 +48,11 @@ public class Grupo {
 		this.imgPerfil = imgPerfil;
 	}
 
-	public MiembroGrupo getMiembroGrupo() {
+	public String getMiembroGrupo() {
 		return miembroGrupo;
 	}
 
-	public void setMiembroGrupo(MiembroGrupo miembroGrupo) {
+	public void setMiembroGrupo(String miembroGrupo) {
 		this.miembroGrupo = miembroGrupo;
 	}
 }
