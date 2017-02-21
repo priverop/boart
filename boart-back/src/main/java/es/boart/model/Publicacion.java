@@ -26,10 +26,8 @@ public class Publicacion {
 	private Timestamp fecha;
 	private int num_visitas;
 	@OneToMany(mappedBy="publicacion")
-	@OrderColumn
 	private List<Like> likes;
 	@OneToMany(mappedBy="publicacion")
-	@OrderColumn
 	private List<ComentarioPublicacion> comentariosPublicacion;
 	
 	public Publicacion(){}
