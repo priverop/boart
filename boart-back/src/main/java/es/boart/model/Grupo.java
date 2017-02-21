@@ -21,6 +21,19 @@ public class Grupo {
 	private String imgPerfil;
 	@OneToMany(mappedBy="grupo")
 	private List<MiembroGrupo> miembroGrupos;
+	
+	
+	/**
+	 * @param titulo
+	 * @param descripcion
+	 * @param imgPerfil
+	 */
+	public Grupo(String titulo, String descripcion, String imgPerfil) {
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.imgPerfil = imgPerfil;
+	}
+	
 	/**
 	 * @return the titulo
 	 */
