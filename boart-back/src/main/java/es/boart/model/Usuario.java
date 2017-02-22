@@ -63,6 +63,8 @@ public class Usuario {
 		this.fechaRegistro = fechaRegistro;
 		this.fechaUltimoLogin = fechaLogin;
 	}
+	
+	public Usuario(){}
 
 	/**
 	 * @return the nombreUsuario

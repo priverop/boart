@@ -18,13 +18,14 @@ public class GrupoController {
 	private GrupoRepository repository;
 	
 	@PostConstruct
-	public void init(){}
+	public void init(){
+		repository.save(new Grupo("Fotógrafos de Vallecas", "Loren ipsun dolor sit amet", "https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/16427482_1954388194577132_4182519892385252043_n.jpg?oh=798521399440066d618abe05bc535b27&oe=592DAC5D"));
+	}
 	
-	@RequestMapping("/grupo/{titulo}")
-	public String greeting(Model modelo, @PathVariable String titulo ) {
+	@RequestMapping("/grupo/{id}")
+	public String greeting(Model modelo, @PathVariable long id ) {
 
-		Grupo grupo = repository.findByTitulo(titulo); 
-		modelo.addAttribute("grupo", grupo);
+		modelo.addAttribute("grupo", repository.findOne(id));
 		
 		return "grupo_template";
 	}

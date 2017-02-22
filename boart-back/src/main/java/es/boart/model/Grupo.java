@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 
 @Entity
 public class Grupo {
@@ -22,7 +21,6 @@ public class Grupo {
 	@OneToMany(mappedBy="grupo")
 	private List<MiembroGrupo> miembroGrupos;
 	
-	
 	/**
 	 * @param titulo
 	 * @param descripcion
@@ -33,6 +31,8 @@ public class Grupo {
 		this.descripcion = descripcion;
 		this.imgPerfil = imgPerfil;
 	}
+	
+	public Grupo(){}
 	
 	/**
 	 * @return the titulo

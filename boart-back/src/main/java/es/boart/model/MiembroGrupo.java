@@ -20,6 +20,7 @@ public class MiembroGrupo {
 	@ManyToOne
 	private Grupo grupo;
 	private Timestamp fechaUnion;
+	
 	/**
 	 * @param usuario
 	 * @param grupo
@@ -30,6 +31,9 @@ public class MiembroGrupo {
 		this.grupo = grupo;
 		this.fechaUnion = fechaUnion;
 	}
+	
+	public MiembroGrupo(){}
+	
 	/**
 	 * @return the usuario
 	 */

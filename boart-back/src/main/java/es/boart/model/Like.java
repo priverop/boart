@@ -26,6 +26,9 @@ public class Like {
 		this.usuario = usuario;
 		this.publicacion = publicacion;
 	}
+	
+	public Like(){}
+	
 	/**
 	 * @return the usuario
 	 */

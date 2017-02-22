@@ -1,14 +1,9 @@
 package es.boart.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderColumn;
 
 @Entity
 public class Galeria {
@@ -33,6 +28,8 @@ public class Galeria {
 		this.imgPerfil = imgPerfil;
 	}
 
+	public Galeria(){}
+	
 	/**
 	 * @return the titulo
 	 */
