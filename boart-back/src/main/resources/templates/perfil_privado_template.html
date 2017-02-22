@@ -38,10 +38,11 @@
                 </div>
             </div>
             <div class="row user_info">
+            {{#usuario}}
                 <div class="col-xs-12">
-                    <h1 class="edit-icon">Alfonso Felipe Muñoz<i class="icofont icofont-pencil-alt-5"></i></h1>
-                    <h2 class="edit-icon"><em>@perrorojo<i class="icofont icofont-pencil-alt-5"></i></em></h2>
-                    <blockquote class="edit-icon"><em>Aficionado a la fotografía, me gusta fotografiar naturaleza, en especial aves.</em> <i class="icofont icofont-pencil-alt-5"></i></blockquote>
+                    <h1 class="edit-icon">{{nombre}}<i class="icofont icofont-pencil-alt-5"></i></h1>
+                    <h2 class="edit-icon"><em>@{{nombreUsuario}}<i class="icofont icofont-pencil-alt-5"></i></em></h2>
+                    <blockquote class="edit-icon"><em>{{descripcion}}</em> <i class="icofont icofont-pencil-alt-5"></i></blockquote>
                 </div>
                 <div class="col-xs-12">
                     <h2 class="">GRUPOS</h2>
@@ -58,8 +59,9 @@
                     <i class="icofont icofont_social icofont-social-youtube-play "></i>
                 </div>
                 <div class="col-xs-12 public_button ">
-                    <a class="custom_button " href="perfil_publico_template.html">Ver perfil público</a>
+                    <a class="custom_button " href="./perfil_publico/{{nombreUsuario}}">Ver perfil público</a>
                 </div>
+            {{/usuario}}
             </div>
         </div>
         <div class="col-xs-12 col-sm-8 profile_gallery ">

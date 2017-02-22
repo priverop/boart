@@ -7,21 +7,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.boart.repository.PerfilPropioRepository;
+import es.boart.UserComponent;
 
 @Controller
 public class PerfilPropioController {
 	
 	@Autowired
-	private PerfilPropioRepository repository;
+	private UserComponent sesionUsuario;
 	
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/perfil_privado/")
-	public String greeting() {
+	@RequestMapping("/perfil_privado")
+	public String perfil(Model modelo) {
 
-		//SESIÓN DEL USUARIO
+		modelo.addAttribute("usuario", sesionUsuario.getUser());
+		System.out.println(sesionUsuario.getUser());
 		
 		return "perfil_privado_template";
 	}
