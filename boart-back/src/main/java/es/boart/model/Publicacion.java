@@ -52,6 +52,13 @@ public class Publicacion {
 	}
 	
 	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+	
+	/**
 	 * @return the autor
 	 */
 	public String getAutor() {
