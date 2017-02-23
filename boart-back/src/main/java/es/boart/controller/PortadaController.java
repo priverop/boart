@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.boart.UserComponent;
 import es.boart.model.Publicacion;
 import es.boart.model.Usuario;
-import es.boart.repository.PortadaRepository;
+import es.boart.repository.PublicacionRepository;
 import es.boart.repository.UsuarioRepository;
 
 @Controller
@@ -27,7 +27,7 @@ public class PortadaController {
 	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
-	private PortadaRepository publicacionRepository;
+	private PublicacionRepository publicacionRepository;
 
 	@PostConstruct
 	public void init(){

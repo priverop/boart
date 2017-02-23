@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.model.Usuario;
-import es.boart.repository.PerfilRepository;
+import es.boart.repository.UsuarioRepository;
 
 @Controller
 public class PerfilController {
 	
 	@Autowired
-	private PerfilRepository repository;
+	private UsuarioRepository repository;
 	
 	@PostConstruct
 	public void init(){
