@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import es.boart.model.Publicacion;
 import es.boart.model.Tag;
 import es.boart.repository.PublicacionRepository;
-import es.boart.repository.SubirRepository;
 import es.boart.repository.TagRepository;
 
 @Controller
