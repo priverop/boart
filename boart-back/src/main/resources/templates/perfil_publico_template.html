@@ -40,7 +40,6 @@
 	  			</div>
 	  		
 		</div>
-		{{/usuario}}
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
 			<p class="title"><a href="#"><span class="glyphicon glyphicon-picture"></span>Anochecer con V</a></p>
 			<p class="description"><em>Fotografía de un anochecer en Vallekas City.</em></p>
@@ -49,25 +48,12 @@
 	
 	<!-- Gallery -->
 	<div class="row" id="columns">
-		<div class="app_box publication"><img src="http://cssdeck.com/uploads/media/items/6/6f3nXse.png"></div>
+		<div class="app_box publication"><img src=""></div>
 	</div>
+	{{/usuario}}
 
-	<app-comments></app-comments>
+	{{> comments_component}}
 </article>
-    <div class="comments_container">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
-            <div class="comment">
-                <p><span class="font_contrast"><strong>@LocoRoco</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
-                <p><span class="font_contrast"><strong>@Marico34</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
-                <p><span class="font_contrast"><strong>@EstupendoWatson99</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
-            </div>
-            <form>
-                <div class="form-group">
-                    <textarea placeholder="Comentario"></textarea>
-                </div>
-            </form>
-        </div>
-    </div>
 </body>
 
 </html>

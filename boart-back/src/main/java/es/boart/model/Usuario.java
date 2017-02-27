@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario {
@@ -26,6 +27,10 @@ public class Usuario {
 	private int nivelSeguridad;
 	private Timestamp fechaRegistro;
 	private Timestamp fechaUltimoLogin;
+	
+	@OneToOne
+	private Galeria galeria;
+	
 	@OneToMany(mappedBy="usuario")
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
@@ -46,9 +51,10 @@ public class Usuario {
 	 * @param date
 	 * @param date2
 	 * @param likes
+	 * @param galeria
 	 */
 	public Usuario(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
-			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin) {
+			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin, Galeria galeria) {
 		this.nombreUsuario = nombreUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -59,6 +65,7 @@ public class Usuario {
 		this.nivelSeguridad = nivelSeguridad;
 		this.fechaRegistro = fechaRegistro;
 		this.fechaUltimoLogin = fechaLogin;
+		this.galeria = galeria;
 	}
 	
 	public Usuario(){}
@@ -255,6 +262,20 @@ public class Usuario {
 	 */
 	public void setComentariosRecibidos(List<ComentarioPerfil> comentariosRecibidos) {
 		this.comentariosRecibidos = comentariosRecibidos;
+	}
+
+	/**
+	 * @return the galeria
+	 */
+	public Galeria getGaleria() {
+		return galeria;
+	}
+
+	/**
+	 * @param galeria the galeria to set
+	 */
+	public void setGaleria(Galeria galeria) {
+		this.galeria = galeria;
 	}
 	
 	

@@ -1,5 +1,8 @@
 package es.boart.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,22 +17,21 @@ public class Galeria {
 	
 	private String titulo;
 	private String descripcion;
-	private String imgPerfil;
+	private List<String> imgs;
 	
 	/**
 	 * @param titulo
 	 * @param descripcion
-	 * @param imgPerfil
-	 * @param miembroGrupo
+	 * @param imgs
 	 */
-	public Galeria(String titulo, String descripcion, String imgPerfil) {
+	public Galeria(String titulo, String descripcion) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
-		this.imgPerfil = imgPerfil;
+		this.imgs = new ArrayList<String>();
 	}
 
 	public Galeria(){}
-	
+
 	/**
 	 * @return the titulo
 	 */
@@ -59,17 +61,19 @@ public class Galeria {
 	}
 
 	/**
-	 * @return the imgPerfil
+	 * @return the imgs
 	 */
-	public String getImgPerfil() {
-		return imgPerfil;
+	public List<String> getImgs() {
+		return imgs;
 	}
 
 	/**
-	 * @param imgPerfil the imgPerfil to set
+	 * @param imgs the imgs to set
 	 */
-	public void setImgPerfil(String imgPerfil) {
-		this.imgPerfil = imgPerfil;
+	public void setImgs(List<String> imgs) {
+		this.imgs = imgs;
 	}
+
+
 
 }

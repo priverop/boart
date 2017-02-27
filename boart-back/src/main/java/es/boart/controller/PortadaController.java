@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
+import es.boart.model.Galeria;
 import es.boart.model.Publicacion;
 import es.boart.model.Usuario;
 import es.boart.repository.PublicacionRepository;
@@ -37,7 +38,7 @@ public class PortadaController {
 		// Creamos Usuarios
 		Usuario invitado = new Usuario("invitado", "Guest", "Guest", "¡Hola! Soy el invitado de prueba, registrate amigo",
 				"invitado", "http://www.drlaurelshaler.com/wp-content/uploads/2014/11/Guest.gif",
-				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime()));
+				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime()), new Galeria());
 		
 		usuarioRepository.save(invitado);
 
