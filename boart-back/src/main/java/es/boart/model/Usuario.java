@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario {
@@ -27,10 +27,8 @@ public class Usuario {
 	private int nivelSeguridad;
 	private Timestamp fechaRegistro;
 	private Timestamp fechaUltimoLogin;
-	
-	@OneToOne
-	private Galeria galeria;
-	
+	@OneToMany(mappedBy="autor")
+	private List<Publicacion> galeria = new ArrayList<>();
 	@OneToMany(mappedBy="usuario")
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
@@ -54,7 +52,7 @@ public class Usuario {
 	 * @param galeria
 	 */
 	public Usuario(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
-			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin, Galeria galeria) {
+			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin) {
 		this.nombreUsuario = nombreUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -65,7 +63,6 @@ public class Usuario {
 		this.nivelSeguridad = nivelSeguridad;
 		this.fechaRegistro = fechaRegistro;
 		this.fechaUltimoLogin = fechaLogin;
-		this.galeria = galeria;
 	}
 	
 	public Usuario(){}
@@ -267,17 +264,16 @@ public class Usuario {
 	/**
 	 * @return the galeria
 	 */
-	public Galeria getGaleria() {
+	public List<Publicacion> getGaleria() {
 		return galeria;
 	}
 
 	/**
 	 * @param galeria the galeria to set
 	 */
-	public void setGaleria(Galeria galeria) {
+	public void setGaleria(List<Publicacion> galeria) {
 		this.galeria = galeria;
 	}
-	
-	
+
 
 }
