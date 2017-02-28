@@ -16,11 +16,11 @@ public class ComentarioPublicacion {
 	private long id;
 	
 	@ManyToOne
-	private Usuario usuario;
+	private User usuario;
 	private String text;
 	private Timestamp fechaPublicacion;
 	@ManyToOne
-	private Publicacion publicacion;
+	private Publication publicacion;
 
 	
 

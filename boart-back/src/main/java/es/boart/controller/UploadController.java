@@ -25,16 +25,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import es.boart.model.Publicacion;
+import es.boart.model.Publication;
 import es.boart.model.Tag;
-import es.boart.repository.PublicacionRepository;
+import es.boart.repository.PublicationRepository;
 import es.boart.repository.TagRepository;
 
 @Controller
-public class SubirController {
+public class UploadController {
 
 	@Autowired
-	private PublicacionRepository publicacionRepository;
+	private PublicationRepository publicacionRepository;
 	@Autowired
 	private TagRepository tagRepository;
 
@@ -47,7 +47,7 @@ public class SubirController {
 	@PostMapping("/upload")
 	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("titulo") String titulo,@RequestParam("descripcion") String descripcion, @RequestParam("etiquetas") String etiquetas) throws IOException {
 		// modelo.addAttribute("", repository.findAll());
-		Publicacion publicacion = new Publicacion("m0scar", titulo, descripcion,"/files/" + file.getOriginalFilename(), 0, new Timestamp(new Date().getTime()), 0);
+		Publication publicacion = new Publication("m0scar", titulo, descripcion,"/files/" + file.getOriginalFilename(), 0, new Timestamp(new Date().getTime()), 0);
 		publicacionRepository.save(publicacion);
 		System.out.println(publicacion.getId()+ " " +publicacion.getAutor() + " " + publicacion.getTitulo() + " " 
 				+ publicacion.getDescripcion() + " " + publicacion.getMedia()  + etiquetas);

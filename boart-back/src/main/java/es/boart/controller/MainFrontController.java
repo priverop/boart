@@ -12,22 +12,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
-import es.boart.model.Publicacion;
-import es.boart.model.Usuario;
-import es.boart.repository.PublicacionRepository;
-import es.boart.repository.UsuarioRepository;
+import es.boart.model.Publication;
+import es.boart.model.User;
+import es.boart.repository.PublicationRepository;
+import es.boart.repository.UserRepository;
 
 @Controller
-public class PortadaController {
+public class MainFrontController {
 	
 	@Autowired
 	private UserComponent sesionUsuario;
 	
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UserRepository usuarioRepository;
 	
 	@Autowired
-	private PublicacionRepository publicacionRepository;
+	private PublicationRepository publicacionRepository;
 
 	@PostConstruct
 	public void init(){
@@ -35,18 +35,18 @@ public class PortadaController {
 		Date date = new Date();
 		
 		// Creamos Usuarios
-		Usuario invitado = new Usuario("invitado", "Guest", "Guest", "¡Hola! Soy el invitado de prueba, registrate amigo",
+		User invitado = new User("invitado", "Guest", "Guest", "¡Hola! Soy el invitado de prueba, registrate amigo",
 				"invitado", "http://www.drlaurelshaler.com/wp-content/uploads/2014/11/Guest.gif",
 				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime()));
 		
-		invitado.getGaleria().add(new Publicacion("Pepe", "Holacaracola", "Descripcion1", 
+		invitado.getGaleria().add(new Publication("Pepe", "Holacaracola", "Descripcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
 				new Timestamp(date.getTime()), 0));
 		
 		usuarioRepository.save(invitado);
 
 		// Creamos Publicaciones
-		publicacionRepository.save(new Publicacion("Juan", "Holacar2acola", "Descr2ipcion1", 
+		publicacionRepository.save(new Publication("Juan", "Holacar2acola", "Descr2ipcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
 				new Timestamp(date.getTime()), 0));
 	}

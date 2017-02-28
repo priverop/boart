@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import es.boart.UserComponent;
-import es.boart.model.Usuario;
-import es.boart.repository.UsuarioRepository;
+import es.boart.model.User;
+import es.boart.repository.UserRepository;
 
 @Controller
 public class SignController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UserRepository usuarioRepository;
 	
 	@Autowired
 	private UserComponent sesionUsuario;

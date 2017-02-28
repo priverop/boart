@@ -16,7 +16,7 @@ public class Tag {
 	@Id
 	private String tag;
 	@OneToMany(mappedBy="id")
-	private List<Publicacion> publicaciones;
+	private List<Publication> publicaciones;
 	
 	public Tag(){
 		
@@ -25,7 +25,7 @@ public class Tag {
 	public Tag(String tag) {
 		super();
 		this.tag = tag;
-		this.publicaciones = new ArrayList<Publicacion>();
+		this.publicaciones = new ArrayList<Publication>();
 	}
 	public String getTag() {
 		return tag;
@@ -33,10 +33,10 @@ public class Tag {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	public List<Publicacion> getPublicaciones() {
+	public List<Publication> getPublicaciones() {
 		return publicaciones;
 	}
-	public void setPublicaciones(List<Publicacion> publicaciones) {
+	public void setPublicaciones(List<Publication> publicaciones) {
 		this.publicaciones = publicaciones;
 	}
 

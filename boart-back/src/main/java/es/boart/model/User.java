@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 
 @Entity
-public class Usuario {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,7 +30,7 @@ public class Usuario {
 	private Timestamp fechaRegistro;
 	private Timestamp fechaUltimoLogin;
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Publicacion> galeria = new ArrayList<>();
+	private List<Publication> galeria = new ArrayList<>();
 	@OneToMany(mappedBy="usuario")
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
@@ -53,7 +53,7 @@ public class Usuario {
 	 * @param likes
 	 * @param galeria
 	 */
-	public Usuario(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
+	public User(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
 			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin) {
 		this.nombreUsuario = nombreUsuario;
 		this.nombre = nombre;
@@ -67,7 +67,7 @@ public class Usuario {
 		this.fechaUltimoLogin = fechaLogin;
 	}
 	
-	public Usuario(){}
+	public User(){}
 
 	
 	
@@ -283,14 +283,14 @@ public class Usuario {
 	/**
 	 * @return the galeria
 	 */
-	public List<Publicacion> getGaleria() {
+	public List<Publication> getGaleria() {
 		return galeria;
 	}
 
 	/**
 	 * @param galeria the galeria to set
 	 */
-	public void setGaleria(List<Publicacion> galeria) {
+	public void setGaleria(List<Publication> galeria) {
 		this.galeria = galeria;
 	}
 

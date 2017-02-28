@@ -16,7 +16,7 @@ public class MiembroGrupo {
 	private long id;
 	
 	@ManyToOne
-	private Usuario usuario;
+	private User usuario;
 	@ManyToOne
 	private Grupo grupo;
 	private Timestamp fechaUnion;
@@ -26,7 +26,7 @@ public class MiembroGrupo {
 	 * @param grupo
 	 * @param fechaUnion
 	 */
-	public MiembroGrupo(Usuario usuario, Grupo grupo, Timestamp fechaUnion) {
+	public MiembroGrupo(User usuario, Grupo grupo, Timestamp fechaUnion) {
 		this.usuario = usuario;
 		this.grupo = grupo;
 		this.fechaUnion = fechaUnion;
@@ -37,13 +37,13 @@ public class MiembroGrupo {
 	/**
 	 * @return the usuario
 	 */
-	public Usuario getUsuario() {
+	public User getUsuario() {
 		return usuario;
 	}
 	/**
 	 * @param usuario the usuario to set
 	 */
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(User usuario) {
 		this.usuario = usuario;
 	}
 	/**

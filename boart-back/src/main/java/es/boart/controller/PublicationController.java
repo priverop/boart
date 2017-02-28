@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.boart.model.Publicacion;
-import es.boart.repository.PublicacionRepository;
+import es.boart.model.Publication;
+import es.boart.repository.PublicationRepository;
 
 @Controller
-public class PublicacionController {
+public class PublicationController {
 
 	@Autowired
-	private PublicacionRepository repository;
+	private PublicationRepository repository;
 
 	@PostConstruct
 	public void init(){
@@ -24,7 +24,7 @@ public class PublicacionController {
 	@RequestMapping("/publicacion/{id}")
 	public String greeting(Model modelo, @PathVariable long id) {
 
-		Publicacion publicacion = repository.findOne(id);
+		Publication publicacion = repository.findOne(id);
 		
 		modelo.addAttribute("publicacion", publicacion);
 		

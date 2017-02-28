@@ -8,16 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
-import es.boart.repository.UsuarioRepository;
+import es.boart.repository.UserRepository;
 
 @Controller
-public class PerfilPropioController {
+public class PrivateProfileController {
 	
 	@Autowired
 	private UserComponent userSession;
 	
 	@Autowired
-	private UsuarioRepository userRepo;
+	private UserRepository userRepo;
 	
 	@PostConstruct
 	public void init(){}

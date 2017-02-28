@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Publicacion {
+public class Publication {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +28,7 @@ public class Publicacion {
 	@OneToMany(mappedBy="publicacion")
 	private List<ComentarioPublicacion> comentariosPublicacion;
 	
-	public Publicacion(){}
+	public Publication(){}
 
 	/**
 	 * @param autor
@@ -40,7 +40,7 @@ public class Publicacion {
 	 * @param num_visitas
 	 * @param likes
 	 */
-	public Publicacion(String autor, String titulo, String descripcion, String media, int tipo_media, Timestamp fecha,
+	public Publication(String autor, String titulo, String descripcion, String media, int tipo_media, Timestamp fecha,
 			int num_visitas) {
 		this.autor = autor;
 		this.titulo = titulo;

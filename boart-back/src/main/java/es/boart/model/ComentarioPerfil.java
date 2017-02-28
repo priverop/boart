@@ -15,11 +15,11 @@ public class ComentarioPerfil  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
-	private Usuario usuario;
+	private User usuario;
 	private String text;
 	private Timestamp fechaPublicacion;
 	@ManyToOne
-	private Usuario usuarioDestino;
+	private User usuarioDestino;
 
 
 }
