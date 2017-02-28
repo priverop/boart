@@ -39,13 +39,13 @@ public class PortadaController {
 				"invitado", "http://www.drlaurelshaler.com/wp-content/uploads/2014/11/Guest.gif",
 				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime()));
 		
-		usuarioRepository.save(invitado);
-
-		// Creamos Publicaciones
-		publicacionRepository.save(new Publicacion("Pepe", "Holacaracola", "Descripcion1", 
+		invitado.getGaleria().add(new Publicacion("Pepe", "Holacaracola", "Descripcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
 				new Timestamp(date.getTime()), 0));
 		
+		usuarioRepository.save(invitado);
+
+		// Creamos Publicaciones
 		publicacionRepository.save(new Publicacion("Juan", "Holacar2acola", "Descr2ipcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
 				new Timestamp(date.getTime()), 0));
@@ -55,12 +55,14 @@ public class PortadaController {
 	public String portada(Model modelo, HttpSession sesion) {
 		
 		if(sesion.isNew()){
+			System.out.println("Sesión Nueva");
 			sesion.setAttribute("usuario", "invitado");
 			sesionUsuario.setUser(usuarioRepository.findByNombreUsuario("invitado"));
 		}
 		
 		modelo.addAttribute("publicaciones", publicacionRepository.findAll());
 		modelo.addAttribute("sesion_usuario", sesionUsuario.getUser());
+		System.out.println("Portada:"+sesionUsuario.getUser());
 		return "portada_template";
 	}
 	

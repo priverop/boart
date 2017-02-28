@@ -8,12 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
+import es.boart.repository.UsuarioRepository;
 
 @Controller
 public class PerfilPropioController {
 	
 	@Autowired
-	private UserComponent sesionUsuario;
+	private UserComponent userSession;
+	
+	@Autowired
+	private UsuarioRepository userRepo;
 	
 	@PostConstruct
 	public void init(){}
@@ -21,9 +25,8 @@ public class PerfilPropioController {
 	@RequestMapping("/perfil_privado")
 	public String perfil(Model modelo) {
 
-		modelo.addAttribute("usuario", sesionUsuario.getUser());
-		System.out.println(sesionUsuario.getUser());
-		
+		modelo.addAttribute("usuario", userRepo.findOne(userSession.getUser().getId()));
+
 		return "perfil_privado_template";
 	}
 }

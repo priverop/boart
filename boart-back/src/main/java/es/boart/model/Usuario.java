@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import javax.persistence.CascadeType;
+
 @Entity
 public class Usuario {
 	
@@ -27,7 +29,7 @@ public class Usuario {
 	private int nivelSeguridad;
 	private Timestamp fechaRegistro;
 	private Timestamp fechaUltimoLogin;
-	@OneToMany(mappedBy="autor")
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publicacion> galeria = new ArrayList<>();
 	@OneToMany(mappedBy="usuario")
 	private List<Like> likes;
@@ -66,6 +68,23 @@ public class Usuario {
 	}
 	
 	public Usuario(){}
+
+	
+	
+	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	/**
 	 * @return the nombreUsuario
