@@ -19,11 +19,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String nombreUsuario;
+	private String username;
 	private String nombre;
 	private String apellido;
 	private String descripcion;
-	private String contraseña;
+	private String password;
 	private String img;
 	private int visitas; 
 	private int nivelSeguridad;
@@ -55,11 +55,11 @@ public class User {
 	 */
 	public User(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
 			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin) {
-		this.nombreUsuario = nombreUsuario;
+		this.username = nombreUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.descripcion = descripcion;
-		this.contraseña = contraseña;
+		this.password = contraseña;
 		this.img = img;
 		this.visitas = visitas;
 		this.nivelSeguridad = nivelSeguridad;
@@ -90,14 +90,14 @@ public class User {
 	 * @return the nombreUsuario
 	 */
 	public String getNombreUsuario() {
-		return nombreUsuario;
+		return username;
 	}
 
 	/**
 	 * @param nombreUsuario the nombreUsuario to set
 	 */
 	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+		this.username = nombreUsuario;
 	}
 
 	/**
@@ -144,14 +144,14 @@ public class User {
 	 * @return the contraseña
 	 */
 	public String getContraseña() {
-		return contraseña;
+		return password;
 	}
 
 	/**
 	 * @param contraseña the contraseña to set
 	 */
 	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+		this.password = contraseña;
 	}
 
 	/**

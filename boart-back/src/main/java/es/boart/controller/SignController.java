@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.boart.UserComponent;
 import es.boart.model.User;
@@ -20,14 +21,16 @@ public class SignController {
 	private UserComponent sesionUsuario;
 	
 	@PostMapping("/login")
-	public String login(HttpSession sesion){
-		// Consultamos el usuario en bbdd
-		//Usuario usuario = usuarioRepository.findByNombreUsuario(nombreUsuario);
-		// Si existe se le asigna a la sesión (nombreUsuario) y al componente
-		//sesion.setAttribute("usuario", nombreUsuario);
-		//sesionUsuario.setUser(usuario);
-		// Redirigimos a donde estábamos
-		return "redirect:/"; //+referer
+	public String login(HttpSession sesion, @RequestParam String username, @RequestParam String password){
+		
+		User usuario = usuarioRepository.findByUsernameAndPassword(username, password);
+				
+		if(usuario.getNombreUsuario() != null){
+			sesionUsuario.setUser(usuario);
+			sesion.setAttribute("usuario", usuario.getNombreUsuario());
+		}
+		
+		return "redirect:/perfil_privado"; 
 	}
 	
 	@PostMapping("/register")

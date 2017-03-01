@@ -4,19 +4,19 @@
       <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 box_sign">
         <div class="box_signin app_box">
           <i class="icofont icofont-lock"></i>
-          <form>
-            <input type='text' placeholder='Usuario:'/>
-            <input type='text' placeholder='Contraseña:'/>
+          <form action="/login" method="POST" enctype="multipart/form-data">
+            <input type='text' name='username' placeholder='Usuario:'/>
+            <input type='text' name='password' placeholder='Contraseña:'/>
             <input type='submit' placeholder='SUBMIT'/>
           </form>
         </div>
         <div class="box_signup app_box">
           <i class="icofont icofont-user"></i>
-          <form>
-            <input type='text' placeholder='Nombre:'/>
-            <input type='text' placeholder='Apellidos:'/>
-            <input type='text' placeholder='Usuario:'/>
-            <input type='text' placeholder='Contraseña:'/>
+          <form action="/register" method="POST" enctype="multipart/form-data">
+            <input type='text' name='name' placeholder='Nombre:'/>
+            <input type='text' name='surname' placeholder='Apellidos:'/>
+            <input type='text' name='username' placeholder='Usuario:'/>
+            <input type='text' name='password' placeholder='Contraseña:'/>
             <input type='submit' placeholder='SUBMIT'/>
           </form>
         </div>
