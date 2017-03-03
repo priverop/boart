@@ -14,14 +14,17 @@ import javax.persistence.CascadeType;
 
 @Entity
 public class User {
+
+	private final String DEFAULT_DESCRIPCION = "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil";
+	private final String DEFAULT_IMG = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	private String username;
-	private String nombre;
-	private String apellido;
+	private String name;
+	private String surname;
 	private String descripcion;
 	private String password;
 	private String img;
@@ -41,10 +44,10 @@ public class User {
 	private List<ComentarioPerfil> comentariosRecibidos;
 	
 	/**
-	 * @param nombreUsuario
-	 * @param nombre
-	 * @param apellido
-	 * @param contraseña
+	 * @param username
+	 * @param name
+	 * @param surname
+	 * @param password
 	 * @param img
 	 * @param visitas
 	 * @param nivelSeguridad
@@ -53,24 +56,22 @@ public class User {
 	 * @param likes
 	 * @param galeria
 	 */
-	public User(String nombreUsuario, String nombre, String apellido, String descripcion, String contraseña, String img, 
-			int visitas, int nivelSeguridad, Timestamp fechaRegistro, Timestamp fechaLogin) {
-		this.username = nombreUsuario;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.descripcion = descripcion;
-		this.password = contraseña;
-		this.img = img;
-		this.visitas = visitas;
-		this.nivelSeguridad = nivelSeguridad;
-		this.fechaRegistro = fechaRegistro;
-		this.fechaUltimoLogin = fechaLogin;
+	public User(String username, String name, String surname, String password) {
+		this.username = username;
+		this.name = name;
+		this.surname = surname;
+		this.password = password;
+		// Descripción nuevo usuario
+		this.descripcion = DEFAULT_DESCRIPTION;
+		// Imagen por defecto
+		this.img = DEFAULT_IMG;
+		// Fecha actual
+		Date date = new Date();
+		this.fechaRegistro = date;
 	}
 	
 	public User(){}
 
-	
-	
 	
 	/**
 	 * @return the id
@@ -87,45 +88,45 @@ public class User {
 	}
 
 	/**
-	 * @return the nombreUsuario
+	 * @return the username
 	 */
-	public String getNombreUsuario() {
+	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * @param nombreUsuario the nombreUsuario to set
+	 * @param username the username to set
 	 */
-	public void setNombreUsuario(String nombreUsuario) {
-		this.username = nombreUsuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
-	 * @return the nombre
+	 * @return the name
 	 */
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param nombre the nombre to set
+	 * @param name the name to set
 	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the apellido
+	 * @return the surname
 	 */
-	public String getApellido() {
-		return apellido;
+	public String getSurname() {
+		return surname;
 	}
 
 	/**
-	 * @param apellido the apellido to set
+	 * @param surname the surname to set
 	 */
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	/**
 	 * return the descripcion
@@ -141,17 +142,17 @@ public class User {
 	}
 
 	/**
-	 * @return the contraseña
+	 * @return the password
 	 */
-	public String getContraseña() {
+	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * @param contraseña the contraseña to set
+	 * @param password the password to set
 	 */
-	public void setContraseña(String contraseña) {
-		this.password = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	/**

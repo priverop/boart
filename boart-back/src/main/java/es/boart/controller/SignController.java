@@ -15,7 +15,7 @@ import es.boart.repository.UserRepository;
 public class SignController {
 
 	@Autowired
-	private UserRepository usuarioRepository;
+	private UserRepository userRepo;
 	
 	@Autowired
 	private UserComponent sesionUsuario;
@@ -34,8 +34,12 @@ public class SignController {
 	}
 	
 	@PostMapping("/register")
-	public String register(HttpSession sesion){
+	public String register(HttpSession sesion, @ModelAttribute User usuario){
 		
-		return "redirect:/"; //+referer
+		userRepo.save(usuario);
+		sesionUsuario.setUser(usuario);
+		sesion.setAttribute("usuario", usuario.getNombreUsuario());
+
+		return "redirect:/perfil_privado";
 	}
 }
