@@ -33,19 +33,13 @@ public class BuildBBDD {
 		Date date = new Date();
 		
 		/* USUARIOS */
-		User invitado = new User("invitado", "Guest", "Guest", "¡Hola! Soy el invitado de prueba, registrate amigo",
-				"invitado", "http://www.drlaurelshaler.com/wp-content/uploads/2014/11/Guest.gif",
-				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime()));
+		User invitado = new User("invitado", "Guest", "Guest", "invitado");
 		
 		invitado.getGaleria().add(new Publication("Pepe", "Holacaracola", "Descripcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
 				new Timestamp(date.getTime()), 0));
 				
-		User usuario = new User("usuario1", "prueba", "prueba", 
-				"Aficionado a la fotografía, me gusta fotografiar naturaleza, en especial aves.",
-				"pass", 
-				"https://yt3.ggpht.com/-9lTuNU-MLtM/AAAAAAAAAAI/AAAAAAAAAAA/SjXmBhMb9PA/s176-c-k-no-mo-rj-c0xffffff/photo.jpg",
-				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime()));
+		User usuario = new User("usuario1", "prueba", "prueba",	"pass");
 				
 		usuario.getGaleria().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"https://iso.500px.com/wp-content/uploads/2016/03/pedroquintela.jpg", 
@@ -69,9 +63,7 @@ public class BuildBBDD {
 		
 		userRepository.save(invitado);
 		userRepository.save(usuario);
-		userRepository.save(new User("juan", "Juan", "Cuesta", "Presidente de esta nuestra comunidad.",
-				"juanjuan", "http://img1.wikia.nocookie.net/__cb20101228214115/seriesspain/es/images/9/98/Juan_cuesta1.jpg",
-				0, 0, new Timestamp(date.getTime()), new Timestamp(date.getTime())));
+		userRepository.save(new User("juan", "Juan", "Cuesta", "juanjuan"));
 		
 		/* PUBLICACIONES */
 		publicationRepository.save(new Publication("Juan", "Holacar2acola", "Descr2ipcion1", 

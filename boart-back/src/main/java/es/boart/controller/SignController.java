@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,11 +24,11 @@ public class SignController {
 	@PostMapping("/login")
 	public String login(HttpSession sesion, @RequestParam String username, @RequestParam String password){
 		
-		User usuario = usuarioRepository.findByUsernameAndPassword(username, password);
+		User usuario = userRepo.findByUsernameAndPassword(username, password);
 				
-		if(usuario.getNombreUsuario() != null){
+		if(usuario.getUsername() != null){
 			sesionUsuario.setUser(usuario);
-			sesion.setAttribute("usuario", usuario.getNombreUsuario());
+			sesion.setAttribute("usuario", usuario.getUsername());
 		}
 		
 		return "redirect:/perfil_privado"; 
@@ -38,7 +39,7 @@ public class SignController {
 		
 		userRepo.save(usuario);
 		sesionUsuario.setUser(usuario);
-		sesion.setAttribute("usuario", usuario.getNombreUsuario());
+		sesion.setAttribute("usuario", usuario.getUsername());
 
 		return "redirect:/perfil_privado";
 	}

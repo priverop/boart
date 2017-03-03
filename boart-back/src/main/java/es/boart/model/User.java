@@ -2,20 +2,20 @@ package es.boart.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import javax.persistence.CascadeType;
-
 @Entity
 public class User {
 
-	private final String DEFAULT_DESCRIPCION = "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil";
+	private final String DEFAULT_DESCRIPTION = "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil";
 	private final String DEFAULT_IMG = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png";
 	
 	@Id
@@ -25,7 +25,7 @@ public class User {
 	private String username;
 	private String name;
 	private String surname;
-	private String descripcion;
+	private String description;
 	private String password;
 	private String img;
 	private int visitas; 
@@ -62,12 +62,13 @@ public class User {
 		this.surname = surname;
 		this.password = password;
 		// Descripción nuevo usuario
-		this.descripcion = DEFAULT_DESCRIPTION;
+		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
 		this.img = DEFAULT_IMG;
 		// Fecha actual
 		Date date = new Date();
-		this.fechaRegistro = date;
+		
+		this.fechaRegistro = new Timestamp(date.getTime());
 	}
 	
 	public User(){}
@@ -131,14 +132,14 @@ public class User {
 	/**
 	 * return the descripcion
 	 */
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescription() {
+		return description;
 	}
 	/**
 	 * @param descripcion the descripcion to set
 	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescription(String descripcion) {
+		this.description = descripcion;
 	}
 
 	/**
