@@ -55,34 +55,21 @@ public class UploadController {
 	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("titulo") String titulo,
 			@RequestParam("descripcion") String descripcion, @RequestParam("etiquetas") String etiquetas)
 			throws IOException {
-		// modelo.addAttribute("", repository.findAll());
 		Publication publicacion = new Publication("m0scar", titulo, descripcion, "/files/" + file.getOriginalFilename(),
 				0, new Timestamp(new Date().getTime()), 0);
-		// System.out.println(publicacion.getId()+ " " +publicacion.getAutor() +
-		// " " + publicacion.getTitulo() + " "
-		// + publicacion.getDescripcion() + " " + publicacion.getMedia() +
-		// etiquetas);
-		System.out.println(etiquetas);
-		System.out.println(etiquetas.split("\n"));
-		System.out.println(etiquetas.split("\n")[1]);
 		publicacionRepository.save(publicacion);
 
 		for (String s : etiquetas.split("\n")) {
 			s = s.toLowerCase().trim();// Habria que hacer una función que quite
 										// caracteres especiales??
 			Tag tag = tagRepository.findByTag(s);
-			if (tag == null){ 
-				System.out.println("null");
-				tag = new Tag(s);
-			}
+			if (tag == null) tag = new Tag(s);
 			tag.getPublicaciones().add(publicacion);
-			publicacion.getTags().add(tag);
 			tagRepository.save(tag);
 			
 			System.out.println(tag.getPublicaciones().size());
 			
 		}
-		publicacionRepository.save(publicacion);
 
 		Path rootLocation = Paths.get("src/main/resources/static/img/");
 		Files.copy(file.getInputStream(), rootLocation.resolve(file.getOriginalFilename()));
