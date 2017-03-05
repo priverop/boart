@@ -7,6 +7,8 @@
           <form action="/login" method="POST" >
             <input type='text' name='username' placeholder='Usuario:'/>
             <input type='text' name='password' placeholder='Contraseña:'/>
+            <input type="hidden" name="_csrf" value="{{token}}" />
+            
             <input type='submit' placeholder='SUBMIT'/>
           </form>
         </div>
@@ -17,6 +19,7 @@
             <input type='text' th:field="*{surname}" placeholder='Apellidos:'/>
             <input type='text' th:field="*{username}" placeholder='Usuario:'/>
             <input type='text' th:field="*{password}" placeholder='Contraseña:'/>
+            <input type="hidden" name="_csrf" value="{{token}}" />
             <input type='submit' placeholder='SUBMIT'/>
           </form>
         </div>

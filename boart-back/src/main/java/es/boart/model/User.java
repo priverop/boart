@@ -2,11 +2,14 @@ package es.boart.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +46,10 @@ public class User {
 	private List<ComentarioPerfil> comentariosEscritos;
 	@OneToMany(mappedBy="usuarioDestino")
 	private List<ComentarioPerfil> comentariosRecibidos;
+	@ElementCollection(fetch = FetchType.EAGER)
+	 private List<String> roles;
 	
+
 	/**
 	 * @param username
 	 * @param name
@@ -57,12 +63,13 @@ public class User {
 	 * @param likes
 	 * @param galeria
 	 */
-	public User(String username, String name, String surname, String password, Boolean guest) {
+	public User(String username, String name, String surname, String password, Boolean guest, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = password;
 		this.guest = guest;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
@@ -312,7 +319,20 @@ public class User {
 		this.guest = guest;
 	}
 	
-	
+	/**
+	 * @return the roles
+	 */
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
 
 
 }

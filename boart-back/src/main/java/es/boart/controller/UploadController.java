@@ -8,12 +8,15 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.core.io.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +43,11 @@ public class UploadController {
 
 
 	@RequestMapping("/subir")
-	public String greeting(Model modelo) {
+	public String greeting(Model modelo, HttpServletRequest request) {
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		modelo.addAttribute("token", token.getToken());
+		
 		return "subir_template";
 	}
 
