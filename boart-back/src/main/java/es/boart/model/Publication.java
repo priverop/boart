@@ -1,12 +1,15 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,6 +31,17 @@ public class Publication {
 	@OneToMany(mappedBy="publicacion")
 	private List<ComentarioPublicacion> comentariosPublicacion;
 	
+	@ManyToMany(mappedBy="publicaciones")
+	private Set<Tag> tags;
+	
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+
 	public Publication(){}
 
 	/**
@@ -49,6 +63,7 @@ public class Publication {
 		this.tipo_media = tipo_media;
 		this.fecha = fecha;
 		this.num_visitas = num_visitas;
+		this.tags = new HashSet<>();
 	}
 	
 	/**
