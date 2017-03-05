@@ -28,3 +28,7 @@
 .navbar-header > a:hover {
   text-decoration: none;
 }
+
+.navbar-nav i{
+  padding: 0px 6px;
+}

@@ -8,12 +8,26 @@
 		</div>
 		<div>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="custom_button alegreya" id="sing_up" href="#">
-				<span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-				<li><a class="custom_button alegreya" id="sing_in" href="#">
-					<span class="glyphicon glyphicon-log-in"></span>
-					{{#sesion_usuario}} {{username}} {{/sesion_usuario}} {{^sesion_usuario}}Login{{/sesion_usuario}}
-				</a></li>
+				<li>
+					<a class="custom_button alegreya" id="sing_up" href="#">
+						<i class="icofont icofont-ui-user"></i>Sign Up
+					</a>
+				</li>
+				<li>
+					<a class="custom_button alegreya" id="sing_in" href="#">
+						{{#sesion_usuario}} 
+							{{#guest}}
+								<i class="icofont icofont-ui-lock"></i> {{username}}
+							{{/guest}}
+							{{^guest}}
+								<i class="icofont icofont-ui-unlock"></i> {{username}}
+							{{/guest}}
+						{{/sesion_usuario}}
+						{{^sesion_usuario}} 
+							<i class="icofont icofont-ui-lock"></i> Login 
+						{{/sesion_usuario}}
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

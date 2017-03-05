@@ -27,6 +27,7 @@ public class User {
 	private String surname;
 	private String description;
 	private String password;
+	private Boolean guest;
 	private String img;
 	private int visitas; 
 	private int nivelSeguridad;
@@ -56,11 +57,12 @@ public class User {
 	 * @param likes
 	 * @param galeria
 	 */
-	public User(String username, String name, String surname, String password) {
+	public User(String username, String name, String surname, String password, Boolean guest) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = password;
+		this.guest = guest;
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
@@ -295,6 +297,22 @@ public class User {
 	public void setGaleria(List<Publication> galeria) {
 		this.galeria = galeria;
 	}
+
+	/**
+	 * @return the guest
+	 */
+	public Boolean getGuest() {
+		return guest;
+	}
+
+	/**
+	 * @param guest the guest to set
+	 */
+	public void setGuest(Boolean guest) {
+		this.guest = guest;
+	}
+	
+	
 
 
 }
