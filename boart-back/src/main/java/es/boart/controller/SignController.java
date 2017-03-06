@@ -31,7 +31,7 @@ public class SignController {
 			sesion.setAttribute("usuario", usuario.getUsername());
 		}
 		
-		return "redirect:/perfil_privado"; 
+		return "redirect:/private_profile"; 
 	}
 	
 	@PostMapping("/register")
@@ -41,6 +41,6 @@ public class SignController {
 		sesionUsuario.setUser(usuario);
 		sesion.setAttribute("usuario", usuario.getUsername());
 
-		return "redirect:/perfil_privado";
+		return "redirect:/private_profile";
 	}
 }

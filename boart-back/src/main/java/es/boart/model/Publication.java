@@ -26,7 +26,7 @@ public class Publication {
 	private int tipo_media;
 	private Timestamp fecha;
 	private int num_visitas;
-	@OneToMany(mappedBy="publicacion")
+	@OneToMany(mappedBy="publication")
 	private List<Like> likes;
 	@OneToMany(mappedBy="publicacion")
 	private List<ComentarioPublicacion> comentariosPublicacion;

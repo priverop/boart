@@ -1,8 +1,5 @@
 package es.boart.controller;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import es.boart.model.Publication;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
 
@@ -37,6 +33,6 @@ public class PublicProfileController {
 		modelo.addAttribute("token", token.getToken());
 	
 		
-		return "perfil_publico_template";
+		return "public_profile_template";
 	}
 }

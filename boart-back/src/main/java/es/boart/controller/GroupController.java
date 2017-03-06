@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.boart.repository.GroupRepository;
 
 @Controller
-public class GrupoController {
+public class GroupController {
 	
 	@Autowired
-	private GroupRepository repository;
+	private GroupRepository groupRepo;
 	
 	@PostConstruct
 	public void init(){}
@@ -24,11 +24,11 @@ public class GrupoController {
 	@RequestMapping("/grupo/{id}")
 	public String greeting(Model modelo, @PathVariable long id, HttpServletRequest request) {
 
-		modelo.addAttribute("grupo", repository.findOne(id));
+		modelo.addAttribute("grupo", groupRepo.findOne(id));
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
-		return "grupo_template";
+		return "group_template";
 	}
 }

@@ -19,7 +19,7 @@ public class Grupo {
 	private String descripcion;
 	private String imgPerfil;
 	@OneToMany(mappedBy="grupo")
-	private List<MiembroGrupo> miembroGrupos;
+	private List<GroupMember> groupMembers;
 	
 	/**
 	 * @param titulo
@@ -73,14 +73,14 @@ public class Grupo {
 	/**
 	 * @return the miembroGrupos
 	 */
-	public List<MiembroGrupo> getMiembroGrupos() {
-		return miembroGrupos;
+	public List<GroupMember> getMiembroGrupos() {
+		return groupMembers;
 	}
 	/**
-	 * @param miembroGrupos the miembroGrupos to set
+	 * @param groupMembers the miembroGrupos to set
 	 */
-	public void setMiembroGrupos(List<MiembroGrupo> miembroGrupos) {
-		this.miembroGrupos = miembroGrupos;
+	public void setMiembroGrupos(List<GroupMember> groupMembers) {
+		this.groupMembers = groupMembers;
 	}
 	
 	

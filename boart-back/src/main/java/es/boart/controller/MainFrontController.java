@@ -60,7 +60,7 @@ public class MainFrontController {
 		modelo.addAttribute("token", token.getToken());
 		
 		System.out.println("Portada:"+sesionUsuario.getUser());
-		return "portada_template";
+		return "mainfront_template";
 	}
 	
 	@RequestMapping("/logout")
@@ -68,7 +68,7 @@ public class MainFrontController {
 		sesion.invalidate();
 		modelo.addAttribute("publicaciones", publicationRepository.findAll());
 
-		return "portada_template";
+		return "mainfront_template";
 	}
 	
 	@PostMapping("/")
@@ -97,7 +97,7 @@ public class MainFrontController {
 		modelo.addAttribute("sesion_usuario", sesionUsuario.getUser());
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
-		return "portada_template";
+		return "mainfront_template";
 	}
 
 }

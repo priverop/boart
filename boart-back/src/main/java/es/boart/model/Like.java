@@ -13,45 +13,48 @@ public class Like {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
-	private User usuario;
+	private User username;
 	@ManyToOne
-	private Publication publicacion;
+	private Publication publication;
 	
 	/**
 	 * @param id
-	 * @param usuario
-	 * @param publicacion
+	 * @param username
+	 * @param publication
 	 */
-	public Like(long id, User usuario, Publication publicacion) {
-		this.usuario = usuario;
-		this.publicacion = publicacion;
+	public Like(long id, User usuario, Publication publication) {
+		this.username = usuario;
+		this.publication = publication;
 	}
 	
 	public Like(){}
 	
 	/**
-	 * @return the usuario
+	 * @return the username
 	 */
-	public User getUsuario() {
-		return usuario;
+	public User getUsername() {
+		return username;
 	}
+	
 	/**
-	 * @param usuario the usuario to set
+	 * @param usuario the username to set
 	 */
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
+	public void setUsername(User usuario) {
+		this.username = usuario;
 	}
+	
 	/**
-	 * @return the publicacion
+	 * @return the publication
 	 */
-	public Publication getPublicacion() {
-		return publicacion;
+	public Publication getPublication() {
+		return publication;
 	}
+	
 	/**
-	 * @param publicacion the publicacion to set
+	 * @param publication the publication to set
 	 */
-	public void setPublicacion(Publication publicacion) {
-		this.publicacion = publicacion;
+	public void setPublication(Publication publication) {
+		this.publication = publication;
 	}
 	
 	

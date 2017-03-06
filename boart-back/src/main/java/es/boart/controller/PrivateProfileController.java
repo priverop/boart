@@ -24,7 +24,7 @@ public class PrivateProfileController {
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/perfil_privado")
+	@RequestMapping("/private_profile")
 	public String perfil(Model modelo, HttpServletRequest request) {
 
 		modelo.addAttribute("usuario", userRepo.findOne(userSession.getUser().getId()));
@@ -32,6 +32,6 @@ public class PrivateProfileController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 
-		return "perfil_privado_template";
+		return "private_profile_template";
 	}
 }

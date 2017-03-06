@@ -23,7 +23,7 @@ public class PublicationController {
 	public void init(){
 	}
 	
-	@RequestMapping("/publicacion/{id}")
+	@RequestMapping("/publication/{id}")
 	public String greeting(Model modelo, @PathVariable long id, HttpServletRequest request) {
 
 		Publication publicacion = repository.findOne(id);
@@ -33,6 +33,6 @@ public class PublicationController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
-		return "publicacion_template";
+		return "publication_template";
 	}
 }

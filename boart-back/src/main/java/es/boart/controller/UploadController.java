@@ -48,7 +48,7 @@ public class UploadController {
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
-		return "subir_template";
+		return "upload_template";
 	}
 
 	@PostMapping("/upload")
@@ -73,7 +73,7 @@ public class UploadController {
 
 		Path rootLocation = Paths.get("src/main/resources/static/img/");
 		Files.copy(file.getInputStream(), rootLocation.resolve(file.getOriginalFilename()));
-		return "publicacion_template";
+		return "publication_template";
 	}
 	
     @GetMapping("/files/{filename:.+}")

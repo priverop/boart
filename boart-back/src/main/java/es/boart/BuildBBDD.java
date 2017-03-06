@@ -40,29 +40,29 @@ public class BuildBBDD {
 		/* USUARIOS */
 		User invitado = new User("invitado", "Guest", "Guest", "invitado", true, "ROLE_GUEST");
 		
-		invitado.getGaleria().add(new Publication("Pepe", "Holacaracola", "Descripcion1", 
+		invitado.getGallery().add(new Publication("Pepe", "Holacaracola", "Descripcion1", 
 				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
 				new Timestamp(date.getTime()), 0));
 				
 		User usuario = new User("usuario1", "prueba", "prueba",	"pass", false, "ROLE_USER");
 				
-		usuario.getGaleria().add(new Publication("usuario1", "Titulo", "Descripcion", 
+		usuario.getGallery().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"https://iso.500px.com/wp-content/uploads/2016/03/pedroquintela.jpg", 
 				1, new Timestamp(date.getTime()), 0));
 		
-		usuario.getGaleria().add(new Publication("usuario1", "Titulo", "Descripcion", 
+		usuario.getGallery().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"http://images1.fanpop.com/images/image_uploads/Photography-photography-1201911_1024_768.jpg", 
 				1, new Timestamp(date.getTime()), 0));
 		
-		usuario.getGaleria().add(new Publication("usuario1", "Titulo", "Descripcion", 
+		usuario.getGallery().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"http://wallpaperspicturesphotos.com/wp-content/uploads/2015/03/photography-images..jpg", 
 				1, new Timestamp(date.getTime()), 0));
 		
-		usuario.getGaleria().add(new Publication("usuario1", "Titulo", "Descripcion", 
+		usuario.getGallery().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"https://www.nobackgroundimages.com/wp-content/uploads/2014/12/digital-camera-349873_640.jpg", 
 				1, new Timestamp(date.getTime()), 0));
 		
-		usuario.getGaleria().add(new Publication("usuario1", "Titulo", "Descripcion", 
+		usuario.getGallery().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"http://images5.fanpop.com/image/photos/31600000/Dandelion-Art-photography-31606827-2560-1706.jpg", 
 				1, new Timestamp(date.getTime()), 0));
 		
