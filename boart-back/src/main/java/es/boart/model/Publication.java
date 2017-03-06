@@ -19,12 +19,12 @@ public class Publication {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String autor;
-	private String titulo;
-	private String descripcion;
+	private String username;
+	private String title;
+	private String description;
 	private String media;
-	private int tipo_media;
-	private Timestamp fecha;
+	private int media_type;
+	private Timestamp date;
 	private int num_visitas;
 	@OneToMany(mappedBy="publication")
 	private List<Like> likes;
@@ -45,23 +45,23 @@ public class Publication {
 	public Publication(){}
 
 	/**
-	 * @param autor
-	 * @param titulo
-	 * @param descripcion
+	 * @param username
+	 * @param title
+	 * @param description
 	 * @param media
-	 * @param tipo_media
-	 * @param fecha
+	 * @param media_type
+	 * @param date
 	 * @param num_visitas
 	 * @param likes
 	 */
 	public Publication(String autor, String titulo, String descripcion, String media, int tipo_media, Timestamp fecha,
 			int num_visitas) {
-		this.autor = autor;
-		this.titulo = titulo;
-		this.descripcion = descripcion;
+		this.username = autor;
+		this.title = titulo;
+		this.description = descripcion;
 		this.media = media;
-		this.tipo_media = tipo_media;
-		this.fecha = fecha;
+		this.media_type = tipo_media;
+		this.date = fecha;
 		this.num_visitas = num_visitas;
 		this.tags = new HashSet<>();
 	}
@@ -74,45 +74,45 @@ public class Publication {
 	}
 	
 	/**
-	 * @return the autor
+	 * @return the username
 	 */
-	public String getAutor() {
-		return autor;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * @param autor the autor to set
+	 * @param username the username to set
 	 */
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setUsername(String autor) {
+		this.username = autor;
 	}
 
 	/**
-	 * @return the titulo
+	 * @return the title
 	 */
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 
 	/**
-	 * @param titulo the titulo to set
+	 * @param title the title to set
 	 */
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String titulo) {
+		this.title = titulo;
 	}
 
 	/**
-	 * @return the descripcion
+	 * @return the description
 	 */
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
-	 * @param descripcion the descripcion to set
+	 * @param description the description to set
 	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescription(String descripcion) {
+		this.description = descripcion;
 	}
 
 	/**
@@ -130,31 +130,31 @@ public class Publication {
 	}
 
 	/**
-	 * @return the tipo_media
+	 * @return the media_type
 	 */
-	public int getTipo_media() {
-		return tipo_media;
+	public int getMedia_type() {
+		return media_type;
 	}
 
 	/**
-	 * @param tipo_media the tipo_media to set
+	 * @param media_type the media_type to set
 	 */
-	public void setTipo_media(int tipo_media) {
-		this.tipo_media = tipo_media;
+	public void setMedia_type(int tipo_media) {
+		this.media_type = tipo_media;
 	}
 
 	/**
-	 * @return the fecha
+	 * @return the date
 	 */
-	public Timestamp getFecha() {
-		return fecha;
+	public Timestamp getDate() {
+		return date;
 	}
 
 	/**
-	 * @param fecha the fecha to set
+	 * @param date the date to set
 	 */
-	public void setFecha(Timestamp fecha) {
-		this.fecha = fecha;
+	public void setDate(Timestamp fecha) {
+		this.date = fecha;
 	}
 
 	/**

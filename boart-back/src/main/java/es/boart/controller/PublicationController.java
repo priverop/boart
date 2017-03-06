@@ -43,7 +43,7 @@ public class PublicationController {
 		
 		Publication publicacion = publicationRepo.findOne(id);
 		
-		modelo.addAttribute("publicacion", publicacion);
+		modelo.addAttribute("publication", publicacion);
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());

@@ -88,6 +88,15 @@ body .custom_button:hover {
   color: black;
   /* $black-color; */
 }
+
+body .box_signin {
+	padding-bottom: 20px;
+}
+
+body .box_signin form{
+	padding: 20px 40px;
+}
+
 body .box_signin .icofont-lock, body .box_signin .icofont-user, body .box_signup .icofont-lock, body .box_signup .icofont-user {
   color: rgba(88, 165, 15, 0.75);
   /*$font-contrast; */
@@ -96,7 +105,7 @@ body .box_signin .icofont-lock, body .box_signin .icofont-user, body .box_signup
 body .box_signin [type=text], body .box_signup [type=text] {
   display: block;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   height: 45px;
@@ -104,11 +113,12 @@ body .box_signin [type=text], body .box_signup [type=text] {
   margin-bottom: 10px;
   font-size: 1em;
   color: black;
+  background-color: rgba(0, 0, 0, 0);
   /*$black-color;*/
 }
 body .box_signin [type=submit], body .box_signup [type=submit] {
   margin-top: 25px;
-  width: 80%;
+  width: 100%;
   border: 0;
   background-color: rgba(88, 165, 15, 0.75);
   /* $font-contrast */
