@@ -34,11 +34,6 @@ public class PublicationController {
 	@RequestMapping("/publication/{id}")
 	public String greeting(Model modelo, HttpSession session, @PathVariable long id, HttpServletRequest request) {
 
-		if(session.isNew()){
-			session.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepository.findByUsername("invitado"));
-		}
-
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
 		Publication publicacion = publicationRepo.findOne(id);

@@ -32,12 +32,7 @@ public class GroupController {
 	
 	@RequestMapping("/group/{id}")
 	public String greeting(Model modelo, HttpSession session, @PathVariable long id, HttpServletRequest request) {
-
-		if(session.isNew()){
-			session.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepository.findByUsername("invitado"));
-		}
-
+				
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
 		modelo.addAttribute("grupo", groupRepo.findOne(id));

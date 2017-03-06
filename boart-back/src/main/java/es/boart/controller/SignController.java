@@ -35,28 +35,6 @@ public class SignController {
 		return "login_template";
 	}
 	
-	/*@PostMapping("/login")
-	public String login(HttpSession sesion, @RequestParam String username, @RequestParam String password){;
-
-		//String passwordEncrypted = new BCryptPasswordEncoder().encode(password);
-				
-		User usuario = userRepo.findByUsername(username);
-		
-		if(usuario.getUsername() == null){
-			return "Usuario no encontrado";
-		}
-		
-		boolean matchPassword = new BCryptPasswordEncoder().matches(password, usuario.getPassword());
-				
-		if(matchPassword){
-			sesionUsuario.setUser(usuario);
-			sesion.setAttribute("usuario", usuario.getUsername());
-		}
-		
-		return "Contraseña errónea";
-		
-	}*/
-	
 	@PostMapping("/register")
 	public String register(HttpSession sesion, @ModelAttribute User usuario){
 		
@@ -64,7 +42,7 @@ public class SignController {
 		userSession.setUser(usuario);
 		sesion.setAttribute("usuario", usuario.getUsername());
 
-		return "redirect:/perfil_privado";
+		return "redirect:/private_profile";
 	}
 	
 	@RequestMapping("/logout")

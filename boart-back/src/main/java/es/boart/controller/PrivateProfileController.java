@@ -27,11 +27,6 @@ public class PrivateProfileController {
 	
 	@RequestMapping("/private_profile")
 	public String perfil(Model modelo, HttpSession session, HttpServletRequest request) {
-		
-		if(session.isNew()){
-			session.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepo.findByUsername("invitado"));
-		}
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 
