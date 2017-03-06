@@ -62,10 +62,11 @@ public class MainFrontController {
 	}
 	
 	@PostMapping("/")
-	public String portadaFiltrada(Model modelo, HttpSession sesion, HttpServletRequest request, @RequestParam(value="tags",required=false) String tags, @RequestParam(value="nTag",required=false) String nTag) {
+	public String portadaFiltrada(Model modelo, HttpSession session, HttpServletRequest request, @RequestParam(value="tags",required=false) String tags, 
+			@RequestParam(value="nTag",required=false) String nTag, @RequestParam(value="type") String type) {
 		// ¿Necesario?
-		if (sesion.isNew()) {
-			sesion.setAttribute("usuario", "invitado");
+		if (session.isNew()) {
+			session.setAttribute("usuario", "invitado");
 			userSession.setUser(userRepository.findByUsername("invitado"));
 		}
 		System.out.println(nTag);
@@ -75,7 +76,13 @@ public class MainFrontController {
 				sTags.add(s);
 			}
 		}
-		sTags.add(nTag);
+		if (type.equals("addTag")){
+			sTags.add(nTag);
+		} else if (type.equals("remTag")) {
+			sTags.remove(nTag);
+		}
+		if (sTags.size() == 0) 
+			return portada(modelo, session, request);
 		
 		Set<Publication> lPublicaciones = new HashSet<>();				
 		for (String s : sTags){
