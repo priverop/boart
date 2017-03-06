@@ -28,8 +28,8 @@ public class Publication {
 	private int num_visitas;
 	@OneToMany(mappedBy="publication")
 	private List<Like> likes;
-	@OneToMany(mappedBy="publicacion")
-	private List<ComentarioPublicacion> comentariosPublicacion;
+	@OneToMany(mappedBy="publicationDestiny")
+	private List<PublicationComment> comentariosPublicacion;
 	
 	@ManyToMany(mappedBy="publicaciones")
 	private Set<Tag> tags;
@@ -188,14 +188,14 @@ public class Publication {
 	/**
 	 * @return the comentariosPublicacion
 	 */
-	public List<ComentarioPublicacion> getComentariosPublicacion() {
+	public List<PublicationComment> getComentariosPublicacion() {
 		return comentariosPublicacion;
 	}
 
 	/**
 	 * @param comentariosPublicacion the comentariosPublicacion to set
 	 */
-	public void setComentariosPublicacion(List<ComentarioPublicacion> comentariosPublicacion) {
+	public void setComentariosPublicacion(List<PublicationComment> comentariosPublicacion) {
 		this.comentariosPublicacion = comentariosPublicacion;
 	}
 	

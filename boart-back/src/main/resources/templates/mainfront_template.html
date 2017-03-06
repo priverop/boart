@@ -51,19 +51,22 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
 			<div id="columns">
 				{{#publicaciones}}
-				<div class="publication app_box">
-					<img src="{{ media }}" />
-					<p>{{ descripcion }}</p>
-					<div class="rating">
-						<p>
-							<span class="glyphicon glyphicon-heart-empty like_icon"
-								aria-hidden="true"></span><span class="rating-value">5</span>
-						</p>
+				
+				<a href="/publication/{{id}}">
+					<div class="publication app_box">
+						<img src="{{ media }}" />
+						<p>{{ descripcion }}</p>
+						<div class="rating">
+							<p>
+								<span class="glyphicon glyphicon-heart-empty like_icon"
+									aria-hidden="true"></span><span class="rating-value">5</span>
+							</p>
+						</div>
+						<div class="tag_component">
+							{{#tags}} <span class="tag">{{tag}}</span> {{/tags}}
+						</div>
 					</div>
-					<div class="tag_component">
-						{{#tags}} <span class="tag">{{tag}}</span> {{/tags}}
-					</div>
-				</div>
+				</a>
 				{{/publicaciones}}
 			</div>
 		</div>

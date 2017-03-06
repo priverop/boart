@@ -42,10 +42,10 @@ public class User {
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
 	private List<GroupMember> groupMembers;
-	@OneToMany(mappedBy="usuario")
-	private List<ComentarioPerfil> comentariosEscritos;
-	@OneToMany(mappedBy="usuarioDestino")
-	private List<ComentarioPerfil> comentariosRecibidos;
+	@OneToMany(mappedBy="username")
+	private List<ProfileComment> comentariosEscritos;
+	@OneToMany(mappedBy="usernameDestiny")
+	private List<ProfileComment> comentariosRecibidos;
 	@ElementCollection(fetch = FetchType.EAGER)
 	 private List<String> roles;
 	@OneToMany(cascade=CascadeType.ALL)
@@ -239,28 +239,28 @@ public class User {
 	/**
 	 * @return the comentariosEscritos
 	 */
-	public List<ComentarioPerfil> getComentariosEscritos() {
+	public List<ProfileComment> getComentariosEscritos() {
 		return comentariosEscritos;
 	}
 
 	/**
 	 * @param comentariosEscritos the comentariosEscritos to set
 	 */
-	public void setComentariosEscritos(List<ComentarioPerfil> comentariosEscritos) {
+	public void setComentariosEscritos(List<ProfileComment> comentariosEscritos) {
 		this.comentariosEscritos = comentariosEscritos;
 	}
 
 	/**
 	 * @return the comentariosRecibidos
 	 */
-	public List<ComentarioPerfil> getComentariosRecibidos() {
+	public List<ProfileComment> getComentariosRecibidos() {
 		return comentariosRecibidos;
 	}
 
 	/**
 	 * @param comentariosRecibidos the comentariosRecibidos to set
 	 */
-	public void setComentariosRecibidos(List<ComentarioPerfil> comentariosRecibidos) {
+	public void setComentariosRecibidos(List<ProfileComment> comentariosRecibidos) {
 		this.comentariosRecibidos = comentariosRecibidos;
 	}
 
