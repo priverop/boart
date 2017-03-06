@@ -29,6 +29,7 @@
 						class="icofont icofont-comment"></i>+ comentados</a></li>
 			</ul>
 			<form method="POST">
+			    <input type="hidden" name="_csrf" value="{{token}}" />
 				<div class="input-group stylish-input-group">
 					<input type="text" class="form-control" placeholder="Añadir tag"
 						name="nTag"> {{#lTags}} <input type="hidden" name="tags"
