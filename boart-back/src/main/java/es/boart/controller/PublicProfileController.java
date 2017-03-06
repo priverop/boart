@@ -23,7 +23,7 @@ public class PublicProfileController {
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/perfil_publico/{nombreUsuario}")
+	@RequestMapping("/public_profile/{nombreUsuario}")
 	public String greeting(Model modelo, @PathVariable String nombreUsuario, HttpServletRequest request) {
 
 		User usuario = userRepository.findByUsername(nombreUsuario);

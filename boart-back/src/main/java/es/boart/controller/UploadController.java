@@ -42,7 +42,7 @@ public class UploadController {
 	private TagRepository tagRepository;
 
 
-	@RequestMapping("/subir")
+	@RequestMapping("/upload")
 	public String greeting(Model modelo, HttpServletRequest request) {
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");

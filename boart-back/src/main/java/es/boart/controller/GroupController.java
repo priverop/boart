@@ -21,7 +21,7 @@ public class GroupController {
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/grupo/{id}")
+	@RequestMapping("/group/{id}")
 	public String greeting(Model modelo, @PathVariable long id, HttpServletRequest request) {
 
 		modelo.addAttribute("grupo", groupRepo.findOne(id));
