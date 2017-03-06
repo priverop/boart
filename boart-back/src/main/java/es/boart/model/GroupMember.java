@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class MiembroGrupo {
+public class GroupMember {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +26,13 @@ public class MiembroGrupo {
 	 * @param grupo
 	 * @param fechaUnion
 	 */
-	public MiembroGrupo(User usuario, Grupo grupo, Timestamp fechaUnion) {
+	public GroupMember(User usuario, Grupo grupo, Timestamp fechaUnion) {
 		this.usuario = usuario;
 		this.grupo = grupo;
 		this.fechaUnion = fechaUnion;
 	}
 	
-	public MiembroGrupo(){}
+	public GroupMember(){}
 	
 	/**
 	 * @return the usuario

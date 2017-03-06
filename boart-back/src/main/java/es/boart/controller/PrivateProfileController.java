@@ -2,6 +2,7 @@ package es.boart.controller;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -24,14 +25,21 @@ public class PrivateProfileController {
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/perfil_privado")
-	public String perfil(Model modelo, HttpServletRequest request) {
+	@RequestMapping("/private_profile")
+	public String perfil(Model modelo, HttpSession session, HttpServletRequest request) {
+		
+		if(session.isNew()){
+			session.setAttribute("usuario", "invitado");
+			userSession.setUser(userRepo.findByUsername("invitado"));
+		}
+
+		modelo.addAttribute("sesion_usuario", userSession.getUser());
 
 		modelo.addAttribute("usuario", userRepo.findOne(userSession.getUser().getId()));
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 
-		return "perfil_privado_template";
+		return "private_profile_template";
 	}
 }

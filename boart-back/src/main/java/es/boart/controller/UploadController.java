@@ -9,10 +9,10 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.core.io.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +26,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import es.boart.UserComponent;
 import es.boart.model.Publication;
 import es.boart.model.Tag;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.TagRepository;
+import es.boart.repository.UserRepository;
 
 @Controller
 public class UploadController {
@@ -40,15 +41,26 @@ public class UploadController {
 	private PublicationRepository publicacionRepository;
 	@Autowired
 	private TagRepository tagRepository;
+	@Autowired
+	private UserComponent userSession;
+	
+	@Autowired
+	private UserRepository userRepository;
 
+	@RequestMapping("/upload")
+	public String greeting(Model modelo, HttpSession session, HttpServletRequest request) {
+		
+		if(session.isNew()){
+			session.setAttribute("usuario", "invitado");
+			userSession.setUser(userRepository.findByUsername("invitado"));
+		}
 
-	@RequestMapping("/subir")
-	public String greeting(Model modelo, HttpServletRequest request) {
+		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
-		return "subir_template";
+		return "upload_template";
 	}
 
 	@PostMapping("/upload")
@@ -73,7 +85,7 @@ public class UploadController {
 
 		Path rootLocation = Paths.get("src/main/resources/static/img/");
 		Files.copy(file.getInputStream(), rootLocation.resolve(file.getOriginalFilename()));
-		return "publicacion_template";
+		return "publication_template";
 	}
 	
     @GetMapping("/files/{filename:.+}")

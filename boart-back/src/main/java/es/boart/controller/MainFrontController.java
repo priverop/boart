@@ -29,7 +29,7 @@ import es.boart.repository.UserRepository;
 public class MainFrontController {
 	
 	@Autowired
-	private UserComponent sesionUsuario;
+	private UserComponent userSession;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -45,22 +45,20 @@ public class MainFrontController {
 	}
 	
 	@RequestMapping("/")
-	public String portada(Model modelo, HttpSession sesion, HttpServletRequest request) {
+	public String portada(Model modelo, HttpSession session, HttpServletRequest request) {
 		
-		if(sesion.isNew()){
-			System.out.println("Sesión Nueva");
-			sesion.setAttribute("usuario", "invitado");
-			sesionUsuario.setUser(userRepository.findByUsername("invitado"));
+		if(session.isNew()){
+			session.setAttribute("usuario", "invitado");
+			userSession.setUser(userRepository.findByUsername("invitado"));
 		}
-		
+
+		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		modelo.addAttribute("publicaciones", publicationRepository.findAll());
-		modelo.addAttribute("sesion_usuario", sesionUsuario.getUser());
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
-		System.out.println("Portada:"+sesionUsuario.getUser());
-		return "portada_template";
+		return "mainfront_template";
 	}
 	
 	@RequestMapping("/logout")
@@ -68,15 +66,15 @@ public class MainFrontController {
 		sesion.invalidate();
 		modelo.addAttribute("publicaciones", publicationRepository.findAll());
 
-		return "portada_template";
+		return "mainfront_template";
 	}
 	
 	@PostMapping("/")
 	public String portadaFiltrada(Model modelo, HttpSession sesion, HttpServletRequest request, @RequestParam(value="tags",required=false) String tags, @RequestParam(value="nTag",required=false) String nTag) {
+		// ¿Necesario?
 		if (sesion.isNew()) {
-			System.out.println("Sesión Nueva");
 			sesion.setAttribute("usuario", "invitado");
-			sesionUsuario.setUser(userRepository.findByUsername("invitado"));
+			userSession.setUser(userRepository.findByUsername("invitado"));
 		}
 		System.out.println(nTag);
 		List<Tag> lTags = new ArrayList<>();
@@ -93,11 +91,12 @@ public class MainFrontController {
 		}
 		
 		modelo.addAttribute("lTags", lTags);
+		// ¿Todo esto no es redundante? Se debe poder hacer sin duplicar código
 		modelo.addAttribute("publicaciones", lPublicaciones);
-		modelo.addAttribute("sesion_usuario", sesionUsuario.getUser());
+		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
-		return "portada_template";
+		return "mainfront_template";
 	}
 
 }

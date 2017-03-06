@@ -12,26 +12,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
-import es.boart.model.Publication;
-import es.boart.repository.PublicationRepository;
+import es.boart.repository.GroupRepository;
 import es.boart.repository.UserRepository;
 
 @Controller
-public class PublicationController {
-
+public class GroupController {
+	
 	@Autowired
-	private PublicationRepository publicationRepo;	
+	private GroupRepository groupRepo;
+	
 	@Autowired
 	private UserComponent userSession;
 	
 	@Autowired
 	private UserRepository userRepository;
-
-	@PostConstruct
-	public void init(){
-	}
 	
-	@RequestMapping("/publication/{id}")
+	@PostConstruct
+	public void init(){}
+	
+	@RequestMapping("/group/{id}")
 	public String greeting(Model modelo, HttpSession session, @PathVariable long id, HttpServletRequest request) {
 
 		if(session.isNew()){
@@ -41,13 +40,11 @@ public class PublicationController {
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
-		Publication publicacion = publicationRepo.findOne(id);
-		
-		modelo.addAttribute("publicacion", publicacion);
+		modelo.addAttribute("grupo", groupRepo.findOne(id));
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
-		return "publication_template";
+		return "group_template";
 	}
 }

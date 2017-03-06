@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 public class User {
 
@@ -32,42 +34,41 @@ public class User {
 	private String password;
 	private Boolean guest;
 	private String img;
-	private int visitas; 
-	private int nivelSeguridad;
-	private Timestamp fechaRegistro;
-	private Timestamp fechaUltimoLogin;
+	private int visits; 
+	private Timestamp signInDate;
 	@OneToMany(cascade=CascadeType.ALL)
-	private List<Publication> galeria = new ArrayList<>();
-	@OneToMany(mappedBy="usuario")
+	private List<Publication> gallery = new ArrayList<>();
+	@OneToMany(mappedBy="username")
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
-	private List<MiembroGrupo> miembroGrupos;
+	private List<GroupMember> groupMembers;
 	@OneToMany(mappedBy="usuario")
 	private List<ComentarioPerfil> comentariosEscritos;
 	@OneToMany(mappedBy="usuarioDestino")
 	private List<ComentarioPerfil> comentariosRecibidos;
 	@ElementCollection(fetch = FetchType.EAGER)
 	 private List<String> roles;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<SocialNet> RRSS = new ArrayList<>();
 	
-
 	/**
 	 * @param username
 	 * @param name
 	 * @param surname
 	 * @param password
 	 * @param img
-	 * @param visitas
+	 * @param visits
 	 * @param nivelSeguridad
 	 * @param date
 	 * @param date2
 	 * @param likes
-	 * @param galeria
+	 * @param gallery
 	 */
 	public User(String username, String name, String surname, String password, Boolean guest, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.guest = guest;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		// Descripción nuevo usuario
@@ -77,7 +78,7 @@ public class User {
 		// Fecha actual
 		Date date = new Date();
 		
-		this.fechaRegistro = new Timestamp(date.getTime());
+		this.signInDate = new Timestamp(date.getTime());
 	}
 	
 	public User(){}
@@ -180,59 +181,31 @@ public class User {
 	}
 
 	/**
-	 * @return the visitas
+	 * @return the visits
 	 */
-	public int getVisitas() {
-		return visitas;
+	public int getVisits() {
+		return visits;
 	}
 
 	/**
-	 * @param visitas the visitas to set
+	 * @param visitas the visits to set
 	 */
-	public void setVisitas(int visitas) {
-		this.visitas = visitas;
+	public void setVisits(int visitas) {
+		this.visits = visitas;
 	}
 
 	/**
-	 * @return the nivelSeguridad
+	 * @return the signInDate
 	 */
-	public int getNivelSeguridad() {
-		return nivelSeguridad;
+	public Timestamp getSignInDate() {
+		return signInDate;
 	}
 
 	/**
-	 * @param nivelSeguridad the nivelSeguridad to set
+	 * @param signInDate the signInDate to set
 	 */
-	public void setNivelSeguridad(int nivelSeguridad) {
-		this.nivelSeguridad = nivelSeguridad;
-	}
-
-	/**
-	 * @return the fechaRegistro
-	 */
-	public Timestamp getFechaRegistro() {
-		return fechaRegistro;
-	}
-
-	/**
-	 * @param fechaRegistro the fechaRegistro to set
-	 */
-	public void setFechaRegistro(Timestamp fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-
-	/**
-	 * @return the fechaUltimoLogin
-	 */
-	public Timestamp getFechaUltimoLogin() {
-		return fechaUltimoLogin;
-	}
-
-	/**
-	 * @param fechaUltimoLogin the fechaUltimoLogin to set
-	 */
-	public void setFechaUltimoLogin(Timestamp fechaUltimoLogin) {
-		this.fechaUltimoLogin = fechaUltimoLogin;
+	public void setSignInDate(Timestamp fechaRegistro) {
+		this.signInDate = fechaRegistro;
 	}
 
 	/**
@@ -252,15 +225,15 @@ public class User {
 	/**
 	 * @return the miembroGrupos
 	 */
-	public List<MiembroGrupo> getMiembroGrupos() {
-		return miembroGrupos;
+	public List<GroupMember> getMiembroGrupos() {
+		return groupMembers;
 	}
 
 	/**
-	 * @param miembroGrupos the miembroGrupos to set
+	 * @param groupMembers the miembroGrupos to set
 	 */
-	public void setMiembroGrupos(List<MiembroGrupo> miembroGrupos) {
-		this.miembroGrupos = miembroGrupos;
+	public void setMiembroGrupos(List<GroupMember> groupMembers) {
+		this.groupMembers = groupMembers;
 	}
 
 	/**
@@ -294,15 +267,15 @@ public class User {
 	/**
 	 * @return the galeria
 	 */
-	public List<Publication> getGaleria() {
-		return galeria;
+	public List<Publication> getGallery() {
+		return gallery;
 	}
 
 	/**
 	 * @param galeria the galeria to set
 	 */
-	public void setGaleria(List<Publication> galeria) {
-		this.galeria = galeria;
+	public void setGallery(List<Publication> galeria) {
+		this.gallery = galeria;
 	}
 
 	/**
