@@ -3,10 +3,32 @@
 <div class="menu">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a href="#"><img
+			<a href="/"><img
 				src="../img/logo_2D_white_shadow_bold.png"></a>
 		</div>
 		<div>
+			{{#sesion_usuario}}
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a class="custom_button alegreya" id="sing_in" href="#">
+					{{#guest}}
+						<i class="icofont icofont-ui-lock"></i> Login
+					{{/guest}}
+					{{^guest}}
+						<i class="icofont icofont-ui-user"></i> {{username}}
+					{{/guest}}
+					</a>
+				</li>
+				{{^guest}}
+				<li>
+					<a class="custom_button alegreya" href="/logout">
+						<i class="icofont icofont-ui-unlock"></i> Logout
+					</a>
+				</li>
+				{{/guest}}
+			</ul>
+			{{/sesion_usuario}}
+			{{^sesion_usuario}} 
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a class="custom_button alegreya" id="sing_up" href="#">
@@ -15,20 +37,11 @@
 				</li>
 				<li>
 					<a class="custom_button alegreya" id="sing_in" href="#">
-						{{#sesion_usuario}} 
-							{{#guest}}
-								<i class="icofont icofont-ui-lock"></i> {{username}}
-							{{/guest}}
-							{{^guest}}
-								<i class="icofont icofont-ui-unlock"></i> {{username}}
-							{{/guest}}
-						{{/sesion_usuario}}
-						{{^sesion_usuario}} 
-							<i class="icofont icofont-ui-lock"></i> Login 
-						{{/sesion_usuario}}
+						<i class="icofont icofont-ui-lock"></i> Login 
 					</a>
 				</li>
 			</ul>
+			{{/sesion_usuario}}
 		</div>
 	</div>
 </div>
