@@ -30,10 +30,11 @@
 			</ul>
 			<form method="POST">
 			    <input type="hidden" name="_csrf" value="{{token}}" />
+			    <input type="hidden" name="type" value="addTag" />			 
 				<div class="input-group stylish-input-group">
 					<input type="text" class="form-control" placeholder="Añadir tag"
-						name="nTag"> {{#lTags}} <input type="hidden" name="tags"
-						value="{{ tag }}"> {{/lTags}} <span
+						name="nTag"> {{#sTags}} <input type="hidden" name="tags"
+						value="{{.}}"> {{/sTags}} <span
 						class="input-group-addon">
 						<button type="submit">
 							<span class="glyphicon glyphicon-search"></span>
@@ -42,10 +43,15 @@
 				</div>
 			</form>
 			<div class="tag_component">
-				{{#lTags}}
-					<input type="hidden" name="tagRemove" value="{{ tag }}"><span class="tag"><span
-							class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{tag}}</span>					
-				{{/lTags}}
+				{{#sTags}}
+					<form method="POST" name="{{.}}Form">					
+						<input type="hidden" name="nTag" value="{{.}}">
+						<input type="hidden" name="_csrf" value="{{token}}" />
+			   			<input type="hidden" name="type" value="remTag" />
+			   			{{#sTags}} <input type="hidden" name="tags"	value="{{.}}">{{/sTags}} 
+						<span class="tag" onclick="{{.}}Form.submit()"><span	class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{.}}</span>	
+					</form>				
+				{{/sTags}}
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
