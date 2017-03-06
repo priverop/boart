@@ -1,4 +1,9 @@
 @CHARSET "UTF-8";
+@import url("globals.css");
+@import url("header.css");
+@import url("footer.css");
+@import url("tag-list.css");
+
 .user_wrapper {
   padding: 10px;
 }

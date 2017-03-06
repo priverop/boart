@@ -1,4 +1,12 @@
 @CHARSET "UTF-8";
+@import url("globals.css");
+@import url("header.css");
+@import url("search.css");
+@import url("tag-list.css");
+@import url("footer.css");
+@import url("comments.css");
+
+
 #imgCabecera {
   max-width: 70%;
   max-height: 70%;
