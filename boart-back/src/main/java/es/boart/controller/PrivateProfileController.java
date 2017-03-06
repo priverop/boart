@@ -24,7 +24,7 @@ public class PrivateProfileController {
 	@PostConstruct
 	public void init(){}
 	
-	@RequestMapping("/perfil_privado")
+	@RequestMapping("/private_profile")
 	public String perfil(Model modelo, HttpServletRequest request) {
 
 		modelo.addAttribute("usuario", userRepo.findOne(userSession.getUser().getId()));
