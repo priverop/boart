@@ -24,7 +24,7 @@ public class SignController {
 	private UserRepository userRepo;
 	
 	@Autowired
-	private UserComponent sesionUsuario;
+	private UserComponent userSession;
 	
 	@RequestMapping("/login")
 	public String loginPage(Model modelo, HttpServletRequest request){
@@ -61,9 +61,16 @@ public class SignController {
 	public String register(HttpSession sesion, @ModelAttribute User usuario){
 		
 		userRepo.save(usuario);
-		sesionUsuario.setUser(usuario);
+		userSession.setUser(usuario);
 		sesion.setAttribute("usuario", usuario.getUsername());
 
 		return "redirect:/perfil_privado";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session){
+		session.invalidate();
+
+		return "redirect:/";
 	}
 }

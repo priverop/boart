@@ -61,14 +61,6 @@ public class MainFrontController {
 		return "mainfront_template";
 	}
 	
-	@RequestMapping("/logout")
-	public String logout(Model modelo, HttpSession sesion){
-		sesion.invalidate();
-		modelo.addAttribute("publicaciones", publicationRepository.findAll());
-
-		return "mainfront_template";
-	}
-	
 	@PostMapping("/")
 	public String portadaFiltrada(Model modelo, HttpSession sesion, HttpServletRequest request, @RequestParam(value="tags",required=false) String tags, @RequestParam(value="nTag",required=false) String nTag) {
 		// ¿Necesario?
