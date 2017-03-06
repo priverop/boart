@@ -3,6 +3,8 @@ package es.boart.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import es.boart.UserComponent;
 import es.boart.model.User;
 
 @Component
@@ -21,11 +24,15 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserComponent userSession;
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
 		User user = userRepository.findByUsername(auth.getName());
+		System.out.println(user);
 
 		if (user == null) {
 			throw new BadCredentialsException("User not found");
@@ -34,6 +41,8 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 		String password = (String) auth.getCredentials();
 		if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
 			throw new BadCredentialsException("Wrong password");
+		}else{
+			userSession.setUser(user);
 		}
 
 		List<GrantedAuthority> roles = new ArrayList<>();

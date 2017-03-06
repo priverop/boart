@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 public class User {
 
@@ -66,7 +68,7 @@ public class User {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.guest = guest;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		// Descripción nuevo usuario
