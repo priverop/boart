@@ -77,20 +77,20 @@ public class MainFrontController {
 			userSession.setUser(userRepository.findByUsername("invitado"));
 		}
 		System.out.println(nTag);
-		List<Tag> lTags = new ArrayList<>();
+		Set<String> sTags = new HashSet<>();
 		if (tags != null) {
 			for (String s: Arrays.asList(tags.split(","))){
-				lTags.add(new Tag(s));
+				sTags.add(s);
 			}
 		}
-		lTags.add(new Tag(nTag));
+		sTags.add(nTag);
 		
 		Set<Publication> lPublicaciones = new HashSet<>();				
-		for (Tag t: lTags){
-			 lPublicaciones.addAll(publicationRepository.findByTags(t));
+		for (String s : sTags){
+			 lPublicaciones.addAll(publicationRepository.findByTags(new Tag(s)));
 		}
 		
-		modelo.addAttribute("lTags", lTags);
+		modelo.addAttribute("sTags", sTags);
 		// ¿Todo esto no es redundante? Se debe poder hacer sin duplicar código
 		modelo.addAttribute("publicaciones", lPublicaciones);
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
