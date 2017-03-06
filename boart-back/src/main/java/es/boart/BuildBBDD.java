@@ -38,13 +38,8 @@ public class BuildBBDD {
 		Date date = new Date();
 		
 		/* USUARIOS */
-		User invitado = new User("invitado", "Guest", "Guest", "invitado", true, "ROLE_GUEST");
-		
-		invitado.getGallery().add(new Publication("Pepe", "Holacaracola", "Descripcion1", 
-				"http://wallpapermad.com/wp-content/uploads/2016/05/art-nouveau-wallpaper8.jpg", 1, 
-				new Timestamp(date.getTime()), 0));
 				
-		User usuario = new User("usuario1", "prueba", "prueba",	"pass", false, "ROLE_USER");
+		User usuario = new User("usuario1", "prueba", "prueba",	"pass", "ROLE_USER");
 				
 		usuario.getGallery().add(new Publication("usuario1", "Titulo", "Descripcion", 
 				"https://iso.500px.com/wp-content/uploads/2016/03/pedroquintela.jpg", 
@@ -66,9 +61,8 @@ public class BuildBBDD {
 				"http://images5.fanpop.com/image/photos/31600000/Dandelion-Art-photography-31606827-2560-1706.jpg", 
 				1, new Timestamp(date.getTime()), 0));
 		
-		userRepository.save(invitado);
 		userRepository.save(usuario);
-		userRepository.save(new User("juan", "Juan", "Cuesta", "juanjuan", false, "ROLE_USER"));
+		userRepository.save(new User("juan", "Juan", "Cuesta", "juanjuan", "ROLE_USER"));
 		
 		/* PUBLICACIONES */
 		publicationRepository.save(new Publication("Juan", "Holacar2acola", "Descr2ipcion1", 
