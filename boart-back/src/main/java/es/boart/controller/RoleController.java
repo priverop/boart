@@ -21,7 +21,7 @@ public class RoleController {
 			}
 		}
 		
-		return "ROL_" + roleRequest;
+		return "ROLE_" + roleRequest;
 		
 	}
 	

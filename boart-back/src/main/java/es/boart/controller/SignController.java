@@ -4,14 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import es.boart.UserComponent;
 import es.boart.model.User;
@@ -35,12 +34,23 @@ public class SignController {
 		return "login_template";
 	}
 	
+	@RequestMapping("/login/{error}")
+	public String loginErrors(Model modelo, HttpServletRequest request, @PathVariable String error){
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		modelo.addAttribute("token", token.getToken());
+		modelo.addAttribute("error", error);
+
+		return "login_template";
+	}
+	
 	@PostMapping("/register")
-	public String register(HttpSession sesion, @ModelAttribute User usuario){
+	public String register(@ModelAttribute User usuario){
+		System.out.println("--Controlador--"); //No llega aquí
+		System.out.println("Registro: "+usuario);
 		
 		userRepo.save(usuario);
 		userSession.setUser(usuario);
-		sesion.setAttribute("usuario", usuario.getUsername());
 
 		return "redirect:/private_profile";
 	}
