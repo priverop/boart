@@ -1,10 +1,13 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +18,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class Publication {
 
+	private final int DEFAULT_VISITS = 0;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -25,22 +30,15 @@ public class Publication {
 	private String media;
 	private int media_type;
 	private Timestamp date;
-	private int num_visitas;
+	private int num_visits;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<>();
+	
 	@OneToMany(mappedBy="publication")
 	private List<Like> likes;
-	@OneToMany(mappedBy="publicationDestiny")
-	private List<PublicationComment> comentariosPublicacion;
-	
-	@ManyToMany(mappedBy="publicaciones")
-	private Set<Tag> tags;
-	
-	public Set<Tag> getTags() {
-		return tags;
-	}
 
-	public void setTags(Set<Tag> tags) {
-		this.tags = tags;
-	}
+	@ManyToMany(mappedBy="publications") 
+	private Set<Tag> tags;
 
 	public Publication(){}
 
@@ -51,18 +49,17 @@ public class Publication {
 	 * @param media
 	 * @param media_type
 	 * @param date
-	 * @param num_visitas
+	 * @param num_visits
 	 * @param likes
 	 */
-	public Publication(String autor, String titulo, String descripcion, String media, int tipo_media, Timestamp fecha,
-			int num_visitas) {
-		this.username = autor;
-		this.title = titulo;
-		this.description = descripcion;
+	public Publication(String author, String title, String description, String media, int media_type) {
+		this.username = author;
+		this.title = title;
+		this.description = description;
 		this.media = media;
-		this.media_type = tipo_media;
-		this.date = fecha;
-		this.num_visitas = num_visitas;
+		this.media_type = media_type;
+		this.date = new Timestamp(new Date().getTime());
+		this.num_visits = DEFAULT_VISITS;
 		this.tags = new HashSet<>();
 	}
 	
@@ -158,17 +155,17 @@ public class Publication {
 	}
 
 	/**
-	 * @return the num_visitas
+	 * @return the num_visits
 	 */
-	public int getNum_visitas() {
-		return num_visitas;
+	public int getNum_visits() {
+		return num_visits;
 	}
 
 	/**
-	 * @param num_visitas the num_visitas to set
+	 * @param num_visits the num_visits to set
 	 */
-	public void setNum_visitas(int num_visitas) {
-		this.num_visitas = num_visitas;
+	public void setNum_visits(int num_visitas) {
+		this.num_visits = num_visitas;
 	}
 
 	/**
@@ -188,18 +185,24 @@ public class Publication {
 	/**
 	 * @return the comentariosPublicacion
 	 */
-	public List<PublicationComment> getComentariosPublicacion() {
-		return comentariosPublicacion;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
 	/**
 	 * @param comentariosPublicacion the comentariosPublicacion to set
 	 */
-	public void setComentariosPublicacion(List<PublicationComment> comentariosPublicacion) {
-		this.comentariosPublicacion = comentariosPublicacion;
+	public void setComments(List<Comment> comentariosPublicacion) {
+		this.comments = comentariosPublicacion;
 	}
 	
-	
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 
 }
 		

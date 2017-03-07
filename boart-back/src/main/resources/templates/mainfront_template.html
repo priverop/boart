@@ -31,10 +31,11 @@
 			<form method="POST">
 			    <input type="hidden" name="_csrf" value="{{token}}" />
 				<div class="input-group stylish-input-group">
-					<input type="text" class="form-control" placeholder="Añadir tag"
-						name="nTag"> {{#lTags}} <input type="hidden" name="tags"
-						value="{{ tag }}"> {{/lTags}} <span
-						class="input-group-addon">
+					<input type="text" class="form-control" placeholder="Añadir tag" name="nTag">
+					 {{#lTags}}
+					 <input type="hidden" name="tags" value="{{ tag }}"> 
+					 {{/lTags}} 
+					 <span class="input-group-addon">
 						<button type="submit">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>

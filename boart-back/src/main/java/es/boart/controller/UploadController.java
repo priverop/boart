@@ -67,8 +67,7 @@ public class UploadController {
 	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("titulo") String titulo,
 			@RequestParam("descripcion") String descripcion, @RequestParam("etiquetas") String etiquetas)
 			throws IOException {
-		Publication publicacion = new Publication("m0scar", titulo, descripcion, "/files/" + file.getOriginalFilename(),
-				0, new Timestamp(new Date().getTime()), 0);
+		Publication publicacion = new Publication("m0scar", titulo, descripcion, "/files/" + file.getOriginalFilename(), 0);
 		publicacionRepository.save(publicacion);
 
 		for (String s : etiquetas.split("\n")) {
@@ -76,10 +75,10 @@ public class UploadController {
 										// caracteres especiales??
 			Tag tag = tagRepository.findByTag(s);
 			if (tag == null) tag = new Tag(s);
-			tag.getPublicaciones().add(publicacion);
+			tag.getPublications().add(publicacion);
 			tagRepository.save(tag);
 			
-			System.out.println(tag.getPublicaciones().size());
+			System.out.println(tag.getPublications().size());
 			
 		}
 

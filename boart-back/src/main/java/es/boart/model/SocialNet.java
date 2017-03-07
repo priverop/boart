@@ -23,6 +23,8 @@ public class SocialNet {
 		this.media = media;
 		this.url = url;
 	}
+	
+	public SocialNet(){}
 
 	/**
 	 * @return the media
