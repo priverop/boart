@@ -32,7 +32,6 @@ public class User {
 	private String surname;
 	private String description;
 	private String password;
-	private Boolean guest;
 	private String img;
 	private int visits; 
 	private Timestamp signInDate;
@@ -64,12 +63,11 @@ public class User {
 	 * @param likes
 	 * @param gallery
 	 */
-	public User(String username, String name, String surname, String password, Boolean guest, String... roles) {
+	public User(String username, String name, String surname, String password, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = new BCryptPasswordEncoder().encode(password);
-		this.guest = guest;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
@@ -276,20 +274,6 @@ public class User {
 	 */
 	public void setGallery(List<Publication> galeria) {
 		this.gallery = galeria;
-	}
-
-	/**
-	 * @return the guest
-	 */
-	public Boolean getGuest() {
-		return guest;
-	}
-
-	/**
-	 * @param guest the guest to set
-	 */
-	public void setGuest(Boolean guest) {
-		this.guest = guest;
 	}
 	
 	/**

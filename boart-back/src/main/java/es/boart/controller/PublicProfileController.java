@@ -28,11 +28,6 @@ public class PublicProfileController {
 	
 	@RequestMapping("/public_profile/{nombreUsuario}")
 	public String greeting(Model modelo, HttpSession session, @PathVariable String nombreUsuario, HttpServletRequest request) {
-		
-		if(session.isNew()){
-			session.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepository.findByUsername("invitado"));
-		}
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		

@@ -49,11 +49,6 @@ public class UploadController {
 
 	@RequestMapping("/upload")
 	public String greeting(Model modelo, HttpSession session, HttpServletRequest request) {
-		
-		if(session.isNew()){
-			session.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepository.findByUsername("invitado"));
-		}
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		

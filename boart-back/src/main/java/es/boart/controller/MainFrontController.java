@@ -46,11 +46,6 @@ public class MainFrontController {
 	
 	@RequestMapping("/")
 	public String portada(Model modelo, HttpSession session, HttpServletRequest request) {
-		
-		if(session.isNew()){
-			session.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepository.findByUsername("invitado"));
-		}
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		modelo.addAttribute("publicaciones", publicationRepository.findAll());
@@ -62,27 +57,30 @@ public class MainFrontController {
 	}
 	
 	@PostMapping("/")
-	public String portadaFiltrada(Model modelo, HttpSession sesion, HttpServletRequest request, @RequestParam(value="tags",required=false) String tags, @RequestParam(value="nTag",required=false) String nTag) {
-		// ¿Necesario?
-		if (sesion.isNew()) {
-			sesion.setAttribute("usuario", "invitado");
-			userSession.setUser(userRepository.findByUsername("invitado"));
-		}
-		System.out.println(nTag);
-		List<Tag> lTags = new ArrayList<>();
+
+	public String portadaFiltrada(Model modelo, HttpSession session, HttpServletRequest request, @RequestParam(value="tags",required=false) String tags, 
+			@RequestParam(value="nTag",required=false) String nTag, @RequestParam(value="type") String type) {
+
+		Set<String> sTags = new HashSet<>();
 		if (tags != null) {
 			for (String s: Arrays.asList(tags.split(","))){
-				lTags.add(new Tag(s));
+				sTags.add(s);
 			}
 		}
-		lTags.add(new Tag(nTag));
+		if (type.equals("addTag")){
+			sTags.add(nTag);
+		} else if (type.equals("remTag")) {
+			sTags.remove(nTag);
+		}
+		if (sTags.size() == 0) 
+			return portada(modelo, session, request);
 		
 		Set<Publication> lPublicaciones = new HashSet<>();				
-		for (Tag t: lTags){
-			 lPublicaciones.addAll(publicationRepository.findByTags(t));
+		for (String s : sTags){
+			 lPublicaciones.addAll(publicationRepository.findByTags(new Tag(s)));
 		}
 		
-		modelo.addAttribute("lTags", lTags);
+		modelo.addAttribute("sTags", sTags);
 		// ¿Todo esto no es redundante? Se debe poder hacer sin duplicar código
 		modelo.addAttribute("publicaciones", lPublicaciones);
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
