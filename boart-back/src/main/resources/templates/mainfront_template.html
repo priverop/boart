@@ -63,10 +63,10 @@
 						<img src="{{ media }}" />
 						<p>{{ description }}</p>
 						<div class="rating">
-							<p>
+							<a href="">
 								<span class="glyphicon glyphicon-heart-empty like_icon"
-									aria-hidden="true"></span><span class="rating-value">5</span>
-							</p>
+									aria-hidden="true"></span><span class="rating-value">{{ numberOfLikes }}</span>
+							</a>
 						</div>
 						<div class="tag_component">
 							{{#tags}} <span class="tag">{{tag}}</span> {{/tags}}

@@ -54,14 +54,16 @@ article #columns .rating {
   display: inline-block;
   font-size: 1.3em;
 }
-article #columns .rating p {
+article #columns .rating a {
   display: inline;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
-article #columns .rating p .rating-value {
+article #columns .rating a .rating-value {
   padding: 0px 5px;
 }
-article #columns .rating p:hover .like_icon {
+article #columns .rating a:hover .like_icon {
   color: red;
 }
 article .publication {

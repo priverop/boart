@@ -28,6 +28,7 @@ public class Publication {
 	private int num_visitas;
 	@OneToMany(mappedBy="publication")
 	private List<Like> likes;
+	private int numberOfLikes;
 	@OneToMany(mappedBy="publicationDestiny")
 	private List<PublicationComment> comentariosPublicacion;
 	
@@ -64,6 +65,7 @@ public class Publication {
 		this.date = fecha;
 		this.num_visitas = num_visitas;
 		this.tags = new HashSet<>();
+		this.numberOfLikes = 0;
 	}
 	
 	/**
@@ -184,6 +186,16 @@ public class Publication {
 	public void setLikes(List<Like> likes) {
 		this.likes = likes;
 	}
+	
+	public void addLike(Like like) {
+		this.likes.add(like);
+		this.setNumberOfLikes(this.getNumberOfLikes() + 1);
+	}
+	
+	public void removeLike(Like like) {
+		this.likes.remove(like);
+		this.setNumberOfLikes(this.getNumberOfLikes() - 1);
+	}
 
 	/**
 	 * @return the comentariosPublicacion
@@ -198,8 +210,20 @@ public class Publication {
 	public void setComentariosPublicacion(List<PublicationComment> comentariosPublicacion) {
 		this.comentariosPublicacion = comentariosPublicacion;
 	}
-	
-	
+
+	/**
+	 * @return the numberOfLikes
+	 */
+	public int getNumberOfLikes() {
+		return numberOfLikes;
+	}
+
+	/**
+	 * @param numberOfLikes the numberOfLikes to set
+	 */
+	public void setNumberOfLikes(int numberOfLikes) {
+		this.numberOfLikes = numberOfLikes;
+	}
 
 }
 		
