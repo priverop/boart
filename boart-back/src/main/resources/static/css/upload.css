@@ -2,3 +2,12 @@
 @import url("globals.css");
 @import url("header.css");
 @import url("footer.css");
+
+#image {
+    display: none;
+}
+
+input[type=range] ~ .input-group-btn {
+	font-size: 20px;
+	padding: 0px 20px;
+}
