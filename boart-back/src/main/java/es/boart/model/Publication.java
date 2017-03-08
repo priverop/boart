@@ -33,6 +33,7 @@ public class Publication {
 	private int media_type;
 	private Timestamp date;
 	private int num_visits;
+	private int numberOfLikes;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 	
@@ -63,6 +64,7 @@ public class Publication {
 		this.date = new Timestamp(new Date().getTime());
 		this.num_visits = DEFAULT_VISITS;
 		this.tags = new HashSet<>();
+		this.numberOfLikes = 0;
 	}
 	
 	/**
@@ -183,6 +185,16 @@ public class Publication {
 	public void setLikes(List<Like> likes) {
 		this.likes = likes;
 	}
+	
+	public void addLike(Like like) {
+		this.likes.add(like);
+		this.setNumberOfLikes(this.getNumberOfLikes() + 1);
+	}
+	
+	public void removeLike(Like like) {
+		this.likes.remove(like);
+		this.setNumberOfLikes(this.getNumberOfLikes() - 1);
+	}
 
 	/**
 	 * @return the comentariosPublicacion
@@ -205,6 +217,22 @@ public class Publication {
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
+	
+	/**
+	 * @return the numberOfLikes
+	 */
+	public int getNumberOfLikes() {
+		return numberOfLikes;
+	}
+
+	/**
+	 * @param numberOfLikes the numberOfLikes to set
+	 */
+	public void setNumberOfLikes(int numberOfLikes) {
+		this.numberOfLikes = numberOfLikes;
+	}
+	
+	
 
 }
 		
