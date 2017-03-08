@@ -17,7 +17,6 @@ import es.boart.UserComponent;
 import es.boart.model.Comment;
 import es.boart.model.Publication;
 import es.boart.repository.PublicationRepository;
-import es.boart.repository.UserRepository;
 
 @Controller
 public class PublicationController {
@@ -26,27 +25,21 @@ public class PublicationController {
 	private PublicationRepository publicationRepo;	
 	@Autowired
 	private UserComponent userSession;
-	
-	@Autowired
-	private UserRepository userRepository;
 
 	@PostConstruct
 	public void init(){
 	}
 	
-	@RequestMapping("/publication/{id}")
-	public String publication(Model modelo, HttpSession session, @PathVariable long id, HttpServletRequest request) {
-		//DEBUG
-		System.out.println("Sesión del usuario: "+userSession.getUser());
-		//DEBUG
-		
+	@RequestMapping("/publication/{IDPublication}")
+	public String publication(Model modelo, HttpSession session, @PathVariable long IDPublication, HttpServletRequest request) {
+	
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
-		Publication publication = publicationRepo.findOne(id);
+		Publication publication = publicationRepo.findOne(IDPublication);
 		
 		modelo.addAttribute("publication", publication);
 		modelo.addAttribute("reference", "publication");
-		modelo.addAttribute("id", publication.getId());
+		modelo.addAttribute("IDLocation", IDPublication);
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
@@ -55,15 +48,16 @@ public class PublicationController {
 	}
 	
 	@PostMapping("/addComment/publication")
-	public String addComment(@RequestParam String text, @RequestParam long id){
-		System.out.println("Llegamos al controlador");
+	public String addComment(@RequestParam String text, @RequestParam long idLocation){
+	
 		Comment newComment = new Comment(userSession.getUser(), text);
 		
-		Publication publication = publicationRepo.findOne(id);
+		Publication publication = publicationRepo.findOne(idLocation);
 		publication.getComments().add(newComment);
+		
 		publicationRepo.save(publication);
-		System.out.println("Guardamos y redirigimos");
-		return "redirect:/publication/"+id;
+
+		return "redirect:/publication/"+idLocation;
 	}
 	
 }
