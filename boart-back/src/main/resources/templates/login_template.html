@@ -15,9 +15,12 @@
     <article class="container-fluid">
 	    <div class="row">
 	       <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4 app_box box_signin">
+	       {{#error}}
+	       		<p class="error">¡USUARIO/CONTRASEÑA INCORRECTA!</p>
+	       {{/error}}
 			<form action="/login" method="POST" >
             <input type="text" name="username" placeholder="Usuario:"/>
-            <input type="text" name="password" placeholder="Contraseña:"/>
+            <input type="password" name="password" placeholder="Contraseña:"/>
             <input type="hidden" name="_csrf" value="{{token}}" />
             <div class="col-xs-8 col-xs-offset-2">
             	<input type="submit" placeholder="SUBMIT"/>

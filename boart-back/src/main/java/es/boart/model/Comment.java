@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,44 +10,42 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ProfileComment  {
+public class Comment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@ManyToOne
-	private User username;
+	private User user;
 	private String text;
 	private Timestamp date;
-	@ManyToOne
-	private User usernameDestiny;
+	
 	/**
-	 * @param username
+	 * @param user
 	 * @param text
 	 * @param date
-	 * @param usernameDestiny
+	 * @param publicationDestiny
 	 */
-	public ProfileComment(User usuario, String text, Timestamp fechaPublicacion, User usuarioDestino) {
-		this.username = usuario;
+	public Comment(User usuario, String text) {
+		this.user = usuario;
 		this.text = text;
-		this.date = fechaPublicacion;
-		this.usernameDestiny = usuarioDestino;
+		this.date = new Timestamp(new Date().getTime());
 	}
-	
-	public ProfileComment(){}
-	
+
+	public Comment(){}
+
 	/**
-	 * @return the username
+	 * @return the user
 	 */
-	public User getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
 	/**
-	 * @param username the username to set
+	 * @param user the user to set
 	 */
-	public void setUsername(User usuario) {
-		this.username = usuario;
+	public void setUser(User usuario) {
+		this.user = usuario;
 	}
 	/**
 	 * @return the text
@@ -72,18 +71,7 @@ public class ProfileComment  {
 	public void setDate(Timestamp fechaPublicacion) {
 		this.date = fechaPublicacion;
 	}
-	/**
-	 * @return the usernameDestiny
-	 */
-	public User getUsernameDestiny() {
-		return usernameDestiny;
-	}
-	/**
-	 * @param usernameDestiny the usernameDestiny to set
-	 */
-	public void setUsernameDestiny(User usuarioDestino) {
-		this.usernameDestiny = usuarioDestino;
-	}
 
+	
 
 }

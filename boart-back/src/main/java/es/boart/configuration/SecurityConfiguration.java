@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/private_profile");
+        http.formLogin().failureUrl("/loginfailure");
 
         // Logout
         http.logout().logoutUrl("/logout");

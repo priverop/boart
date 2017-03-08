@@ -98,6 +98,10 @@ article #columns:hover .publication:not(:hover) {
   opacity: 0.4;
 }
 
+article .tagForm{
+	display: inline-block;
+}
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   /* $screen-sm-min*/

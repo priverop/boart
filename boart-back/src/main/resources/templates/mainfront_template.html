@@ -44,7 +44,7 @@
 			</form>
 			<div class="tag_component">
 				{{#sTags}}
-					<form method="POST" name="{{.}}Form">					
+					<form method="POST" class="tagForm" name="{{.}}Form">					
 						<input type="hidden" name="nTag" value="{{.}}">
 						<input type="hidden" name="_csrf" value="{{token}}" />
 			   			<input type="hidden" name="type" value="remTag" />

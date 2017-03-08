@@ -41,10 +41,8 @@ public class User {
 	private List<Like> likes;
 	@OneToMany(mappedBy="usuario")
 	private List<GroupMember> groupMembers;
-	@OneToMany(mappedBy="username")
-	private List<ProfileComment> comentariosEscritos;
-	@OneToMany(mappedBy="usernameDestiny")
-	private List<ProfileComment> comentariosRecibidos;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Comment> comments = new ArrayList<>();
 	@ElementCollection(fetch = FetchType.EAGER)
 	 private List<String> roles;
 	@OneToMany(cascade=CascadeType.ALL)
@@ -69,6 +67,23 @@ public class User {
 		this.surname = surname;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.roles = new ArrayList<>(Arrays.asList(roles));
+		// Descripción nuevo usuario
+		this.description = DEFAULT_DESCRIPTION;
+		// Imagen por defecto
+		this.img = DEFAULT_IMG;
+		// Fecha actual
+		Date date = new Date();
+		
+		this.signInDate = new Timestamp(date.getTime());
+	}
+	
+	public User(String username, String name, String surname, String password) {
+		this.username = username;
+		this.name = name;
+		this.surname = surname;
+		this.password = new BCryptPasswordEncoder().encode(password);
+		this.roles = new ArrayList<>();
+		this.roles.add("ROLE_USER");
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
@@ -234,32 +249,19 @@ public class User {
 		this.groupMembers = groupMembers;
 	}
 
+
 	/**
-	 * @return the comentariosEscritos
+	 * @return the comments
 	 */
-	public List<ProfileComment> getComentariosEscritos() {
-		return comentariosEscritos;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
 	/**
-	 * @param comentariosEscritos the comentariosEscritos to set
+	 * @param comments the comments to set
 	 */
-	public void setComentariosEscritos(List<ProfileComment> comentariosEscritos) {
-		this.comentariosEscritos = comentariosEscritos;
-	}
-
-	/**
-	 * @return the comentariosRecibidos
-	 */
-	public List<ProfileComment> getComentariosRecibidos() {
-		return comentariosRecibidos;
-	}
-
-	/**
-	 * @param comentariosRecibidos the comentariosRecibidos to set
-	 */
-	public void setComentariosRecibidos(List<ProfileComment> comentariosRecibidos) {
-		this.comentariosRecibidos = comentariosRecibidos;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	/**

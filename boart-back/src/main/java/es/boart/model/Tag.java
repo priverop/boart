@@ -20,7 +20,7 @@ public class Tag {
 	@Id
 	private String tag;
 	@ManyToMany
-	private Set<Publication> publicaciones;
+	private Set<Publication> publications;
 	
 	public Tag(){
 		
@@ -29,7 +29,7 @@ public class Tag {
 	public Tag(String tag) {
 		super();
 		this.tag = tag;
-		this.publicaciones = new HashSet<Publication>();
+		this.publications = new HashSet<Publication>();
 	}
 	public String getTag() {
 		return tag;
@@ -39,11 +39,11 @@ public class Tag {
 		this.tag = tag;
 	}
 	
-	public Set<Publication> getPublicaciones() {
-		return publicaciones;
+	public Set<Publication> getPublications() {
+		return publications;
 	}
-	public void setPublicaciones(Set<Publication> publicaciones) {
-		this.publicaciones = publicaciones;
+	public void setPublications(Set<Publication> publicaciones) {
+		this.publications = publicaciones;
 	}
 
 }

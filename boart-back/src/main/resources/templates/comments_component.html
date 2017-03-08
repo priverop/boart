@@ -1,12 +1,22 @@
 <div class="comments_container">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
+		{{#comments}}
             <div class="comment">
-                <p><span class="font_contrast"><strong>@LocoRoco</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
+                <p><span class="font_contrast"><strong>@{{user.username}}</strong>: </span><span>{{text}}</span></p>
             </div>
-            <form>
-                <div class="form-group">
-                    <textarea placeholder="Comentario"></textarea>
-                </div>
-            </form>
+     	{{/comments}}
+     	{{^comments}}
+     	<p class="font_contrast">¡Sé el primero en escribir un comentario</p>
+     	{{/comments}}
+        {{#sesion_usuario}}
+            <div class="form-group">
+            	<form action="/addComment/{{reference}}" method="post">
+                	<textarea placeholder="Comentario" name="text"></textarea>
+                	<input type="hidden" name="idLocation" value="{{IDLocation}}" />
+           			<input type="hidden" name="_csrf" value="{{token}}" />
+                	<input type="submit" />
+                </form>
+            </div>
+        {{/sesion_usuario}}
         </div>
     </div>

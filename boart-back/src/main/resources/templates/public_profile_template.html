@@ -14,43 +14,42 @@
 <body>
     {{> header_component}}
     <article class="container-fluid">
-	<div class="row">
-		{{#usuario}}
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
-				<div class="col-xs-12 col-sm-4">
-					<img class="img-responsive" src="{{img}}">
-				</div>
-				<div class="col-xs-12 col-sm-8">
-					<div class="col-xs-12">
-						<h1>{{name}}</h1>
-						<h2><em>@{{username}}</em></h2>  			
-		  				<blockquote><em>{{description}}</em></blockquote>
-	  				</div>
-	  				<div class="col-xs-12 social_nets">
-	  					<i class="icofont icofont_social icofont-social-500px"></i>
-	  					<i class="icofont icofont_social icofont-social-facebook"></i>
-	  					<i class="icofont icofont_social icofont-social-twitter"></i>
-	  					<i class="icofont icofont_social icofont-social-instagram"></i>
-	  					<i class="icofont icofont_social icofont-social-linkedin"></i>
-	  				</div>
-	  			</div>
-	  		
+    {{#usuario}}
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
+					<div class="col-xs-12 col-sm-4">
+						<img class="img-responsive" src="{{img}}">
+					</div>
+					<div class="col-xs-12 col-sm-8">
+						<div class="col-xs-12">
+							<h1>{{name}}</h1>
+							<h2><em>@{{username}}</em></h2>  			
+			  				<blockquote><em>{{description}}</em></blockquote>
+		  				</div>
+		  				<div class="col-xs-12 social_nets">
+		  					<i class="icofont icofont_social icofont-social-500px"></i>
+		  					<i class="icofont icofont_social icofont-social-facebook"></i>
+		  					<i class="icofont icofont_social icofont-social-twitter"></i>
+		  					<i class="icofont icofont_social icofont-social-instagram"></i>
+		  					<i class="icofont icofont_social icofont-social-linkedin"></i>
+		  				</div>
+		  			</div>
+		  		
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
+				<p class="title"><a href="#"><span class="glyphicon glyphicon-picture"></span>Anochecer con V</a></p>
+				<p class="description"><em>Fotografía de un anochecer en Vallekas City.</em></p>
+			</div>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
-			<p class="title"><a href="#"><span class="glyphicon glyphicon-picture"></span>Anochecer con V</a></p>
-			<p class="description"><em>Fotografía de un anochecer en Vallekas City.</em></p>
+		
+		<!-- Gallery -->
+		<div class="row" id="columns">
+		{{#gallery}}
+			<div class="app_box publication"><img src="{{media}}"></div>
+		{{/gallery}}
 		</div>
-	</div>
-	
-	<!-- Gallery -->
-	<div class="row" id="columns">
-	{{#galeria}}
-		<div class="app_box publication"><img src="{{media}}"></div>
-	{{/galeria}}
-	</div>
+		{{> comments_component}}
 	{{/usuario}}
-
-	{{> comments_component}}
 </article>
 {{> footer_component}}
 </body>
