@@ -35,7 +35,7 @@ public class GroupController {
 				
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
-		modelo.addAttribute("grupo", groupRepo.findOne(id));
+		modelo.addAttribute("group", groupRepo.findOne(id));
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());

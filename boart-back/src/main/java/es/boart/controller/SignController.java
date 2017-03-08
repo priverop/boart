@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,12 +44,13 @@ public class SignController {
 	}
 	
 	@PostMapping("/register")
-	public String register(@ModelAttribute User usuario){
-		System.out.println("--Controlador--"); //No llega aquí
-		System.out.println("Registro: "+usuario);
+	public String register(User usuario){
 		
-		userRepo.save(usuario);
+		User newUser = new User(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword() );
+		
+		userRepo.save(newUser);
 		userSession.setUser(usuario);
+
 
 		return "redirect:/private_profile";
 	}

@@ -15,60 +15,60 @@ public class Grupo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String titulo;
-	private String descripcion;
-	private String imgPerfil;
+	private String title;
+	private String description;
+	private String img;
 	@OneToMany(mappedBy="grupo")
 	private List<GroupMember> groupMembers;
 	
 	/**
-	 * @param titulo
-	 * @param descripcion
-	 * @param imgPerfil
+	 * @param title
+	 * @param description
+	 * @param img
 	 */
-	public Grupo(String titulo, String descripcion, String imgPerfil) {
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.imgPerfil = imgPerfil;
+	public Grupo(String title, String description, String img){
+		this.title = title;
+		this.description = description;
+		this.img = img;
 	}
 	
 	public Grupo(){}
 	
 	/**
-	 * @return the titulo
+	 * @return the title
 	 */
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 	/**
-	 * @param titulo the titulo to set
+	 * @param title the title to set
 	 */
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	/**
-	 * @return the descripcion
+	 * @return the description
 	 */
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescription() {
+		return description;
 	}
 	/**
-	 * @param descripcion the descripcion to set
+	 * @param description the description to set
 	 */
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescription(String descripcion) {
+		this.description = descripcion;
 	}
 	/**
-	 * @return the imgPerfil
+	 * @return the img
 	 */
-	public String getImgPerfil() {
-		return imgPerfil;
+	public String getImg() {
+		return img;
 	}
 	/**
-	 * @param imgPerfil the imgPerfil to set
+	 * @param img the img to set
 	 */
-	public void setImgPerfil(String imgPerfil) {
-		this.imgPerfil = imgPerfil;
+	public void setImg(String imgPerfil) {
+		this.img = imgPerfil;
 	}
 	/**
 	 * @return the miembroGrupos

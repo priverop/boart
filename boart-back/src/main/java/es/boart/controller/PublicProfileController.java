@@ -9,6 +9,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
@@ -20,6 +21,7 @@ public class PublicProfileController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
 	@Autowired
 	private UserComponent userSession;
 	
@@ -33,11 +35,19 @@ public class PublicProfileController {
 		
 		User usuario = userRepository.findByUsername(nombreUsuario);
 		modelo.addAttribute("usuario", usuario);
+		modelo.addAttribute("reference", "profile");
+		modelo.addAttribute("id", usuario.getId());
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 	
 		
 		return "public_profile_template";
+	}	
+	
+	@PostMapping("/addComment/profile")
+	public String addComment(){
+		
+		return "redirect:/";
 	}
 }

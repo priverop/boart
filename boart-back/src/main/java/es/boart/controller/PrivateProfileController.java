@@ -28,6 +28,9 @@ public class PrivateProfileController {
 	@RequestMapping("/private_profile")
 	public String perfil(Model modelo, HttpSession session, HttpServletRequest request) {
 
+		// Si la sesión no es nueva necesitamos refrescar el componente usuario (userSession)
+		// POR HACER
+		
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 
 		modelo.addAttribute("usuario", userRepo.findOne(userSession.getUser().getId()));

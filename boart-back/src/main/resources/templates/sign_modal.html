@@ -14,11 +14,11 @@
         </div>
         <div class="box_signup app_box">
           <i class="icofont icofont-user"></i>
-          <form action="#" th:action="@{/register}" th:object="${usuario}" method="POST">
-            <input type="text" th:field="*{name}" placeholder="Nombre:"/>
-            <input type="text" th:field="*{surname}" placeholder="Apellidos:"/>
-            <input type="text" th:field="*{username}" placeholder="Usuario:"/>
-            <input type="password" th:field="*{password}" placeholder="Contraseña:"/>
+          <form action="/register" method="POST">
+            <input type="text" name="name" placeholder="Nombre:"/>
+            <input type="text" name="surname" placeholder="Apellidos:"/>
+            <input type="text" name="username" placeholder="Usuario:"/>
+            <input type="password" name="password" placeholder="Contraseña:"/>
             <input type="hidden" name="_csrf" value="{{token}}" />
             <input type='submit' placeholder='SUBMIT'/>
           </form>

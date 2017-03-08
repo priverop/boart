@@ -5,8 +5,6 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import es.boart.UserComponent;
 import es.boart.model.Publication;
 import es.boart.model.Tag;
+import es.boart.model.User;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.TagRepository;
 import es.boart.repository.UserRepository;
@@ -62,7 +61,8 @@ public class UploadController {
 	public String upload(@RequestParam("file") MultipartFile file, @RequestParam("titulo") String titulo,
 			@RequestParam("descripcion") String descripcion, @RequestParam("etiquetas") String etiquetas)
 			throws IOException {
-		Publication publicacion = new Publication("m0scar", titulo, descripcion, "/files/" + file.getOriginalFilename(), 0);
+		User oscar = new User("m0scar", "Oscar", "Romero", "m0scar");
+		Publication publicacion = new Publication(oscar, titulo, descripcion, "/files/" + file.getOriginalFilename(), 0);
 		publicacionRepository.save(publicacion);
 
 		for (String s : etiquetas.split("\n")) {

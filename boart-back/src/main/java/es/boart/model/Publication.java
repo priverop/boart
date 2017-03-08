@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,7 +25,8 @@ public class Publication {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String username;
+	@ManyToOne
+	private User user;
 	private String title;
 	private String description;
 	private String media;
@@ -43,7 +45,7 @@ public class Publication {
 	public Publication(){}
 
 	/**
-	 * @param username
+	 * @param user
 	 * @param title
 	 * @param description
 	 * @param media
@@ -52,8 +54,8 @@ public class Publication {
 	 * @param num_visits
 	 * @param likes
 	 */
-	public Publication(String author, String title, String description, String media, int media_type) {
-		this.username = author;
+	public Publication(User author, String title, String description, String media, int media_type) {
+		this.user = author;
 		this.title = title;
 		this.description = description;
 		this.media = media;
@@ -71,17 +73,17 @@ public class Publication {
 	}
 	
 	/**
-	 * @return the username
+	 * @return the user
 	 */
-	public String getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
 
 	/**
-	 * @param username the username to set
+	 * @param user the user to set
 	 */
-	public void setUsername(String autor) {
-		this.username = autor;
+	public void setUsername(User autor) {
+		this.user = autor;
 	}
 
 	/**
