@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,59 +17,59 @@ public class GroupMember {
 	private long id;
 	
 	@ManyToOne
-	private User usuario;
+	private User user;
 	@ManyToOne
-	private Grupo grupo;
-	private Timestamp fechaUnion;
+	private Grupo group;
+	private Timestamp dateIn;
 	
 	/**
-	 * @param usuario
-	 * @param grupo
-	 * @param fechaUnion
+	 * @param user
+	 * @param group
+	 * @param dateIn
 	 */
-	public GroupMember(User usuario, Grupo grupo, Timestamp fechaUnion) {
-		this.usuario = usuario;
-		this.grupo = grupo;
-		this.fechaUnion = fechaUnion;
+	public GroupMember(User user, Grupo group) {
+		this.user = user;
+		this.group = group;
+		this.dateIn = new Timestamp(new Date().getTime());
 	}
 	
 	public GroupMember(){}
 	
 	/**
-	 * @return the usuario
+	 * @return the user
 	 */
-	public User getUsuario() {
-		return usuario;
+	public User getUser() {
+		return user;
 	}
 	/**
-	 * @param usuario the usuario to set
+	 * @param user the user to set
 	 */
-	public void setUsuario(User usuario) {
-		this.usuario = usuario;
+	public void setUser(User usuario) {
+		this.user = usuario;
 	}
 	/**
-	 * @return the grupo
+	 * @return the group
 	 */
-	public Grupo getGrupo() {
-		return grupo;
+	public Grupo getGroup() {
+		return group;
 	}
 	/**
-	 * @param grupo the grupo to set
+	 * @param group the group to set
 	 */
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
+	public void setGroup(Grupo grupo) {
+		this.group = grupo;
 	}
 	/**
-	 * @return the fechaUnion
+	 * @return the dateIn
 	 */
-	public Timestamp getFechaUnion() {
-		return fechaUnion;
+	public Timestamp getDateIn() {
+		return dateIn;
 	}
 	/**
-	 * @param fechaUnion the fechaUnion to set
+	 * @param dateIn the dateIn to set
 	 */
-	public void setFechaUnion(Timestamp fechaUnion) {
-		this.fechaUnion = fechaUnion;
+	public void setDateIn(Timestamp fechaUnion) {
+		this.dateIn = fechaUnion;
 	}
 	
 }

@@ -18,7 +18,7 @@ public class Grupo {
 	private String title;
 	private String description;
 	private String img;
-	@OneToMany(mappedBy="grupo")
+	@OneToMany(mappedBy="group")
 	private List<GroupMember> groupMembers;
 	
 	/**

@@ -37,9 +37,9 @@ public class User {
 	private Timestamp signInDate;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publication> gallery = new ArrayList<>();
-	@OneToMany(mappedBy="username")
+	@OneToMany(mappedBy="user")
 	private List<Like> likes;
-	@OneToMany(mappedBy="usuario")
+	@OneToMany(mappedBy="user")
 	private List<GroupMember> groupMembers;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
