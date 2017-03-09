@@ -24,8 +24,8 @@ public class Like {
 	 * @param user
 	 * @param publication
 	 */
-	public Like(long id, User usuario, Publication publication) {
-		this.user = usuario;
+	public Like(User user, Publication publication) {
+		this.user = user;
 		this.publication = publication;
 	}
 	
@@ -41,8 +41,8 @@ public class Like {
 	/**
 	 * @param usuario the user to set
 	 */
-	public void setUser(User usuario) {
-		this.user = usuario;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	/**
