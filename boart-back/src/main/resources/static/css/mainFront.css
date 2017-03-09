@@ -107,6 +107,15 @@ article .tagForm{
 	display: inline-block;
 }
 
+article .iframeAudio {
+	width: 100%;
+	height: 166px;
+}
+
+article .iframeVideo {
+	width: 100%;
+	height: 315px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   /* $screen-sm-min*/
