@@ -41,8 +41,8 @@ public class Publication {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 	
-	@OneToMany(mappedBy="publication")
-	private List<Like> likes;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="publication")
+	private List<PublicationLike> likes;
 
 	@ManyToMany(mappedBy="publications") 
 	private Set<Tag> tags;
@@ -179,23 +179,23 @@ public class Publication {
 	/**
 	 * @return the likes
 	 */
-	public List<Like> getLikes() {
+	public List<PublicationLike> getLikes() {
 		return likes;
 	}
 
 	/**
 	 * @param likes the likes to set
 	 */
-	public void setLikes(List<Like> likes) {
+	public void setLikes(List<PublicationLike> likes) {
 		this.likes = likes;
 	}
 	
-	public void addLike(Like like) {
+	public void addLike(PublicationLike like) {
 		this.likes.add(like);
 		this.setNumberOfLikes(this.getNumberOfLikes() + 1);
 	}
 	
-	public void removeLike(Like like) {
+	public void removeLike(PublicationLike like) {
 		this.likes.remove(like);
 		this.setNumberOfLikes(this.getNumberOfLikes() - 1);
 	}

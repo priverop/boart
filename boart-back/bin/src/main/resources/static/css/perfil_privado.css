@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+.user_profile {
+  padding: 10px;
+}
+.user_profile img {
+  max-width: 300px;
+  margin: 0 0 10px;
+}
+.user_profile h1 {
+  font-size: 2em;
+  margin: 0 0 5px 0;
+  font-weight: bold;
+}
+.user_profile h2 {
+  font-size: 1.5em;
+  margin: 0 0 5px 0;
+}
+.user_profile blockquote {
+  font-size: 1em;
+}
+.user_profile .social_nets {
+  font-size: 1em !important;
+}
+.user_profile .social_nets i {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 25px;
+}
+.user_profile .public_button {
+  text-align: center;
+  margin: 30px 0 0;
+}
+.user_profile .public_button a {
+  background-color: white;
+  border: 1px solid rgba(88, 165, 15, 0.65);
+  color: rgba(0, 0, 0, 0.7);
+}
+.user_profile .public_button a:hover {
+  background-color: rgba(88, 165, 15, 0.65) !important;
+  color: white;
+}
+.user_profile .publication {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+}
+.user_profile .publication img {
+  max-height: 300px;
+}
+.user_profile .user_info {
+  margin: 0 0 10px 0;
+}
+.user_profile .edit-icon {
+  cursor: pointer;
+}
+.user_profile .edit-icon i {
+  opacity: 0;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.user_profile .edit-icon:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+.user_profile .edit-icon:hover i {
+  color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.user_profile .edit-img {
+  cursor: pointer;
+  position: relative;
+  width: 300px;
+}
+.user_profile .edit-img .veil {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+  font-size: 2em;
+}
+.user_profile .edit-img:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+.user_profile .edit-img:hover .veil {
+  color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.user_profile .edit-img:hover img {
+  opacity: 0.5;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.user_profile .edit-gallery {
+  cursor: pointer;
+  position: relative;
+}
+.user_profile .edit-gallery .veil {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+  font-size: 2em;
+}
+.user_profile .edit-gallery:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+.user_profile .edit-gallery:hover .veil {
+  color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.user_profile .edit-gallery:hover img {
+  opacity: 0.5;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}

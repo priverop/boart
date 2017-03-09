@@ -54,23 +54,16 @@ article #columns .rating {
   display: inline-block;
   font-size: 1.3em;
 }
-article #columns .rating a {
+article #columns .rating p {
   display: inline;
   cursor: pointer;
-  text-decoration: none;
-  color: black;
 }
-article #columns .rating a .rating-value {
+article #columns .rating p .rating-value {
   padding: 0px 5px;
 }
-article #columns .rating a:hover .like_icon {
+article #columns .rating p:hover .like_icon {
   color: red;
 }
-
-article #columns .rating a .like_icon.added {
-  color: red;
-}
-
 article .publication {
   display: inline-block;
   margin: 0 2px 15px;
@@ -84,7 +77,6 @@ article .publication {
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   transition: all .2s ease;
-  cursor: pointer;
 }
 article .publication img {
   width: 100%;
@@ -101,10 +93,6 @@ article .publication p {
 }
 article #columns:hover .publication:not(:hover) {
   opacity: 0.4;
-}
-
-article .tagForm{
-	display: inline-block;
 }
 
 /* Small devices (tablets, 768px and up) */

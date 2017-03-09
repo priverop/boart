@@ -9,4 +9,5 @@ import es.boart.model.Tag;
 
 public interface PublicationRepository extends JpaRepository<Publication, Long> {
 	List<Publication> findByTags(Tag tag);
+	Publication findById(long id);
 }

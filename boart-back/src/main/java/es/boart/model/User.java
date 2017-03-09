@@ -37,8 +37,8 @@ public class User {
 	private Timestamp signInDate;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publication> gallery = new ArrayList<>();
-	@OneToMany(mappedBy="user")
-	private List<Like> likes;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	private List<PublicationLike> likes;
 	@OneToMany(mappedBy="user")
 	private List<GroupMember> groupMembers;
 	@OneToMany(cascade=CascadeType.ALL)
@@ -224,14 +224,14 @@ public class User {
 	/**
 	 * @return the likes
 	 */
-	public List<Like> getLikes() {
+	public List<PublicationLike> getLikes() {
 		return likes;
 	}
 
 	/**
 	 * @param likes the likes to set
 	 */
-	public void setLikes(List<Like> likes) {
+	public void setLikes(List<PublicationLike> likes) {
 		this.likes = likes;
 	}
 

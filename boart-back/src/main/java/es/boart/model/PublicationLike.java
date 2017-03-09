@@ -5,9 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Like {
+public class PublicationLike {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,12 +24,12 @@ public class Like {
 	 * @param user
 	 * @param publication
 	 */
-	public Like(long id, User usuario, Publication publication) {
-		this.user = usuario;
+	public PublicationLike(User user, Publication publication) {
+		this.user = user;
 		this.publication = publication;
 	}
 	
-	public Like(){}
+	public PublicationLike(){}
 	
 	/**
 	 * @return the user
@@ -39,8 +41,8 @@ public class Like {
 	/**
 	 * @param usuario the user to set
 	 */
-	public void setUser(User usuario) {
-		this.user = usuario;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	/**

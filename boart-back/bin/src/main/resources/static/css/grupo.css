@@ -1,45 +1,121 @@
 @CHARSET "UTF-8";
-@import url("globals.css");
-@import url("header.css");
-@import url("search.css");
-@import url("tag-list.css");
-
-article .filter_publication {
-  height: auto;
-  padding: 20px;
-  margin-bottom: 20px;
+#imgCabecera {
+  max-width: 70%;
+  max-height: 70%;
+  border-radius: 10%;
 }
-article .filter_publication ul {
+
+.menuleft {
+  margin-bottom: 10px;
+  height: 100%;
+  padding: 10px;
+}
+
+#boxDesc {
+  text-align: center;
+  padding: 15px;
+}
+
+.flex-row.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-row.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row.row:after,
+.flex-row.row:before {
+  display: flex;
+}
+
+.filter_publication {
+  margin-bottom: 10px;
+  padding: 20px;
+}
+.filter_publication ul {
   padding: 10px;
   list-style: none;
 }
-article .filter_publication ul li {
+.filter_publication ul li {
   padding: 10px 5px;
 }
-article .filter_publication ul li a {
+.filter_publication ul li a {
   text-decoration: none;
   padding: 5px 10px;
   color: black;
-  /*$black-color;*/
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   transition: all .2s ease;
 }
-article .filter_publication ul li a:hover {
+.filter_publication ul li a:hover {
   color: rgba(88, 165, 15, 0.65);
-  /*$background-header;*/
 }
-article .filter_publication ul li a.active {
+.filter_publication ul li a.active {
   background-color: rgba(88, 165, 15, 0.65);
-  /*$background-header;*/
   color: black;
-  /*$black-color;*/
 }
-article .filter_publication ul li a i {
+.filter_publication ul li a i {
   margin-right: 7px;
 }
-article #columns {
+
+.title {
+  text-align: center;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.miembro {
+  background-color: transparent;
+  padding: 15px;
+  text-align: center;
+  height: 100%;
+}
+.miembro a {
+  color: rgba(88, 165, 15, 0.75);
+  text-decoration: none;
+}
+.miembro a:hover {
+  color: black;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+}
+.miembro img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.username {
+  font-size: 16px;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+.panel-default {
+  margin-bottom: 10px;
+}
+
+.label {
+  width: 100%;
+}
+
+#vermas {
+  margin: 10px;
+  text-align: center;
+}
+#vermas a {
+  color: black;
+}
+
+#columns {
   -webkit-column-count: 1;
   -webkit-column-gap: 10px;
   -webkit-column-fill: auto;
@@ -50,28 +126,19 @@ article #columns {
   column-gap: 15px;
   column-fill: auto;
 }
-article #columns .rating {
+#columns .rating {
   display: inline-block;
   font-size: 1.3em;
 }
-article #columns .rating a {
+#columns .rating p {
   display: inline;
   cursor: pointer;
-  text-decoration: none;
-  color: black;
 }
-article #columns .rating a .rating-value {
+#columns .rating p .rating-value {
   padding: 0px 5px;
 }
-article #columns .rating a:hover .like_icon {
-  color: red;
-}
 
-article #columns .rating a .like_icon.added {
-  color: red;
-}
-
-article .publication {
+.publication {
   display: inline-block;
   margin: 0 2px 15px;
   -webkit-column-break-inside: avoid;
@@ -84,36 +151,26 @@ article .publication {
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   transition: all .2s ease;
-  cursor: pointer;
 }
-article .publication img {
+.publication img {
   width: 100%;
   border-bottom: 1px solid #FFFFFF;
-  /*$background-border;*/
   padding-bottom: 15px;
   margin-bottom: 5px;
 }
-article .publication p {
+.publication p {
   color: black;
-  /*$black-color;*/
   margin: 0;
   padding: 15px 5px;
 }
-article #columns:hover .publication:not(:hover) {
+
+#columns:hover .publication:not(:hover) {
   opacity: 0.4;
 }
 
-article .tagForm{
-	display: inline-block;
-}
-
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  /* $screen-sm-min*/
-}
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  /*$screen-md-min*/
   article #columns {
     -webkit-column-count: 3;
     -moz-column-count: 3;
@@ -122,7 +179,6 @@ article .tagForm{
 }
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  /*$screen-lg-min*/
   article #columns {
     -webkit-column-count: 3;
     -moz-column-count: 3;
