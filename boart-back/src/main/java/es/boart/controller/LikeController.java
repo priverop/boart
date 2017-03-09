@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.boart.UserComponent;
 import es.boart.model.CustomResponse;
-import es.boart.model.Like;
+import es.boart.model.PublicationLike;
 import es.boart.model.Publication;
 import es.boart.model.User;
 import es.boart.repository.LikeRepository;
@@ -57,7 +57,7 @@ public class LikeController {
 		Publication publication = publicationRepository.findById(Long.parseLong(publicationId));
 		
 		if(manager) {
-			Like like = new Like(user, publication);
+			PublicationLike like = new PublicationLike(user, publication);
 			publication.addLike(like);
 			likeRepository.save(like);
 			publicationRepository.save(publication);

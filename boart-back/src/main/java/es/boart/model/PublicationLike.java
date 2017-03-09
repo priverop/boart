@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Like {
+public class PublicationLike {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,12 +24,12 @@ public class Like {
 	 * @param user
 	 * @param publication
 	 */
-	public Like(User user, Publication publication) {
+	public PublicationLike(User user, Publication publication) {
 		this.user = user;
 		this.publication = publication;
 	}
 	
-	public Like(){}
+	public PublicationLike(){}
 	
 	/**
 	 * @return the user
