@@ -23,7 +23,7 @@ var likeManager = function(){
 		publicationId = $this.attr('publication');
 		
 		var request = $.ajax({
-			  url: "like/increase",
+			  url: "like",
 			  method: "POST",
 			  data: 'publicationId=' + publicationId
 		});

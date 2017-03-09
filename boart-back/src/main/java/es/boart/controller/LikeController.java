@@ -37,7 +37,7 @@ public class LikeController {
 	@Autowired
 	private LikeRepository likeRepository;
 	
-	@RequestMapping(value = "/like/increase", method = RequestMethod.POST)
+	@RequestMapping(value = "/like", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public ResponseEntity<String> likeManager(@RequestParam String publicationId, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
