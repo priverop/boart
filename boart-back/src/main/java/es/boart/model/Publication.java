@@ -37,7 +37,7 @@ public class Publication {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 	
-	@OneToMany(mappedBy="publication")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="publication")
 	private List<Like> likes;
 
 	@ManyToMany(mappedBy="publications") 

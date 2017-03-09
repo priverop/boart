@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>BOART - Grupo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/publicacion.css">
+    <link rel="stylesheet" href="../css/comentarios.css">
+</head>
+
+<body>
+    <div class="menu">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#"><img src="../static/img/logo_2D_white_shadow_bold.png"></a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="custom_button alegreya" href="#"><span
+							class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a class="custom_button alegreya" href="#"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <article class="container-fluid">
+
+        <div class="col-xs-12 col-sm-4 app_box user_wrapper">
+            <img class="img-responsive" src="https://i1.sndcdn.com/avatars-000183688573-hdws3e-t500x500.jpg">
+            <h2 class="user"><a href="perfil_publico_template.html">@NicoMisery</a></h2>
+            <div class="share_publication">
+                <a href="#"><i class="icofont icofont_social icofont-social-twitter"></i></a>
+                <a href="#"><i class="icofont icofont_social icofont-social-facebook"></i></a>
+                <a href="#"><i class="icofont icofont_social icofont-social-google-plus"></i></a>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-8 app_box publication_wrapper">
+            <h1 class="title">Anocheciendo en V</h1>
+            <h3 class="description">Un anochecer en Las Tetas de Vallecas (de ahí la V).</h3>
+            <img class="img-responsive" src="https://farm1.staticflickr.com/527/18050905254_bd5018dbe4_z_d.jpg">
+            <app-tag-list></app-tag-list>
+        </div>
+    </article>
+    <div class="comments_container">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
+            <div class="comment">
+                <p><span class="font_contrast"><strong>@LocoRoco</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
+                <p><span class="font_contrast"><strong>@Marico34</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
+                <p><span class="font_contrast"><strong>@EstupendoWatson99</strong>: </span><span>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</span></p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <textarea placeholder="Comentario"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

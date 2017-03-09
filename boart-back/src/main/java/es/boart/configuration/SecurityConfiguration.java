@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import es.boart.repository.UserRepositoryAuthenticationProvider;
@@ -32,10 +33,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().passwordParameter("password");
         http.formLogin().defaultSuccessUrl("/private_profile");
         http.formLogin().failureUrl("/loginfailure");
-
+        
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
+        
+    }
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/like/increase");
     }
 
     @Override

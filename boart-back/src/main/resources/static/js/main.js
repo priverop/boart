@@ -1,3 +1,30 @@
+
+
+var likeManager = function(){
+	
+	var publicationId;
+	
+	$('.rating a').click(function(){
+		
+		var $this = $(this);
+		publicationId = $this.attr('publication');
+		
+		var request = $.ajax({
+			  url: "like/increase",
+			  method: "POST",
+			  data: "manager=" + true + '&publicationId=' + publicationId
+		});
+			 
+		request.done(function( msg ) {
+			console.log(msg)
+		});
+			 
+		request.fail(function( jqXHR, textStatus ) {
+			console.log("Fail")
+		});
+	});
+};
+
 var modalSign = function(){
 	
 	var $singUpButton = $('#sing_up');
@@ -39,4 +66,5 @@ var modalSign = function(){
 
 $(function() {
 	modalSign();
+	likeManager();
 });
