@@ -66,6 +66,11 @@ article #columns .rating a .rating-value {
 article #columns .rating a:hover .like_icon {
   color: red;
 }
+
+article #columns .rating a .like_icon.added {
+  color: red;
+}
+
 article .publication {
   display: inline-block;
   margin: 0 2px 15px;

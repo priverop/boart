@@ -1,4 +1,17 @@
-
+var checkLikes = function(){
+	
+	var $ratingValueSpan = $('.rating-value');
+	
+	$ratingValueSpan.each(function(index, element){
+		var $element = $(element);
+		var $likeIcon = $element.siblings('.like_icon');
+		var ratingValue = parseInt($element.text());
+		
+		if(ratingValue > 0){
+			$likeIcon.addClass('added');
+		}
+	});
+};
 
 var likeManager = function(){
 	
@@ -12,11 +25,26 @@ var likeManager = function(){
 		var request = $.ajax({
 			  url: "like/increase",
 			  method: "POST",
-			  data: "manager=" + true + '&publicationId=' + publicationId
+			  data: 'publicationId=' + publicationId
 		});
 			 
-		request.done(function( msg ) {
-			console.log(msg)
+		request.done(function( response ) {
+			
+			var $likeIcon = $this.find('.like_icon');
+			var $ratingValueSpan = $this.find('.rating-value');
+			var ratingValue = parseInt($ratingValueSpan.text());
+			
+			if (response == "added") {
+				ratingValue = ratingValue + 1;
+				$ratingValueSpan.text(ratingValue);
+				$likeIcon.addClass('added');
+			}
+			
+			if (response == "deleted") {
+				ratingValue = ratingValue - 1;
+				$ratingValueSpan.text(ratingValue);
+				$likeIcon.removeClass('added');
+			}
 		});
 			 
 		request.fail(function( jqXHR, textStatus ) {
@@ -67,4 +95,5 @@ var modalSign = function(){
 $(function() {
 	modalSign();
 	likeManager();
+	checkLikes();
 });
