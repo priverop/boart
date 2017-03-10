@@ -78,9 +78,9 @@ public class BuildBBDD {
 				"http://i.imgur.com/WZ9qZwH.jpg",
 				"Loren ipsun dolor sit amet"));
 
-		Tag t1 = new Tag("Tag1");
-		Tag t2 = new Tag("Tag2");
-		Tag t3 = new Tag("Tag3");
+		Tag t1 = new Tag("tag1");
+		Tag t2 = new Tag("tag2");
+		Tag t3 = new Tag("tag3");
 
 		for (Publication p : publicationRepository.findAll()) {
 			if (p.getId() % 2 == 0)

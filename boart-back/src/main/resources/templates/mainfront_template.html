@@ -29,13 +29,12 @@
 						class="icofont icofont-comment"></i>+ comentados</a></li>
 			</ul>
 			<form method="POST">
-			    <input type="hidden" name="_csrf" value="{{token}}" />
-			    <input type="hidden" name="type" value="addTag" />			 
+				<input type="hidden" name="_csrf" value="{{token}}" /> <input
+					type="hidden" name="type" value="addTag" />
 				<div class="input-group stylish-input-group">
 					<input type="text" class="form-control" placeholder="Añadir tag"
 						name="nTag"> {{#sTags}} <input type="hidden" name="tags"
-						value="{{.}}"> {{/sTags}} <span
-						class="input-group-addon">
+						value="{{.}}"> {{/sTags}} <span class="input-group-addon">
 						<button type="submit">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
@@ -44,36 +43,44 @@
 			</form>
 			<div class="tag_component">
 				{{#sTags}}
-					<form method="POST" class="tagForm" name="{{.}}Form">					
-						<input type="hidden" name="nTag" value="{{.}}">
-						<input type="hidden" name="_csrf" value="{{token}}" />
-			   			<input type="hidden" name="type" value="remTag" />
-			   			{{#sTags}} <input type="hidden" name="tags"	value="{{.}}">{{/sTags}} 
-						<span class="tag" onclick="{{.}}Form.submit()"><span	class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{.}}</span>	
-					</form>				
+				<form method="POST" class="tagForm" name="{{.}}Form">
+					<input type="hidden" name="nTag" value="{{.}}"> <input
+						type="hidden" name="_csrf" value="{{token}}" /> <input
+						type="hidden" name="type" value="remTag" /> {{#sTags}} <input
+						type="hidden" name="tags" value="{{.}}">{{/sTags}} <span
+						class="tag" onclick="{{.}}Form.submit()"><span
+						class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{.}}</span>
+				</form>
 				{{/sTags}}
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
 			<div id="columns">
-				{{#publicaciones}}
-				
-				<a href="/publication/{{id}}">
-					<div class="publication app_box publication_box">					
+				{{#publicaciones}} <a href="/publication/{{id}}">
+					<div class="publication app_box publication_box">
 						{{{ media }}}
 						<p>{{ description }}</p>
 						<div class="rating">
-							<a href="#" publication="{{ id }}">
-								<span class="glyphicon glyphicon-heart-empty like_icon"
-									aria-hidden="true"></span><span class="rating-value">{{ numberOfLikes }}</span>
+							<a href="#" publication="{{ id }}"> <span
+								class="glyphicon glyphicon-heart-empty like_icon"
+								aria-hidden="true"></span><span class="rating-value">{{
+									numberOfLikes }}</span>
 							</a>
-						</div>
+						</div>						
 						<div class="tag_component">
-							{{#tags}} <span class="tag">{{tag}}</span> {{/tags}}
+							<!-- 							{{#tags}} <span class="tag">{{tag}}</span> {{/tags}} -->
+							{{#tags}}
+							<form method="POST" class="tagForm" name="{{tag}}{{id}}Form">
+								<input type="hidden" name="nTag" value="{{tag}}"> 
+								<input type="hidden" name="_csrf" value="{{token}}" /> 
+								<input type="hidden" name="type" value="addTag" /> 
+								<span class="tag" onclick="{{tag}}{{id}}Form.submit()">{{tag}}</span>																
+							</form>
+							
+							{{/tags}}
 						</div>
 					</div>
-				</a>
-				{{/publicaciones}}
+				</a> {{/publicaciones}}
 			</div>
 		</div>
 	</article>
