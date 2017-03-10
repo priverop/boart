@@ -66,7 +66,7 @@ public class UploadController {
 			@RequestParam("descripcion") String descripcion, @RequestParam("etiquetas") String etiquetas,
 			@RequestParam("optionsRadios") String tipo, @RequestParam(value="audio",required=false) String audio, @RequestParam(value="video",required=false) String video)
 			throws IOException {		
-		User oscar = new User("m0scar", "Oscar", "Romero", "m0scar");
+		User oscar = new User("m0scar", "Oscar", "Romero", "m0scar", "prueba@prueba.com");
 		userRepository.save(oscar);
 		String media ="";		
 		switch (tipo){

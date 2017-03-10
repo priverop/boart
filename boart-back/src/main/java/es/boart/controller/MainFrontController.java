@@ -46,7 +46,7 @@ public class MainFrontController {
 	
 	@RequestMapping("/")
 	public String portada(Model modelo, HttpServletRequest request) {
-
+		
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		modelo.addAttribute("publicaciones", publicationRepository.findAll());
 		

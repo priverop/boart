@@ -35,7 +35,7 @@ public class BuildBBDD {
 				
 		/* USUARIOS */
 				
-		User usuario = new User("usuario1", "prueba", "prueba",	"pass", "ROLE_USER");
+		User usuario = new User("usuario1", "prueba", "prueba",	"pass", "prueba@prueba.com", "ROLE_USER");
 				
 		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", 
 				boartUtils.getImgEmbedLeft() + "imgEjemplo2.jpg" + boartUtils.getImgEmbedRight(), 
@@ -59,7 +59,7 @@ public class BuildBBDD {
 		
 		userRepository.save(usuario);
 		
-		User juan = new User("juan", "Juan", "Cuesta", "juanjuan", "ROLE_USER");
+		User juan = new User("juan", "Juan", "Cuesta", "juanjuan", "prueba@prueba.com", "ROLE_USER");
 		
 		juan.getComments().add(new Comment(usuario, "Váyase señor Juan!!"));
 		

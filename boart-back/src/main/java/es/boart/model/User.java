@@ -32,6 +32,7 @@ public class User {
 	private String surname;
 	private String description;
 	private String password;
+	private String mail;
 	private String img;
 	private int visits; 
 	private Timestamp signInDate;
@@ -61,11 +62,12 @@ public class User {
 	 * @param likes
 	 * @param gallery
 	 */
-	public User(String username, String name, String surname, String password, String... roles) {
+	public User(String username, String name, String surname, String password, String mail, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = new BCryptPasswordEncoder().encode(password);
+		this.mail = mail;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
@@ -77,11 +79,12 @@ public class User {
 		this.signInDate = new Timestamp(date.getTime());
 	}
 	
-	public User(String username, String name, String surname, String password) {
+	public User(String username, String name, String surname, String password, String mail) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = new BCryptPasswordEncoder().encode(password);
+		this.mail = mail;
 		this.roles = new ArrayList<>();
 		this.roles.add("ROLE_USER");
 		// Descripción nuevo usuario
@@ -292,6 +295,18 @@ public class User {
 		this.roles = roles;
 	}
 
+	/**
+	 * @return the mail
+	 */
+	public String getMail() {
+		return mail;
+	}
 
+	/**
+	 * @param mail the mail to set
+	 */
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
 }
