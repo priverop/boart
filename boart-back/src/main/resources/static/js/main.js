@@ -13,6 +13,17 @@ var checkLikes = function(){
 	});
 };
 
+var activeFilter = function(filter){
+	if (filter == 'likes'){
+		document.getElementById('aLikes').className ='active';
+	} else if (filter == 'comments'){
+		document.getElementById('aComments').className ='active';
+	} else {
+		document.getElementById('aLatest').className ='active';
+	}
+
+};
+
 var likeManager = function(){
 	
 	var publicationId;

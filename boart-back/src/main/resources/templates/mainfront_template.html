@@ -15,21 +15,40 @@
 <link rel="stylesheet" href="../css/mainFront.css">
 <script type="text/javascript" src="../js/main.js"></script>
 </head>
-<body>
+<body onload="activeFilter('{{filter}}')">
 	{{> header_component}}
 	<article class="container-fluid">
 		<div
 			class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
 			<ul>
-				<li><a href="#" class="active"><i aria-hidden="true"
-						class="icofont icofont-newspaper"></i>+ nuevos</a></li>
-				<li><a href="#"><i aria-hidden="true"
-						class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
-				<li><a href="#"><i aria-hidden="true"
-						class="icofont icofont-comment"></i>+ comentados</a></li>
+				<li><form method="POST" class="tagForm" name="newsForm">
+				<input type="hidden" name="_csrf" value="{{token}}" />
+				<input type="hidden" name="filter" value="{{filter}}"/>
+				<input type="hidden" name="type" value="latestFilter"/>
+				{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
+				<a href="#" id="aLatest" onclick="newsForm.submit()"><i aria-hidden="true"
+						class="icofont icofont-newspaper"></i>+ nuevos</a>
+				</form></li>
+				<li><form method="POST" class="tagForm" name="likesForm">
+				<input type="hidden" name="_csrf" value="{{token}}" />
+				<input type="hidden" name="filter" value="{{filter}}"/>
+				<input type="hidden" name="type" value="likesFilter"/>
+				{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
+				<a href="#" id="aLikes" onclick="likesForm.submit()""><i aria-hidden="true"
+						class="glyphicon glyphicon-heart-empty"></i>+ valorados</a>
+				</form></li>
+				<li><form method="POST" class="tagForm" name="commentsForm">
+				<input type="hidden" name="_csrf" value="{{token}}" />
+				<input type="hidden" name="filter" value="{{filter}}"/>
+				<input type="hidden" name="type" value="commentsFilter"/>
+				{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
+				<a href="#" id="aComments" onclick="commentsForm.submit()"><i aria-hidden="true"
+						class="icofont icofont-comment"></i>+ comentados</a>
+				</form></li>
 			</ul>
 			<form method="POST">
-				<input type="hidden" name="_csrf" value="{{token}}" /> <input
+				<input type="hidden" name="_csrf" value="{{token}}" /> 
+				<input type="hidden" name="filter" value="{{filter}}"/><input
 					type="hidden" name="type" value="addTag" />
 				<div class="input-group stylish-input-group">
 					<input type="text" class="form-control" placeholder="Añadir tag"
@@ -45,7 +64,8 @@
 				{{#sTags}}
 				<form method="POST" class="tagForm" name="{{.}}Form">
 					<input type="hidden" name="nTag" value="{{.}}"> <input
-						type="hidden" name="_csrf" value="{{token}}" /> <input
+						type="hidden" name="_csrf" value="{{token}}" /> 
+						<input type="hidden" name="filter" value="{{filter}}"/><input
 						type="hidden" name="type" value="remTag" /> {{#sTags}} <input
 						type="hidden" name="tags" value="{{.}}">{{/sTags}} <span
 						class="tag" onclick="{{.}}Form.submit()"><span
@@ -63,16 +83,20 @@
 						<div class="rating">
 							<a href="#" publication="{{ id }}"> <span
 								class="glyphicon glyphicon-heart-empty like_icon"
-								aria-hidden="true"></span><span class="rating-value">{{
-									numberOfLikes }}</span>
-							</a>
-						</div>						
+								aria-hidden="true"></span><span class="rating-value">{{numberOfLikes }}</span>
+							</a>							
+						</div>
+						<div class="comments">
+							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+							<span class="numComments">{{numberOfComments}}</span>
+								
+						</div>				
 						<div class="tag_component">
-							<!-- 							{{#tags}} <span class="tag">{{tag}}</span> {{/tags}} -->
 							{{#tags}}
 							<form method="POST" class="tagForm" name="{{tag}}{{id}}Form">
 								<input type="hidden" name="nTag" value="{{tag}}"> 
-								<input type="hidden" name="_csrf" value="{{token}}" /> 
+								<input type="hidden" name="_csrf" value="{{token}}" />
+								<input type="hidden" name="filter" value="{{filter}}"/> 
 								<input type="hidden" name="type" value="addTag" /> 
 								<span class="tag" onclick="{{tag}}{{id}}Form.submit()">{{tag}}</span>																
 							</form>

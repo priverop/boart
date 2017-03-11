@@ -50,6 +50,11 @@ article #columns {
   column-gap: 15px;
   column-fill: auto;
 }
+article #columns .comments {
+  display: inline-block;
+  font-size: 1.3em;
+  margin-left: 10px;
+}
 article #columns .rating {
   display: inline-block;
   font-size: 1.3em;
@@ -63,6 +68,10 @@ article #columns .rating a {
 article #columns .rating a .rating-value {
   padding: 0px 5px;
 }
+article #columns .numComments {
+  padding: 0px 5px;
+}
+
 article #columns .rating a:hover .like_icon {
   color: red;
 }

@@ -46,6 +46,8 @@ public class Publication {
 
 	@ManyToMany(mappedBy="publications") 
 	private Set<Tag> tags;
+	private int numberOfComments;
+
 
 	public Publication(){}
 
@@ -69,6 +71,7 @@ public class Publication {
 		this.num_visits = DEFAULT_VISITS;
 		this.tags = new HashSet<>();
 		this.numberOfLikes = 0;
+		this.numberOfComments = comments.size();
 	}
 	
 	/**
@@ -148,6 +151,7 @@ public class Publication {
 		this.media_type = tipo_media;
 	}
 
+	
 	/**
 	 * @return the date
 	 */
@@ -236,6 +240,14 @@ public class Publication {
 		this.numberOfLikes = numberOfLikes;
 	}
 	
+
+	public int getNumberOfComments() {
+		return numberOfComments;
+	}
+
+	public void setNumberOfComments(int numberOfComments) {
+		this.numberOfComments = numberOfComments;
+	}
 	
 
 }

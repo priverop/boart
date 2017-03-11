@@ -54,7 +54,7 @@ public class PublicationController {
 		
 		Publication publication = publicationRepo.findOne(idLocation);
 		publication.getComments().add(newComment);
-		
+		publication.setNumberOfComments(publication.getComments().size());
 		publicationRepo.save(publication);
 
 		return "redirect:/publication/"+idLocation;
