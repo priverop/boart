@@ -94,20 +94,20 @@ public class UploadController {
 		}
 		
 		
-		Publication publicacion = new Publication(oscar, titulo, descripcion, media, 0);
-		publicacionRepository.save(publicacion);
+		Publication publication = new Publication(oscar, titulo, descripcion, media, 0);
+		publicacionRepository.save(publication);
 
 		for (String s : etiquetas.split("\n")) {
 			s = s.toLowerCase().trim();// Habria que hacer una función que quite
 										// caracteres especiales??
 			Tag tag = tagRepository.findByTag(s);
 			if (tag == null) tag = new Tag(s);
-			tag.getPublications().add(publicacion);
+			tag.getPublications().add(publication);
 			tagRepository.save(tag);						
 		}
 
 
-		return "upload_template";
+		return "redirect:/publication/"+publication.getId();
 	}
 	
     @GetMapping("/files/{filename:.+}")

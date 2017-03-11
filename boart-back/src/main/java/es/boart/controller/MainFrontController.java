@@ -60,7 +60,7 @@ public class MainFrontController {
 
 	@PostMapping("/")
 	public String portadaFiltrada(Model modelo, HttpServletRequest request, @RequestParam(value = "tags", required = false) String tags, @RequestParam(value = "nTag", required = false) String nTag, @RequestParam(value = "type") String type,
-			@RequestParam(value = "filter") String filter) {
+			@RequestParam(value = "filter", required = false) String filter) {
 
 		Set<String> sTags = new HashSet<>();
 		if (tags != null) {
@@ -68,7 +68,6 @@ public class MainFrontController {
 				sTags.add(s);
 			}
 		}
-
 		switch (type) {
 		case "addTag":
 			sTags.add(nTag);
@@ -103,8 +102,10 @@ public class MainFrontController {
 		}
 
 		ArrayList<Publication> lPublications = new ArrayList<Publication>(sPublications);
+		if (filter == null)
+			filter = "latest";
 		switch (filter) {
-		case "latest":
+		default: //si llega un valor extraño tomamos el filtro latest por defecto
 			modelo.addAttribute("filter", "latest");
 			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
 				@Override
