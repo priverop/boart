@@ -110,7 +110,7 @@ public class MainFrontController {
 			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
 				@Override
 				public int compare(Publication p1, Publication p2) {
-					return p1.getDate().compareTo(p2.getDate());
+					return p2.getDate().compareTo(p1.getDate());
 				}
 			});
 			break;

@@ -1,6 +1,8 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +23,7 @@ import javax.persistence.OneToMany;
 public class Publication {
 
 	private final int DEFAULT_VISITS = 0;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,6 +39,7 @@ public class Publication {
 	
 	private int media_type;
 	private Timestamp date;
+	private String stringDate;
 	private int num_visits;
 	private int numberOfLikes;
 	@OneToMany(cascade=CascadeType.ALL)
@@ -71,6 +75,7 @@ public class Publication {
 		this.num_visits = DEFAULT_VISITS;
 		this.tags = new HashSet<>();
 		this.numberOfLikes = 0;
+		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
 		this.numberOfComments = comments.size();
 	}
 	
@@ -164,6 +169,8 @@ public class Publication {
 	 */
 	public void setDate(Timestamp fecha) {
 		this.date = fecha;
+		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
+
 	}
 
 	/**

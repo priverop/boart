@@ -116,6 +116,10 @@ article .tagForm{
 	display: inline-block;
 }
 
+article .divDate{
+	float:right;
+}
+
 article .iframeAudio {
 	width: 100%;
 	height: 166px;
