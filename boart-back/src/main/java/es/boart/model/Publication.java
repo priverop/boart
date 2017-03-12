@@ -12,12 +12,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import es.boart.boartUtils;
 
 @Entity
 public class Publication {
@@ -32,9 +35,10 @@ public class Publication {
 	@ManyToOne
 	private User user;
 	private String title;
-	private String description;
 	
 	@Column( length = 512 )
+	private String description;
+	
 	private String media;
 	
 	private int media_type;
@@ -48,7 +52,7 @@ public class Publication {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="publication")
 	private List<PublicationLike> likes;
 
-	@ManyToMany(mappedBy="publications") 
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="publications") 
 	private Set<Tag> tags;
 	private int numberOfComments;
 
@@ -132,7 +136,15 @@ public class Publication {
 	 * @return the media
 	 */
 	public String getMedia() {
-		return media;
+		switch (media_type) {
+			case 0:
+				return boartUtils.getImgEmbedLeft() + media + boartUtils.getImgEmbedRight();
+			case 1:
+				return boartUtils.getAudioEmbedLeft() + media + boartUtils.getAudioEmbedRight();
+			case 2:
+				return boartUtils.getVideoEmbedLeft() + media + boartUtils.getVideoEmbedRight();
+		}
+		return "Error. Multimedia no encontrado";		
 	}
 
 	/**
@@ -170,7 +182,6 @@ public class Publication {
 	public void setDate(Timestamp fecha) {
 		this.date = fecha;
 		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
-
 	}
 
 	/**
@@ -254,9 +265,7 @@ public class Publication {
 
 	public void setNumberOfComments(int numberOfComments) {
 		this.numberOfComments = numberOfComments;
-	}
-	
-
+	}	
 }
 		
 	
