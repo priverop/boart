@@ -62,7 +62,7 @@ public class BuildBBDD {
 		List<User> lUsers = new ArrayList<>();		
 		lUsers.add(new User("m0scar", "Oscar", "Ballesteros", "1234", "ROLE_USER"));
 		lUsers.add(new User("nexmaniosis", "Pablo", "Rivero", "juanjuan", "ROLE_USER"));
-		lUsers.add(new User("gabrielCuenca", "Gabriel", "Cuenca", "1234", "ROLE_USER"));
+		lUsers.add(new User("gcuencam", "Gabriel", "Cuenca", "1234", "ROLE_USER"));
 		lUsers.add(new User("aitorGaleano", "Aitor", "Galeano", "124", "ROLE_USER"));
 		lUsers.add(new User("ramonCapitan", "Ramón", "Capitán", "1234", "ROLE_USER"));
 		lUsers.add(new User("celiaGaspar", "Celia", "Gaspar", "1234", "ROLE_USER"));
@@ -105,7 +105,7 @@ public class BuildBBDD {
 		//Publication publication = new Publication(juan, "", "", ".jpg", 0);
 		List<Publication> lPublications = new ArrayList<>();		
 								
-		
+		lPublications.add(new Publication(juan, "Lisístrata", "Gata Cattana, Lisístrata", "GsMDU8gb5sQ", 2));
 		lPublications.add(new Publication(juan, "ANCIENT GOD", "An old machine which was destroyed in war. Now it's just a garbage - perfect source of resources for pirates.", "1.jpg", 0));		
 		lPublications.add(new Publication(juan, "Werewolf", "werewolf lurking REIMAGINED", "2.jpg", 0));
 		lPublications.add(new Publication(juan, "Epiclesis", "\"When we doubt about everything we know\".", "3.jpg", 0));
@@ -114,7 +114,7 @@ public class BuildBBDD {
 		lPublications.add(new Publication(juan, "Dragon Cove", "I made the background for this about a year ago and then forgot about it. I recently found it and had the inspiration to finish it! I am really happy with how it turned out, one of the few of my works that actually turned out exactly like I envisioned. ", "6.jpg", 0));
 		lPublications.add(new Publication(juan, "Forbidden Kingdom", "Forbidden Kingdom", "7.jpg", 0));
 		lPublications.add(new Publication(juan, "Angelus of Hope", "Personal work, completed early 2012.", "8.jpg", 0));
-
+		
 		lPublications.add(new Publication(juan, "Cant Forgive", "Album: Temptation of Wife","113585294", 1));
 		lPublications.add(new Publication(juan, "Chopin Nocturne in F Minor-Op. 55", "Produced by Chad Lawson & Alejandro Clavijo. Mixed by Stephen Lee Price. Mastered by Michael Graves of Osiris Studios (Atlanta, GA).", "164691599", 1));
 		lPublications.add(new Publication(juan, "Sibelius Violin Concerto 1st Movement", "Performed live on March 26th, 2015 with the Gothenburg Symphony Orchestra and Maestro Kent Nagano","206466890", 1));
@@ -177,42 +177,43 @@ public class BuildBBDD {
 
 		publicationRepository.save(lPublications);
 //		publication.getComments().add(new Comment(usuario, "Gabri no me espies"));
-
-		addTags(lPublications.get(0), Arrays.asList("epic", "galaxy", "god", "dark", "photo", "boart"));
-		addTags(lPublications.get(1), Arrays.asList("epic", "dark", "wolf"));
-		addTags(lPublications.get(2), Arrays.asList("saint", "boart", "conceptual", "religion", "symbolism"));
-		addTags(lPublications.get(3), Arrays.asList("alligator", "china", "lizard", "epic", "dragon"));
-		addTags(lPublications.get(4), Arrays.asList("dragon", "boart", "red", "epic"));
-		addTags(lPublications.get(5), Arrays.asList("dragon", "pink", "dark"));
-		addTags(lPublications.get(6), Arrays.asList("kingdom", "cascade", "dark", "god"));
-		addTags(lPublications.get(7), Arrays.asList("heaven", "angel", "wings", "god", "beauty"));
-		addTags(lPublications.get(8), Arrays.asList("sad", "piano", "violin", "nostalgia", "boart", "beauty"));
-		addTags(lPublications.get(9), Arrays.asList("piano", "violin", "cello", "chopin"));
-		addTags(lPublications.get(10), Arrays.asList("violin", "concert", "boart", "orchestra"));		
-		addTags(lPublications.get(11), Arrays.asList("violin", "orchestra", "concert"));
-		addTags(lPublications.get(12), Arrays.asList("concert", "orchestra", "mozart", "piano"));
-		addTags(lPublications.get(13), Arrays.asList("piano", "orchestra", "boart", "music"));
-		addTags(lPublications.get(14), Arrays.asList("piano", "beethoven", "sonata", "epic", "dark", "beauty"));
-		addTags(lPublications.get(15), Arrays.asList("piano", "beethoven", "religion", "music"));	
-		addTags(lPublications.get(16), Arrays.asList("piano", "cover", "lalaland", "boart"));
-		addTags(lPublications.get(17), Arrays.asList("music", "dubstep", "electronic", "epic"));
-		addTags(lPublications.get(18), Arrays.asList("music", "dubstep", "electronic"));
-		addTags(lPublications.get(19), Arrays.asList("music", "electronic", "dance", "techno", "boart"));
-		addTags(lPublications.get(20), Arrays.asList("music", "electronic", "techno"));
-		addTags(lPublications.get(21), Arrays.asList("music", "electronic", "techno", "house", "epic"));
-		addTags(lPublications.get(22), Arrays.asList("music", "orchestra", "concert", "beethoven", "piano", "violin", "cello"));
-		addTags(lPublications.get(23), Arrays.asList("music", "piano", "cover", "boart"));
-		addTags(lPublications.get(24), Arrays.asList("guitar", "cover", "epic", "god"));
-		addTags(lPublications.get(25), Arrays.asList("guitar", "cover", "boart", "music"));
-		addTags(lPublications.get(26), Arrays.asList("cover", "piano", "star wars"));
+		
+		addTags(lPublications.get(0), Arrays.asList("rap", "gata", "cattana", "dep"));
+		addTags(lPublications.get(1), Arrays.asList("epic", "galaxy", "god", "dark", "photo", "boart"));
+		addTags(lPublications.get(2), Arrays.asList("epic", "dark", "wolf"));
+		addTags(lPublications.get(3), Arrays.asList("saint", "boart", "conceptual", "religion", "symbolism"));
+		addTags(lPublications.get(4), Arrays.asList("alligator", "china", "lizard", "epic", "dragon"));
+		addTags(lPublications.get(5), Arrays.asList("dragon", "boart", "red", "epic"));
+		addTags(lPublications.get(6), Arrays.asList("dragon", "pink", "dark"));
+		addTags(lPublications.get(7), Arrays.asList("kingdom", "cascade", "dark", "god"));
+		addTags(lPublications.get(8), Arrays.asList("heaven", "angel", "wings", "god", "beauty"));
+		addTags(lPublications.get(9), Arrays.asList("sad", "piano", "violin", "nostalgia", "boart", "beauty"));
+		addTags(lPublications.get(10), Arrays.asList("piano", "violin", "cello", "chopin"));
+		addTags(lPublications.get(11), Arrays.asList("violin", "concert", "boart", "orchestra"));		
+		addTags(lPublications.get(12), Arrays.asList("violin", "orchestra", "concert"));
+		addTags(lPublications.get(13), Arrays.asList("concert", "orchestra", "mozart", "piano"));
+		addTags(lPublications.get(14), Arrays.asList("piano", "orchestra", "boart", "music"));
+		addTags(lPublications.get(15), Arrays.asList("piano", "beethoven", "sonata", "epic", "dark", "beauty"));
+		addTags(lPublications.get(16), Arrays.asList("piano", "beethoven", "religion", "music"));	
+		addTags(lPublications.get(17), Arrays.asList("piano", "cover", "lalaland", "boart"));
+		addTags(lPublications.get(18), Arrays.asList("music", "dubstep", "electronic", "epic"));
+		addTags(lPublications.get(19), Arrays.asList("music", "dubstep", "electronic"));
+		addTags(lPublications.get(20), Arrays.asList("music", "electronic", "dance", "techno", "boart"));
+		addTags(lPublications.get(21), Arrays.asList("music", "electronic", "techno"));
+		addTags(lPublications.get(22), Arrays.asList("music", "electronic", "techno", "house", "epic"));
+		addTags(lPublications.get(23), Arrays.asList("music", "orchestra", "concert", "beethoven", "piano", "violin", "cello"));
+		addTags(lPublications.get(24), Arrays.asList("music", "piano", "cover", "boart"));
+		addTags(lPublications.get(25), Arrays.asList("guitar", "cover", "epic", "god"));
+		addTags(lPublications.get(26), Arrays.asList("guitar", "cover", "boart", "music"));
 		addTags(lPublications.get(27), Arrays.asList("cover", "piano", "star wars"));
-		addTags(lPublications.get(28), Arrays.asList("landscape", "america", "heaven", "time-lapse"));
-		addTags(lPublications.get(29), Arrays.asList("landscape", "norway", "beauty", "time-lapse"));
-		addTags(lPublications.get(30), Arrays.asList("time-lapse", "steet", "boart"));
-		addTags(lPublications.get(31), Arrays.asList("landscape", "iceland", "beauty"));
-		addTags(lPublications.get(32), Arrays.asList("galaxy", "earth", "time-lapse", "epic", "iss", "dark"));
-		addTags(lPublications.get(33), Arrays.asList("short film", "animation" + "3d"));
-		addTags(lPublications.get(34), Arrays.asList("short film", "animation" + "3d", "boart"));
+		addTags(lPublications.get(28), Arrays.asList("cover", "piano", "star wars"));
+		addTags(lPublications.get(29), Arrays.asList("landscape", "america", "heaven", "time-lapse"));
+		addTags(lPublications.get(30), Arrays.asList("landscape", "norway", "beauty", "time-lapse"));
+		addTags(lPublications.get(31), Arrays.asList("time-lapse", "steet", "boart"));
+		addTags(lPublications.get(32), Arrays.asList("landscape", "iceland", "beauty"));
+		addTags(lPublications.get(33), Arrays.asList("galaxy", "earth", "time-lapse", "epic", "iss", "dark"));
+		addTags(lPublications.get(34), Arrays.asList("short film", "animation" + "3d"));
+		addTags(lPublications.get(35), Arrays.asList("short film", "animation" + "3d", "boart"));
 
 		Random ran = new Random();
 		int x = ran.nextInt(lComments.size());
