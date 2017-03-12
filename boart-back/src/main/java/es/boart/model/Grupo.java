@@ -1,12 +1,13 @@
 package es.boart.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Grupo {
@@ -18,8 +19,8 @@ public class Grupo {
 	private String title;
 	private String description;
 	private String img;
-	@OneToMany(mappedBy="group")
-	private List<GroupMember> groupMembers;
+	@ManyToMany
+	private List<User> groupMembers = new ArrayList<>();
 	
 	/**
 	 * @param title
@@ -73,15 +74,22 @@ public class Grupo {
 	/**
 	 * @return the miembroGrupos
 	 */
-	public List<GroupMember> getMiembroGrupos() {
+	public List<User> getMiembroGrupos() {
 		return groupMembers;
 	}
-	/**
-	 * @param groupMembers the miembroGrupos to set
-	 */
-	public void setMiembroGrupos(List<GroupMember> groupMembers) {
-		this.groupMembers = groupMembers;
+
+	/* CUSTOM METHODS */
+	
+	public void addMember(User user){
+		this.groupMembers.add(user);
 	}
 	
+	public void removeMember(User user){
+		this.groupMembers.remove(user);
+	}
+	
+	public boolean hasUser(User user){
+		return this.groupMembers.contains(user);
+	}
 	
 }

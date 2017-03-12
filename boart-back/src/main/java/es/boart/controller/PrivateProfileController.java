@@ -37,6 +37,7 @@ public class PrivateProfileController {
 		modelo.addAttribute("usuario", myUser);
 		modelo.addAttribute("followings", myUser.getFollowing());
 		modelo.addAttribute("followers", myUser.getFollowers());
+		modelo.addAttribute("groups", myUser.getGroups());
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());

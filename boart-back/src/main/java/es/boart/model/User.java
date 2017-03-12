@@ -55,11 +55,11 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
-	@OneToMany(mappedBy="user")
-	private List<GroupMember> groupMembers;
-	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<SocialNet> RRSS = new ArrayList<>();
+	
+	@ManyToMany(mappedBy="groupMembers")
+	private List<Grupo> groups = new ArrayList<>();
 	
 	
 	/**
@@ -249,21 +249,6 @@ public class User {
 	}
 
 	/**
-	 * @return the miembroGrupos
-	 */
-	public List<GroupMember> getMiembroGrupos() {
-		return groupMembers;
-	}
-
-	/**
-	 * @param groupMembers the miembroGrupos to set
-	 */
-	public void setMiembroGrupos(List<GroupMember> groupMembers) {
-		this.groupMembers = groupMembers;
-	}
-
-
-	/**
 	 * @return the comments
 	 */
 	public List<Comment> getComments() {
@@ -317,6 +302,13 @@ public class User {
 	public List<User> getFollowers() {
 		return followers;
 	}
+	
+	/**
+	 * @return the groups
+	 */
+	public List<Grupo> getGroups() {
+		return groups;
+	}
 
 	/* CUSTOM METHODS */
 	
@@ -339,5 +331,6 @@ public class User {
 	public boolean hasFollower(User myUser){
 		return this.getFollowers().contains(myUser);
 	}
+
 
 }

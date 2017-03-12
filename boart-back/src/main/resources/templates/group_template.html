@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>BOART - Grupo</title>
@@ -8,38 +9,31 @@
     <link rel="stylesheet" href="../css/group.css">
     <script type="text/javascript" src="../js/main.js"></script>
 </head>
-
 <body>
     {{> header_component}}
     <article class="container-fluid">
+    {{#group}}
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2" id="menuleft">
             <div class="flex-row row">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
                     <div class="app_box menuleft" id="boxDesc">
-                    	{{#group}}
-                        <img id="imgCabecera" src="{{img}}" />
-                        <p class="title">{{title}}</p>
-                        {{/group}}
+	                        <img id="imgCabecera" src="{{img}}" />
+	                        <p class="title">{{title}}</p>
                     </div>
                 </div>
+                {{^guest}}
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
                     <div class="app_box menuleft">
-                        <p class="title">MIEMBROS</p>
-                        <div class="">
-                            <div class="panel-body miembro">
-                                <a class="username" href="/profile"><strong>@pabloiglesias</strong></a>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="panel-body miembro">
-                                <a class="username" href="/profile"><strong>@perrorojo</strong></a>
-                            </div>
-                        </div>
-                        <div id="vermas">
-                            <a href="#">Ver todos</a>
-                        </div>
+                    {{#userBelongs}}
+                        <a class="title" href="/group/{{idGroup}}/leave/{{sesion_usuario.id}}">DEJAR EL GRUPO</a>
+                	{{/userBelongs}}
+                	
+                    {{^userBelongs}}
+                        <a class="title" href="/group/{{idGroup}}/join/{{sesion_usuario.id}}">ÚNETE</a>
+                	{{/userBelongs}}
                     </div>
                 </div>
+                {{/guest}}
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
                     <div class="filter_publication app_box">
                         <ul>
@@ -88,7 +82,7 @@
                 
             </div>
         </div>
-    {{> comments_component}}
+    {{/group}}
     </article>
     {{> footer_component}}
 </body>
