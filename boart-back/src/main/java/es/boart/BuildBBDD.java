@@ -43,7 +43,7 @@ public class BuildBBDD {
 	public void init() {
 
 		/* USUARIOS */
-//
+
 		User usuario = new User("usuario1", "prueba", "prueba", "pass", "ROLE_USER");
 //
 //		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", "imgEjemplo2.jpg", 0));
@@ -83,9 +83,6 @@ public class BuildBBDD {
 			userRepository.save(u);
 		}
 		
-
-		
-		
 		juan.getComments().add(new Comment(usuario, "Váyase señor Juan!!"));
 
 		userRepository.save(usuario);
@@ -106,12 +103,12 @@ public class BuildBBDD {
 		List<Publication> lPublications = new ArrayList<>();		
 								
 		lPublications.add(new Publication(juan, "Lisístrata", "Gata Cattana, Lisístrata", "GsMDU8gb5sQ", 2));
-		lPublications.add(new Publication(juan, "ANCIENT GOD", "An old machine which was destroyed in war. Now it's just a garbage - perfect source of resources for pirates.", "1.jpg", 0));		
+		lPublications.add(new Publication(juan, "ANCIENT GOD", "An old machine which was destroyed in war.", "1.jpg", 0));		
 		lPublications.add(new Publication(juan, "Werewolf", "werewolf lurking REIMAGINED", "2.jpg", 0));
 		lPublications.add(new Publication(juan, "Epiclesis", "\"When we doubt about everything we know\".", "3.jpg", 0));
-		lPublications.add(new Publication(juan, "Chinese Dragon", "Last year I was fortunate enough to get the opportunity to work on a dragon book for Scholastic by way of Becker&Mayer Books. I got to take a crack at designing 16 different mythical dragons from all over the world for a book called Sink Your Teeth Into Dragons.", "4.jpg", 0));
+		lPublications.add(new Publication(juan, "Chinese Dragon", "Last year I was fortunate enough to get the opportunity to work on a dragon book for Scholastic by way of Becker&Mayer Books.", "4.jpg", 0));
 		lPublications.add(new Publication(juan, "Red dragon", "The dragon IS A MODERN DAY PICTURE REPRESENTING HOW FURIOUS A WOMEN CAN BE ON HER PERIOD. that's what he says to me when i look at this art.", "5.jpg", 0));
-		lPublications.add(new Publication(juan, "Dragon Cove", "I made the background for this about a year ago and then forgot about it. I recently found it and had the inspiration to finish it! I am really happy with how it turned out, one of the few of my works that actually turned out exactly like I envisioned. ", "6.jpg", 0));
+		lPublications.add(new Publication(juan, "Dragon Cove", "I made the background for this about a year ago and then forgot about it. I recently found it and had the inspiration to finish it!", "6.jpg", 0));
 		lPublications.add(new Publication(juan, "Forbidden Kingdom", "Forbidden Kingdom", "7.jpg", 0));
 		lPublications.add(new Publication(juan, "Angelus of Hope", "Personal work, completed early 2012.", "8.jpg", 0));
 		
@@ -139,7 +136,7 @@ public class BuildBBDD {
 		lPublications.add(new Publication(juan, "America's Great Spaces", "Dazzling Time-Lapse Reveals America's Great Spaces | National Geographic", "9d8wWcJLnFI", 2));
 		lPublications.add(new Publication(juan, "NORWAY", "NORWAY - A Time-Lapse Adventure 4K", "Scxs7L0vhZ4", 2));
 		lPublications.add(new Publication(juan, "Street Traffic", "Watch Time Lapse - Street Traffic at Night", "05pdi-MzvAI", 2));
-		lPublications.add(new Publication(juan, "The magnificent landscape of Iceland", "Drone and time lapse footage I've shot while travelling and guiding photographers in the magnificent landscape of Iceland.", "wN8_eb3l0mw", 2));
+		lPublications.add(new Publication(juan, "The magnificent landscape of Iceland", "Drone and time lapse footage", "wN8_eb3l0mw", 2));
 		lPublications.add(new Publication(juan, "Alone in the Night", "Time-lapse footage of the Earth as seen from the ISS", "FG0fTKAqZ5g", 2));
 		lPublications.add(new Publication(juan, "POILUS Short Film", "CGI 3D Animated Short Film HD: \"POILUS Short Film\" by ISART DIGITAL", "Cwn3Ru0o8Io", 2));
 		lPublications.add(new Publication(juan, "Fat Animated Short Film", "Funny 3D Animation Short Film For Kids - Fat Animated Short Film", "gzi9r20misE", 2));
