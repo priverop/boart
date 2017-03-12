@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/private_profile.css">
     <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/private_profile.js"></script>
 </head>
 
 <body>
@@ -17,18 +18,44 @@
 {{#usuario}}
     <div class="col-xs-12 app_box user_profile">
         <div class="col-xs-12 col-sm-4">
-            <div class="row edit-img">
-                <img class="img-responsive" src="{{img}}">
-                <div class="veil">
-                    <i class="icofont icofont-pencil-alt-5"></i>
-                </div>
-            </div>
-            <div class="row user_info">
-
+            <div class="row user_info box_signup">
                 <div class="col-xs-12">
-                    <h1 class="edit-icon">{{name}}<i class="icofont icofont-pencil-alt-5"></i></h1>
-                    <h2 class="edit-icon"><em>@{{username}}<i class="icofont icofont-pencil-alt-5"></i></em></h2>
-                    <blockquote class="edit-icon"><em>{{description}}</em> <i class="icofont icofont-pencil-alt-5"></i></blockquote>
+		           	<form action="/edit_profile" method="POST">
+			           	<div class="input-group col-xs-10 edit-icon">
+			            	<input class="edit_profile" disabled="disabled" type="text" name="name" placeholder="Nombre:" value="{{name}}"/>
+						    <div class="input-group-btn">
+		    					<i class="icofont icofont-pencil-alt-5"></i>
+		  				    </div>
+						</div>
+						<div class="input-group col-xs-10 edit-icon">
+			            	<input class="edit_profile" disabled="disabled" type="text" name="surname" placeholder="Apellidos:" value="{{surname}}"/>
+						    <div class="input-group-btn">
+	    						<i class="icofont icofont-pencil-alt-5"></i>
+		  				    </div>
+						</div>
+						<div class="input-group col-xs-10 edit-icon">
+			            	<input class="edit_profile" disabled="disabled" type="text" name="username" placeholder="Usuario:" value="{{username}}"/>
+						    <div class="input-group-btn">
+		    					<i class="icofont icofont-pencil-alt-5"></i>
+		  				    </div>
+						</div>
+						<div class="input-group col-xs-10 edit-icon">
+			            	<input class="edit_profile" disabled="disabled" type="text" name="password" placeholder="Contraseña" />
+						    <div class="input-group-btn">
+		    					<i class="icofont icofont-pencil-alt-5"></i>
+		  				    </div>
+						</div>
+						<div class="input-group col-xs-10 edit-icon">
+			            	<input class="edit_profile" disabled="disabled" type="text" name="description" placeholder="Usuario:" value="{{description}}"/>
+						    <div class="input-group-btn">
+		    					<i class="icofont icofont-pencil-alt-5"></i>
+		  				    </div>
+						</div>
+						
+						<input type="hidden" name="_csrf" value="{{token}}" />
+						<input type="hidden" name="id" value="{{id}}" />
+			            <input class="send_form" disabled="disabled" type="submit" placeholder="SUBMIT"/>
+		          	</form>
                 </div>
                 <div class="col-xs-12">
                     <h2 class="">GRUPOS</h2>
