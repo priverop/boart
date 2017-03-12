@@ -30,10 +30,28 @@
                     <h2 class="edit-icon"><em>@{{username}}<i class="icofont icofont-pencil-alt-5"></i></em></h2>
                     <blockquote class="edit-icon"><em>{{description}}</em> <i class="icofont icofont-pencil-alt-5"></i></blockquote>
                 </div>
+                
+                <div class="col-xs-12 follow_list">
+                	<h2>Following:</h2>
+                	{{#followings}}
+                	<ul>
+                		<li>{{username}}</li>
+                	</ul>
+                	{{/followings}}
+                </div>
+               
+                <div class="col-xs-12 follow_list">
+                	<h2>Followers:</h2>
+                	{{#followers}}
+                	<ul>
+                		<li>{{username}}</li>
+                	</ul>
+               		{{/followers}}
+                </div>
                 <div class="col-xs-12">
                     <h2 class="">GRUPOS</h2>
                     <div class="col-xs-12">
-                        <a href="grupo_template.html"><blockquote class="edit-icon"><em>Fotógrafos en Vallekas</em></blockquote></a>
+                        <blockquote class="edit-icon"><em><a href="grupo_template.html">Fotógrafos en Vallekas</a></em></blockquote>
                     </div>
                 </div>
                 <div class="col-xs-12 social_nets ">

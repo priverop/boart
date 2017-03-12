@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
+import es.boart.model.User;
 import es.boart.repository.UserRepository;
 
 @Controller
@@ -29,8 +30,12 @@ public class PrivateProfileController {
 	public String perfil(Model modelo, HttpSession session, HttpServletRequest request) {
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
+		
+		User myUser = userRepo.findOne(userSession.getUser().getId());
 
-		modelo.addAttribute("usuario", userRepo.findOne(userSession.getUser().getId()));
+		modelo.addAttribute("usuario", myUser);
+		modelo.addAttribute("followings", myUser.getFollowing());
+		modelo.addAttribute("followers", myUser.getFollowers());
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());

@@ -57,13 +57,21 @@ public class BuildBBDD {
 				"http://images5.fanpop.com/image/photos/31600000/Dandelion-Art-photography-31606827-2560-1706.jpg", 
 				1));
 		
-		userRepository.save(usuario);
-		
 		User juan = new User("juan", "Juan", "Cuesta", "juanjuan", "ROLE_USER");
 		
 		juan.getComments().add(new Comment(usuario, "Váyase señor Juan!!"));
 		
+		userRepository.save(usuario);
 		userRepository.save(juan);
+		
+		for(int i=0; i<25; i++){
+			User newUser = new User("user"+i, "name"+i, "surname"+i, "pass"+i, "ROLE_USER");
+			userRepository.save(newUser);
+		}
+		
+		juan.addFollowing(usuario);
+		userRepository.save(juan);
+		
 		
 		/* PUBLICACIONES */
 		Publication publication = new Publication(juan, "Holacar2acola", "Descr2ipcion1", 

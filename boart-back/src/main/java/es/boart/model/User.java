@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,31 +36,38 @@ public class User {
 	private String img;
 	private int visits; 
 	private Timestamp signInDate;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publication> gallery = new ArrayList<>();
+	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<PublicationLike> likes;
-	@OneToMany(mappedBy="user")
-	private List<GroupMember> groupMembers;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
+	
+	@ManyToMany
+	private List<User> following = new ArrayList<>();
+	
+	@ManyToMany(mappedBy="following")
+	private List<User> followers = new ArrayList<>();
+	
 	@ElementCollection(fetch = FetchType.EAGER)
-	 private List<String> roles;
+	private List<String> roles;
+	
+	@OneToMany(mappedBy="user")
+	private List<GroupMember> groupMembers;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<SocialNet> RRSS = new ArrayList<>();
+	
 	
 	/**
 	 * @param username
 	 * @param name
 	 * @param surname
 	 * @param password
-	 * @param img
-	 * @param visits
-	 * @param nivelSeguridad
-	 * @param date
-	 * @param date2
-	 * @param likes
-	 * @param gallery
+	 * @param roles
 	 */
 	public User(String username, String name, String surname, String password, String... roles) {
 		this.username = username;
@@ -76,7 +84,12 @@ public class User {
 		
 		this.signInDate = new Timestamp(date.getTime());
 	}
-	
+	/**
+	 * @param username
+	 * @param name
+	 * @param surname
+	 * @param password
+	 */
 	public User(String username, String name, String surname, String password) {
 		this.username = username;
 		this.name = name;
@@ -291,7 +304,40 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
+	/**
+	 * @return the following
+	 */
+	public List<User> getFollowing() {
+		return following;
+	}
 
+	/**
+	 * @return the followers
+	 */
+	public List<User> getFollowers() {
+		return followers;
+	}
 
+	/* CUSTOM METHODS */
+	
+	public void addFollowing(User following){
+		this.following.add(following);
+	}
+	
+	public void removeFollowing(User following){
+		this.following.remove(following);
+	}
+	
+	public void addFollower(User follower){
+		this.followers.add(follower);
+	}
+	
+	public boolean hasFollowing(User myUser){
+		return this.getFollowing().contains(myUser);
+	}
+	
+	public boolean hasFollower(User myUser){
+		return this.getFollowers().contains(myUser);
+	}
 
 }

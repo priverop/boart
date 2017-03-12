@@ -33,6 +33,17 @@
 		  					<i class="icofont icofont_social icofont-social-instagram"></i>
 		  					<i class="icofont icofont_social icofont-social-linkedin"></i>
 		  				</div>
+		  				{{^guest}}
+		  				<div class="follow">
+		  					{{^hasFollower}}
+		  					<a href="/follow/{{id}}">SEGUIR</a>
+		  					{{/hasFollower}}
+		  					
+		  					{{#hasFollower}}
+		  					<a href="/unfollow/{{id}}">DEJAR DE SEGUIR</a>
+		  					{{/hasFollower}}
+		  				</div>
+		  				{{/guest}}
 		  			</div>
 		  		
 			</div>
