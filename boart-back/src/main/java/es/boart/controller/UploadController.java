@@ -8,6 +8,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -43,7 +44,7 @@ public class UploadController {
 	@Autowired
 	private PublicationRepository publicacionRepository;
 	@Autowired
-	private TagRepository tagRepository;
+	private static TagRepository tagRepository;
 	@Autowired
 	private UserComponent userSession;
 	
@@ -68,15 +69,17 @@ public class UploadController {
 			throws IOException {		
 		User oscar = new User("m0scar", "Oscar", "Romero", "m0scar");
 		userRepository.save(oscar);
-		String media ="";		
+		String media ="";	
+		int mediaType = 0;
 		switch (tipo){
 			case "img": 
 				Path rootLocation = Paths.get("src/main/resources/static/img/");
 				String timeStamp = Long.toString(System.currentTimeMillis());
-				Files.copy(file.getInputStream(), rootLocation.resolve(timeStamp + "-" + file.getOriginalFilename()));
-				media = boartUtils.getImgEmbedLeft() + timeStamp + "-" + file.getOriginalFilename() + boartUtils.getImgEmbedRight();
+				media = timeStamp + "-" + file.getOriginalFilename();
+				Files.copy(file.getInputStream(), rootLocation.resolve(media));
 				break;
 			case "audio":
+				mediaType = 1;
 				URL url = new URL("http://soundcloud.com/oembed?format=json&url=https://soundcloud.com/"+ audio +"&iframe=true");//Llamada a webservice de soundclound para coger el id del audio
 				StringBuffer sb = new StringBuffer();
 				try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
@@ -86,15 +89,14 @@ public class UploadController {
 				}			
 				media = sb.toString(); //Hay que ver si consigo que el JSON devuelve el iframe como quiero para coger el iframe de el directametne
 				media = media.substring(media.indexOf("tracks%2F") + "tracks%2F".length(), media.indexOf("\\u0026show_artwork"));
-				media = boartUtils.getAudioEmbedLeft() + media + boartUtils.getAudioEmbedRight();
 				break;
 			case "video":
-				media = boartUtils.getVideoEmbedLeft() + video + boartUtils.getVideoEmbedRight();
+				mediaType = 2;
 				break;
 		}
 		
 		
-		Publication publication = new Publication(oscar, titulo, descripcion, media, 0);
+		Publication publication = new Publication(oscar, titulo, descripcion, media, mediaType);
 		publicacionRepository.save(publication);
 
 		for (String s : etiquetas.split("\n")) {
