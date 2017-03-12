@@ -37,15 +37,13 @@ public class LikeController {
 	@Autowired
 	private LikeRepository likeRepository;
 	
-	@RequestMapping(value = "/like/increase", method = RequestMethod.POST)
+	@RequestMapping(value = "/like", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public ResponseEntity<String> likeManager(@RequestParam Boolean manager, @RequestParam String publicationId, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ResponseEntity<String> likeManager(@RequestParam String publicationId, HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		User user = userSession.getUser();
-		
-		System.out.println(user);
-		
+				
 		if(user == null) {
 			return new ResponseEntity<>("Forbidden.", HttpStatus.FORBIDDEN);
 		}
@@ -54,18 +52,25 @@ public class LikeController {
 			return new ResponseEntity<>("Empty publication id.", HttpStatus.BAD_REQUEST);
 		}
 		
-		Publication publication = publicationRepository.findById(Long.parseLong(publicationId));
+		String status = "";
 		
-		if(manager) {
-			PublicationLike like = new PublicationLike(user, publication);
-			publication.addLike(like);
-			likeRepository.save(like);
+		Publication publication = publicationRepository.findById(Long.parseLong(publicationId));
+		PublicationLike like = likeRepository.findByPublicationIdAndUserId(publication.getId(), user.getId());
+		
+		if(like == null) {
+			PublicationLike newLike = new PublicationLike(user, publication);
+			publication.addLike(newLike);
+			likeRepository.save(newLike);
 			publicationRepository.save(publication);
+			status = "added";
 		} else {
-			//remove like
+			publication.removeLike(like);
+			likeRepository.delete(like);
+			publicationRepository.save(publication);
+			status = "deleted";
 		} 		
 		
-		return new ResponseEntity<>("Success", HttpStatus.OK);
+		return new ResponseEntity<>(status, HttpStatus.OK);
  }
 
 

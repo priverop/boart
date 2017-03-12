@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.boart.UserComponent;
@@ -41,5 +42,36 @@ public class PrivateProfileController {
 		modelo.addAttribute("token", token.getToken());
 
 		return "private_profile_template";
+	}
+	
+	@PostMapping("/edit_profile")
+	public String register(User usuario){
+		
+		User user = userRepo.findById(usuario.getId());
+		
+		if(usuario.getName() != null){
+			user.setName(usuario.getName());
+		}
+		
+		if(usuario.getSurname() != null){
+			user.setSurname(usuario.getSurname());
+		}
+		
+		if(usuario.getUsername() != null){
+			user.setUsername(usuario.getUsername());
+		}
+		
+		if(usuario.getPassword() != null){
+			user.setPassword(usuario.getPassword());
+		}
+		
+		if(usuario.getDescription() != null){
+			user.setDescription(usuario.getDescription());
+		}		
+		
+		userRepo.save(user);
+		userSession.setUser(user);
+
+		return "redirect:/private_profile";
 	}
 }

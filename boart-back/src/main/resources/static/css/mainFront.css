@@ -50,6 +50,11 @@ article #columns {
   column-gap: 15px;
   column-fill: auto;
 }
+article #columns .comments {
+  display: inline-block;
+  font-size: 1.3em;
+  margin-left: 10px;
+}
 article #columns .rating {
   display: inline-block;
   font-size: 1.3em;
@@ -63,9 +68,18 @@ article #columns .rating a {
 article #columns .rating a .rating-value {
   padding: 0px 5px;
 }
+article #columns .numComments {
+  padding: 0px 5px;
+}
+
 article #columns .rating a:hover .like_icon {
   color: red;
 }
+
+article #columns .rating a .like_icon.added {
+  color: red;
+}
+
 article .publication {
   display: inline-block;
   margin: 0 2px 15px;
@@ -102,6 +116,19 @@ article .tagForm{
 	display: inline-block;
 }
 
+article .divDate{
+	float:right;
+}
+
+article .iframeAudio {
+	width: 100%;
+	height: 166px;
+}
+
+article .iframeVideo {
+	width: 100%;
+	height: 315px;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   /* $screen-sm-min*/

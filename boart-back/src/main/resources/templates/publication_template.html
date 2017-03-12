@@ -28,9 +28,17 @@
         <div class="col-xs-12 col-sm-8 app_box publication_wrapper">
             <h1 class="title">{{title}}</h1>
             <h3 class="description">{{description}}</h3>
-            <img class="img-responsive" src="{{media}}">
-            {{> taglist_component}}
-        </div>
+            {{{media}}}
+            	<div class="tag_component">
+							{{#tags}}
+							<form method="POST" class="tagForm" action="/" name="{{tag}}Form">
+								<input type="hidden" name="nTag" value="{{tag}}"> 
+								<input type="hidden" name="_csrf" value="{{token}}" /> 
+								<input type="hidden" name="type" value="addTag" /> 
+								<span class="tag" onclick="{{tag}}Form.submit()">{{tag}}</span>																
+							</form>							
+							{{/tags}}  
+				</div>      
         {{> comments_component}}
     {{/publication}}
     </article>
