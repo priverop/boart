@@ -55,16 +55,16 @@ https://trello.com/b/fG0uTmVa
 
 # Grupo
 ![Grupo]
-(http://i.imgur.com/7jsh5zp.png)
+(http://i.imgur.com/F2zCQA5.png)
 
 # Perfil privado
 ![Perfil privado]
-(http://i.imgur.com/17KxRZr.png)
+(http://i.imgur.com/8Ox5MZC.png)
 
 # Perfil público
 ![Perfil público]
-(http://i.imgur.com/17KxRZr.png)
+(http://i.imgur.com/GlAyD6J.png)
 
 # Upload
 ![Upload]
-(http://i.imgur.com/ktObUo0.png)
+(http://i.imgur.com/TTXg9Be.png)
