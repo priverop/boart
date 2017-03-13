@@ -119,17 +119,17 @@ public class UploadController {
     
     private int getMediaType(String type){
     	
-    	int mediaType = 0;
+    	int mediaType = IMAGE_TYPE;
     	
     	switch(type){
     		case "img":
-    			mediaType = 0;
+    			mediaType = IMAGE_TYPE;
 			break;
     		case "audio":
-    			mediaType = 1;
+    			mediaType = AUDIO_TYPE;
 			break;
     		case "video":
-    			mediaType = 2;
+    			mediaType = VIDEO_TYPE;
     		break;
     	}
     	
