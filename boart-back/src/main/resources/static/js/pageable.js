@@ -1,7 +1,6 @@
 $(function() {
 	
 	$('.load_more span').click(function(e){
-		
 		 e.preventDefault();
 		 
 		 $('.spinner_overlay').css('display', 'flex');
@@ -9,7 +8,7 @@ $(function() {
 		 var request = $.ajax({
 			  url: "pageable",
 			  method: "POST",
-			  data: "lastIndex=" + 12
+			  data: "lastIndex=" + 10
 		});
 			 
 		request.done(function( response ) {

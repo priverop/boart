@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +50,7 @@ public class MainFrontController {
 	public String portada(Model modelo, HttpServletRequest request) {
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
-		modelo.addAttribute("publicaciones", publicationRepository.findAll());
+		modelo.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(0, 10)));
 		modelo.addAttribute("filter", "latest");
 
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
