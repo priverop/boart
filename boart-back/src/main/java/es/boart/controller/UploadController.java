@@ -40,11 +40,18 @@ import es.boart.repository.UserRepository;
 
 @Controller
 public class UploadController {
+	
+	private final String IMG_PATH 					= "src/main/resources/static/img/";
+	private final String SOUNDCLOUD_EMBED_URL 		= "http://soundcloud.com/oembed?format=json&url=https://soundcloud.com/";
+	private final String SOUNDCLOUD_IFRAME_PARAM 	= "&iframe=true";
+	private final int IMAGE_TYPE = 0;
+	private final int AUDIO_TYPE = 1;
+	private final int VIDEO_TYPE = 2;
 
 	@Autowired
 	private PublicationRepository publicacionRepository;
 	@Autowired
-	private static TagRepository tagRepository;
+	private TagRepository tagRepository;
 	@Autowired
 	private UserComponent userSession;
 	
@@ -52,7 +59,7 @@ public class UploadController {
 	private UserRepository userRepository;
 
 	@RequestMapping("/upload")
-	public String greeting(Model modelo, HttpSession session, HttpServletRequest request) {
+	public String upload_front(Model modelo, HttpSession session, HttpServletRequest request) {
 		
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
@@ -63,51 +70,36 @@ public class UploadController {
 	}
 
 	@PostMapping("/upload")
-	public String upload(@RequestParam(value="file",required=false) MultipartFile file, @RequestParam("titulo") String titulo,
-			@RequestParam("descripcion") String descripcion, @RequestParam("etiquetas") String etiquetas,
-			@RequestParam("optionsRadios") String tipo, @RequestParam(value="audio",required=false) String audio, @RequestParam(value="video",required=false) String video)
-			throws IOException {		
-		User oscar = new User("m0scar", "Oscar", "Romero", "m0scar");
-		userRepository.save(oscar);
-		String media ="";	
-		int mediaType = 0;
-		switch (tipo){
-			case "img": 
-				Path rootLocation = Paths.get("src/main/resources/static/img/");
-				String timeStamp = Long.toString(System.currentTimeMillis());
-				media = timeStamp + "-" + file.getOriginalFilename();
-				Files.copy(file.getInputStream(), rootLocation.resolve(media));
-				break;
-			case "audio":
-				mediaType = 1;
-				URL url = new URL("http://soundcloud.com/oembed?format=json&url=https://soundcloud.com/"+ audio +"&iframe=true");//Llamada a webservice de soundclound para coger el id del audio
-				StringBuffer sb = new StringBuffer();
-				try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
-				    for (String line; (line = reader.readLine()) != null;) {
-				        sb.append(line);
-				    }
-				}			
-				media = sb.toString(); //Hay que ver si consigo que el JSON devuelve el iframe como quiero para coger el iframe de el directametne
-				media = media.substring(media.indexOf("tracks%2F") + "tracks%2F".length(), media.indexOf("\\u0026show_artwork"));
-				break;
-			case "video":
-				mediaType = 2;
-				break;
+	public String upload(@RequestParam(value="file", required=false) MultipartFile file, @RequestParam("titulo") String title,
+			@RequestParam("descripcion") String description, @RequestParam("etiquetas") String tags,
+			@RequestParam("optionsRadios") String type, @RequestParam(value="audio", required=false) String audio, 
+			@RequestParam(value="video",required=false) String video) throws IOException {
+				
+		int mediaType = getMediaType(type);
+		String media = "";
+		
+		switch(mediaType){
+		
+			case IMAGE_TYPE:
+				media = prepareImage(file, type); // Return Media Param to embed the image content
+			break;
+			
+			case AUDIO_TYPE:
+				URL url = new URL(SOUNDCLOUD_EMBED_URL+ audio +SOUNDCLOUD_IFRAME_PARAM); // SoundCloud Webservice Call to get the ID
+				media = prepareAudio(file, type, url); // Return Media Param to embed the audio content
+			break;
+			
+			case VIDEO_TYPE:
+				media = video;
+			break;
+			
 		}
 		
-		
-		Publication publication = new Publication(oscar, titulo, descripcion, media, mediaType);
+		Publication publication = new Publication(userSession.getUser(), title, description, media, mediaType);
 		publicacionRepository.save(publication);
 
-		for (String s : etiquetas.split("\n")) {
-			s = s.toLowerCase().trim();// Habria que hacer una función que quite
-										// caracteres especiales??
-			Tag tag = tagRepository.findByTag(s);
-			if (tag == null) tag = new Tag(s);
-			tag.getPublications().add(publication);
-			tagRepository.save(tag);						
-		}
-
+		// Split and Save each Tag if not exist
+		manageTags(tags, publication);
 
 		return "redirect:/publication/"+publication.getId();
 	}
@@ -115,13 +107,84 @@ public class UploadController {
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws MalformedURLException {
-    	Path location = Paths.get("src/main/resources/static/img/" + filename);
+    	
+    	Path location = Paths.get(IMG_PATH + filename);
         Resource file = new UrlResource(location.toUri());
                 
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+(file).getFilename()+"\"")
                 .body(file);
+    }
+    
+    private int getMediaType(String type){
+    	
+    	int mediaType = 0;
+    	
+    	switch(type){
+    		case "img":
+    			mediaType = 0;
+			break;
+    		case "audio":
+    			mediaType = 1;
+			break;
+    		case "video":
+    			mediaType = 2;
+    		break;
+    	}
+    	
+    	return mediaType;
+    }
+    
+	private String prepareImage(MultipartFile file, String type){
+		
+		Path rootLocation = Paths.get(IMG_PATH);
+		
+		String media = Long.toString(System.currentTimeMillis()) + "-" + file.getOriginalFilename();
+		
+		try{
+			Files.copy(file.getInputStream(), rootLocation.resolve(media));
+		}
+		catch(Exception e){
+			System.out.println("Error copying image file to: "+rootLocation.resolve(media));
+		}
+		
+		return media;
+	}
+	
+	private String prepareAudio(MultipartFile file, String type, URL url){
+		
+		StringBuffer sb = new StringBuffer();
+		
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
+		    for (String line; (line = reader.readLine()) != null;) {
+		        sb.append(line);
+		    }
+		}			
+		catch(Exception e){
+			System.out.println("Error reading SoundCloud URL.");
+		}
+		
+		String media = sb.toString(); //Óscar: Hay que ver si consigo que el JSON devuelve el iframe como quiero para coger el iframe de el directametne
+		media = media.substring(media.indexOf("tracks%2F") + "tracks%2F".length(), media.indexOf("\\u0026show_artwork"));
+		
+		return media;
+	}
+	
+    private void manageTags(String tags, Publication publication){
+    	
+    	for (String s : tags.split("\n")) {
+			s = s.toLowerCase().trim();
+			saveTag(s, publication);
+		}
+    	
+    }
+    
+    private void saveTag(String clean_tag, Publication publication){
+    	Tag tag = tagRepository.findByTag(clean_tag);
+		if (tag == null) tag = new Tag(clean_tag);
+		tag.addPublication(publication);
+		tagRepository.save(tag);
     }
 
 }

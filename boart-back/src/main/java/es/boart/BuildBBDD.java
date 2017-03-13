@@ -96,44 +96,44 @@ public class BuildBBDD {
 		List<Publication> lPublications = new ArrayList<>();		
 		
 		// IMG
-		lPublications.add(new Publication(juan, "Lisístrata", "Gata Cattana, Lisístrata", "GsMDU8gb5sQ", 2));
-		lPublications.add(new Publication(juan, "ANCIENT GOD", "An old machine which was destroyed in war.", "1.jpg", 0));		
+		lPublications.add(new Publication(emilio, "Lisístrata", "Gata Cattana, Lisístrata", "GsMDU8gb5sQ", 2));
+		lPublications.add(new Publication(concha, "ANCIENT GOD", "An old machine which was destroyed in war.", "1.jpg", 0));		
 		lPublications.add(new Publication(juan, "Werewolf", "werewolf lurking REIMAGINED", "2.jpg", 0));
-		lPublications.add(new Publication(juan, "Epiclesis", "\"When we doubt about everything we know\".", "3.jpg", 0));
-		lPublications.add(new Publication(juan, "Chinese Dragon", "Last year I was fortunate enough to get the opportunity to work on a dragon book for Scholastic by way of Becker&Mayer Books.", "4.jpg", 0));
-		lPublications.add(new Publication(juan, "Red dragon", "The dragon IS A MODERN DAY PICTURE REPRESENTING HOW FURIOUS A WOMEN CAN BE ON HER PERIOD. that's what he says to me when i look at this art.", "5.jpg", 0));
-		lPublications.add(new Publication(juan, "Dragon Cove", "I made the background for this about a year ago and then forgot about it. I recently found it and had the inspiration to finish it!", "6.jpg", 0));
-		lPublications.add(new Publication(juan, "Forbidden Kingdom", "Forbidden Kingdom", "7.jpg", 0));
+		lPublications.add(new Publication(emilio, "Epiclesis", "\"When we doubt about everything we know\".", "3.jpg", 0));
+		lPublications.add(new Publication(concha, "Chinese Dragon", "Last year I was fortunate enough to get the opportunity to work on a dragon book for Scholastic by way of Becker&Mayer Books.", "4.jpg", 0));
+		lPublications.add(new Publication(emilio, "Red dragon", "The dragon IS A MODERN DAY PICTURE REPRESENTING HOW FURIOUS A WOMEN CAN BE ON HER PERIOD. that's what he says to me when i look at this art.", "5.jpg", 0));
+		lPublications.add(new Publication(concha, "Dragon Cove", "I made the background for this about a year ago and then forgot about it. I recently found it and had the inspiration to finish it!", "6.jpg", 0));
+		lPublications.add(new Publication(emilio, "Forbidden Kingdom", "Forbidden Kingdom", "7.jpg", 0));
 		lPublications.add(new Publication(juan, "Angelus of Hope", "Personal work, completed early 2012.", "8.jpg", 0));
 		// SC
-		lPublications.add(new Publication(juan, "Cant Forgive", "Album: Temptation of Wife","113585294", 1));
+		lPublications.add(new Publication(concha, "Cant Forgive", "Album: Temptation of Wife","113585294", 1));
 		lPublications.add(new Publication(juan, "Chopin Nocturne in F Minor-Op. 55", "Produced by Chad Lawson & Alejandro Clavijo. Mixed by Stephen Lee Price. Mastered by Michael Graves of Osiris Studios (Atlanta, GA).", "164691599", 1));
-		lPublications.add(new Publication(juan, "Sibelius Violin Concerto 1st Movement", "Performed live on March 26th, 2015 with the Gothenburg Symphony Orchestra and Maestro Kent Nagano","206466890", 1));
-		lPublications.add(new Publication(juan, "300 Violin Orchestra", "300 Violin orchestra has become a sports anthem and very well known among the pump up songs category. ","12417512",  1));
+		lPublications.add(new Publication(emilio, "Sibelius Violin Concerto 1st Movement", "Performed live on March 26th, 2015 with the Gothenburg Symphony Orchestra and Maestro Kent Nagano","206466890", 1));
+		lPublications.add(new Publication(concha, "300 Violin Orchestra", "300 Violin orchestra has become a sports anthem and very well known among the pump up songs category. ","12417512",  1));
 		lPublications.add(new Publication(juan, "Mozart: Concerto for Piano no 25", "The New England Conservatory Philharmonia led by guest conductor Jefferey Kahane at the keyboard, present Mozart's Concerto for Piano no 25 in C major","121863093",  1));
-		lPublications.add(new Publication(juan, "Yiruma - River Flows in You", "Cello & Piano Orchestral Version ft. Yiruma - River Flows in You","129893792",  1));
+		lPublications.add(new Publication(emilio, "Yiruma - River Flows in You", "Cello & Piano Orchestral Version ft. Yiruma - River Flows in You","129893792",  1));
 		lPublications.add(new Publication(juan, "Beethoven - Moonlight Sonata", "I was just practicing tonight and felt like recording one of the pieces.","24880470",  1));
-		lPublications.add(new Publication(juan, "Fur Elise", "Ludwig Van Beethoven-- Fur Elise","65833474",  1));
-		lPublications.add(new Publication(juan, "LaLa Land movie Theme", "Piano Cover","301212235",  1));
-		lPublications.add(new Publication(juan, "Bullet Train", "by Stephen Swartz ft. Joni Fatora","57809396",  1));
-		lPublications.add(new Publication(juan, "Asylum", "STRANGUH - Asylum","311584848",  1));
+		lPublications.add(new Publication(concha, "Fur Elise", "Ludwig Van Beethoven-- Fur Elise","65833474",  1));
+		lPublications.add(new Publication(emilio, "LaLa Land movie Theme", "Piano Cover","301212235",  1));
+		lPublications.add(new Publication(concha, "Bullet Train", "by Stephen Swartz ft. Joni Fatora","57809396",  1));
+		lPublications.add(new Publication(emilio, "Asylum", "STRANGUH - Asylum","311584848",  1));
 		lPublications.add(new Publication(juan, "Mortal Kombat Dance", "Valentino Jorno - Mortal Kombat Dance","264398016",  1));
 		lPublications.add(new Publication(juan, "Hysteria", "Boombox Cartel - Hysteria (WTF Is Festival Trap Anthem)","98264534",  1));
 		lPublications.add(new Publication(juan, "Reload ", "Sebastian Ingrosso & Tommy Trash - Reload (BARE Remix)","86616680",  1));
 		// YT
-		lPublications.add(new Publication(juan, "Triple concerto", "Beethoven, Concerto for piano, violin, cello and orchestra", "hZZaztTNsEc", 2));
+		lPublications.add(new Publication(emilio, "Triple concerto", "Beethoven, Concerto for piano, violin, cello and orchestra", "hZZaztTNsEc", 2));
 		lPublications.add(new Publication(juan, "The Greatest", "Sia (Piano Cover) - Costantino Carrara", "AYRb9WqYEzA", 2));
-		lPublications.add(new Publication(juan, "Faded", "Faded - Alan Walker (fingerstyle guitar cover by Peter Gergely)", "69A2xXbI7QA", 2));
+		lPublications.add(new Publication(concha, "Faded", "Faded - Alan Walker (fingerstyle guitar cover by Peter Gergely)", "69A2xXbI7QA", 2));
 		lPublications.add(new Publication(juan, "See You Again", "See You Again - Wiz Khalifa ft. Charlie Puth (fingerstyle guitar cover by Peter Gergely)", "gnGA1o43UOI", 2));
-		lPublications.add(new Publication(juan, "Rogue One Trailer", "STAR WARS - Rogue One Trailer (Orchestral/Piano Cover)", "RPuwzdkUEFo", 2));
+		lPublications.add(new Publication(emilio, "Rogue One Trailer", "STAR WARS - Rogue One Trailer (Orchestral/Piano Cover)", "RPuwzdkUEFo", 2));
 		lPublications.add(new Publication(juan, "The Force Awakens Trailer", "STAR WARS - The Force Awakens Trailer (Orchestral/Piano Cover)", "aaanIU3fW40", 2));
-		lPublications.add(new Publication(juan, "America's Great Spaces", "Dazzling Time-Lapse Reveals America's Great Spaces | National Geographic", "9d8wWcJLnFI", 2));
-		lPublications.add(new Publication(juan, "NORWAY", "NORWAY - A Time-Lapse Adventure 4K", "Scxs7L0vhZ4", 2));
-		lPublications.add(new Publication(juan, "Street Traffic", "Watch Time Lapse - Street Traffic at Night", "05pdi-MzvAI", 2));
+		lPublications.add(new Publication(concha, "America's Great Spaces", "Dazzling Time-Lapse Reveals America's Great Spaces | National Geographic", "9d8wWcJLnFI", 2));
+		lPublications.add(new Publication(emilio, "NORWAY", "NORWAY - A Time-Lapse Adventure 4K", "Scxs7L0vhZ4", 2));
+		lPublications.add(new Publication(concha, "Street Traffic", "Watch Time Lapse - Street Traffic at Night", "05pdi-MzvAI", 2));
 		lPublications.add(new Publication(juan, "The magnificent landscape of Iceland", "Drone and time lapse footage", "wN8_eb3l0mw", 2));
-		lPublications.add(new Publication(juan, "Alone in the Night", "Time-lapse footage of the Earth as seen from the ISS", "FG0fTKAqZ5g", 2));
+		lPublications.add(new Publication(emilio, "Alone in the Night", "Time-lapse footage of the Earth as seen from the ISS", "FG0fTKAqZ5g", 2));
 		lPublications.add(new Publication(juan, "POILUS Short Film", "CGI 3D Animated Short Film HD: \"POILUS Short Film\" by ISART DIGITAL", "Cwn3Ru0o8Io", 2));
-		lPublications.add(new Publication(juan, "Fat Animated Short Film", "Funny 3D Animation Short Film For Kids - Fat Animated Short Film", "gzi9r20misE", 2));
+		lPublications.add(new Publication(concha, "Fat Animated Short Film", "Funny 3D Animation Short Film For Kids - Fat Animated Short Film", "gzi9r20misE", 2));
 
 
 		List<String> lComments = new ArrayList<>();
@@ -208,7 +208,7 @@ public class BuildBBDD {
 		Random ran = new Random();
 		for(Publication p: lPublications){
 			for (int i = ran.nextInt(lComments.size()); i < lComments.size(); i++){
-				p.getComments().add(new Comment(lUsers.get(ran.nextInt(lUsers.size())),lComments.get(ran.nextInt(lComments.size()))));
+				p.getComments().add(new Comment(lUsers.get(ran.nextInt(lUsers.size())), lComments.get(ran.nextInt(lComments.size()))));
 				p.setNumberOfComments(p.getComments().size());
 			}
 		}

@@ -32,12 +32,14 @@ public class PrivateProfileController {
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
-		User myUser = userRepo.findOne(userSession.getUser().getId());
-
+		if(userSession.getUser() != null){
+			User myUser = userRepo.findOne(userSession.getUser().getId());
+		
 		modelo.addAttribute("usuario", myUser);
 		modelo.addAttribute("followings", myUser.getFollowing());
 		modelo.addAttribute("followers", myUser.getFollowers());
 		modelo.addAttribute("groups", myUser.getGroups());
+		}
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
