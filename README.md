@@ -39,19 +39,19 @@ https://trello.com/b/fG0uTmVa
 
 # Portada
 ![Portada]
-(http://i.imgur.com/ctAYy4y.png)
+(http://i.imgur.com/b3bJRS0.png)
 
 # Login
 ![Login]
-(http://i.imgur.com/K9At1Jq.png)
+(http://i.imgur.com/GPWvkUU.png)
 
 # Registro
 ![Registro]
-(http://i.imgur.com/wVqqBVL.png)
+(http://i.imgur.com/EULGA32.png)
 
 # Publicación
 ![Publicación]
-(http://i.imgur.com/9pztOTQ.png)
+(http://i.imgur.com/XqZVjT5.png)
 
 # Grupo
 ![Grupo]
