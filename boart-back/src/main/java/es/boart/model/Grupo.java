@@ -40,6 +40,13 @@ public class Grupo {
 	public Grupo(){}
 	
 	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
+	/**
 	 * @return the title
 	 */
 	public String getTitle() {
