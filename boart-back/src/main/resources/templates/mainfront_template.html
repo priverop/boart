@@ -13,19 +13,9 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../css/mainFront.css">
-<link rel="stylesheet" href="../css/spinner.css">
 <script type="text/javascript" src="../js/main.js"></script>
-<script type="text/javascript" src="../js/pageable.js"></script>
 </head>
 <body onload="activeFilter('{{filter}}')">
-	<div class="spinner_overlay">
-		<div class="sk-folding-cube">
-		  <div class="sk-cube1 sk-cube"></div>
-		  <div class="sk-cube2 sk-cube"></div>
-		  <div class="sk-cube4 sk-cube"></div>
-		  <div class="sk-cube3 sk-cube"></div>
-		</div>
-	</div>
 	{{> header_component}}
 	<article class="container-fluid">
 		<div
@@ -86,8 +76,9 @@
 		</div>
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
 			<div id="columns">
-				{{#publicaciones}} <a href="/publication/{{id}}">
+				{{#publicaciones}} 
 					<div class="publication app_box publication_box">
+					<a href="/publication/{{id}}">
 						{{{ media }}}
 						<p>{{ title }}</p>
 						<div class="rating">
@@ -115,11 +106,9 @@
 						<div class="divDate">
 							{{stringDate}}
 						</div>
+						</a> 
 					</div>
-				</a> {{/publicaciones}}
-			</div>
-			<div class="load_more">
-				<span>Cargar mas publicaciones</span>
+				{{/publicaciones}}
 			</div>
 		</div>
 	</article>
