@@ -8,8 +8,6 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import es.boart.model.Comment;
 import es.boart.model.Grupo;
 import es.boart.model.Publication;
+import es.boart.model.PublicationLike;
 import es.boart.model.Tag;
 import es.boart.model.User;
 import es.boart.repository.GroupRepository;
+import es.boart.repository.LikeRepository;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.TagRepository;
 import es.boart.repository.UserRepository;
@@ -38,26 +38,33 @@ public class BuildBBDD {
 
 	@Autowired
 	private TagRepository tagRepository;
+	
+	@Autowired
+	private LikeRepository likeRepository;
 
 	@PostConstruct
 	public void init() {
 
-		/* USUARIOS */
-
-		User usuario = new User("usuario1", "prueba", "prueba", "pass", "ROLE_USER");
-//
-//		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", "imgEjemplo2.jpg", 0));
-//
-//		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", "113585294", 1));
-//
-//		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", "gw5LxIOsaBo", 2));
-//
-//		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", "imgEjemplo4.jpg", 0));
-//
-//		usuario.getGallery().add(new Publication(usuario, "Titulo", "Descripcion", "imgEjemplo3.jpg", 0));
-//
-		
+		/* Default Users */
+		User emilio = new User("emilio", "Emilio", "Delgado", "kiwis", "ROLE_USER");
+		User concha = new User("concha", "Concha", "García", "golfas", "ROLE_USER"); 
 		User juan = new User("juan", "Juan", "Cuesta", "juanjuan", "ROLE_USER");
+		juan.getComments().add(new Comment(concha, "Váyase señor Juan!!"));
+		
+		userRepository.save(emilio);
+		userRepository.save(concha);
+		
+		juan.addFollowing(emilio);
+		concha.addFollowing(juan);
+		userRepository.save(juan);
+		
+		/* SPECIFIC GENERATIONS */
+		
+		generateUsers();
+		generateGroups();
+		generateGallery(juan);
+		
+		/* RANDOM GENERATION */
 		
 		List<User> lUsers = new ArrayList<>();		
 		lUsers.add(new User("m0scar", "Oscar", "Ballesteros", "1234", "ROLE_USER"));
@@ -83,25 +90,12 @@ public class BuildBBDD {
 			userRepository.save(u);
 		}
 		
-		juan.getComments().add(new Comment(usuario, "Váyase señor Juan!!"));
-
-		userRepository.save(usuario);
-		userRepository.save(juan);
-
-		for (int i = 0; i < 25; i++) {
-			User newUser = new User("user" + i, "name" + i, "surname" + i, "pass" + i, "ROLE_USER");
-			userRepository.save(newUser);
-		}
-
-		juan.addFollowing(usuario);
-		userRepository.save(juan);
-		
-		
 		
 		/* PUBLICACIONES */
 		//Publication publication = new Publication(juan, "", "", ".jpg", 0);
 		List<Publication> lPublications = new ArrayList<>();		
-								
+		
+		// IMG
 		lPublications.add(new Publication(juan, "Lisístrata", "Gata Cattana, Lisístrata", "GsMDU8gb5sQ", 2));
 		lPublications.add(new Publication(juan, "ANCIENT GOD", "An old machine which was destroyed in war.", "1.jpg", 0));		
 		lPublications.add(new Publication(juan, "Werewolf", "werewolf lurking REIMAGINED", "2.jpg", 0));
@@ -111,7 +105,7 @@ public class BuildBBDD {
 		lPublications.add(new Publication(juan, "Dragon Cove", "I made the background for this about a year ago and then forgot about it. I recently found it and had the inspiration to finish it!", "6.jpg", 0));
 		lPublications.add(new Publication(juan, "Forbidden Kingdom", "Forbidden Kingdom", "7.jpg", 0));
 		lPublications.add(new Publication(juan, "Angelus of Hope", "Personal work, completed early 2012.", "8.jpg", 0));
-		
+		// SC
 		lPublications.add(new Publication(juan, "Cant Forgive", "Album: Temptation of Wife","113585294", 1));
 		lPublications.add(new Publication(juan, "Chopin Nocturne in F Minor-Op. 55", "Produced by Chad Lawson & Alejandro Clavijo. Mixed by Stephen Lee Price. Mastered by Michael Graves of Osiris Studios (Atlanta, GA).", "164691599", 1));
 		lPublications.add(new Publication(juan, "Sibelius Violin Concerto 1st Movement", "Performed live on March 26th, 2015 with the Gothenburg Symphony Orchestra and Maestro Kent Nagano","206466890", 1));
@@ -126,7 +120,7 @@ public class BuildBBDD {
 		lPublications.add(new Publication(juan, "Mortal Kombat Dance", "Valentino Jorno - Mortal Kombat Dance","264398016",  1));
 		lPublications.add(new Publication(juan, "Hysteria", "Boombox Cartel - Hysteria (WTF Is Festival Trap Anthem)","98264534",  1));
 		lPublications.add(new Publication(juan, "Reload ", "Sebastian Ingrosso & Tommy Trash - Reload (BARE Remix)","86616680",  1));
-		
+		// YT
 		lPublications.add(new Publication(juan, "Triple concerto", "Beethoven, Concerto for piano, violin, cello and orchestra", "hZZaztTNsEc", 2));
 		lPublications.add(new Publication(juan, "The Greatest", "Sia (Piano Cover) - Costantino Carrara", "AYRb9WqYEzA", 2));
 		lPublications.add(new Publication(juan, "Faded", "Faded - Alan Walker (fingerstyle guitar cover by Peter Gergely)", "69A2xXbI7QA", 2));
@@ -173,7 +167,6 @@ public class BuildBBDD {
 		lComments.add("This is beautiful and cute");
 
 		publicationRepository.save(lPublications);
-//		publication.getComments().add(new Comment(usuario, "Gabri no me espies"));
 		
 		addTags(lPublications.get(0), Arrays.asList("rap", "gata", "cattana", "dep"));
 		addTags(lPublications.get(1), Arrays.asList("epic", "galaxy", "god", "dark", "photo", "boart"));
@@ -213,7 +206,6 @@ public class BuildBBDD {
 		addTags(lPublications.get(35), Arrays.asList("short film", "animation" + "3d", "boart"));
 
 		Random ran = new Random();
-		int x = ran.nextInt(lComments.size());
 		for(Publication p: lPublications){
 			for (int i = ran.nextInt(lComments.size()); i < lComments.size(); i++){
 				p.getComments().add(new Comment(lUsers.get(ran.nextInt(lUsers.size())),lComments.get(ran.nextInt(lComments.size()))));
@@ -223,31 +215,13 @@ public class BuildBBDD {
 
 		publicationRepository.save(lPublications);
 		
-		/* GRUPOS */
-		groupRepository.save(new Grupo("Fotógrafos de Vallecas", "http://i.imgur.com/WZ9qZwH.jpg", "Loren ipsun dolor sit amet"));
+		for(Publication p: lPublications){
+			for(User u: lUsers){
+				likeRepository.save(new PublicationLike(u, p));
+			}
+		}
+		
 
-//		Tag t1 = new Tag("tag1");
-//		Tag t2 = new Tag("tag2");
-//		Tag t3 = new Tag("tag3");
-//		Tag t4 = new Tag("tag3");
-//
-//
-//		for (Publication p : publicationRepository.findAll()) {
-//			if (p.getId() % 3 == 0)
-//				t1.getPublications().add(p);
-//			// p.getTags().add(t1);
-//			if (p.getId() % 3 == 1)
-//				t2.getPublications().add(p);
-//			// p.getTags().add(t2);
-//			if (p.getId() % 3 == 2)
-////				t4.getPublications().add(p);
-//			// p.getTags().add(t3);
-//		}
-//
-//		tagRepository.save(t1);
-//		tagRepository.save(t2);
-//		tagRepository.save(t3);
-//		tagRepository.save(t4);
 
 	}
 	
@@ -263,4 +237,31 @@ public class BuildBBDD {
 			tagRepository.save(tag);
 		}
 	}
+	
+	private void generateUsers(){
+		for (int i = 0; i < 25; i++) {
+			User newUser = new User("user" + i, "name" + i, "surname" + i, "pass" + i, "ROLE_USER");
+			userRepository.save(newUser);
+		}
+		userRepository.save(new User("usuario1", "prueba", "prueba", "pass", "ROLE_USER"));
+	}
+	
+	private void generateGroups(){
+		groupRepository.save(new Grupo("Fotógrafos de Vallecas", "http://i.imgur.com/WZ9qZwH.jpg", "Somos lo que somos por dónde nos criamos."));
+		groupRepository.save(new Grupo("Amantes del Graffiti", "http://keusta.net/blog/images/graffiti/ivry/eyegasm/graphic_eye_stack_big.jpg",
+				"Manchamos las calles buscando la belleza."));
+		groupRepository.save(new Grupo("Música clásica", "https://lucasemece.files.wordpress.com/2008/02/richard_wagner.jpg", "Música clásica en esencia vida y magia."));
+	}
+	
+	private void generateGallery(User user){
+
+		user.addGallery(new Publication(user, "Boda Juan y Elena", "Descripcion", "gallery1.jpg", 0));
+		user.addGallery(new Publication(user, "Boda Pedro y Lucía", "Descripcion", "gallery2.jpg", 0));
+		user.addGallery(new Publication(user, "Boda Isabel", "Descripcion", "gallery3.jpg", 0));
+		user.addGallery(new Publication(user, "Boda Emilio y Marisa", "Descripcion", "gallery4.jpg", 0));
+		user.addGallery(new Publication(user, "Boda Juan y Damián", "Descripcion", "gallery5.jpg", 0));
+		userRepository.save(user);
+		
+	}
+	
 }

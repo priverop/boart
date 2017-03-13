@@ -310,8 +310,11 @@ public class User {
 		return groups;
 	}
 
+	/* -------------- /*
 	/* CUSTOM METHODS */
+	/* -------------- /*
 	
+	/* Followers */
 	public void addFollowing(User following){
 		this.following.add(following);
 	}
@@ -332,5 +335,9 @@ public class User {
 		return this.getFollowers().contains(myUser);
 	}
 
+	/* Gallery */
+	public void addGallery(Publication p){
+		this.getGallery().add(p);
+	}
 
 }
