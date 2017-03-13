@@ -47,16 +47,20 @@
 		  			</div>
 		  		
 			</div>
+			
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
-				<p class="title"><a href="#"><span class="glyphicon glyphicon-picture"></span>Anochecer con V</a></p>
-				<p class="description"><em>Fotografía de un anochecer en Vallekas City.</em></p>
+				<h2>Últimas Publicaciones</h2>
+			{{#userPublications}}
+				<p class="title"><a href="/publication/{{id}}"><span class="glyphicon glyphicon-picture"></span>{{title}}</a></p>
+				<p class="description"><em>{{description}}</em></p>
+			{{/userPublications}}
 			</div>
 		</div>
 		
 		<!-- Gallery -->
 		<div class="row" id="columns">
 		{{#gallery}}
-			<div class="app_box publication"><img src="{{media}}"></div>
+			<div class="app_box publication">{{{media}}}</div>
 		{{/gallery}}
 		</div>
 		{{> comments_component}}

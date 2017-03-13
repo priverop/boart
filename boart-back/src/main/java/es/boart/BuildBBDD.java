@@ -57,6 +57,7 @@ public class BuildBBDD {
 		juan.addFollowing(emilio);
 		concha.addFollowing(juan);
 		userRepository.save(juan);
+	
 		
 		/* SPECIFIC GENERATIONS */
 		
@@ -92,7 +93,6 @@ public class BuildBBDD {
 		
 		
 		/* PUBLICACIONES */
-		//Publication publication = new Publication(juan, "", "", ".jpg", 0);
 		List<Publication> lPublications = new ArrayList<>();		
 		
 		// IMG
@@ -215,13 +215,18 @@ public class BuildBBDD {
 
 		publicationRepository.save(lPublications);
 		
+		/* Likes */
 		for(Publication p: lPublications){
 			for(User u: lUsers){
 				likeRepository.save(new PublicationLike(u, p));
 			}
 		}
-		
-
+		/* Group Publications */
+		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://0.tqn.com/d/rap/1/S/N/3/-/-/Missy.jpg");
+		groupRepository.save(rap);
+		rap.addPublication(lPublications.get(0));
+		rap.addMember(juan);
+		groupRepository.save(rap);
 
 	}
 	
@@ -247,19 +252,21 @@ public class BuildBBDD {
 	}
 	
 	private void generateGroups(){
-		groupRepository.save(new Grupo("Fotógrafos de Vallecas", "http://i.imgur.com/WZ9qZwH.jpg", "Somos lo que somos por dónde nos criamos."));
-		groupRepository.save(new Grupo("Amantes del Graffiti", "http://keusta.net/blog/images/graffiti/ivry/eyegasm/graphic_eye_stack_big.jpg",
-				"Manchamos las calles buscando la belleza."));
-		groupRepository.save(new Grupo("Música clásica", "https://lucasemece.files.wordpress.com/2008/02/richard_wagner.jpg", "Música clásica en esencia vida y magia."));
+		groupRepository.save(new Grupo("Fotógrafos de Vallecas", "Somos lo que somos por dónde nos criamos.", 
+				"http://santaeugeniaesmibarrio.com/sites/default/files/styles/945x--/public/images/image_galeria_fotos/vallecas-escudo.jpg?itok=3nrnj_53"));
+		groupRepository.save(new Grupo("Amantes del Graffiti", "Manchamos las calles buscando la belleza.",
+				"http://keusta.net/blog/images/graffiti/ivry/eyegasm/graphic_eye_stack_big.jpg"));
+		groupRepository.save(new Grupo("Música clásica", "Música clásica en esencia vida y magia.", 
+				"https://lucasemece.files.wordpress.com/2008/02/richard_wagner.jpg"));
 	}
 	
 	private void generateGallery(User user){
 
-		user.addGallery(new Publication(user, "Boda Juan y Elena", "Descripcion", "gallery1.jpg", 0));
-		user.addGallery(new Publication(user, "Boda Pedro y Lucía", "Descripcion", "gallery2.jpg", 0));
-		user.addGallery(new Publication(user, "Boda Isabel", "Descripcion", "gallery3.jpg", 0));
-		user.addGallery(new Publication(user, "Boda Emilio y Marisa", "Descripcion", "gallery4.jpg", 0));
-		user.addGallery(new Publication(user, "Boda Juan y Damián", "Descripcion", "gallery5.jpg", 0));
+		user.addGallery(new Publication(user, "Amor bajo la lluvia", "Boda Juan y Elena", "gallery1.jpg", 0));
+		user.addGallery(new Publication(user, "La simetría y la comida", "Boda Pedro y Lucía", "gallery2.jpg", 0));
+		user.addGallery(new Publication(user, "Destellos del futuro permanente", "Boda Emilio y Marisa.", "gallery3.jpg", 0));
+		user.addGallery(new Publication(user, "El punto de mira", "Boda Emilio y Marisa", "gallery4.jpg", 0));
+		user.addGallery(new Publication(user, "¿Quién está ahí?", "La hija Isabel observaba al fotógrafo tras las escaleras", "gallery5.jpg", 0));
 		userRepository.save(user);
 		
 	}

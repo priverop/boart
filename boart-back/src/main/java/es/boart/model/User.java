@@ -61,6 +61,9 @@ public class User {
 	@ManyToMany(mappedBy="groupMembers")
 	private List<Grupo> groups = new ArrayList<>();
 	
+	@OneToMany(mappedBy="user")
+	private List<Publication> userPublications = new ArrayList<>();
+	
 	
 	/**
 	 * @param username
@@ -310,6 +313,25 @@ public class User {
 		return groups;
 	}
 
+	/**
+	 * @param groups the groups to set
+	 */
+	public void setGroups(List<Grupo> groups) {
+		this.groups = groups;
+	}
+	
+	/**
+	 * @return the publications
+	 */
+	public List<Publication> getPublications() {
+		return userPublications;
+	}
+	/**
+	 * @param publications the publications to set
+	 */
+	public void setPublications(List<Publication> publications) {
+		this.userPublications = publications;
+	}
 	/* -------------- /*
 	/* CUSTOM METHODS */
 	/* -------------- /*

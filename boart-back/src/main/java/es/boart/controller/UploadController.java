@@ -8,7 +8,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,10 +29,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
-import es.boart.boartUtils;
+import es.boart.model.Grupo;
 import es.boart.model.Publication;
 import es.boart.model.Tag;
-import es.boart.model.User;
+import es.boart.repository.GroupRepository;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.TagRepository;
 import es.boart.repository.UserRepository;
@@ -54,14 +53,16 @@ public class UploadController {
 	private TagRepository tagRepository;
 	@Autowired
 	private UserComponent userSession;
-	
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private GroupRepository groupRepository;
 
 	@RequestMapping("/upload")
 	public String upload_front(Model modelo, HttpSession session, HttpServletRequest request) {
 		
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
+		modelo.addAttribute("user_groups", userRepository.findOne(userSession.getUser().getId()).getGroups());
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
@@ -72,7 +73,7 @@ public class UploadController {
 	@PostMapping("/upload")
 	public String upload(@RequestParam(value="file", required=false) MultipartFile file, @RequestParam("titulo") String title,
 			@RequestParam("descripcion") String description, @RequestParam("etiquetas") String tags,
-			@RequestParam("optionsRadios") String type, @RequestParam(value="audio", required=false) String audio, 
+			@RequestParam("optionsRadios") String type, @RequestParam(value="idGroup", required=false) Long idGroup, @RequestParam(value="audio", required=false) String audio, 
 			@RequestParam(value="video",required=false) String video) throws IOException {
 				
 		int mediaType = getMediaType(type);
@@ -97,6 +98,14 @@ public class UploadController {
 		
 		Publication publication = new Publication(userSession.getUser(), title, description, media, mediaType);
 		publicacionRepository.save(publication);
+		
+		// If any group is checked it will have the publication added
+		if(idGroup != null){
+			System.out.println("Grupo seleccionado: "+idGroup);
+			Grupo selectedGroup = groupRepository.findOne(idGroup);
+			selectedGroup.addPublication(publication);
+			groupRepository.save(selectedGroup);
+		}
 
 		// Split and Save each Tag if not exist
 		manageTags(tags, publication);

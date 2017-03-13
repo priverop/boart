@@ -19,6 +19,7 @@
                     <div class="app_box menuleft" id="boxDesc">
 	                        <img id="imgCabecera" src="{{img}}" />
 	                        <p class="title">{{title}}</p>
+	                        <blockquote><em>{{description}}</em></blockquote>
                     </div>
                 </div>
                 {{^guest}}
@@ -63,25 +64,21 @@
                 </div>
             </div>
         </div>
+        {{#publications}}
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
             <div id="columns">
                 <div class="publication app_box">
-                    <img src="../static/img/grito.jpg" />
-                    <p>Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis.</p>
+                    {{{media}}}
+                    <p>{{description}}</p>
                     <div class="rating">
-                        <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">5</span></p>
+                        <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">{{numberOfLikes}}</span></p>
                     </div>
-                    <div class="tag_component">
-                        <span class="tag"><span class="glyphicon glyphicon-remove"
-							aria-hidden="true"></span>escultura</span> <span class="tag"><span
-							class="glyphicon glyphicon-remove" aria-hidden="true"></span>fotografía</span>
-                        <span class="tag"><span class="glyphicon glyphicon-remove"
-							aria-hidden="true"></span>dibujo</span>
-                    </div>
+                    {{> taglist_component}}
                 </div>
                 
             </div>
         </div>
+        {{/publications}}
     {{/group}}
     </article>
     {{> footer_component}}

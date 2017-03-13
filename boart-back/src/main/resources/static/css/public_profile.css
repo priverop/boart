@@ -40,7 +40,9 @@
 }
 
 .user_publications {
-  padding: 10px;
+  padding: 0 10px 10px 10px;
+  height: 200px;
+  overflow: auto;
 }
 .user_publications .title {
   font-weight: bold;

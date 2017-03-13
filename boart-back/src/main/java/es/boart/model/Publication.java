@@ -1,7 +1,6 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +25,6 @@ import es.boart.boartUtils;
 public class Publication {
 
 	private final int DEFAULT_VISITS = 0;
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
