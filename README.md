@@ -24,6 +24,8 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 * Etiqueta: Palabras que los usuarios podrán usar en sus publicaciones para que el resto de personas encuentren sus obras con más facilidad. Las etiquetas también servirán para ver publicaciones referentes a un mismo tema (filtro).
 * Votos.
 * Comentarios.
+![Diagrama]
+(http://i.imgur.com/w0wUk5I.png)
 
 ## Integrantes 
 * Oscar Ballesteros Izquierdo. o.ballesteros@alumnos.urjc.es
@@ -35,7 +37,7 @@ https://trello.com/b/fG0uTmVa
 
 ## Navegación
 ![Navegacion]
-(http://i.imgur.com/3QFtfaP.png)
+(http://i.imgur.com/N1B1zfq.png)
 
 # Portada
 ![Portada]
@@ -68,3 +70,7 @@ https://trello.com/b/fG0uTmVa
 # Upload
 ![Upload]
 (http://i.imgur.com/TTXg9Be.png)
+
+# Crear Grupo
+![Crear Grupo]
+(http://i.imgur.com/hirZCB2.png)
