@@ -32,6 +32,7 @@ import es.boart.UserComponent;
 import es.boart.model.Grupo;
 import es.boart.model.Publication;
 import es.boart.model.Tag;
+import es.boart.model.User;
 import es.boart.repository.GroupRepository;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.TagRepository;
@@ -40,7 +41,7 @@ import es.boart.repository.UserRepository;
 @Controller
 public class UploadController {
 	
-	private final String IMG_PATH 					= "src/main/resources/static/img/";
+	private final static String IMG_PATH 					= "src/main/resources/static/img/";
 	private final String SOUNDCLOUD_EMBED_URL 		= "http://soundcloud.com/oembed?format=json&url=https://soundcloud.com/";
 	private final String SOUNDCLOUD_IFRAME_PARAM 	= "&iframe=true";
 	private final int IMAGE_TYPE = 0;
@@ -57,6 +58,8 @@ public class UploadController {
 	private UserRepository userRepository;
 	@Autowired
 	private GroupRepository groupRepository;
+	
+	
 
 	@RequestMapping("/upload")
 	public String upload_front(Model modelo, HttpSession session, HttpServletRequest request) {
@@ -112,7 +115,7 @@ public class UploadController {
 
 		return "redirect:/publication/"+publication.getId();
 	}
-	
+		
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws MalformedURLException {
@@ -145,7 +148,7 @@ public class UploadController {
     	return mediaType;
     }
     
-	private String prepareImage(MultipartFile file, String type){
+	static String prepareImage(MultipartFile file, String type){
 		
 		Path rootLocation = Paths.get(IMG_PATH);
 		
@@ -156,6 +159,7 @@ public class UploadController {
 		}
 		catch(Exception e){
 			System.out.println("Error copying image file to: "+rootLocation.resolve(media));
+			media = "";
 		}
 		
 		return media;
