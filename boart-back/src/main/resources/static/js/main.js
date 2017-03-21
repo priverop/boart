@@ -111,9 +111,21 @@ var modalSign = function(e){
 	
 };
 
+var checkMyLike = function(idPublication){
+	var request = $.ajax({
+		  url: "http://localhost:8400/checkLike",
+		  method: "GET",
+		  data: {id: idPublication}
+	}).done(function( response ) {
+		
+		if (response == "true") {
+			$("#"+idPublication).addClass('added');
+		}
+	});
+}
 
 $(function() {
 	modalSign();
 	likeManager();
-	checkLikes();
+	checkMyLike();
 });

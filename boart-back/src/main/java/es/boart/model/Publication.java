@@ -48,7 +48,7 @@ public class Publication {
 	private List<Comment> comments = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="publication")
-	private List<PublicationLike> likes;
+	private List<PublicationLike> likes = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="publications") 
 	private Set<Tag> tags;
@@ -264,6 +264,20 @@ public class Publication {
 	public void setNumberOfComments(int numberOfComments) {
 		this.numberOfComments = numberOfComments;
 	}	
+	
+	/* CUSTOM METHOD */
+	
+	public boolean checkUserLikesThis(User user){
+				
+		for(PublicationLike like:this.getLikes()){
+			if(like.getUser() == user){
+				System.out.println("SEHHH");
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
 		
 	

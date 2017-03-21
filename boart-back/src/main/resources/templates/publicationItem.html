@@ -5,7 +5,7 @@
 		<div class="rating">
 			<a href="#" publication="{{ id }}"> <span
 				class="glyphicon glyphicon-heart-empty like_icon"
-				aria-hidden="true"></span><span class="rating-value">{{numberOfLikes }}</span>
+				aria-hidden="true" id="{{id}}"></span><span class="rating-value">{{numberOfLikes }}</span>
 			</a>							
 		</div>
 		<div class="comments">
@@ -27,4 +27,5 @@
 			{{stringDate}}
 		</div>
 	</a> 
+	<script>checkMyLike({{id}})</script>
 </div>

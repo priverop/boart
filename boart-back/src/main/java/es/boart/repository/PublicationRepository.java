@@ -20,5 +20,4 @@ public interface PublicationRepository extends JpaRepository<Publication, Long> 
 	
 	Page<Publication> findAll(Pageable pageable);
 	List<Publication> findByTags(Tag tag);
-	Publication findById(long id);
 }

@@ -216,11 +216,14 @@ public class BuildBBDD {
 		publicationRepository.save(lPublications);
 		
 		/* Likes */
-//		for(Publication p: lPublications){
-//			for(User u: lUsers){
-//				likeRepository.save(new PublicationLike(u, p));
-//			}
-//		}
+		for(Publication p: lPublications){
+			for(User u: lUsers){
+				PublicationLike newLike = new PublicationLike(u, p);
+				p.addLike(newLike);
+				likeRepository.save(newLike);
+				publicationRepository.save(p);
+			}
+		}
 		
 		/* Group Publications */
 		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://0.tqn.com/d/rap/1/S/N/3/-/-/Missy.jpg");
