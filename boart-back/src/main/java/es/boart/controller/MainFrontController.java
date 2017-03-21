@@ -2,20 +2,19 @@ package es.boart.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +28,9 @@ import es.boart.repository.UserRepository;
 
 @Controller
 public class MainFrontController {
+	
+	private final int DEFAULT_SIZE = 10;
+	private final int DEFAULT_PAGE = 0;
 
 	@Autowired
 	private UserComponent userSession;
@@ -50,13 +52,26 @@ public class MainFrontController {
 	public String portada(Model modelo, HttpServletRequest request) {
 
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
-		modelo.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(0, 10)));
+		modelo.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(DEFAULT_PAGE, DEFAULT_SIZE)));
 		modelo.addAttribute("filter", "latest");
 
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 
 		return "mainfront_template";
+	}
+	
+	@GetMapping("/page")
+	public String portadaPageable(Model modelo, @RequestParam("page") int page, HttpServletRequest request){
+		
+		modelo.addAttribute("filter", "latest");
+
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		modelo.addAttribute("token", token.getToken());
+		
+		modelo.addAttribute("publications", publicationRepository.findAll(new PageRequest(page, DEFAULT_SIZE)));
+
+		return "publicationPage";
 	}
 
 	@PostMapping("/")

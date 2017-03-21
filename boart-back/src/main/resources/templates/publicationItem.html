@@ -1,0 +1,30 @@
+<div class="publication app_box publication_box">
+	<a href="/publication/{{id}}">
+		{{{ media }}}
+		<p>{{ title }}</p>
+		<div class="rating">
+			<a href="#" publication="{{ id }}"> <span
+				class="glyphicon glyphicon-heart-empty like_icon"
+				aria-hidden="true"></span><span class="rating-value">{{numberOfLikes }}</span>
+			</a>							
+		</div>
+		<div class="comments">
+			<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+			<span class="numComments">{{numberOfComments}}</span>
+		</div>
+		<div class="tag_component">
+			{{#tags}}
+			<form method="POST" class="tagForm" name="{{tag}}{{id}}Form">
+				<input type="hidden" name="nTag" value="{{tag}}"> 
+				<input type="hidden" name="_csrf" value="{{token}}" />
+				<input type="hidden" name="filter" value="{{filter}}"/> 
+				<input type="hidden" name="type" value="addTag" /> 
+				<span class="tag" onclick="{{tag}}{{id}}Form.submit()">{{tag}}</span>																
+			</form>
+			{{/tags}}
+		</div>
+		<div class="divDate">
+			{{stringDate}}
+		</div>
+	</a> 
+</div>

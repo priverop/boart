@@ -1,4 +1,5 @@
 $(function() {
+	var pageGlobal = 0;
 	
 	$('.load_more span').click(function(e){
 		 e.preventDefault();
@@ -6,12 +7,13 @@ $(function() {
 		 $('.spinner_overlay').css('display', 'flex');
 		 
 		 var request = $.ajax({
-			  url: "pageable",
-			  method: "POST",
-			  data: "lastIndex=" + 10
+			  url: "http://localhost:8400/page",
+			  method: "GET",
+			  data: {page : pageGlobal + 1}
 		});
 			 
 		request.done(function( response ) {
+			$('#columns').append(response);
 			$('.spinner_overlay').css('display', 'none');
 		});
 			 
