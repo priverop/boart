@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.User;
@@ -48,7 +50,7 @@ public class PrivateProfileController {
 	}
 	
 	@PostMapping("/edit_profile")
-	public String register(User usuario){
+	public String register(User usuario, @RequestParam(value="inputFile", required=false) MultipartFile file){
 		
 		User user = userRepo.findById(usuario.getId());
 		
@@ -72,6 +74,12 @@ public class PrivateProfileController {
 			user.setDescription(usuario.getDescription());
 		}		
 		
+		if(!file.getOriginalFilename().equals("")){
+			String media = es.boart.controller.UploadController.prepareImage(file, "");
+			if (!media.equals(""))
+			user.setImg("/files/" + media);			
+		}
+				
 		userRepo.save(user);
 		userSession.setUser(user);
 

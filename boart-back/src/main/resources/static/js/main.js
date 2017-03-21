@@ -1,18 +1,3 @@
-var checkLikes = function(){
-	
-	var $ratingValueSpan = $('.rating-value');
-	
-	$ratingValueSpan.each(function(index, element){
-		var $element = $(element);
-		var $likeIcon = $element.siblings('.like_icon');
-		var ratingValue = parseInt($element.text());
-		
-		if(ratingValue > 0){
-			$likeIcon.addClass('added');
-		}
-	});
-};
-
 var activeFilter = function(filter){
 	if (filter == 'likes'){
 		document.getElementById('aLikes').className ='active';
@@ -109,6 +94,7 @@ var modalSign = function(e){
 		
 	});
 	
+	
 };
 
 var checkMyLike = function(idPublication){
@@ -124,8 +110,8 @@ var checkMyLike = function(idPublication){
 	});
 }
 
+
 $(function() {
 	modalSign();
 	likeManager();
-	checkMyLike();
 });
