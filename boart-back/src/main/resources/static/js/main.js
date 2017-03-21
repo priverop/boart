@@ -64,7 +64,7 @@ var likeManager = function(){
 	});
 };
 
-var modalSign = function(){
+var modalSign = function(e){
 	
 	var $singUpButton = $('#sing_up');
 	var $singInButton = $('#sing_in');
@@ -90,9 +90,18 @@ var modalSign = function(){
 	$singInButton.click(function(){
 		overlay(true);
 		$boxSignUp.hide();
-		console.log($boxSignIn)
 		$boxSignIn.show();
 	});
+	
+	// INTENTO CERRAR MODAL
+//	$(".overlay").click(function(e){
+//		console.log(e.target.id);
+//		if(e.target.id != $(".box_sign").attr('id')){
+//			overlay(false);
+//			$boxSignUp.hide();
+//			$boxSignIn.hide();
+//		}		
+//	});
 	
 	var $boxSignForms = $('.box_sign').find('form');
 	
