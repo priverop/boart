@@ -45,14 +45,17 @@ public class PublicationController {
 		
 		Publication publication = publicationRepository.findOne(IDPublication);
 		
-		User user = userRepository.findOne(userSession.getUser().getId());
-		
-		boolean canDelete = user == publication.getUser() ? true : false;
-		
+		if (userSession.getUser() != null) {
+			User user = userRepository.findOne(userSession.getUser().getId());
+			if (user != null) {
+				boolean canDelete = user == publication.getUser() ? true : false;
+				modelo.addAttribute("canDelete", canDelete);
+			}
+		}
+
 		modelo.addAttribute("publication", publication);
 		modelo.addAttribute("reference", "publication");
 		modelo.addAttribute("IDLocation", IDPublication);
-		modelo.addAttribute("canDelete", canDelete);
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
