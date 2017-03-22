@@ -3,7 +3,7 @@
 @import url("header.css");
 @import url("footer.css");
 @import url("tag-list.css");
-@import url("comentarios.css");
+@import url("comments.css");
 
 .user_wrapper {
   padding: 10px;

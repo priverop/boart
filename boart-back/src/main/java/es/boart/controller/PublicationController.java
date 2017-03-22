@@ -45,7 +45,7 @@ public class PublicationController {
 		
 		Publication publication = publicationRepository.findOne(IDPublication);
 		
-		User user = userRepository.findById(userSession.getUser().getId());
+		User user = userRepository.findOne(userSession.getUser().getId());
 		
 		boolean canDelete = user == publication.getUser() ? true : false;
 		
@@ -77,7 +77,7 @@ public class PublicationController {
 	@PostMapping("/publication/delete")
 	public String deletePublication(@RequestParam String idPublication) {
 	
-		User user = userRepository.findById(userSession.getUser().getId());
+		User user = userRepository.findOne(userSession.getUser().getId());
 		Publication publication = publicationRepository.findOne(Long.parseLong(idPublication));
 		
 		List<Publication> gallery = user.getGallery();

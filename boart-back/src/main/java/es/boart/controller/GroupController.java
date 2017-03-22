@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.Grupo;
@@ -79,6 +81,8 @@ public class GroupController {
 	@RequestMapping("/group/create")
 	public String createGroup(Model modelo, HttpServletRequest request){
 		
+		modelo.addAttribute("sesion_usuario", userSession.getUser());
+
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
@@ -86,7 +90,17 @@ public class GroupController {
 	}
 	
 	@PostMapping("/group/create")
-	public String createGroupForm(Model modelo, Grupo group){
+	public String createGroupForm(Model modelo, Grupo group, @RequestParam(value="inputImage") MultipartFile file){
+		System.out.println("Llega");
+		
+		if(group.getTitle() != null && group.getDescription() != null && !file.getOriginalFilename().equals("")){
+			String media = es.boart.controller.UploadController.prepareImage(file, "");
+			if (!media.equals(""))
+			group.setImg("/files/" + media);
+		}
+		else{
+			return "redirect:/group/create";
+		}
 		
 		groupRepo.save(group);
 		

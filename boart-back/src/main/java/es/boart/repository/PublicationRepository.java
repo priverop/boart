@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.boart.model.Publication;
 import es.boart.model.Tag;
+import es.boart.model.User;
 
 public interface PublicationRepository extends JpaRepository<Publication, Long> {
 	
@@ -16,4 +17,5 @@ public interface PublicationRepository extends JpaRepository<Publication, Long> 
 	
 	Page<Publication> findAll(Pageable pageable);
 	List<Publication> findByTags(Tag tag);
+	Page<Publication> findByUser(Pageable pageable, User user);
 }

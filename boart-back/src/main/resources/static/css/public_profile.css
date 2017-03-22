@@ -44,9 +44,14 @@
   height: 200px;
   overflow: auto;
 }
+.user_publications h2{
+	margin: 10px 0 5px 0;
+	font-size: 1.5em;
+}
 .user_publications .title {
-  font-weight: bold;
-  font-size: 1.2em;
+	font-weight: bold;
+	font-size: 1.1em;
+	margin-bottom: 0;  	
 }
 .user_publications .description {
   font-size: 0.8em;
@@ -92,6 +97,25 @@
 
 #columns:hover .publication:not(:hover) {
   opacity: 0.4;
+}
+
+.load_more {
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #58a50f; 
+   line-height: 0.1em;
+   margin: 20px 0px; 
+}
+
+.load_more span {
+	font-size: 1.1em;
+	cursor: pointer;
+	padding:0 10px; 
+	background-color: #fbfbfb !important;
+}
+
+.load_more span:hover {
+	color: #58a50f;
 }
 
 /* Small devices (tablets, 768px and up) */
