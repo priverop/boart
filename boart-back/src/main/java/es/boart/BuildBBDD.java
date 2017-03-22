@@ -235,7 +235,7 @@ public class BuildBBDD {
 		}
 		
 		/* Group Publications */
-		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://0.tqn.com/d/rap/1/S/N/3/-/-/Missy.jpg");
+		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://www.hhgroups.com/imagenes/artistas/gata-cattana-artista.jpg");
 		groupRepository.save(rap);
 		rap.addPublication(lPublications.get(0));
 		rap.addMember(juan);

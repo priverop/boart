@@ -116,3 +116,27 @@
   -o-transition: all .5s ease;
   transition: all .5s ease;
 }
+
+.user_profile .follow_list ul {
+	list-style: none;
+}
+
+.user_profile .follow_list ul li {
+	display: inline-block;
+	margin: 10px;
+}
+
+.user_profile .follow_list ul li a {
+	color: #000;
+}
+
+.user_profile .follow_list ul li img {
+	width: 64px;
+	margin: 5px;
+	display: block;
+}
+
+.user_profile .follow_list ul li span {
+	text-align: center;
+	display: block;
+}
