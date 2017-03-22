@@ -4,7 +4,7 @@
 @import url("search.css");
 @import url("tag-list.css");
 @import url("footer.css");
-@import url("comentarios.css");
+@import url("comments.css");
 
 .user_publications, .user_info {
   margin-left: 10px;
