@@ -72,7 +72,7 @@ public class User {
 	 * @param password
 	 * @param roles
 	 */
-	public User(String username, String name, String surname, String password, String... roles) {
+	public User(String username, String name, String surname, String password, String img, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
@@ -81,7 +81,7 @@ public class User {
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
-		this.img = DEFAULT_IMG;
+		this.img = img;
 		// Fecha actual
 		Date date = new Date();
 		
