@@ -37,10 +37,10 @@ public class PrivateProfileController {
 		if(userSession.getUser() != null){
 			User myUser = userRepo.findOne(userSession.getUser().getId());
 		
-		modelo.addAttribute("usuario", myUser);
-		modelo.addAttribute("followings", myUser.getFollowing());
-		modelo.addAttribute("followers", myUser.getFollowers());
-		modelo.addAttribute("groups", myUser.getGroups());
+			modelo.addAttribute("usuario", myUser);
+			modelo.addAttribute("followings", myUser.getFollowing());
+			modelo.addAttribute("followers", myUser.getFollowers());
+			modelo.addAttribute("groups", myUser.getGroups());
 		}
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -51,37 +51,40 @@ public class PrivateProfileController {
 	
 	@PostMapping("/edit_profile")
 	public String register(User usuario, @RequestParam(value="inputFile", required=false) MultipartFile file){
-		
-		User user = userRepo.findById(usuario.getId());
-		
-		if(usuario.getName() != null){
-			user.setName(usuario.getName());
+
+		if(usuario.getId() == userSession.getUser().getId()){
+			
+			User user = userRepo.findById(usuario.getId());
+			
+			if(usuario.getName() != null){
+				user.setName(usuario.getName());
+			}
+			
+			if(usuario.getSurname() != null){
+				user.setSurname(usuario.getSurname());
+			}
+			
+			if(usuario.getUsername() != null){
+				user.setUsername(usuario.getUsername());
+			}
+			
+			if(usuario.getPassword() != null){
+				user.setPassword(usuario.getPassword());
+			}
+			
+			if(usuario.getDescription() != null){
+				user.setDescription(usuario.getDescription());
+			}		
+			
+			if(!file.getOriginalFilename().equals("")){
+				String media = es.boart.controller.UploadController.prepareImage(file, "");
+				if (!media.equals(""))
+				user.setImg("/files/" + media);			
+			}
+					
+			userRepo.save(user);
+			userSession.setUser(user);
 		}
-		
-		if(usuario.getSurname() != null){
-			user.setSurname(usuario.getSurname());
-		}
-		
-		if(usuario.getUsername() != null){
-			user.setUsername(usuario.getUsername());
-		}
-		
-		if(usuario.getPassword() != null){
-			user.setPassword(usuario.getPassword());
-		}
-		
-		if(usuario.getDescription() != null){
-			user.setDescription(usuario.getDescription());
-		}		
-		
-		if(!file.getOriginalFilename().equals("")){
-			String media = es.boart.controller.UploadController.prepareImage(file, "");
-			if (!media.equals(""))
-			user.setImg("/files/" + media);			
-		}
-				
-		userRepo.save(user);
-		userSession.setUser(user);
 
 		return "redirect:/private_profile";
 	}
