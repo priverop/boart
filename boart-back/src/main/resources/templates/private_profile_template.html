@@ -69,20 +69,26 @@
                 
                 <div class="col-xs-12 follow_list">
                 	<h2>Following:</h2>
-                	{{#followings}}
                 	<ul>
-                		<li>{{username}}</li>
+                	{{#followings}}
+                		<li>
+                			<img src="{{img}}"/>
+							<span>{{username}}</span>
+						</li>
+					{{/followings}}
                 	</ul>
-                	{{/followings}}
                 </div>
                
                 <div class="col-xs-12 follow_list">
                 	<h2>Followers:</h2>
-                	{{#followers}}
                 	<ul>
-                		<li>{{username}}</li>
+                	{{#followers}}
+                		<li>
+                			<img src="{{img}}"/>
+							<span>{{username}}</span>
+						</li>
+					{{/followers}}
                 	</ul>
-               		{{/followers}}
                 </div>
                 
                 <div class="col-xs-12">
