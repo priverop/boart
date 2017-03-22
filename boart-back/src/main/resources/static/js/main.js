@@ -78,15 +78,15 @@ var modalSign = function(e){
 		$boxSignIn.show();
 	});
 	
-	// INTENTO CERRAR MODAL
-//	$(".overlay").click(function(e){
-//		console.log(e.target.id);
-//		if(e.target.id != $(".box_sign").attr('id')){
-//			overlay(false);
-//			$boxSignUp.hide();
-//			$boxSignIn.hide();
-//		}		
-//	});
+	$(".overlay").click(function() {
+		overlay(false);
+		$boxSignUp.hide();
+		$boxSignIn.hide();
+	});
+
+	$(".app_box").click(function(event){
+		event.stopPropagation();
+	});
 	
 	var $boxSignForms = $('.box_sign').find('form');
 	
