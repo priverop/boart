@@ -65,3 +65,7 @@
 .tagForm{
 	display: inline-block;
 }
+
+.delete_publication label{
+	padding: 5px 10px;
+}

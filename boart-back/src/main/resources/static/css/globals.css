@@ -261,3 +261,18 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #8BC34A;
 }
+
+input[type=submit] {
+    color: rgba(88, 165, 15, 0.75);
+    background-color: #fff;
+    border: 1px solid rgba(88, 165, 15, 0.75);
+    font-weight: bold;
+    padding: 5px 15px;
+    margin: 10px 0px;
+    display: inline-block;
+}
+
+input[type=submit]:hover {
+    color: #fff;
+    background-color: rgba(88, 165, 15, 0.75);
+}
