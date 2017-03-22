@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +30,7 @@ import es.boart.repository.UserRepository;
 
 @Controller
 public class MainFrontController {
-	
+
 	private final int DEFAULT_SIZE = 10;
 	private final int DEFAULT_PAGE = 0;
 
@@ -61,34 +62,50 @@ public class MainFrontController {
 
 		return "mainfront_template";
 	}
-	
+
 	@GetMapping("/page")
-	public String portadaPageable(Model modelo, @RequestParam("page") int page, HttpServletRequest request){
-		
+	public String portadaPageable(Model modelo, @RequestParam("page") int page, HttpServletRequest request) {
+
 		modelo.addAttribute("filter", "latest");
 
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
-		
+
 		modelo.addAttribute("publications", publicationRepository.findAll(new PageRequest(page, DEFAULT_SIZE)));
 
 		return "publicationPage";
 	}
+	
+	public String getSort(String filter){
+		if (filter.equals("likes"))
+			return "numberOfLikes";
+		if (filter.equals("comments"))
+			return "numberOfComments";
+		return "date";
+	}
+	
+	public String changeFilter(Model model, String filter){
+		model.addAttribute("filter", filter);
+		model.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(0, DEFAULT_SIZE, Sort.Direction.DESC, getSort(filter))));
+		return "mainfront_template";
+	}
 
 	@PostMapping("/")
-	public String portadaFiltrada(Model modelo, 
-			HttpServletRequest request, 
-			@RequestParam(value = "tags", required = false) String tags, 
-			@RequestParam(value = "nTag", required = false) String nTag, 
-			@RequestParam(value = "type") String type,
-			@RequestParam(value = "filter", required = false) String filter) {
+	public String portadaFiltrada(Model modelo, HttpServletRequest request, @RequestParam(value = "tags", required = false) String tags, @RequestParam(value = "nTag", required = false) String nTag, @RequestParam(value = "type") String type,
+			@RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "page", required = false) Integer page) {
 
 		Set<String> sTags = new HashSet<>();
 		if (tags != null) {
 			for (String s : Arrays.asList(tags.split(","))) {
+				if (!s.equals(""))
 				sTags.add(s);
 			}
 		}
+		
+		Set<Publication> sPublications = new HashSet<>(); 
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		modelo.addAttribute("token", token.getToken());
+
 		switch (type) {
 		case "addTag":
 			sTags.add(nTag);
@@ -97,37 +114,65 @@ public class MainFrontController {
 			sTags.remove(nTag);
 			break;
 		case "latestFilter":
-			filter = "latest";
-			break;
+			return changeFilter(modelo, "latest");
 		case "likesFilter":
-			filter = "likes";
-			break;
+			return changeFilter(modelo, "likes");
 		case "commentsFilter":
-			filter = "comments";
-			break;
+			return changeFilter(modelo, "comments");
 		}
 
-		if (type.equals("addTag")) {
-		} else if (type.equals("remTag")) {
+		if (page == null)
+			page = 0;
 
-			return portada(modelo, request);
-		}
-
-		Set<Publication> sPublications = new HashSet<>();
-		if (sTags.size() == 0) {
-			sPublications.addAll(publicationRepository.findAll());
+		if (filter == null)
+			filter = "latest";
+			
+			
+		if 	(type.equals("pagination")){ //Llamadas Ajax
+			if (sTags.size() == 0) 
+				return publicationsNoTag(page, filter, modelo);
+			else if (sTags.size() == 1) 
+				return publicationsOneTag(page, filter,tags.split(",")[0], modelo);
 		} else {
+			
 			for (String s : sTags) {
 				sPublications.addAll(publicationRepository.findByTags(new Tag(s)));
 			}
-		}
-
+		
 		ArrayList<Publication> lPublications = new ArrayList<Publication>(sPublications);
-		if (filter == null)
-			filter = "latest";
+		ordernarPorFiltro(lPublications, filter);// Ordeno el set en una lista
+
+		modelo.addAttribute("sTags", sTags);
+		modelo.addAttribute("filter", filter);
+		if (sTags.size() == 0)
+			modelo.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(DEFAULT_PAGE, DEFAULT_SIZE, Sort.Direction.DESC, getSort(filter))));
+		else if (sTags.size() == 1)
+			modelo.addAttribute("publicaciones", publicationRepository.findByTags(new Tag(nTag), new PageRequest(DEFAULT_PAGE, DEFAULT_SIZE,Sort.Direction.DESC, getSort(filter))));
+		else
+			modelo.addAttribute("publicaciones", lPublications);
+		modelo.addAttribute("sesion_usuario", userSession.getUser());
+		return "mainfront_template";
+		} 
+		return "";
+	}
+	
+	
+	public String publicationsNoTag(int page, String filter, Model model){
+		model.addAttribute("publications", publicationRepository.findAll(new PageRequest(page, DEFAULT_SIZE,Sort.Direction.DESC, getSort(filter))));
+		model.addAttribute("filter", filter);
+		return "publicationPage";		
+	}
+	
+	public String publicationsOneTag(int page, String filter, String tag, Model model){
+		model.addAttribute("publications", publicationRepository.findByTags(new Tag(tag), new PageRequest(page, DEFAULT_SIZE,Sort.Direction.DESC, getSort(filter))));
+		model.addAttribute("filter", filter);
+		return "publicationPage";
+	}
+
+	public void ordernarPorFiltro(ArrayList<Publication> lPublications, String filter) {
 		switch (filter) {
-		default: //si llega un valor extraño tomamos el filtro latest por defecto
-			modelo.addAttribute("filter", "latest");
+		default: // si llega un valor extraño tomamos el filtro latest por
+					// defecto
 			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
 				@Override
 				public int compare(Publication p1, Publication p2) {
@@ -136,7 +181,6 @@ public class MainFrontController {
 			});
 			break;
 		case "likes":
-			modelo.addAttribute("filter", "likes");
 			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
 				@Override
 				public int compare(Publication p1, Publication p2) {
@@ -145,7 +189,6 @@ public class MainFrontController {
 			});
 			break;
 		case "comments":
-			modelo.addAttribute("filter", "comments");
 			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
 				@Override
 				public int compare(Publication p1, Publication p2) {
@@ -154,17 +197,6 @@ public class MainFrontController {
 			});
 			break;
 		}
-
-//		sPublications = new HashSet<>(lPublications);
-
-		modelo.addAttribute("sTags", sTags);
-		modelo.addAttribute("filter", filter);
-		// ¿Todo esto no es redundante? Se debe poder hacer sin duplicar código
-		modelo.addAttribute("publicaciones", lPublications);
-		modelo.addAttribute("sesion_usuario", userSession.getUser());
-		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		modelo.addAttribute("token", token.getToken());
-		return "mainfront_template";
 	}
-	
+
 }

@@ -16,4 +16,6 @@ public interface PublicationRepository extends JpaRepository<Publication, Long> 
 	
 	Page<Publication> findAll(Pageable pageable);
 	List<Publication> findByTags(Tag tag);
+	List<Publication> findByTags(Tag tag, Pageable pageable);
+
 }

@@ -16,6 +16,11 @@
 <link rel="stylesheet" href="../css/spinner.css">
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/pageable.js"></script>
+<meta content="{{token}}" name="csrf-token" />
+<meta content="{{filter}}" name="filter" />
+<meta content="{{#sTags}}{{.}},{{/sTags}}" name="tags" />
+
+
 
 </head>
 <body onload="activeFilter('{{filter}}')">
