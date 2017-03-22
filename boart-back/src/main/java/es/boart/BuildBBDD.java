@@ -239,6 +239,8 @@ public class BuildBBDD {
 		groupRepository.save(rap);
 		rap.addPublication(lPublications.get(0));
 		rap.addMember(juan);
+		rap.addMember(emilio);
+		rap.addMember(concha);
 		groupRepository.save(rap);
 
 	}
