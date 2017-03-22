@@ -46,9 +46,9 @@ public class BuildBBDD {
 	public void init() {
 
 		/* Default Users */
-		User emilio = new User("emilio", "Emilio", "Delgado", "kiwis", "ROLE_USER");
-		User concha = new User("concha", "Concha", "García", "golfas", "ROLE_USER"); 
-		User juan = new User("juan", "Juan", "Cuesta", "juanjuan", "ROLE_USER");
+		User emilio = new User("emilio", "Emilio", "Delgado", "kiwis", "https://pickaface.net/assets/images/slides/slide4.png", "ROLE_USER");
+		User concha = new User("concha", "Concha", "García", "golfas", "https://pickaface.net/assets/images/slides/slide1.png", "ROLE_USER"); 
+		User juan = new User("juan", "Juan", "Cuesta", "juanjuan", "https://pickaface.net/assets/images/slides/slide2.png", "ROLE_USER");
 		juan.getComments().add(new Comment(concha, "Váyase señor Juan!!"));
 		
 		userRepository.save(emilio);
@@ -56,8 +56,10 @@ public class BuildBBDD {
 		
 		juan.addFollowing(emilio);
 		concha.addFollowing(juan);
+		emilio.addFollowing(juan);
 		userRepository.save(juan);
-	
+		userRepository.save(emilio);
+		userRepository.save(concha);
 		
 		/* SPECIFIC GENERATIONS */
 		
@@ -68,28 +70,35 @@ public class BuildBBDD {
 		/* RANDOM GENERATION */
 		
 		List<User> lUsers = new ArrayList<>();		
-		lUsers.add(new User("m0scar", "Oscar", "Ballesteros", "1234", "ROLE_USER"));
-		lUsers.add(new User("nexmaniosis", "Pablo", "Rivero", "juanjuan", "ROLE_USER"));
-		lUsers.add(new User("gcuencam", "Gabriel", "Cuenca", "1234", "ROLE_USER"));
-		lUsers.add(new User("aitorGaleano", "Aitor", "Galeano", "124", "ROLE_USER"));
-		lUsers.add(new User("ramonCapitan", "Ramón", "Capitán", "1234", "ROLE_USER"));
-		lUsers.add(new User("celiaGaspar", "Celia", "Gaspar", "1234", "ROLE_USER"));
-		lUsers.add(new User("carlaNavarro", "Carla", "Navarro", "1234", "ROLE_USER"));
-		lUsers.add(new User("montserratDelValle", "Monstserrat", "Del Valle", "1234", "ROLE_USER"));
-		lUsers.add(new User("mRosarioAyala", "María Rosario", "Ayala", "1234", "ROLE_USER"));
-		lUsers.add(new User("nataliaTorras", "Natalia", "Torras", "1234", "ROLE_USER"));
-		lUsers.add(new User("joseMariaNieves", "José María", "Nieves", "1234", "ROLE_USER"));
-		lUsers.add(new User("ismaelMoreno", "Ismael", "Moreno", "1234", "ROLE_USER"));
-		lUsers.add(new User("albertMesa", "Albert", "Mesa", "1234", "ROLE_USER"));
-		lUsers.add(new User("hugoPariente", "Hugo", "Pariente", "1234", "ROLE_USER"));
-		lUsers.add(new User("vicenteGuash", "Vicente", "Guash", "1234", "ROLE_USER"));
-		lUsers.add(new User("consueloCasas", "Consuelo", "Casas", "1234", "ROLE_USER"));
-		lUsers.add(new User("cristinaCrespo", "Cristina", "Crespo", "1234", "ROLE_USER"));
-		lUsers.add(new User("pilarGarzon", "Pilar", "Garzón", "1234", "ROLE_USER"));
-
+		lUsers.add(new User("m0scar", "Oscar", "Ballesteros", "1234", "https://pickaface.net/assets/images/slides/slide4.png", "ROLE_USER"));
+		lUsers.add(new User("nexmaniosis", "Pablo", "Rivero", "juanjuan", "http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-tech-guy.png", "ROLE_USER"));
+		lUsers.add(new User("gcuencam", "Gabriel", "Cuenca", "1234", "https://pickaface.net/assets/images/slides/slide2.png", "ROLE_USER"));
+		lUsers.add(new User("aitorGaleano", "Aitor", "Galeano", "124", "https://www.tm-town.com/assets/default_male600x600-79218392a28f78af249216e097aaf683.png", "ROLE_USER"));
+		lUsers.add(new User("ramonCapitan", "Ramón", "Capitán", "1234", "https://pickaface.net/assets/images/slides/slide4.png", "ROLE_USER"));
+		lUsers.add(new User("celiaGaspar", "Celia", "Gaspar", "1234", "http://bootdey.com/img/Content/avatar/avatar3.png", "ROLE_USER"));
+		lUsers.add(new User("carlaNavarro", "Carla", "Navarro", "1234", "https://pickaface.net/assets/images/slides/slide1.png", "ROLE_USER"));
+		lUsers.add(new User("montserratDelValle", "Monstserrat", "Del Valle", "1234", "http://bootdey.com/img/Content/avatar/avatar3.png", "ROLE_USER"));
+		lUsers.add(new User("mRosarioAyala", "María Rosario", "Ayala", "1234", "https://pickaface.net/assets/images/slides/slide1.png", "ROLE_USER"));
+		lUsers.add(new User("nataliaTorras", "Natalia", "Torras", "1234", "https://pickaface.net/assets/images/slides/slide1.png", "ROLE_USER"));
+		lUsers.add(new User("joseMariaNieves", "José María", "Nieves", "1234", "https://pickaface.net/assets/images/slides/slide2.png", "ROLE_USER"));
+		lUsers.add(new User("ismaelMoreno", "Ismael", "Moreno", "1234", "https://pickaface.net/assets/images/slides/slide4.png", "ROLE_USER"));
+		lUsers.add(new User("albertMesa", "Albert", "Mesa", "1234", "http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-tech-guy.png", "ROLE_USER"));
+		lUsers.add(new User("hugoPariente", "Hugo", "Pariente", "1234", "https://pickaface.net/assets/images/slides/slide4.png", "ROLE_USER"));
+		lUsers.add(new User("vicenteGuash", "Vicente", "Guash", "1234", "http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-tech-guy.png", "ROLE_USER"));
+		lUsers.add(new User("consueloCasas", "Consuelo", "Casas", "1234", "http://bootdey.com/img/Content/avatar/avatar3.png", "ROLE_USER"));
+		lUsers.add(new User("cristinaCrespo", "Cristina", "Crespo", "1234", "https://pickaface.net/assets/images/slides/slide1.png", "ROLE_USER"));
+		lUsers.add(new User("pilarGarzon", "Pilar", "Garzón", "1234", "http://bootdey.com/img/Content/avatar/avatar3.png", "ROLE_USER"));
+		
 		for (User u: lUsers){
 			userRepository.save(u);
 		}
+		
+		juan.addFollowing(lUsers.get(1));
+		juan.addFollowing(lUsers.get(2));
+		juan.addFollowing(lUsers.get(5));
+		juan.addFollowing(lUsers.get(8));
+		
+		userRepository.save(juan);
 		
 		
 		/* PUBLICACIONES */
