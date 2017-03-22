@@ -76,7 +76,11 @@ public class MainFrontController {
 	}
 
 	@PostMapping("/")
-	public String portadaFiltrada(Model modelo, HttpServletRequest request, @RequestParam(value = "tags", required = false) String tags, @RequestParam(value = "nTag", required = false) String nTag, @RequestParam(value = "type") String type,
+	public String portadaFiltrada(Model modelo, 
+			HttpServletRequest request, 
+			@RequestParam(value = "tags", required = false) String tags, 
+			@RequestParam(value = "nTag", required = false) String nTag, 
+			@RequestParam(value = "type") String type,
 			@RequestParam(value = "filter", required = false) String filter) {
 
 		Set<String> sTags = new HashSet<>();
