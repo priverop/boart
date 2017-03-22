@@ -1,0 +1,21 @@
+.comments_box {
+  padding: 10px 20px;
+}
+.comments_box .comment {
+  display: block;
+  margin: 10px 0px;
+}
+.comments_box textarea {
+   display: block;
+   margin: 10px 0px;
+   width: 100%;
+   min-height: 60px;
+}
+
+.comments_container {
+    padding: 15px;
+}
+
+.comments_box input[type=submit] {
+	display: block;
+}

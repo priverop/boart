@@ -103,8 +103,7 @@ public class UploadController {
 		publicacionRepository.save(publication);
 		
 		// If any group is checked it will have the publication added
-		if(idGroup != null){
-			System.out.println("Grupo seleccionado: "+idGroup);
+		if(idGroup != null && idGroup != 0){
 			Grupo selectedGroup = groupRepository.findOne(idGroup);
 			selectedGroup.addPublication(publication);
 			groupRepository.save(selectedGroup);

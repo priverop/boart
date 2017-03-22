@@ -54,7 +54,7 @@ public class PrivateProfileController {
 
 		if(usuario.getId() == userSession.getUser().getId()){
 			
-			User user = userRepo.findById(usuario.getId());
+			User user = userRepo.findOne(usuario.getId());
 			
 			if(usuario.getName() != null){
 				user.setName(usuario.getName());
