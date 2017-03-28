@@ -19,14 +19,14 @@ import es.boart.UserComponent;
 import es.boart.model.Comment;
 import es.boart.model.Publication;
 import es.boart.model.User;
-import es.boart.repository.PublicationRepository;
 import es.boart.repository.UserRepository;
+import es.boart.services.PublicationService;
 
 @Controller
 public class PublicationController {
 
 	@Autowired
-	private PublicationRepository publicationRepository;	
+	private PublicationService publicationService;	
 	
 	@Autowired
 	private UserRepository userRepository;	
@@ -43,7 +43,7 @@ public class PublicationController {
 	
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
-		Publication publication = publicationRepository.findOne(IDPublication);
+		Publication publication = publicationService.findOne(IDPublication);
 		
 		if (userSession.getUser() != null) {
 			User user = userRepository.findOne(userSession.getUser().getId());
@@ -68,10 +68,10 @@ public class PublicationController {
 	
 		Comment newComment = new Comment(userSession.getUser(), text);
 		
-		Publication publication = publicationRepository.findOne(idLocation);
+		Publication publication = publicationService.findOne(idLocation);
 		publication.getComments().add(newComment);
 		publication.setNumberOfComments(publication.getComments().size());
-		publicationRepository.save(publication);
+		publicationService.save(publication);
 
 		return "redirect:/publication/"+idLocation;
 	}
@@ -81,7 +81,7 @@ public class PublicationController {
 	public String deletePublication(@RequestParam String idPublication) {
 	
 		User user = userRepository.findOne(userSession.getUser().getId());
-		Publication publication = publicationRepository.findOne(Long.parseLong(idPublication));
+		Publication publication = publicationService.findOne(Long.parseLong(idPublication));
 		
 		List<Publication> gallery = user.getGallery();
 		gallery.remove(publication);
@@ -89,7 +89,7 @@ public class PublicationController {
 		
 		userRepository.save(user);
 		userSession.setUser(user);
-		publicationRepository.delete(publication);
+		publicationService.delete(publication);
 		
 		return "redirect:/private_profile";
 	}
