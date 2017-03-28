@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.Grupo;
+import es.boart.model.User;
 import es.boart.repository.UserRepository;
 import es.boart.services.GroupService;
 
@@ -58,11 +59,10 @@ public class GroupController {
 	public String joinGroup(Model modelo, @PathVariable long idGroup, @PathVariable long idUser) {
 		
 		Grupo group = groupService.findOne(idGroup);
+		User myUser = userRepo.findOne(idUser);
 		
-		group.addMember(userRepo.findOne(idUser));
+		groupService.joinGroup(myUser, group);
 		
-		groupService.save(group);
-
 		return "redirect:/group/"+idGroup;
 	}
 	
@@ -70,10 +70,9 @@ public class GroupController {
 	public String leaveGroup(Model modelo, @PathVariable long idGroup, @PathVariable long idUser) {
 		
 		Grupo group = groupService.findOne(idGroup);
+		User myUser = userRepo.findOne(idUser);
 		
-		group.removeMember(userRepo.findOne(idUser));
-		
-		groupService.save(group);
+		groupService.leaveGroup(myUser, group);
 
 		return "redirect:/group/"+idGroup;
 	}
