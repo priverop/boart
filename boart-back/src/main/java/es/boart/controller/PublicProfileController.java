@@ -96,22 +96,21 @@ public class PublicProfileController {
 	public String addFollower(@PathVariable long idUser){
 		
 		User myUser = userService.findByUsername(userSession.getUser().getUsername()); 
-
-		myUser.addFollowing(userService.findOne(idUser));
+		User follow = userService.findOne(idUser);
 		
-		userService.save(userSession.getUser());
+		userService.followUser(myUser, follow);
 		
-		return "redirect:/public_profile/"+userService.findOne(idUser).getUsername();
+		return "redirect:/public_profile/"+follow.getUsername();
 	}
 	
 	@RequestMapping("/unfollow/{idUser}")
 	public String removeFollower(@PathVariable long idUser){
 		
 		User myUser = userService.findByUsername(userSession.getUser().getUsername()); 
+		User unfollow = userService.findOne(idUser);
+		
+		userService.unfollowUser(myUser, unfollow);
 
-		myUser.removeFollowing(userService.findOne(idUser));
-		userService.save(userSession.getUser());
-
-		return "redirect:/public_profile/"+userService.findOne(idUser).getUsername();
+		return "redirect:/public_profile/"+unfollow.getUsername();
 	}
 }

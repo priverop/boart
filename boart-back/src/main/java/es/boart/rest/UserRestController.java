@@ -36,4 +36,29 @@ public class UserRestController {
 		}
 	}
 	
+	@GetMapping("/{user1}/follow/{user2}")
+	public ResponseEntity<User> followUser(@PathVariable long user1, @PathVariable long user2){
+		User userA = userService.findOne(user1);
+		User userB = userService.findOne(user2);
+		userService.followUser(userA, userB);
+		
+		if (userA != null && userB != null) {
+			return new ResponseEntity<>(userA, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/{user1}/unfollow/{user2}")
+	public ResponseEntity<User> unfollowUser(@PathVariable long user1, @PathVariable long user2){
+		User userA = userService.findOne(user1);
+		User userB = userService.findOne(user2);
+		userService.unfollowUser(userA, userB);
+		
+		if (userA != null && userB != null) {
+			return new ResponseEntity<>(userA, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }

@@ -29,6 +29,18 @@ public class UserService {
 	public void save(User u){
 		userRepository.save(u);
 	}
-
 	
+	public void followUser(User myUser, User follow){
+
+		myUser.addFollowing(follow);
+		
+		userRepository.save(myUser);
+	}
+
+	public void unfollowUser(User myUser, User unfollow){
+		
+		myUser.removeFollowing(unfollow);
+		userRepository.save(myUser);
+		
+	}
 }
