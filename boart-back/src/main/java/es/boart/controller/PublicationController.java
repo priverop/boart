@@ -81,16 +81,19 @@ public class PublicationController {
 	public String deletePublication(@RequestParam String idPublication) {
 	
 		User user = userRepository.findOne(userSession.getUser().getId());
+				
 		Publication publication = publicationService.findOne(Long.parseLong(idPublication));
 		
 		List<Publication> gallery = user.getGallery();
-		gallery.remove(publication);
-		user.setGallery(gallery);
+		boolean found = gallery.remove(publication);
+		if(found){
+			user.setGallery(gallery);
 		
-		userRepository.save(user);
-		userSession.setUser(user);
-		publicationService.delete(publication);
+			userRepository.save(user);
+			userSession.setUser(user);
 		
+			publicationService.delete(publication);
+		}
 		return "redirect:/private_profile";
 	}
 	

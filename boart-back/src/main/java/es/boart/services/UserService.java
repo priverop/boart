@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.boart.UserComponent;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
 
@@ -13,6 +14,7 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
 	
 	public User findOne(long id){
 		return userRepository.findOne(id);
@@ -42,5 +44,12 @@ public class UserService {
 		myUser.removeFollowing(unfollow);
 		userRepository.save(myUser);
 		
+	}
+	
+	public User registerUser(String username, String name, String surname, String password){
+		User newUser = new User(username, name, surname, password);
+		userRepository.save(newUser);
+		
+		return newUser;
 	}
 }

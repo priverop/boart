@@ -35,4 +35,5 @@ public class PublicationRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
 }

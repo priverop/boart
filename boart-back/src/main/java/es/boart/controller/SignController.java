@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.boart.UserComponent;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
+import es.boart.services.UserService;
 
 @Controller
 public class SignController {
@@ -21,8 +22,10 @@ public class SignController {
 	@Autowired
 	private UserRepository userRepo;
 	
+
+	
 	@Autowired
-	private UserComponent userSession;
+	private UserService userService;
 	
 	@RequestMapping("/login")
 	public String loginPage(Model modelo, HttpServletRequest request){
@@ -46,12 +49,8 @@ public class SignController {
 	@PostMapping("/register")
 	public String register(User usuario){
 		
-		User newUser = new User(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword() );
+		userService.registerUser(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword());
 		
-		userRepo.save(newUser);
-		userSession.setUser(usuario);
-
-
 		return "redirect:/private_profile";
 	}
 	
