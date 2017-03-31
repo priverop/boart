@@ -15,14 +15,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.Grupo;
-import es.boart.repository.GroupRepository;
+import es.boart.model.User;
 import es.boart.repository.UserRepository;
+import es.boart.services.GroupService;
 
 @Controller
 public class GroupController {
 	
 	@Autowired
-	private GroupRepository groupRepo;
+	private GroupService groupService;
 	
 	@Autowired
 	private UserComponent userSession;
@@ -39,10 +40,10 @@ public class GroupController {
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
 		modelo.addAttribute("idGroup", idGroup);
-		modelo.addAttribute("group", groupRepo.findOne(idGroup));
+		modelo.addAttribute("group", groupService.findOne(idGroup));
 		
 		if(userSession.getUser() != null){
-			modelo.addAttribute("userBelongs", groupRepo.findOne(idGroup).hasUser(userRepo.findOne(userSession.getUser().getId())));
+			modelo.addAttribute("userBelongs", groupService.findOne(idGroup).hasUser(userRepo.findOne(userSession.getUser().getId())));
 		}
 		else{
 			modelo.addAttribute("guest", true);
@@ -57,23 +58,21 @@ public class GroupController {
 	@RequestMapping("/group/{idGroup}/join/{idUser}")
 	public String joinGroup(Model modelo, @PathVariable long idGroup, @PathVariable long idUser) {
 		
-		Grupo group = groupRepo.findOne(idGroup);
+		Grupo group = groupService.findOne(idGroup);
+		User myUser = userRepo.findOne(idUser);
 		
-		group.addMember(userRepo.findOne(idUser));
+		groupService.joinGroup(myUser, group);
 		
-		groupRepo.save(group);
-
 		return "redirect:/group/"+idGroup;
 	}
 	
 	@RequestMapping("/group/{idGroup}/leave/{idUser}")
 	public String leaveGroup(Model modelo, @PathVariable long idGroup, @PathVariable long idUser) {
 		
-		Grupo group = groupRepo.findOne(idGroup);
+		Grupo group = groupService.findOne(idGroup);
+		User myUser = userRepo.findOne(idUser);
 		
-		group.removeMember(userRepo.findOne(idUser));
-		
-		groupRepo.save(group);
+		groupService.leaveGroup(myUser, group);
 
 		return "redirect:/group/"+idGroup;
 	}
@@ -102,7 +101,7 @@ public class GroupController {
 			return "redirect:/group/create";
 		}
 		
-		groupRepo.save(group);
+		groupService.save(group);
 		
 		return "redirect:/group/"+group.getId();
 	}

@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.User;
-import es.boart.repository.UserRepository;
+import es.boart.services.UserService;
 
 @Controller
 public class PrivateProfileController {
@@ -24,7 +24,7 @@ public class PrivateProfileController {
 	private UserComponent userSession;
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserService userService;
 	
 	@PostConstruct
 	public void init(){}
@@ -35,7 +35,7 @@ public class PrivateProfileController {
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
 		if(userSession.getUser() != null){
-			User myUser = userRepo.findOne(userSession.getUser().getId());
+			User myUser = userService.findOne(userSession.getUser().getId());
 		
 			modelo.addAttribute("usuario", myUser);
 			modelo.addAttribute("followings", myUser.getFollowing());
@@ -54,7 +54,7 @@ public class PrivateProfileController {
 
 		if(usuario.getId() == userSession.getUser().getId()){
 			
-			User user = userRepo.findOne(usuario.getId());
+			User user = userService.findOne(usuario.getId());
 			
 			if(usuario.getName() != null){
 				user.setName(usuario.getName());
@@ -82,7 +82,7 @@ public class PrivateProfileController {
 				user.setImg("/files/" + media);			
 			}
 					
-			userRepo.save(user);
+			userService.save(user);
 			userSession.setUser(user);
 		}
 
