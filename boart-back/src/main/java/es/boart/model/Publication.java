@@ -19,6 +19,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import es.boart.boartUtils;
 
 @Entity
@@ -91,6 +94,7 @@ public class Publication {
 	/**
 	 * @return the user
 	 */
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -199,6 +203,7 @@ public class Publication {
 	/**
 	 * @return the likes
 	 */
+	@JsonIgnore
 	public List<PublicationLike> getLikes() {
 		return likes;
 	}
@@ -223,6 +228,7 @@ public class Publication {
 	/**
 	 * @return the comentariosPublicacion
 	 */
+	@JsonIgnore
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -234,6 +240,7 @@ public class Publication {
 		this.comments = comentariosPublicacion;
 	}
 	
+	@JsonIgnore
 	public Set<Tag> getTags() {
 		return tags;
 	}
@@ -278,6 +285,40 @@ public class Publication {
 		
 		return false;
 	}
+	
+	
+	
+	 @JsonProperty("user")
+	 public String getGalleryJSON(){
+	    	return "@" + user.getUsername();
+	 }
+	 
+	 @JsonProperty("comments")
+	 public List<String> getCommentsJSON(){
+	    	ArrayList<String> commentList = new ArrayList<String>();
+	    	for (Comment c : comments){
+	    		commentList.add("@" + c.getUser().getUsername() + ": " + c.getText());
+	    	}
+	    	return commentList;
+	 }
+	
+	 @JsonProperty("likes")
+	 public List<String> getLikesJSON(){
+	    	ArrayList<String> likeList = new ArrayList<String>();
+	    	for (PublicationLike l : likes){
+	    		likeList.add("@" + l.getUser().getUsername());
+	    	}
+	    	return likeList;
+	 }
+	
+	 @JsonProperty("tags")
+	 public List<String> gettagsJSON(){
+	    	ArrayList<String> tagList = new ArrayList<String>();
+	    	for (Tag t : tags){
+	    		tagList.add(t.getTag());
+	    	}
+	    	return tagList;
+	 }
 }
 		
 	

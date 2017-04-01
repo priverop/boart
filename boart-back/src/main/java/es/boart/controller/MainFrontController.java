@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -27,6 +28,7 @@ import es.boart.model.Publication;
 import es.boart.model.Tag;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.UserRepository;
+import es.boart.services.PublicationService;
 
 @Controller
 public class MainFrontController {
@@ -42,6 +44,9 @@ public class MainFrontController {
 
 	@Autowired
 	private PublicationRepository publicationRepository;
+
+	@Autowired
+	PublicationService publicationService;
 
 	@Autowired
 	private BuildBBDD generateData;
@@ -75,128 +80,69 @@ public class MainFrontController {
 
 		return "publicationPage";
 	}
-	
-	public String getSort(String filter){
+
+	public String getSort(String filter) {
 		if (filter.equals("likes"))
 			return "numberOfLikes";
 		if (filter.equals("comments"))
 			return "numberOfComments";
 		return "date";
 	}
-	
-	public String changeFilter(Model model, String filter){
+
+	public String changeFilter(Model model, String filter) {
 		model.addAttribute("filter", filter);
 		model.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(0, DEFAULT_SIZE, Sort.Direction.DESC, getSort(filter))));
 		return "mainfront_template";
 	}
 
 	@PostMapping("/")
-	public String portadaFiltrada(Model modelo, HttpServletRequest request, @RequestParam(value = "tags", required = false) String tags, @RequestParam(value = "nTag", required = false) String nTag, @RequestParam(value = "type") String type,
+	public String portadaFiltrada(Model model, HttpServletRequest request, @RequestParam(value = "tags", required = false) String tags, @RequestParam(value = "nTag", required = false) String nTag, @RequestParam(value = "type") String type,
 			@RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "page", required = false) Integer page) {
-
-		Set<String> sTags = new HashSet<>();
-		if (tags != null) {
-			for (String s : Arrays.asList(tags.split(","))) {
-				if (!s.equals(""))
-				sTags.add(s);
-			}
-		}
-		
-		Set<Publication> sPublications = new HashSet<>(); 
+		List<String> lTags = publicationService.ParseTags(tags);
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
-		modelo.addAttribute("token", token.getToken());
-
+		model.addAttribute("token", token.getToken());
 		switch (type) {
 		case "addTag":
-			sTags.add(nTag);
+			lTags.add(nTag);
 			break;
 		case "remTag":
-			sTags.remove(nTag);
+			lTags.remove(nTag);
 			break;
 		case "latestFilter":
-			return changeFilter(modelo, "latest");
+			return changeFilter(model, "latest");
 		case "likesFilter":
-			return changeFilter(modelo, "likes");
+			return changeFilter(model, "likes");
 		case "commentsFilter":
-			return changeFilter(modelo, "comments");
+			return changeFilter(model, "comments");
 		}
-
+		
 		if (page == null)
 			page = 0;
-
 		if (filter == null)
 			filter = "latest";
-			
-			
-		if 	(type.equals("pagination")){ //Llamadas Ajax
-			if (sTags.size() == 0) 
-				return publicationsNoTag(page, filter, modelo);
-			else if (sTags.size() == 1) 
-				return publicationsOneTag(page, filter,tags.split(",")[0], modelo);
-		} else {
-			
-			for (String s : sTags) {
-				sPublications.addAll(publicationRepository.findByTags(new Tag(s)));
-			}
 		
-		ArrayList<Publication> lPublications = new ArrayList<Publication>(sPublications);
-		ordernarPorFiltro(lPublications, filter);// Ordeno el set en una lista
-
-		modelo.addAttribute("sTags", sTags);
-		modelo.addAttribute("filter", filter);
-		if (sTags.size() == 0)
-			modelo.addAttribute("publicaciones", publicationRepository.findAll(new PageRequest(DEFAULT_PAGE, DEFAULT_SIZE, Sort.Direction.DESC, getSort(filter))));
-		else if (sTags.size() == 1)
-			modelo.addAttribute("publicaciones", publicationRepository.findByTags(new Tag(nTag), new PageRequest(DEFAULT_PAGE, DEFAULT_SIZE,Sort.Direction.DESC, getSort(filter))));
-		else
-			modelo.addAttribute("publicaciones", lPublications);
-		modelo.addAttribute("sesion_usuario", userSession.getUser());
-		return "mainfront_template";
-		} 
+		if (type.equals("pagination")) { // Llamadas Ajax
+			model.addAttribute("filter", filter);
+			if (lTags.size() == 0){
+				model.addAttribute("publications", publicationService.publicationsNoTag(page, filter));
+				return "publicationPage";
+			}
+			else if (lTags.size() == 1){
+				model.addAttribute("publications", publicationService.publicationsOneTag(page, filter, lTags.get(0)));
+				return "publicationPage";
+			}			
+		} else {
+			List<Publication> lPublications = publicationService.publicationsMultipleTag(filter, lTags);
+			model.addAttribute("sTags", lTags);
+			if (lTags.size() == 0)
+				model.addAttribute("publicaciones", publicationService.publicationsNoTag(page, filter));
+			else if (lTags.size() == 1)
+				model.addAttribute("publicaciones", publicationService.publicationsOneTag(page, filter, lTags.get(0)));
+			else
+				model.addAttribute("publicaciones", lPublications);
+			model.addAttribute("sesion_usuario", userSession.getUser());
+			return "mainfront_template";
+		}
 		return "";
 	}
-	
-	
-	public String publicationsNoTag(int page, String filter, Model model){
-		model.addAttribute("publications", publicationRepository.findAll(new PageRequest(page, DEFAULT_SIZE,Sort.Direction.DESC, getSort(filter))));
-		model.addAttribute("filter", filter);
-		return "publicationPage";		
-	}
-	
-	public String publicationsOneTag(int page, String filter, String tag, Model model){
-		model.addAttribute("publications", publicationRepository.findByTags(new Tag(tag), new PageRequest(page, DEFAULT_SIZE,Sort.Direction.DESC, getSort(filter))));
-		model.addAttribute("filter", filter);
-		return "publicationPage";
-	}
-
-	public void ordernarPorFiltro(ArrayList<Publication> lPublications, String filter) {
-		switch (filter) {
-		default: // si llega un valor extraño tomamos el filtro latest por
-					// defecto
-			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
-				@Override
-				public int compare(Publication p1, Publication p2) {
-					return p2.getDate().compareTo(p1.getDate());
-				}
-			});
-			break;
-		case "likes":
-			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
-				@Override
-				public int compare(Publication p1, Publication p2) {
-					return p2.getNumberOfLikes() - p1.getNumberOfLikes();
-				}
-			});
-			break;
-		case "comments":
-			java.util.Collections.sort(lPublications, new Comparator<Publication>() {
-				@Override
-				public int compare(Publication p1, Publication p2) {
-					return p2.getNumberOfComments() - p1.getNumberOfComments();
-				}
-			});
-			break;
-		}
-	}
-
 }
