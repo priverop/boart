@@ -221,8 +221,6 @@ public class BuildBBDD {
 				p.setNumberOfComments(p.getComments().size());
 			}
 		}
-
-		publicationRepository.save(lPublications);
 		
 		/* Likes */
 		for(Publication p: lPublications){
@@ -231,6 +229,8 @@ public class BuildBBDD {
 				p.addLike(newLike);
 				likeRepository.save(newLike);
 				publicationRepository.save(p);
+				if (ran.nextInt(7) == 0) 
+					break;				
 			}
 		}
 		
