@@ -186,6 +186,10 @@ public class Publication {
 		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
 	}
 
+	public String getStringDate() {
+		return stringDate;
+	}
+	
 	/**
 	 * @return the num_visits
 	 */

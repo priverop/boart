@@ -1,7 +1,9 @@
 package es.boart;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -217,7 +219,8 @@ public class BuildBBDD {
 		Random ran = new Random();
 		for(Publication p: lPublications){
 			for (int i = ran.nextInt(lComments.size()); i < lComments.size(); i++){
-				p.getComments().add(new Comment(lUsers.get(ran.nextInt(lUsers.size())), lComments.get(ran.nextInt(lComments.size()))));
+				Comment c = new Comment(lUsers.get(ran.nextInt(lUsers.size())), lComments.get(ran.nextInt(lComments.size())));
+				p.getComments().add(c);
 				p.setNumberOfComments(p.getComments().size());
 			}
 		}
@@ -228,11 +231,21 @@ public class BuildBBDD {
 				PublicationLike newLike = new PublicationLike(u, p);
 				p.addLike(newLike);
 				likeRepository.save(newLike);
-				publicationRepository.save(p);
 				if (ran.nextInt(7) == 0) 
 					break;				
 			}
 		}
+		
+		int cont = 0;
+		for(Publication p: lPublications){
+			Date d = p.getDate();
+			d.setHours(d.getHours() - cont);
+			p.setDate(new Timestamp(d.getTime()));
+			cont++;
+		}
+		
+		publicationRepository.save(lPublications);
+
 		
 		/* Group Publications */
 		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://www.hhgroups.com/imagenes/artistas/gata-cattana-artista.jpg");
