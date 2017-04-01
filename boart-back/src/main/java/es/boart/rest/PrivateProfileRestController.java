@@ -41,7 +41,7 @@ public class PrivateProfileRestController {
 			} 	
 			
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 			
 	}
