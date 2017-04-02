@@ -22,6 +22,7 @@ import es.boart.model.User;
 import es.boart.repository.LikeRepository;
 import es.boart.repository.PublicationRepository;
 import es.boart.repository.UserRepository;
+import es.boart.services.LikeService;
 
 @RestController
 public class LikeController {
@@ -34,6 +35,9 @@ public class LikeController {
 	
 	@Autowired
 	private LikeRepository likeRepository;
+	
+	@Autowired
+	private LikeService likeService;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -56,20 +60,8 @@ public class LikeController {
 		String status = "";
 		
 		Publication publication = publicationRepository.findOne(Long.parseLong(publicationId));
-		PublicationLike like = likeRepository.findByPublicationIdAndUserId(publication.getId(), user.getId());
 		
-		if(like == null) {
-			PublicationLike newLike = new PublicationLike(user, publication);
-			publication.addLike(newLike);
-			likeRepository.save(newLike);
-			publicationRepository.save(publication);
-			status = "added";
-		} else {
-			publication.removeLike(like);
-			likeRepository.delete(like);
-			publicationRepository.save(publication);
-			status = "deleted";
-		} 		
+		status = likeService.hasLike(publication, user) ? "deleted" : "added";	
 		
 		return new ResponseEntity<>(status, HttpStatus.OK);
  }

@@ -49,18 +49,9 @@ public class LikeRestController {
 			if (user != null) {
 				
 				Publication publication = publicationService.findOne(Long.parseLong(publicationId));
-				PublicationLike like = likeService.findByPublicationIdAndUserId(publication.getId(), user.getId());
 				
-				if(like == null) {
-					PublicationLike newLike = new PublicationLike(user, publication);
-					publication.addLike(newLike);
-					likeService.save(newLike);
-					publicationService.save(publication);
-					return new ResponseEntity<>(HttpStatus.OK);
-				} else {
-					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-				} 
-				
+				return likeService.hasLike(publication, user) ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<>(HttpStatus.OK);
+
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} 	
@@ -81,16 +72,8 @@ public class LikeRestController {
 			if (user != null) {
 				
 				Publication publication = publicationService.findOne(Long.parseLong(publicationId));
-				PublicationLike like = likeService.findByPublicationIdAndUserId(publication.getId(), user.getId());
-				
-				if(like == null) {
-					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-				} else {
-					publication.removeLike(like);
-					likeService.delete(like);
-					publicationService.save(publication);
-					return new ResponseEntity<>(HttpStatus.OK);
-				} 
+
+				return likeService.hasLike(publication, user) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 				
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
