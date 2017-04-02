@@ -75,7 +75,7 @@ public class GroupRestController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<Grupo> createGroup(Grupo group, @RequestParam(value="inputImage") MultipartFile file){		
+	public ResponseEntity<Grupo> createGroup(Grupo group, @RequestParam("inputImage") MultipartFile file){		
 		if (groupService.createGroup(group, file) != null)
 			return new ResponseEntity<>(group, HttpStatus.OK);
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

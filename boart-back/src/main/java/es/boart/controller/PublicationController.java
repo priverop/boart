@@ -65,14 +65,7 @@ public class PublicationController {
 	
 	@PostMapping("/addComment/publication")
 	public String addComment(@RequestParam String text, @RequestParam long idLocation){
-	
-		Comment newComment = new Comment(userSession.getUser(), text);
-		
-		Publication publication = publicationService.findOne(idLocation);
-		publication.getComments().add(newComment);
-		publication.setNumberOfComments(publication.getComments().size());
-		publicationService.save(publication);
-
+		publicationService.addComment(text, idLocation);
 		return "redirect:/publication/"+idLocation;
 	}
 

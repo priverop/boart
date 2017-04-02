@@ -13,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import es.boart.UserComponent;
+import es.boart.model.Comment;
 import es.boart.model.Publication;
 import es.boart.model.Tag;
 import es.boart.repository.PublicationRepository;
@@ -21,7 +23,9 @@ import es.boart.repository.PublicationRepository;
 public class PublicationService {
 
 	@Autowired
-	private PublicationRepository publicationRepository;
+	private PublicationRepository publicationRepository;	
+	@Autowired
+	private UserComponent userSession;
 
 	private final int DEFAULT_SIZE = 10;
 
@@ -106,6 +110,16 @@ public class PublicationService {
 				}
 			});
 			break;
+		}
+	}
+	
+	public void addComment(String text, long idLocation){		
+		if (!text.equals("")){
+			Comment newComment = new Comment(userSession.getUser(), text);
+			Publication publication = findOne(idLocation);
+			publication.getComments().add(newComment);
+			publication.setNumberOfComments(publication.getComments().size());
+			save(publication);
 		}
 	}
 

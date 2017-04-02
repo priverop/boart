@@ -30,6 +30,10 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/like/**").hasRole("USER");
 		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/like/**").hasRole("USER");	
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/upload/").hasRole("USER");	
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/group/create/").hasRole("USER");	
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/publication/**").hasRole("USER");	
+
+
 
 		
 		// Other URLs can be accessed without authentication

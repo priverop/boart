@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.Publication;
@@ -73,6 +74,12 @@ public class PublicationRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@PostMapping("/{id}")
+	public ResponseEntity<Publication> postComment(@PathVariable long id, @RequestParam(value="comment") String comment) {
+		publicationService.addComment(comment, id);
+		return getPublication(id);
 	}
 	
 	@DeleteMapping("/{id}")
