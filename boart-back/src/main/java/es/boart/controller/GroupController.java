@@ -93,19 +93,8 @@ public class GroupController {
 	
 	@PostMapping("/group/create")
 	public String createGroupForm(Model modelo, Grupo group, @RequestParam(value="inputImage") MultipartFile file){
-		System.out.println("Llega");
-		
-		if(group.getTitle() != null && group.getDescription() != null && !file.getOriginalFilename().equals("")){
-			String media = uploadService.prepareImage(file);
-			if (!media.equals(""))
-			group.setImg("/files/" + media);
-		}
-		else{
-			return "redirect:/group/create";
-		}
-		
-		groupService.save(group);
-		
-		return "redirect:/group/"+group.getId();
+		if (groupService.createGroup(group, file) != null)
+			return "redirect:/group/"+group.getId();
+		return "redirect:/group/create";
 	}
 }
