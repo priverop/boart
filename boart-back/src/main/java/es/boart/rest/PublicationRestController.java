@@ -1,7 +1,6 @@
 package es.boart.rest;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +24,9 @@ import es.boart.services.UserService;
 @RequestMapping("/api/publication")
 public class PublicationRestController {
 	
+	private final int DEFAULT_PAGE = 0;
+
+	
 	@Autowired
 	private UserComponent userSession;
 	
@@ -36,7 +38,7 @@ public class PublicationRestController {
 	
 	@GetMapping("/list")
 	public Page<Publication> getPublications(){
-		return getPublications(0);
+		return getPublications(DEFAULT_PAGE);
 	}
 	
 	@GetMapping("/list/{page}")
@@ -57,7 +59,7 @@ public class PublicationRestController {
 	
 	@PostMapping("/list")
 	public Object getPublications(@RequestParam(value="filter",required=false) String filter, @RequestParam(value="tags",required=false) String tags){
-		return  getPublications(0, filter, tags);
+		return  getPublications(DEFAULT_PAGE, filter, tags);
 	}
 	
 	

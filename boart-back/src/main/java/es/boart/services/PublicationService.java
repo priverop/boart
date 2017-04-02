@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import es.boart.model.Publication;
 import es.boart.model.Tag;
@@ -25,7 +24,6 @@ public class PublicationService {
 	private PublicationRepository publicationRepository;
 
 	private final int DEFAULT_SIZE = 10;
-	private final int DEFAULT_PAGE = 0;
 
 	public Publication findOne(long id) {
 		return publicationRepository.findOne(id);
