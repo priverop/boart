@@ -59,34 +59,8 @@ public class PrivateProfileController {
 			
 			User user = userService.findOne(usuario.getId());
 			
-			if(usuario.getName() != null){
-				user.setName(usuario.getName());
-			}
-			
-			if(usuario.getSurname() != null){
-				user.setSurname(usuario.getSurname());
-			}
-			
-			if(usuario.getUsername() != null){
-				user.setUsername(usuario.getUsername());
-			}
-			
-			if(usuario.getPassword() != null){
-				user.setPassword(usuario.getPassword());
-			}
-			
-			if(usuario.getDescription() != null){
-				user.setDescription(usuario.getDescription());
-			}		
-			
-			if(!file.getOriginalFilename().equals("")){
-				String media = uploadService.prepareImage(file);
-				if (!media.equals(""))
-				user.setImg("/files/" + media);			
-			}
-					
-			userService.save(user);
-			userSession.setUser(user);
+			userService.setUser(user, usuario, file);
+
 		}
 
 		return "redirect:/private_profile";

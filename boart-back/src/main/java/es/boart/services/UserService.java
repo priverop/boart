@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.Comment;
+import es.boart.model.Grupo;
 import es.boart.model.Publication;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
@@ -18,6 +20,8 @@ public class UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private UserComponent userSession;
+	@Autowired
+	private UploadService uploadService;
 	
 	public User findOne(long id){
 		return userRepository.findOne(id);
@@ -63,5 +67,39 @@ public class UserService {
 			user.getComments().add(newComment);			
 			save(user);
 		}
+	}
+	
+	public void setUser(User user, User modifiedUser, MultipartFile file) {
+		
+		if(modifiedUser.getName() != null){
+			user.setName(modifiedUser.getName());
+		}
+		
+		if(modifiedUser.getSurname() != null){
+			user.setSurname(modifiedUser.getSurname());
+		}
+		
+		if(modifiedUser.getUsername() != null){
+			user.setUsername(modifiedUser.getUsername());
+		}
+		
+		if(modifiedUser.getPassword() != null){
+			user.setPassword(modifiedUser.getPassword());
+		}
+		
+		if(modifiedUser.getDescription() != null){
+			user.setDescription(modifiedUser.getDescription());
+		}		
+		
+		if(!file.getOriginalFilename().equals("")){
+			String media = uploadService.prepareImage(file);
+			if (!media.equals(null)){
+				user.setImg("/files/" + media);
+			}	
+		}
+		
+		this.save(user);
+		userSession.setUser(user);
+
 	}
 }
