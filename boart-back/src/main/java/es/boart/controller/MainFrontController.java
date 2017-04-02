@@ -100,7 +100,10 @@ public class MainFrontController {
 			@RequestParam(value = "filter", required = false) String filter, @RequestParam(value = "page", required = false) Integer page) {
 		List<String> lTags = publicationService.ParseTags(tags);
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		if (filter == null)	filter = "latest";
+		model.addAttribute("sesion_usuario", userSession.getUser());
 		model.addAttribute("token", token.getToken());
+		model.addAttribute("filter", filter);
 		switch (type) {
 		case "addTag":
 			lTags.add(nTag);
@@ -118,11 +121,8 @@ public class MainFrontController {
 		
 		if (page == null)
 			page = 0;
-		if (filter == null)
-			filter = "latest";
 		
 		if (type.equals("pagination")) { // Llamadas Ajax
-			model.addAttribute("filter", filter);
 			if (lTags.size() == 0){
 				model.addAttribute("publications", publicationService.publicationsNoTag(page, filter));
 				return "publicationPage";

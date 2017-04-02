@@ -18,6 +18,7 @@ import es.boart.model.Grupo;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
 import es.boart.services.GroupService;
+import es.boart.services.UploadService;
 
 @Controller
 public class GroupController {
@@ -28,6 +29,8 @@ public class GroupController {
 	@Autowired
 	private UserComponent userSession;
 	
+	@Autowired
+	private UploadService uploadService;
 	@Autowired
 	private UserRepository userRepo;
 	
@@ -93,7 +96,7 @@ public class GroupController {
 		System.out.println("Llega");
 		
 		if(group.getTitle() != null && group.getDescription() != null && !file.getOriginalFilename().equals("")){
-			String media = es.boart.controller.UploadController.prepareImage(file, "");
+			String media = uploadService.prepareImage(file);
 			if (!media.equals(""))
 			group.setImg("/files/" + media);
 		}

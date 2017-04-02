@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.User;
+import es.boart.services.UploadService;
 import es.boart.services.UserService;
 
 @Controller
@@ -25,6 +26,8 @@ public class PrivateProfileController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UploadService uploadService;
 	
 	@PostConstruct
 	public void init(){}
@@ -77,7 +80,7 @@ public class PrivateProfileController {
 			}		
 			
 			if(!file.getOriginalFilename().equals("")){
-				String media = es.boart.controller.UploadController.prepareImage(file, "");
+				String media = uploadService.prepareImage(file);
 				if (!media.equals(""))
 				user.setImg("/files/" + media);			
 			}
