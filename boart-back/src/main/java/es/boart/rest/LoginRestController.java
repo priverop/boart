@@ -29,7 +29,7 @@ public class LoginRestController {
 	private UserService userService;
 	
 	@PostMapping("/")
-	public ResponseEntity<?> postLogin(){
+	public ResponseEntity<?> login(){
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
