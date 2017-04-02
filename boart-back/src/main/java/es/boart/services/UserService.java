@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.boart.UserComponent;
+import es.boart.model.Comment;
+import es.boart.model.Publication;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
 
@@ -14,7 +16,8 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+	@Autowired
+	private UserComponent userSession;
 	
 	public User findOne(long id){
 		return userRepository.findOne(id);
@@ -51,5 +54,14 @@ public class UserService {
 		userRepository.save(newUser);
 		
 		return newUser;
+	}
+	
+	public void addComment(String text, long idLocation){		
+		if (!text.equals("")){
+			Comment newComment = new Comment(userSession.getUser(), text);
+			User user = findOne(idLocation);
+			user.getComments().add(newComment);			
+			save(user);
+		}
 	}
 }

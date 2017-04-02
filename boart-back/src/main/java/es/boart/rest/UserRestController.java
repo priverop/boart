@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.boart.model.User;
@@ -74,4 +75,10 @@ public class UserRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@PostMapping("/{id}")
+	public ResponseEntity<User> addComment(@PathVariable long id, @RequestParam("comment") String comment) {
+		userService.addComment(comment, id);
+		return getUser(id);
+	}	
 }

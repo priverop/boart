@@ -382,7 +382,7 @@ public class User {
 	 @JsonProperty("comments")
 	 public List<String> getCommentsJSON(){
 	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (Comment c : comments) list.add("@"+ c.getUser()+ ":" + c.getText());
+	    	for (Comment c : comments) list.add("@"+ c.getUser().getUsername()+ ":" + c.getText());
 	    	return list;
 	 }
 	 @JsonProperty("following")

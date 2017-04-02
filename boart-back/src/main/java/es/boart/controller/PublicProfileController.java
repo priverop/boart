@@ -81,14 +81,8 @@ public class PublicProfileController {
 	
 	@PostMapping("/addComment/profile")
 	public String addComment(@RequestParam String text, @RequestParam long idLocation){
-	
-		Comment newComment = new Comment(userSession.getUser(), text);
-		
+		userService.addComment(text, idLocation);		
 		User user = userService.findOne(idLocation);
-		user.getComments().add(newComment);
-		
-		userService.save(user);
-
 		return "redirect:/public_profile/"+user.getUsername();
 	}
 	
