@@ -379,6 +379,12 @@ public class User {
 	    	for (Publication p : gallery) list.add(p.getTitle());
 	    	return list;
 	 }
+	 @JsonProperty("likes")
+	 public List<String> getGalleryLikesJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (PublicationLike l : likes) list.add(l.getPublication().getTitle());
+	    	return list;
+	 }
 	 @JsonProperty("comments")
 	 public List<String> getCommentsJSON(){
 	    	ArrayList<String> list = new ArrayList<String>();
