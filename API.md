@@ -277,12 +277,164 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
 ```
 - GET (/join/idgrupo) -> Usuario en sesión se une al grupo especificado.
 - GET (/leave/idgrupo) -> Usuario en sesión deja el grupo especificado.
+```
+{
+  "id": 4,
+  "title": "Rap Femenino",
+  "description": "Rap internacional hecho por mujeres.",
+  "img": "http://www.hhgroups.com/imagenes/artistas/gata-cattana-artista.jpg",
+  "publications": [
+    {
+      "id": 11,
+      "title": "Lisístrata",
+      "description": "Gata Cattana, Lisístrata",
+      "media": "<iframe class=\"iframeVideo\" src=\"https://www.youtube.com/embed/GsMDU8gb5sQ\" frameborder=\"0\"></iframe>",
+      "media_type": 2,
+      "date": 1491253090000,
+      "stringDate": "Publicado el 03/04/2017 a las 22:58",
+      "num_visits": 0,
+      "numberOfLikes": 3,
+      "numberOfComments": 19,
+      "user": "@emilio",
+      "comments": [
+        "@vicenteGuash: what a tremendous work!",
+        "@ismaelMoreno: So elegant",
+        "@hugoPariente: Amazing work!",
+        "@albertMesa: beautiful artwork",
+        "@montserratDelValle: Such style and skill!",
+        "@nataliaTorras: Beautiful!",
+        "@albertMesa: Beautiful <3 ",
+        "@ismaelMoreno: WOW",
+        "@m0scar: sooooo coooool",
+        "@m0scar: Wonderful",
+        "@aitorGaleano: Such style and skill!",
+        "@montserratDelValle: Looks great!",
+        "@nataliaTorras: Gorgeous!",
+        "@joseMariaNieves: so pretty",
+        "@m0scar: Looks great!",
+        "@joseMariaNieves: This is epic",
+        "@cristinaCrespo: It's absolute amazing.",
+        "@albertMesa: Aaah! this is amazing!",
+        "@celiaGaspar: what a tremendous work!",
+        "@vicenteGuash: what a tremendous work!",
+        "@ismaelMoreno: So elegant",
+        "@hugoPariente: Amazing work!",
+        "@albertMesa: beautiful artwork",
+        "@montserratDelValle: Such style and skill!",
+        "@nataliaTorras: Beautiful!",
+        "@albertMesa: Beautiful <3 ",
+        "@ismaelMoreno: WOW",
+        "@m0scar: sooooo coooool",
+        "@m0scar: Wonderful",
+        "@aitorGaleano: Such style and skill!",
+        "@montserratDelValle: Looks great!",
+        "@nataliaTorras: Gorgeous!",
+        "@joseMariaNieves: so pretty",
+        "@m0scar: Looks great!",
+        "@joseMariaNieves: This is epic",
+        "@cristinaCrespo: It's absolute amazing.",
+        "@albertMesa: Aaah! this is amazing!",
+        "@celiaGaspar: what a tremendous work!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam"
+      ],
+      "tags": [
+        "cattana",
+        "rap",
+        "gata",
+        "dep"
+      ]
+    }
+  ],
+  "miembroGrupos": [
+    {
+      "id": 1,
+      "username": "emilio",
+      "name": "Emilio",
+      "surname": "Delgado",
+      "description": "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil",
+      "img": "https://pickaface.net/assets/images/slides/slide4.png",
+      "visits": 0,
+      "signInDate": 1491253084000,
+      "likes": [],
+      "roles": [
+        "ROLE_USER"
+      ],
+      "gallery": [],
+      "comments": [],
+      "following": [
+        "@juan"
+      ],
+      "followers": [
+        "@juan"
+      ],
+      "groups": [
+        "Rap Femenino"
+      ],
+      "publications": [
+        "Lisístrata",
+        "Epiclesis",
+        "Red dragon",
+        "Forbidden Kingdom",
+        "Sibelius Violin Concerto 1st Movement",
+        "Yiruma - River Flows in You",
+        "LaLa Land movie Theme",
+        "Asylum",
+        "Triple concerto",
+        "Rogue One Trailer",
+        "NORWAY",
+        "Alone in the Night"
+      ]
+    },
+    {
+      "id": 2,
+      "username": "concha",
+      "name": "Concha",
+      "surname": "García",
+      "description": "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil",
+      "img": "https://pickaface.net/assets/images/slides/slide1.png",
+      "visits": 0,
+      "signInDate": 1491253084000,
+      "likes": [],
+      "roles": [
+        "ROLE_USER"
+      ],
+      "gallery": [],
+      "comments": [],
+      "following": [
+        "@juan"
+      ],
+      "followers": [],
+      "groups": [
+        "Rap Femenino"
+      ],
+      "publications": [
+        "ANCIENT GOD",
+        "Chinese Dragon",
+        "Dragon Cove",
+        "Cant Forgive",
+        "300 Violin Orchestra",
+        "Fur Elise",
+        "Bullet Train",
+        "Faded",
+        "America's Great Spaces",
+        "Street Traffic",
+        "Fat Animated Short Film"
+      ]
+    }
+  ]
+}
+```
 - POST (/create) -> Nuevo grupo. Entrada: String title, String description, MultipartFile file. Salida: BAD_REQUEST si alguno de los inputs está vacio.
 
 ### Likes
 /api/like
 
-- POST (/) -> Nuevo like. Entrada: IDPublicacion. Salida: BAD_REQUEST si ya existe el like. 
+- POST (/) -> Nuevo like. Entrada: publicationId. Salida: BAD_REQUEST si ya existe el like. 
+
 - DELETE (/publicationid) -> Eliminar like de la publicationid. Salida: BAD_REQUEST si el like no existía.
 
 ### Login
@@ -299,6 +451,77 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
 /api/private_profile
 
 - GET (/) -> Perfil propio.
+```
+{
+  "id": 3,
+  "username": "juan",
+  "name": "Juan",
+  "surname": "Cuesta",
+  "description": "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil",
+  "img": "https://pickaface.net/assets/images/slides/slide2.png",
+  "visits": 0,
+  "signInDate": 1491254154000,
+  "likes": [],
+  "roles": [
+    "ROLE_USER"
+  ],
+  "gallery": [
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?"
+  ],
+  "comments": [
+    "@concha:Váyase señor Juan!!"
+  ],
+  "following": [
+    "@emilio",
+    "@nexmaniosis",
+    "@gcuencam",
+    "@celiaGaspar",
+    "@mRosarioAyala"
+  ],
+  "followers": [
+    "@emilio",
+    "@concha"
+  ],
+  "groups": [
+    "Rap Femenino"
+  ],
+  "publications": [
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Werewolf",
+    "Angelus of Hope",
+    "Chopin Nocturne in F Minor-Op. 55",
+    "Mozart: Concerto for Piano no 25",
+    "Beethoven - Moonlight Sonata",
+    "Mortal Kombat Dance",
+    "Hysteria",
+    "Reload ",
+    "The Greatest",
+    "See You Again",
+    "The Force Awakens Trailer",
+    "The magnificent landscape of Iceland",
+    "POILUS Short Film"
+  ]
+}
+```
+/api/private_profile
 - PUT (/) -> Editar informacin usuario. Entrada: String name, String surname, String username, String password, String description, Multipartfile file.
 
 ### Publication
@@ -1019,7 +1242,963 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
 }
 ```
 - POST (/list/page) -> Lista de publicaciones filtradas por la página indicada. Entradas: String filter, String tags.
+```
+{
+  "content": [
+    {
+      "id": 27,
+      "title": "Fur Elise",
+      "description": "Ludwig Van Beethoven-- Fur Elise",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/65833474&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491195490000,
+      "stringDate": "Publicado el 03/04/2017 a las 06:58",
+      "num_visits": 0,
+      "numberOfLikes": 4,
+      "numberOfComments": 23,
+      "user": "@concha",
+      "comments": [
+        "@gcuencam: looks nice!",
+        "@ismaelMoreno: Impressive",
+        "@gcuencam: Awesome job!",
+        "@vicenteGuash: i have no words",
+        "@gcuencam: Looks great!",
+        "@nexmaniosis: WOW",
+        "@aitorGaleano: beautiful artwork",
+        "@ramonCapitan: what a tremendous work!",
+        "@ramonCapitan: Gorgeous!",
+        "@albertMesa: I love it",
+        "@albertMesa: Gorgeous!",
+        "@pilarGarzon: WOW",
+        "@carlaNavarro: beautiful artwork",
+        "@carlaNavarro: what a tremendous work!",
+        "@nataliaTorras: beautiful artwork",
+        "@nexmaniosis: Awesome job!",
+        "@joseMariaNieves: Impressive",
+        "@mRosarioAyala: This is beautiful and cute",
+        "@ismaelMoreno: Gorgeous!",
+        "@gcuencam: Amazing work!",
+        "@albertMesa: Amazing work!",
+        "@pilarGarzon: So elegant",
+        "@joseMariaNieves: Impressive"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano"
+      ],
+      "tags": [
+        "music",
+        "piano",
+        "beethoven",
+        "religion"
+      ]
+    },
+    {
+      "id": 28,
+      "title": "LaLa Land movie Theme",
+      "description": "Piano Cover",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/301212235&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491191890000,
+      "stringDate": "Publicado el 03/04/2017 a las 05:58",
+      "num_visits": 0,
+      "numberOfLikes": 4,
+      "numberOfComments": 25,
+      "user": "@emilio",
+      "comments": [
+        "@pilarGarzon: So elegant",
+        "@vicenteGuash: beautiful artwork",
+        "@consueloCasas: what a tremendous work!",
+        "@mRosarioAyala: This is beautiful and cute",
+        "@pilarGarzon: Aaah! this is amazing!",
+        "@vicenteGuash: Awesome job!",
+        "@cristinaCrespo: looks nice!",
+        "@cristinaCrespo: I love it",
+        "@celiaGaspar: Gorgeous!",
+        "@gcuencam: cool!",
+        "@ismaelMoreno: WOW",
+        "@mRosarioAyala: Inspiring!",
+        "@montserratDelValle: Wonderful",
+        "@carlaNavarro: cool!",
+        "@cristinaCrespo: I love it",
+        "@vicenteGuash: I love it",
+        "@cristinaCrespo: WOW",
+        "@gcuencam: awesome",
+        "@hugoPariente: insaaaneeely good and stunning :d",
+        "@albertMesa: Aaah! this is amazing!",
+        "@pilarGarzon: It's absolute amazing.",
+        "@vicenteGuash: Such style and skill!",
+        "@albertMesa: i have no words",
+        "@ramonCapitan: awesome",
+        "@m0scar: Aaah! this is amazing!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano"
+      ],
+      "tags": [
+        "boart",
+        "piano",
+        "cover",
+        "lalaland"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Lisístrata",
+      "description": "Gata Cattana, Lisístrata",
+      "media": "<iframe class=\"iframeVideo\" src=\"https://www.youtube.com/embed/GsMDU8gb5sQ\" frameborder=\"0\"></iframe>",
+      "media_type": 2,
+      "date": 1491253090000,
+      "stringDate": "Publicado el 03/04/2017 a las 22:58",
+      "num_visits": 0,
+      "numberOfLikes": 3,
+      "numberOfComments": 19,
+      "user": "@emilio",
+      "comments": [
+        "@vicenteGuash: what a tremendous work!",
+        "@ismaelMoreno: So elegant",
+        "@hugoPariente: Amazing work!",
+        "@albertMesa: beautiful artwork",
+        "@montserratDelValle: Such style and skill!",
+        "@nataliaTorras: Beautiful!",
+        "@albertMesa: Beautiful <3 ",
+        "@ismaelMoreno: WOW",
+        "@m0scar: sooooo coooool",
+        "@m0scar: Wonderful",
+        "@aitorGaleano: Such style and skill!",
+        "@montserratDelValle: Looks great!",
+        "@nataliaTorras: Gorgeous!",
+        "@joseMariaNieves: so pretty",
+        "@m0scar: Looks great!",
+        "@joseMariaNieves: This is epic",
+        "@cristinaCrespo: It's absolute amazing.",
+        "@albertMesa: Aaah! this is amazing!",
+        "@celiaGaspar: what a tremendous work!",
+        "@vicenteGuash: what a tremendous work!",
+        "@ismaelMoreno: So elegant",
+        "@hugoPariente: Amazing work!",
+        "@albertMesa: beautiful artwork",
+        "@montserratDelValle: Such style and skill!",
+        "@nataliaTorras: Beautiful!",
+        "@albertMesa: Beautiful <3 ",
+        "@ismaelMoreno: WOW",
+        "@m0scar: sooooo coooool",
+        "@m0scar: Wonderful",
+        "@aitorGaleano: Such style and skill!",
+        "@montserratDelValle: Looks great!",
+        "@nataliaTorras: Gorgeous!",
+        "@joseMariaNieves: so pretty",
+        "@m0scar: Looks great!",
+        "@joseMariaNieves: This is epic",
+        "@cristinaCrespo: It's absolute amazing.",
+        "@albertMesa: Aaah! this is amazing!",
+        "@celiaGaspar: what a tremendous work!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam"
+      ],
+      "tags": [
+        "dep",
+        "gata",
+        "cattana",
+        "rap"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Forbidden Kingdom",
+      "description": "Forbidden Kingdom",
+      "media": "<img  class=\"img-responsive\" src=\"/files/7.jpg\">",
+      "media_type": 0,
+      "date": 1491227890000,
+      "stringDate": "Publicado el 03/04/2017 a las 15:58",
+      "num_visits": 0,
+      "numberOfLikes": 3,
+      "numberOfComments": 13,
+      "user": "@emilio",
+      "comments": [
+        "@ramonCapitan: so pretty",
+        "@nexmaniosis: Such style and skill!",
+        "@ismaelMoreno: So elegant",
+        "@gcuencam: Aaah! this is amazing!",
+        "@carlaNavarro: Amazing work!",
+        "@consueloCasas: I love it",
+        "@aitorGaleano: what a tremendous work!",
+        "@nexmaniosis: Awesome job!",
+        "@nexmaniosis: cool!",
+        "@cristinaCrespo: Inspiring!",
+        "@nexmaniosis: Gorgeous!",
+        "@hugoPariente: insaaaneeely good and stunning :d",
+        "@albertMesa: I love it"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam"
+      ],
+      "tags": [
+        "cascade",
+        "kingdom",
+        "dark",
+        "god"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Cant Forgive",
+      "description": "Album: Temptation of Wife",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/113585294&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491220690000,
+      "stringDate": "Publicado el 03/04/2017 a las 13:58",
+      "num_visits": 0,
+      "numberOfLikes": 3,
+      "numberOfComments": 23,
+      "user": "@concha",
+      "comments": [
+        "@mRosarioAyala: Wonderful",
+        "@vicenteGuash: awesome",
+        "@m0scar: insaaaneeely good and stunning :d",
+        "@m0scar: Beautiful <3 ",
+        "@aitorGaleano: Amazing work!",
+        "@cristinaCrespo: amazing piece",
+        "@m0scar: Absolutely gorgeous!",
+        "@aitorGaleano: amazing piece",
+        "@hugoPariente: Such style and skill!",
+        "@aitorGaleano: Inspiring!",
+        "@m0scar: awesome",
+        "@ramonCapitan: I love it",
+        "@carlaNavarro: awesome",
+        "@celiaGaspar: so pretty",
+        "@ramonCapitan: Such style and skill!",
+        "@albertMesa: WOW",
+        "@celiaGaspar: Gorgeous!",
+        "@albertMesa: Beautiful <3 ",
+        "@albertMesa: i have no words",
+        "@joseMariaNieves: amazing piece",
+        "@vicenteGuash: I love it",
+        "@hugoPariente: Awesome job!",
+        "@consueloCasas: Aaah! this is amazing!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam"
+      ],
+      "tags": [
+        "sad",
+        "boart",
+        "piano",
+        "nostalgia",
+        "violin",
+        "beauty"
+      ]
+    },
+    {
+      "id": 23,
+      "title": "300 Violin Orchestra",
+      "description": "300 Violin orchestra has become a sports anthem and very well known among the pump up songs category. ",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/12417512&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491209890000,
+      "stringDate": "Publicado el 03/04/2017 a las 10:58",
+      "num_visits": 0,
+      "numberOfLikes": 3,
+      "numberOfComments": 20,
+      "user": "@concha",
+      "comments": [
+        "@ismaelMoreno: Wonderful",
+        "@nexmaniosis: what a tremendous work!",
+        "@nexmaniosis: Amazing work!",
+        "@consueloCasas: This is epic",
+        "@mRosarioAyala: Amazing work!",
+        "@ismaelMoreno: awesome",
+        "@joseMariaNieves: This is epic",
+        "@nexmaniosis: Gorgeous!",
+        "@pilarGarzon: i have no words",
+        "@aitorGaleano: amazing piece",
+        "@ramonCapitan: i have no words",
+        "@celiaGaspar: amazing piece",
+        "@aitorGaleano: I love it",
+        "@m0scar: This is beautiful and cute",
+        "@vicenteGuash: sooooo coooool",
+        "@m0scar: Aaah! this is amazing!",
+        "@vicenteGuash: Awesome job!",
+        "@nexmaniosis: Wonderful",
+        "@hugoPariente: cool!",
+        "@gcuencam: So elegant"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam"
+      ],
+      "tags": [
+        "concert",
+        "violin",
+        "orchestra"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Epiclesis",
+      "description": "\"When we doubt about everything we know\".",
+      "media": "<img  class=\"img-responsive\" src=\"/files/3.jpg\">",
+      "media_type": 0,
+      "date": 1491242290000,
+      "stringDate": "Publicado el 03/04/2017 a las 19:58",
+      "num_visits": 0,
+      "numberOfLikes": 2,
+      "numberOfComments": 8,
+      "user": "@emilio",
+      "comments": [
+        "@mRosarioAyala: Awesome job!",
+        "@nexmaniosis: Impressive",
+        "@vicenteGuash: Gorgeous!",
+        "@celiaGaspar: Impressive",
+        "@ismaelMoreno: This is epic",
+        "@hugoPariente: amazing piece",
+        "@nexmaniosis: i have no words",
+        "@albertMesa: sooooo coooool"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis"
+      ],
+      "tags": [
+        "conceptual",
+        "boart",
+        "saint",
+        "religion",
+        "symbolism"
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Yiruma - River Flows in You",
+      "description": "Cello & Piano Orchestral Version ft. Yiruma - River Flows in You",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/129893792&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491202690000,
+      "stringDate": "Publicado el 03/04/2017 a las 08:58",
+      "num_visits": 0,
+      "numberOfLikes": 2,
+      "numberOfComments": 4,
+      "user": "@emilio",
+      "comments": [
+        "@nexmaniosis: Amazing work!",
+        "@albertMesa: Such style and skill!",
+        "@cristinaCrespo: i have no words",
+        "@vicenteGuash: what a tremendous work!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis"
+      ],
+      "tags": [
+        "music",
+        "boart",
+        "piano",
+        "orchestra"
+      ]
+    },
+    {
+      "id": 30,
+      "title": "Asylum",
+      "description": "STRANGUH - Asylum",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/311584848&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491184690000,
+      "stringDate": "Publicado el 03/04/2017 a las 03:58",
+      "num_visits": 0,
+      "numberOfLikes": 2,
+      "numberOfComments": 11,
+      "user": "@emilio",
+      "comments": [
+        "@vicenteGuash: cool!",
+        "@nataliaTorras: This is epic",
+        "@vicenteGuash: Wonderful",
+        "@m0scar: looks nice!",
+        "@celiaGaspar: It's absolute amazing.",
+        "@nataliaTorras: cool!",
+        "@consueloCasas: awesome",
+        "@pilarGarzon: Beautiful!",
+        "@gcuencam: Beautiful <3 ",
+        "@joseMariaNieves: Wonderful",
+        "@nataliaTorras: sooooo coooool"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis"
+      ],
+      "tags": [
+        "music",
+        "electronic",
+        "dubstep"
+      ]
+    },
+    {
+      "id": 32,
+      "title": "Hysteria",
+      "description": "Boombox Cartel - Hysteria (WTF Is Festival Trap Anthem)",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/98264534&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491177490000,
+      "stringDate": "Publicado el 03/04/2017 a las 01:58",
+      "num_visits": 0,
+      "numberOfLikes": 2,
+      "numberOfComments": 9,
+      "user": "@juan",
+      "comments": [
+        "@hugoPariente: Beautiful <3 ",
+        "@vicenteGuash: awesome",
+        "@hugoPariente: It's absolute amazing.",
+        "@vicenteGuash: I love it",
+        "@ramonCapitan: cool!",
+        "@montserratDelValle: Gorgeous!",
+        "@ramonCapitan: WOW",
+        "@gcuencam: Amazing work!",
+        "@albertMesa: amazing piece"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis"
+      ],
+      "tags": [
+        "music",
+        "techno",
+        "electronic"
+      ]
+    }
+  ],
+  "last": false,
+  "totalPages": 5,
+  "totalElements": 46,
+  "size": 10,
+  "number": 2,
+  "first": false,
+  "sort": [
+    {
+      "direction": "DESC",
+      "property": "numberOfLikes",
+      "ignoreCase": false,
+      "nullHandling": "NATIVE",
+      "ascending": false,
+      "descending": true
+    }
+  ],
+  "numberOfElements": 10
+}
+```
 - POST (/list) -> Lista de publicaciones filtrada. Entradas: String filter, String tags.
+```
+{
+  "content": [
+    {
+      "id": 31,
+      "title": "Mortal Kombat Dance",
+      "description": "Valentino Jorno - Mortal Kombat Dance",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/264398016&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491181090000,
+      "stringDate": "Publicado el 03/04/2017 a las 02:58",
+      "num_visits": 0,
+      "numberOfLikes": 15,
+      "numberOfComments": 28,
+      "user": "@juan",
+      "comments": [
+        "@albertMesa: I love it",
+        "@joseMariaNieves: so pretty",
+        "@ismaelMoreno: so pretty",
+        "@joseMariaNieves: amazing piece",
+        "@ramonCapitan: what a tremendous work!",
+        "@pilarGarzon: what a tremendous work!",
+        "@cristinaCrespo: So elegant",
+        "@joseMariaNieves: what a tremendous work!",
+        "@montserratDelValle: sooooo coooool",
+        "@pilarGarzon: I love it",
+        "@mRosarioAyala: awesome",
+        "@albertMesa: Absolutely gorgeous!",
+        "@ramonCapitan: Awesome job!",
+        "@ramonCapitan: what a tremendous work!",
+        "@joseMariaNieves: So elegant",
+        "@pilarGarzon: cool!",
+        "@mRosarioAyala: I love it",
+        "@mRosarioAyala: Beautiful!",
+        "@ismaelMoreno: Beautiful <3 ",
+        "@cristinaCrespo: Such style and skill!",
+        "@carlaNavarro: Amazing work!",
+        "@ismaelMoreno: Beautiful!",
+        "@hugoPariente: cool!",
+        "@cristinaCrespo: i have no words",
+        "@hugoPariente: Inspiring!",
+        "@ramonCapitan: Such style and skill!",
+        "@ramonCapitan: Beautiful!",
+        "@hugoPariente: Impressive"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves",
+        "@ismaelMoreno",
+        "@albertMesa",
+        "@hugoPariente",
+        "@vicenteGuash"
+      ],
+      "tags": [
+        "boart",
+        "electronic",
+        "techno",
+        "dance",
+        "music"
+      ]
+    },
+    {
+      "id": 33,
+      "title": "Reload ",
+      "description": "Sebastian Ingrosso & Tommy Trash - Reload (BARE Remix)",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/86616680&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491173890000,
+      "stringDate": "Publicado el 03/04/2017 a las 00:58",
+      "num_visits": 0,
+      "numberOfLikes": 15,
+      "numberOfComments": 1,
+      "user": "@juan",
+      "comments": [
+        "@montserratDelValle: looks nice!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves",
+        "@ismaelMoreno",
+        "@albertMesa",
+        "@hugoPariente",
+        "@vicenteGuash"
+      ],
+      "tags": [
+        "electronic",
+        "house",
+        "epic",
+        "techno",
+        "music"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Werewolf",
+      "description": "werewolf lurking REIMAGINED",
+      "media": "<img  class=\"img-responsive\" src=\"/files/2.jpg\">",
+      "media_type": 0,
+      "date": 1491245890000,
+      "stringDate": "Publicado el 03/04/2017 a las 20:58",
+      "num_visits": 0,
+      "numberOfLikes": 14,
+      "numberOfComments": 19,
+      "user": "@juan",
+      "comments": [
+        "@nexmaniosis: Looks great!",
+        "@mRosarioAyala: sooooo coooool",
+        "@cristinaCrespo: amazing piece",
+        "@joseMariaNieves: what a tremendous work!",
+        "@m0scar: cool!",
+        "@nexmaniosis: cool!",
+        "@cristinaCrespo: WOW",
+        "@albertMesa: So elegant",
+        "@montserratDelValle: so pretty",
+        "@joseMariaNieves: what a tremendous work!",
+        "@nataliaTorras: i have no words",
+        "@celiaGaspar: Beautiful <3 ",
+        "@joseMariaNieves: beautiful artwork",
+        "@nataliaTorras: I love it",
+        "@gcuencam: Beautiful!",
+        "@celiaGaspar: Inspiring!",
+        "@joseMariaNieves: Beautiful <3 ",
+        "@vicenteGuash: Awesome job!",
+        "@aitorGaleano: Such style and skill!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves",
+        "@ismaelMoreno",
+        "@albertMesa",
+        "@hugoPariente"
+      ],
+      "tags": [
+        "dark",
+        "epic",
+        "wolf"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Mozart: Concerto for Piano no 25",
+      "description": "The New England Conservatory Philharmonia led by guest conductor Jefferey Kahane at the keyboard, present Mozart's Concerto for Piano no 25 in C major",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/121863093&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491206290000,
+      "stringDate": "Publicado el 03/04/2017 a las 09:58",
+      "num_visits": 0,
+      "numberOfLikes": 13,
+      "numberOfComments": 15,
+      "user": "@juan",
+      "comments": [
+        "@consueloCasas: Gorgeous!",
+        "@gcuencam: sooooo coooool",
+        "@albertMesa: Impressive",
+        "@joseMariaNieves: amazing piece",
+        "@hugoPariente: Gorgeous!",
+        "@pilarGarzon: Wonderful",
+        "@m0scar: i have no words",
+        "@mRosarioAyala: Inspiring!",
+        "@consueloCasas: sooooo coooool",
+        "@ramonCapitan: amazing piece",
+        "@pilarGarzon: Inspiring!",
+        "@cristinaCrespo: Awesome job!",
+        "@ismaelMoreno: Aaah! this is amazing!",
+        "@consueloCasas: Awesome job!",
+        "@carlaNavarro: looks nice!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves",
+        "@ismaelMoreno",
+        "@albertMesa"
+      ],
+      "tags": [
+        "mozart",
+        "concert",
+        "orchestra",
+        "piano"
+      ]
+    },
+    {
+      "id": 36,
+      "title": "Faded",
+      "description": "Faded - Alan Walker (fingerstyle guitar cover by Peter Gergely)",
+      "media": "<iframe class=\"iframeVideo\" src=\"https://www.youtube.com/embed/69A2xXbI7QA\" frameborder=\"0\"></iframe>",
+      "media_type": 2,
+      "date": 1491163090000,
+      "stringDate": "Publicado el 02/04/2017 a las 21:58",
+      "num_visits": 0,
+      "numberOfLikes": 13,
+      "numberOfComments": 13,
+      "user": "@concha",
+      "comments": [
+        "@hugoPariente: Beautiful!",
+        "@albertMesa: Wonderful",
+        "@carlaNavarro: awesome",
+        "@aitorGaleano: looks nice!",
+        "@vicenteGuash: looks nice!",
+        "@m0scar: Beautiful <3 ",
+        "@mRosarioAyala: This is beautiful and cute",
+        "@joseMariaNieves: Such style and skill!",
+        "@aitorGaleano: So elegant",
+        "@gcuencam: Awesome job!",
+        "@montserratDelValle: This is epic",
+        "@hugoPariente: amazing piece",
+        "@mRosarioAyala: This is beautiful and cute"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves",
+        "@ismaelMoreno",
+        "@albertMesa"
+      ],
+      "tags": [
+        "guitar",
+        "cover",
+        "epic",
+        "god"
+      ]
+    },
+    {
+      "id": 40,
+      "title": "America's Great Spaces",
+      "description": "Dazzling Time-Lapse Reveals America's Great Spaces | National Geographic",
+      "media": "<iframe class=\"iframeVideo\" src=\"https://www.youtube.com/embed/9d8wWcJLnFI\" frameborder=\"0\"></iframe>",
+      "media_type": 2,
+      "date": 1491148690000,
+      "stringDate": "Publicado el 02/04/2017 a las 17:58",
+      "num_visits": 0,
+      "numberOfLikes": 11,
+      "numberOfComments": 14,
+      "user": "@concha",
+      "comments": [
+        "@ismaelMoreno: looks nice!",
+        "@celiaGaspar: Beautiful!",
+        "@joseMariaNieves: awesome",
+        "@vicenteGuash: Absolutely gorgeous!",
+        "@pilarGarzon: cool!",
+        "@consueloCasas: cool!",
+        "@albertMesa: Impressive",
+        "@montserratDelValle: looks nice!",
+        "@vicenteGuash: Wonderful",
+        "@joseMariaNieves: Impressive",
+        "@m0scar: WOW",
+        "@celiaGaspar: Beautiful <3 ",
+        "@mRosarioAyala: Absolutely gorgeous!",
+        "@celiaGaspar: Such style and skill!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves"
+      ],
+      "tags": [
+        "america",
+        "heaven",
+        "landscape",
+        "time-lapse"
+      ]
+    },
+    {
+      "id": 46,
+      "title": "Fat Animated Short Film",
+      "description": "Funny 3D Animation Short Film For Kids - Fat Animated Short Film",
+      "media": "<iframe class=\"iframeVideo\" src=\"https://www.youtube.com/embed/gzi9r20misE\" frameborder=\"0\"></iframe>",
+      "media_type": 2,
+      "date": 1491127090000,
+      "stringDate": "Publicado el 02/04/2017 a las 11:58",
+      "num_visits": 0,
+      "numberOfLikes": 11,
+      "numberOfComments": 7,
+      "user": "@concha",
+      "comments": [
+        "@mRosarioAyala: WOW",
+        "@consueloCasas: Looks great!",
+        "@albertMesa: Absolutely gorgeous!",
+        "@aitorGaleano: what a tremendous work!",
+        "@pilarGarzon: beautiful artwork",
+        "@ismaelMoreno: i have no words",
+        "@gcuencam: Beautiful <3 "
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras",
+        "@joseMariaNieves"
+      ],
+      "tags": [
+        "animation3d",
+        "boart",
+        "short film"
+      ]
+    },
+    {
+      "id": 26,
+      "title": "Beethoven - Moonlight Sonata",
+      "description": "I was just practicing tonight and felt like recording one of the pieces.",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/24880470&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491199090000,
+      "stringDate": "Publicado el 03/04/2017 a las 07:58",
+      "num_visits": 0,
+      "numberOfLikes": 10,
+      "numberOfComments": 11,
+      "user": "@juan",
+      "comments": [
+        "@mRosarioAyala: what a tremendous work!",
+        "@nataliaTorras: looks nice!",
+        "@celiaGaspar: It's absolute amazing.",
+        "@nexmaniosis: beautiful artwork",
+        "@nexmaniosis: Wonderful",
+        "@albertMesa: Inspiring!",
+        "@celiaGaspar: Looks great!",
+        "@m0scar: looks nice!",
+        "@joseMariaNieves: Absolutely gorgeous!",
+        "@consueloCasas: so pretty",
+        "@pilarGarzon: Beautiful <3 "
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras"
+      ],
+      "tags": [
+        "dark",
+        "epic",
+        "sonata",
+        "beethoven",
+        "beauty",
+        "piano"
+      ]
+    },
+    {
+      "id": 29,
+      "title": "Bullet Train",
+      "description": "by Stephen Swartz ft. Joni Fatora",
+      "media": "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/57809396&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>",
+      "media_type": 1,
+      "date": 1491188290000,
+      "stringDate": "Publicado el 03/04/2017 a las 04:58",
+      "num_visits": 0,
+      "numberOfLikes": 10,
+      "numberOfComments": 13,
+      "user": "@concha",
+      "comments": [
+        "@ramonCapitan: Aaah! this is amazing!",
+        "@gcuencam: Wonderful",
+        "@celiaGaspar: Amazing work!",
+        "@pilarGarzon: awesome",
+        "@consueloCasas: awesome",
+        "@gcuencam: cool!",
+        "@joseMariaNieves: awesome",
+        "@vicenteGuash: WOW",
+        "@gcuencam: Beautiful <3 ",
+        "@mRosarioAyala: Impressive",
+        "@joseMariaNieves: It's absolute amazing.",
+        "@carlaNavarro: Inspiring!",
+        "@pilarGarzon: Inspiring!"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras"
+      ],
+      "tags": [
+        "dubstep",
+        "electronic",
+        "epic",
+        "music"
+      ]
+    },
+    {
+      "id": 38,
+      "title": "Rogue One Trailer",
+      "description": "STAR WARS - Rogue One Trailer (Orchestral/Piano Cover)",
+      "media": "<iframe class=\"iframeVideo\" src=\"https://www.youtube.com/embed/RPuwzdkUEFo\" frameborder=\"0\"></iframe>",
+      "media_type": 2,
+      "date": 1491155890000,
+      "stringDate": "Publicado el 02/04/2017 a las 19:58",
+      "num_visits": 0,
+      "numberOfLikes": 10,
+      "numberOfComments": 4,
+      "user": "@emilio",
+      "comments": [
+        "@mRosarioAyala: Such style and skill!",
+        "@vicenteGuash: sooooo coooool",
+        "@m0scar: Beautiful!",
+        "@aitorGaleano: sooooo coooool"
+      ],
+      "likes": [
+        "@m0scar",
+        "@nexmaniosis",
+        "@gcuencam",
+        "@aitorGaleano",
+        "@ramonCapitan",
+        "@celiaGaspar",
+        "@carlaNavarro",
+        "@montserratDelValle",
+        "@mRosarioAyala",
+        "@nataliaTorras"
+      ],
+      "tags": [
+        "star wars",
+        "cover",
+        "piano"
+      ]
+    }
+  ],
+  "last": false,
+  "totalPages": 5,
+  "totalElements": 46,
+  "size": 10,
+  "number": 0,
+  "first": true,
+  "sort": [
+    {
+      "direction": "DESC",
+      "property": "numberOfLikes",
+      "ignoreCase": false,
+      "nullHandling": "NATIVE",
+      "ascending": false,
+      "descending": true
+    }
+  ],
+  "numberOfElements": 10
+}
+```
 - GET (/id) -> Publicación específica.
 ```
 {
@@ -2348,8 +3527,147 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
   ]
 }
 ```
-- GET (/usuario2/follow) -> Usuario 1 sigue a Usuario 2.
-- GET (/usuario2/unfollow) -> Usuario 1 deja de seguir a Usuario 2.
+- GET (/usuario/follow) -> Usuario en sesión sigue a Usuario.
+```
+{
+  "id": 3,
+  "username": "juan",
+  "name": "Juan",
+  "surname": "Cuesta",
+  "description": "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil",
+  "img": "https://pickaface.net/assets/images/slides/slide2.png",
+  "visits": 0,
+  "signInDate": 1491253085000,
+  "likes": [],
+  "roles": [
+    "ROLE_USER"
+  ],
+  "gallery": [
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?"
+  ],
+  "comments": [
+    "@concha:Váyase señor Juan!!"
+  ],
+  "following": [
+    "@emilio",
+    "@gcuencam",
+    "@celiaGaspar",
+    "@mRosarioAyala",
+    "@nexmaniosis"
+  ],
+  "followers": [
+    "@emilio",
+    "@concha"
+  ],
+  "groups": [
+    "Rap Femenino"
+  ],
+  "publications": [
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Werewolf",
+    "Angelus of Hope",
+    "Chopin Nocturne in F Minor-Op. 55",
+    "Mozart: Concerto for Piano no 25",
+    "Beethoven - Moonlight Sonata",
+    "Mortal Kombat Dance",
+    "Hysteria",
+    "Reload ",
+    "The Greatest",
+    "See You Again",
+    "The Force Awakens Trailer",
+    "The magnificent landscape of Iceland",
+    "POILUS Short Film"
+  ]
+}
+```
+- GET (/usuario/unfollow) -> Usuario en sesión deja de seguir a Usuario.
+```
+{
+  "id": 3,
+  "username": "juan",
+  "name": "Juan",
+  "surname": "Cuesta",
+  "description": "¡Hola! Soy un usuario nuevo, puedes cambiar la descripción desde el perfil",
+  "img": "https://pickaface.net/assets/images/slides/slide2.png",
+  "visits": 0,
+  "signInDate": 1491253085000,
+  "likes": [],
+  "roles": [
+    "ROLE_USER"
+  ],
+  "gallery": [
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?"
+  ],
+  "comments": [
+    "@concha:Váyase señor Juan!!"
+  ],
+  "following": [
+    "@emilio",
+    "@gcuencam",
+    "@celiaGaspar",
+    "@mRosarioAyala"
+  ],
+  "followers": [
+    "@emilio",
+    "@concha"
+  ],
+  "groups": [
+    "Rap Femenino"
+  ],
+  "publications": [
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Amor bajo la lluvia",
+    "La simetría y la comida",
+    "Destellos del futuro permanente",
+    "El punto de mira",
+    "¿Quién está ahí?",
+    "Werewolf",
+    "Angelus of Hope",
+    "Chopin Nocturne in F Minor-Op. 55",
+    "Mozart: Concerto for Piano no 25",
+    "Beethoven - Moonlight Sonata",
+    "Mortal Kombat Dance",
+    "Hysteria",
+    "Reload ",
+    "The Greatest",
+    "See You Again",
+    "The Force Awakens Trailer",
+    "The magnificent landscape of Iceland",
+    "POILUS Short Film"
+  ]
+}
+```
 - POST (/new) -> Nuevo usuario. Entrada: String username, String name, String surname, String password.
 ```
 {
@@ -2374,6 +3692,24 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
 }
 ```
 - POST (/idpublication) -> Nuevo comentario. Entrada: String comentario.
+{
+  "id": 1,
+  "title": "Amor bajo la lluvia",
+  "description": "Boda Juan y Elena",
+  "media": "<img  class=\"img-responsive\" src=\"/files/gallery1.jpg\">",
+  "media_type": 0,
+  "date": 1491253088000,
+  "stringDate": "Publicado el 03/04/2017 a las 22:58",
+  "num_visits": 0,
+  "numberOfLikes": 0,
+  "numberOfComments": 1,
+  "user": "@juan",
+  "comments": [
+    "@juan: test"
+  ],
+  "likes": [],
+  "tags": []
+}
 
 ### Upload
 /api/upload
