@@ -29,6 +29,9 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 ## Diagrama clases
 ![Diagrama](http://i.imgur.com/n9YXxqf.jpg)
 
+## API REST
+[DOCUMENTACIN](https://github.com/priverop/boart/blob/master/API.md)
+
 ## Trello
 https://trello.com/b/fG0uTmVa
 
