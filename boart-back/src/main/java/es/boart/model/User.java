@@ -45,7 +45,7 @@ public class User {
 	private List<Publication> gallery = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-	private List<PublicationLike> likes;
+	private List<PublicationLike> likes = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
