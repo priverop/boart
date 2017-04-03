@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.boart.UserComponent;
 import es.boart.model.Grupo;
 import es.boart.model.User;
 import es.boart.services.GroupService;
@@ -29,8 +30,12 @@ public class GroupRestController {
 	
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private UploadService uploadService;
+	
+	@Autowired
+	private UserComponent userSession;
 	
 	@GetMapping("/")
 	public List<Grupo> getGroups(){
@@ -48,30 +53,51 @@ public class GroupRestController {
 		}
 	}
 	
-	@GetMapping("/{idGroup}/join/{idUser}")
-	public ResponseEntity<Grupo> joinGroup(@PathVariable long idGroup, @PathVariable long idUser){
-		Grupo g = groupService.findOne(idGroup);
-		User u  = userService.findOne(idUser);
-		groupService.joinGroup(u, g);
+	@GetMapping("/join/{idGroup}")
+	public ResponseEntity<Grupo> joinGroup(@PathVariable long idGroup){
 		
-		if (g != null && u != null) {
-			return new ResponseEntity<>(g, HttpStatus.OK);
+		if (userSession.getUser() != null) {
+			
+			User user = userService.findOne(userSession.getUser().getId());
+			
+			Grupo g = groupService.findOne(idGroup);
+			
+			groupService.joinGroup(user, g);
+			
+			if (g != null && user != null) {
+				return new ResponseEntity<>(g, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
+		
+
 	}
 	
-	@GetMapping("/{idGroup}/leave/{idUser}")
-	public ResponseEntity<Grupo> leaveGroup(@PathVariable long idGroup, @PathVariable long idUser){
-		Grupo g = groupService.findOne(idGroup);
-		User u  = userService.findOne(idUser);
-		groupService.leaveGroup(u, g);
+	@GetMapping("/leave/{idGroup}")
+	public ResponseEntity<Grupo> leaveGroup(@PathVariable long idGroup){
 		
-		if (g != null && u != null) {
-			return new ResponseEntity<>(g, HttpStatus.OK);
+		if (userSession.getUser() != null) {
+			
+			User user = userService.findOne(userSession.getUser().getId());
+			
+			Grupo g = groupService.findOne(idGroup);
+			
+			groupService.leaveGroup(user, g);
+			
+			if (g != null && user != null) {
+				return new ResponseEntity<>(g, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
+			
 	}
 	
 	@PostMapping("/create")
