@@ -27,7 +27,7 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 ![Diagrama](http://i.imgur.com/w0wUk5I.png)
 
 ## Diagrama clases
-![Diagrama](http://i.imgur.com/n9YXxqf.jpg)
+![Diagrama](http://i.imgur.com/Mw3IiBK.jpg)
 
 ## API REST
 [DOCUMENTACIN](https://github.com/priverop/boart/blob/master/API.md)
