@@ -330,6 +330,33 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8400/api/publication/3",
+			"request": {
+				"url": "http://127.0.0.1:8400/publication/user/3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "comment",
+							"value": "Hola, bienvenido a BOART",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
