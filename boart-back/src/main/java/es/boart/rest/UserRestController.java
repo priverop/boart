@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.boart.UserComponent;
+import es.boart.model.Publication;
 import es.boart.model.User;
 import es.boart.services.UserService;
 
@@ -21,6 +23,9 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserComponent userSession;
 	
 	@GetMapping("/")
 	public List<User> getUsers(){
@@ -38,30 +43,50 @@ public class UserRestController {
 		}
 	}
 	
-	@GetMapping("/{user1}/follow/{user2}")
-	public ResponseEntity<User> followUser(@PathVariable long user1, @PathVariable long user2){
-		User userA = userService.findOne(user1);
-		User userB = userService.findOne(user2);
-		userService.followUser(userA, userB);
+	@GetMapping("/follow/{userToFollowId}")
+	public ResponseEntity<User> followUser(@PathVariable long userToFollowId){
 		
-		if (userA != null && userB != null) {
-			return new ResponseEntity<>(userA, HttpStatus.OK);
+		if (userSession.getUser() != null) {
+			
+			User user = userService.findOne(userSession.getUser().getId());
+						
+			User userToFollow = userService.findOne(userToFollowId);
+			
+			userService.followUser(user, userToFollow);
+			
+			if (user != null && userToFollow != null) {
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
+		
 	}
 	
-	@GetMapping("/{user1}/unfollow/{user2}")
-	public ResponseEntity<User> unfollowUser(@PathVariable long user1, @PathVariable long user2){
-		User userA = userService.findOne(user1);
-		User userB = userService.findOne(user2);
-		userService.unfollowUser(userA, userB);
+	@GetMapping("/unfollow/{userToUnFollowId}")
+	public ResponseEntity<User> unfollowUser(@PathVariable long userToUnFollowId){
 		
-		if (userA != null && userB != null) {
-			return new ResponseEntity<>(userA, HttpStatus.OK);
+		if (userSession.getUser() != null) {
+			
+			User user = userService.findOne(userSession.getUser().getId());
+						
+			User userToUnFollow = userService.findOne(userToUnFollowId);
+			
+			userService.unfollowUser(user, userToUnFollow);
+			
+			if (user != null && userToUnFollow != null) {
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
+		
 	}
 	
 	@PostMapping("/new")
