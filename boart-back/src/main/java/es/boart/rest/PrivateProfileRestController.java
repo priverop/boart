@@ -51,7 +51,7 @@ public class PrivateProfileRestController {
 	}
 	
 	@PutMapping("/")
-	public ResponseEntity<User> putPrivateProfile8(@RequestBody User modifiedUser, @RequestParam("inputImage") MultipartFile file){
+	public ResponseEntity<User> putPrivateProfile8(User modifiedUser, @RequestParam(value="inputImage", required=false) MultipartFile file){
 				
 		if (userSession.getUser() != null) {
 			
