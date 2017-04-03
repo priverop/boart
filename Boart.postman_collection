@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Boart",
-		"_postman_id": "89fb0b1e-2897-5dc2-b29d-e64f961dbf85",
+		"_postman_id": "53ef3ecf-7a35-53e7-2ae8-1d38173d8546",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -207,7 +207,10 @@
 				"url": "http://localhost:8400/api/group/",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -218,18 +221,37 @@
 				"url": "http://localhost:8400/api/group/3",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/publication/1?comment=test",
+			"name": "http://127.0.0.1:8400/api/user/3",
 			"request": {
-				"url": "http://localhost:8400/api/publication/1?comment=test",
+				"url": "http://127.0.0.1:8400/api/user/3",
 				"method": "POST",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "comment",
+							"value": "Hola, bienvenido a BOART",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
 				"description": ""
 			},
 			"response": []
