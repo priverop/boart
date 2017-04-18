@@ -7,14 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* ROOT */
 import { AppComponent } from './app.component';
-import { CoverComponent } from './pages/cover/cover.component';
 
 /* PAGES */
+import { CoverComponent } from './pages/cover/cover.component';
 
 /* COMPONENTS */
 
 const appRoutes: Routes = [
-
+  { path: '', component: CoverComponent}
 ];
 
 @NgModule({
