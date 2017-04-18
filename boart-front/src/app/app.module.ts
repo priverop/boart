@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 /* ROOT */
 import { AppComponent } from './app.component';
+import { CoverComponent } from './pages/cover/cover.component';
 
 /* PAGES */
 
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoverComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
