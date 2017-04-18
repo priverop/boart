@@ -19,6 +19,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import es.boart.boartUtils;
 
 @Entity
@@ -48,7 +51,7 @@ public class Publication {
 	private List<Comment> comments = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="publication")
-	private List<PublicationLike> likes;
+	private List<PublicationLike> likes = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy="publications") 
 	private Set<Tag> tags;
@@ -91,6 +94,7 @@ public class Publication {
 	/**
 	 * @return the user
 	 */
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -182,6 +186,10 @@ public class Publication {
 		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
 	}
 
+	public String getStringDate() {
+		return stringDate;
+	}
+	
 	/**
 	 * @return the num_visits
 	 */
@@ -199,6 +207,7 @@ public class Publication {
 	/**
 	 * @return the likes
 	 */
+	@JsonIgnore
 	public List<PublicationLike> getLikes() {
 		return likes;
 	}
@@ -223,6 +232,7 @@ public class Publication {
 	/**
 	 * @return the comentariosPublicacion
 	 */
+	@JsonIgnore
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -234,6 +244,7 @@ public class Publication {
 		this.comments = comentariosPublicacion;
 	}
 	
+	@JsonIgnore
 	public Set<Tag> getTags() {
 		return tags;
 	}
@@ -264,6 +275,54 @@ public class Publication {
 	public void setNumberOfComments(int numberOfComments) {
 		this.numberOfComments = numberOfComments;
 	}	
+	
+	/* CUSTOM METHOD */
+	
+	public boolean checkUserLikesThis(User user){
+				
+		for(PublicationLike like:this.getLikes()){
+			if(like.getUser() == user){
+				System.out.println("SEHHH");
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	 @JsonProperty("user")
+	 public String getGalleryJSON(){
+	    	return "@" + user.getUsername();
+	 }
+	 
+	 @JsonProperty("comments")
+	 public List<String> getCommentsJSON(){
+	    	ArrayList<String> commentList = new ArrayList<String>();
+	    	for (Comment c : comments){
+	    		commentList.add("@" + c.getUser().getUsername() + ": " + c.getText());
+	    	}
+	    	return commentList;
+	 }
+	
+	 @JsonProperty("likes")
+	 public List<String> getLikesJSON(){
+	    	ArrayList<String> likeList = new ArrayList<String>();
+	    	for (PublicationLike l : likes){
+	    		likeList.add("@" + l.getUser().getUsername());
+	    	}
+	    	return likeList;
+	 }
+	
+	 @JsonProperty("tags")
+	 public List<String> gettagsJSON(){
+	    	ArrayList<String> tagList = new ArrayList<String>();
+	    	for (Tag t : tags){
+	    		tagList.add(t.getTag());
+	    	}
+	    	return tagList;
+	 }
 }
 		
 	

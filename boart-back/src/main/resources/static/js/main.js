@@ -1,18 +1,3 @@
-var checkLikes = function(){
-	
-	var $ratingValueSpan = $('.rating-value');
-	
-	$ratingValueSpan.each(function(index, element){
-		var $element = $(element);
-		var $likeIcon = $element.siblings('.like_icon');
-		var ratingValue = parseInt($element.text());
-		
-		if(ratingValue > 0){
-			$likeIcon.addClass('added');
-		}
-	});
-};
-
 var activeFilter = function(filter){
 	if (filter == 'likes'){
 		document.getElementById('aLikes').className ='active';
@@ -64,7 +49,7 @@ var likeManager = function(){
 	});
 };
 
-var modalSign = function(){
+var modalSign = function(e){
 	
 	var $singUpButton = $('#sing_up');
 	var $singInButton = $('#sing_in');
@@ -90,8 +75,17 @@ var modalSign = function(){
 	$singInButton.click(function(){
 		overlay(true);
 		$boxSignUp.hide();
-		console.log($boxSignIn)
 		$boxSignIn.show();
+	});
+	
+	$(".overlay").click(function() {
+		overlay(false);
+		$boxSignUp.hide();
+		$boxSignIn.hide();
+	});
+
+	$(".app_box").click(function(event){
+		event.stopPropagation();
 	});
 	
 	var $boxSignForms = $('.box_sign').find('form');
@@ -100,11 +94,24 @@ var modalSign = function(){
 		
 	});
 	
+	
 };
+
+var checkMyLike = function(idPublication){
+	var request = $.ajax({
+		  url: "http://localhost:8400/checkLike",
+		  method: "GET",
+		  data: {id: idPublication}
+	}).done(function( response ) {
+		
+		if (response == "true") {
+			$("#"+idPublication).addClass('added');
+		}
+	});
+}
 
 
 $(function() {
 	modalSign();
 	likeManager();
-	checkLikes();
 });

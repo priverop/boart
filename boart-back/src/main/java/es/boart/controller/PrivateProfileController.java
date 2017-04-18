@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.boart.UserComponent;
 import es.boart.model.User;
-import es.boart.repository.UserRepository;
+import es.boart.services.UploadService;
+import es.boart.services.UserService;
 
 @Controller
 public class PrivateProfileController {
@@ -22,7 +25,9 @@ public class PrivateProfileController {
 	private UserComponent userSession;
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserService userService;
+	@Autowired
+	private UploadService uploadService;
 	
 	@PostConstruct
 	public void init(){}
@@ -33,12 +38,12 @@ public class PrivateProfileController {
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
 		if(userSession.getUser() != null){
-			User myUser = userRepo.findOne(userSession.getUser().getId());
+			User myUser = userService.findOne(userSession.getUser().getId());
 		
-		modelo.addAttribute("usuario", myUser);
-		modelo.addAttribute("followings", myUser.getFollowing());
-		modelo.addAttribute("followers", myUser.getFollowers());
-		modelo.addAttribute("groups", myUser.getGroups());
+			modelo.addAttribute("usuario", myUser);
+			modelo.addAttribute("followings", myUser.getFollowing());
+			modelo.addAttribute("followers", myUser.getFollowers());
+			modelo.addAttribute("groups", myUser.getGroups());
 		}
 		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
@@ -48,32 +53,15 @@ public class PrivateProfileController {
 	}
 	
 	@PostMapping("/edit_profile")
-	public String register(User usuario){
-		
-		User user = userRepo.findById(usuario.getId());
-		
-		if(usuario.getName() != null){
-			user.setName(usuario.getName());
+	public String register(User usuario, @RequestParam(value="inputFile", required=false) MultipartFile file){
+
+		if(usuario.getId() == userSession.getUser().getId()){
+			
+			User user = userService.findOne(usuario.getId());
+			
+			userService.setUser(user, usuario, file);
+
 		}
-		
-		if(usuario.getSurname() != null){
-			user.setSurname(usuario.getSurname());
-		}
-		
-		if(usuario.getUsername() != null){
-			user.setUsername(usuario.getUsername());
-		}
-		
-		if(usuario.getPassword() != null){
-			user.setPassword(usuario.getPassword());
-		}
-		
-		if(usuario.getDescription() != null){
-			user.setDescription(usuario.getDescription());
-		}		
-		
-		userRepo.save(user);
-		userSession.setUser(user);
 
 		return "redirect:/private_profile";
 	}

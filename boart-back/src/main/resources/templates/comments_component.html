@@ -6,12 +6,12 @@
             </div>
      	{{/comments}}
      	{{^comments}}
-     	<p class="font_contrast">¡Sé el primero en escribir un comentario</p>
+     	<p class="font_contrast">Sé el primero en escribir un comentario</p>
      	{{/comments}}
         {{#sesion_usuario}}
             <div class="form-group">
             	<form action="/addComment/{{reference}}" method="post">
-                	<textarea placeholder="Comentario" name="text"></textarea>
+                	<textarea class="col-xs-8" placeholder="Comentario" name="text"></textarea>
                 	<input type="hidden" name="idLocation" value="{{IDLocation}}" />
            			<input type="hidden" name="_csrf" value="{{token}}" />
                 	<input type="submit" />

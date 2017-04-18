@@ -45,14 +45,18 @@
 		                    <textarea class="form-control" id="inputDescription" name="etiquetas" placeholder="Palabras clave de tu obra: ¡una por línea!"></textarea>
 		                </div>
 		            </div>
-					{{#user_groups}}
+					
 		            <div class="form-group">
 		                <label for="inputTitle" class="col-sm-2 control-label">¿Dónde lo quieres publicar?</label>
 		                <div class="col-sm-10">
-		                    <input type="radio" name="idGroup" value="{{id}}"> {{title}}
+		                	<select name="idGroup">
+		                		<option value="0"> Público</option>
+		                		{{#user_groups}}
+		                    	<option value="{{id}}"> {{title}}</option>
+								{{/user_groups}}
+		                    </select>
 		                </div>
 		            </div>
-					{{/user_groups}}
 		            
 	            	<div class="form-group" >
 		                <label for="inputTitle" class="col-sm-2 control-label">Tipo de publicación</label>

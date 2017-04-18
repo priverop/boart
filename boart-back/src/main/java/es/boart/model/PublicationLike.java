@@ -56,6 +56,4 @@ public class PublicationLike {
 		this.publication = publication;
 	}
 	
-	
-	
 }

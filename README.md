@@ -24,47 +24,48 @@ Aplicación web dedicada a la publicación y rating de arte. Podrás subir eleme
 * Etiqueta: Palabras que los usuarios podrán usar en sus publicaciones para que el resto de personas encuentren sus obras con más facilidad. Las etiquetas también servirán para ver publicaciones referentes a un mismo tema (filtro).
 * Votos.
 * Comentarios.
+![Diagrama](http://i.imgur.com/w0wUk5I.png)
 
-## Integrantes 
-* Oscar Ballesteros Izquierdo. o.ballesteros@alumnos.urjc.es
-* Gabriel Cuenca Moncin. g.cuencam@alumnos.urjc.es
-* Pablo Rivero Pulido. p.riverop@alumnos.urjc.es. GitHub: priverop
+## Diagrama clases
+![Diagrama](http://i.imgur.com/Mw3IiBK.jpg)
+
+## API REST
+[DOCUMENTACIN](https://github.com/priverop/boart/blob/master/API.md)
 
 ## Trello
 https://trello.com/b/fG0uTmVa
 
 ## Navegación
-![Navegacion]
-(http://i.imgur.com/3QFtfaP.png)
+![Navegacion](http://i.imgur.com/N1B1zfq.png)
 
 # Portada
-![Portada]
-(http://i.imgur.com/b3bJRS0.png)
+![Portada](http://i.imgur.com/b3bJRS0.png)
 
 # Login
-![Login]
-(http://i.imgur.com/GPWvkUU.png)
+![Login](http://i.imgur.com/GPWvkUU.png)
 
 # Registro
-![Registro]
-(http://i.imgur.com/EULGA32.png)
+![Registro](http://i.imgur.com/EULGA32.png)
 
 # Publicación
-![Publicación]
-(http://i.imgur.com/XqZVjT5.png)
+![Publicación](http://i.imgur.com/XqZVjT5.png)
 
 # Grupo
-![Grupo]
-(http://i.imgur.com/F2zCQA5.png)
+![Grupo](http://i.imgur.com/F2zCQA5.png)
 
 # Perfil privado
-![Perfil privado]
-(http://i.imgur.com/8Ox5MZC.png)
+![Perfil privado](http://i.imgur.com/8Ox5MZC.png)
 
 # Perfil público
-![Perfil público]
-(http://i.imgur.com/GlAyD6J.png)
+![Perfil público](http://i.imgur.com/GlAyD6J.png)
 
 # Upload
-![Upload]
-(http://i.imgur.com/TTXg9Be.png)
+![Upload](http://i.imgur.com/TTXg9Be.png)
+
+# Crear Grupo
+![Crear Grupo](http://i.imgur.com/hirZCB2.png)
+
+## Integrantes 
+* Oscar Ballesteros Izquierdo. o.ballesteros@alumnos.urjc.es
+* Gabriel Cuenca Moncin. g.cuencam@alumnos.urjc.es
+* Pablo Rivero Pulido. p.riverop@alumnos.urjc.es. GitHub: priverop

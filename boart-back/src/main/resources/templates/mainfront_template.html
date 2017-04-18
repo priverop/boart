@@ -13,47 +13,75 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../css/mainFront.css">
+<link rel="stylesheet" href="../css/spinner.css">
 <script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/pageable.js"></script>
+<meta content="{{token}}" name="csrf-token" />
+<meta content="{{filter}}" name="filter" />
+<meta content="{{#sTags}}{{.}},{{/sTags}}" name="tags" />
+
+
+
 </head>
 <body onload="activeFilter('{{filter}}')">
+	<div class="spinner_overlay">
+		<div class="sk-folding-cube">
+		  <div class="sk-cube1 sk-cube"></div>
+		  <div class="sk-cube2 sk-cube"></div>
+		  <div class="sk-cube4 sk-cube"></div>
+		  <div class="sk-cube3 sk-cube"></div>
+		</div>
+	</div>
+
 	{{> header_component}}
 	<article class="container-fluid">
-		<div
-			class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
 			<ul>
-				<li><form method="POST" class="tagForm" name="newsForm">
-				<input type="hidden" name="_csrf" value="{{token}}" />
-				<input type="hidden" name="filter" value="{{filter}}"/>
-				<input type="hidden" name="type" value="latestFilter"/>
-				{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
-				<a href="#" id="aLatest" onclick="newsForm.submit()"><i aria-hidden="true"
-						class="icofont icofont-newspaper"></i>+ nuevos</a>
-				</form></li>
-				<li><form method="POST" class="tagForm" name="likesForm">
-				<input type="hidden" name="_csrf" value="{{token}}" />
-				<input type="hidden" name="filter" value="{{filter}}"/>
-				<input type="hidden" name="type" value="likesFilter"/>
-				{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
-				<a href="#" id="aLikes" onclick="likesForm.submit()""><i aria-hidden="true"
-						class="glyphicon glyphicon-heart-empty"></i>+ valorados</a>
-				</form></li>
-				<li><form method="POST" class="tagForm" name="commentsForm">
-				<input type="hidden" name="_csrf" value="{{token}}" />
-				<input type="hidden" name="filter" value="{{filter}}"/>
-				<input type="hidden" name="type" value="commentsFilter"/>
-				{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
-				<a href="#" id="aComments" onclick="commentsForm.submit()"><i aria-hidden="true"
-						class="icofont icofont-comment"></i>+ comentados</a>
-				</form></li>
+				<li>
+					<form method="POST" class="tagForm" name="newsForm">
+						<input type="hidden" name="_csrf" value="{{token}}" />
+						<input type="hidden" name="filter" value="{{filter}}"/>
+						<input type="hidden" name="type" value="latestFilter"/>
+						{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
+						<a href="#" id="aLatest" onclick="newsForm.submit()">
+							<i aria-hidden="true" class="icofont icofont-newspaper"></i>
+							+ nuevos
+						</a>
+					</form>
+				</li>
+				<li>
+					<form method="POST" class="tagForm" name="likesForm">
+						<input type="hidden" name="_csrf" value="{{token}}" />
+						<input type="hidden" name="filter" value="{{filter}}"/>
+						<input type="hidden" name="type" value="likesFilter"/>
+						{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
+						<a href="#" id="aLikes" onclick="likesForm.submit()"">
+							<i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>
+							+ valorados
+						</a>
+					</form>
+				</li>
+				<li>
+					<form method="POST" class="tagForm" name="commentsForm">
+						<input type="hidden" name="_csrf" value="{{token}}" />
+						<input type="hidden" name="filter" value="{{filter}}"/>
+						<input type="hidden" name="type" value="commentsFilter"/>
+						{{#sTags}} <input type="hidden" name="tags" value="{{.}}">{{/sTags}}
+						<a href="#" id="aComments" onclick="commentsForm.submit()">
+							<i aria-hidden="true" class="icofont icofont-comment"></i>
+							+ comentados
+						</a>
+					</form>
+				</li>
 			</ul>
 			<form method="POST">
 				<input type="hidden" name="_csrf" value="{{token}}" /> 
-				<input type="hidden" name="filter" value="{{filter}}"/><input
-					type="hidden" name="type" value="addTag" />
+				<input type="hidden" name="filter" value="{{filter}}"/>
+				<input type="hidden" name="type" value="addTag" />
 				<div class="input-group stylish-input-group">
-					<input type="text" class="form-control" placeholder="Añadir tag"
-						name="nTag"> {{#sTags}} <input type="hidden" name="tags"
-						value="{{.}}"> {{/sTags}} <span class="input-group-addon">
+					<input type="text" class="form-control" placeholder="Añadir tag" name="nTag"> 
+					{{#sTags}} <input type="hidden" name="tags" value="{{.}}"> {{/sTags}} 
+					<span class="input-group-addon">
 						<button type="submit">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
@@ -63,13 +91,15 @@
 			<div class="tag_component">
 				{{#sTags}}
 				<form method="POST" class="tagForm" name="{{.}}Form">
-					<input type="hidden" name="nTag" value="{{.}}"> <input
-						type="hidden" name="_csrf" value="{{token}}" /> 
-						<input type="hidden" name="filter" value="{{filter}}"/><input
-						type="hidden" name="type" value="remTag" /> {{#sTags}} <input
-						type="hidden" name="tags" value="{{.}}">{{/sTags}} <span
-						class="tag" onclick="{{.}}Form.submit()"><span
-						class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{.}}</span>
+					<input type="hidden" name="nTag" value="{{.}}"> 
+					<input type="hidden" name="_csrf" value="{{token}}" /> 
+					<input type="hidden" name="filter" value="{{filter}}"/>
+					<input type="hidden" name="type" value="remTag" />  
+					{{#sTags}}<input type="hidden" name="tags" value="{{.}}">{{/sTags}} 
+					<span class="tag" onclick="{{.}}Form.submit()">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						{{.}}
+					</span>
 				</form>
 				{{/sTags}}
 			</div>
@@ -77,38 +107,11 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
 			<div id="columns">
 				{{#publicaciones}} 
-					<div class="publication app_box publication_box">
-					<a href="/publication/{{id}}">
-						{{{ media }}}
-						<p>{{ title }}</p>
-						<div class="rating">
-							<a href="#" publication="{{ id }}"> <span
-								class="glyphicon glyphicon-heart-empty like_icon"
-								aria-hidden="true"></span><span class="rating-value">{{numberOfLikes }}</span>
-							</a>							
-						</div>
-						<div class="comments">
-							<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-							<span class="numComments">{{numberOfComments}}</span>
-						</div>
-						<div class="tag_component">
-							{{#tags}}
-							<form method="POST" class="tagForm" name="{{tag}}{{id}}Form">
-								<input type="hidden" name="nTag" value="{{tag}}"> 
-								<input type="hidden" name="_csrf" value="{{token}}" />
-								<input type="hidden" name="filter" value="{{filter}}"/> 
-								<input type="hidden" name="type" value="addTag" /> 
-								<span class="tag" onclick="{{tag}}{{id}}Form.submit()">{{tag}}</span>																
-							</form>
-							
-							{{/tags}}
-						</div>
-						<div class="divDate">
-							{{stringDate}}
-						</div>
-						</a> 
-					</div>
+					{{> publicationItem}}
 				{{/publicaciones}}
+			</div>
+			<div class="load_more">
+				<span>Cargar más publicaciones</span>
 			</div>
 		</div>
 	</article>

@@ -1,5 +1,6 @@
 package es.boart.model;
 
+import java.security.acl.Group;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +18,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -41,7 +45,7 @@ public class User {
 	private List<Publication> gallery = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-	private List<PublicationLike> likes;
+	private List<PublicationLike> likes = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
@@ -72,7 +76,7 @@ public class User {
 	 * @param password
 	 * @param roles
 	 */
-	public User(String username, String name, String surname, String password, String... roles) {
+	public User(String username, String name, String surname, String password, String img, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
@@ -81,7 +85,7 @@ public class User {
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
-		this.img = DEFAULT_IMG;
+		this.img = img;
 		// Fecha actual
 		Date date = new Date();
 		
@@ -184,6 +188,7 @@ public class User {
 	/**
 	 * @return the password
 	 */
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
@@ -254,6 +259,7 @@ public class User {
 	/**
 	 * @return the comments
 	 */
+	@JsonIgnore
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -268,6 +274,7 @@ public class User {
 	/**
 	 * @return the galeria
 	 */
+	@JsonIgnore
 	public List<Publication> getGallery() {
 		return gallery;
 	}
@@ -295,6 +302,7 @@ public class User {
 	/**
 	 * @return the following
 	 */
+	@JsonIgnore
 	public List<User> getFollowing() {
 		return following;
 	}
@@ -302,6 +310,7 @@ public class User {
 	/**
 	 * @return the followers
 	 */
+	@JsonIgnore
 	public List<User> getFollowers() {
 		return followers;
 	}
@@ -309,6 +318,7 @@ public class User {
 	/**
 	 * @return the groups
 	 */
+	@JsonIgnore
 	public List<Grupo> getGroups() {
 		return groups;
 	}
@@ -323,6 +333,7 @@ public class User {
 	/**
 	 * @return the publications
 	 */
+	@JsonIgnore
 	public List<Publication> getPublications() {
 		return userPublications;
 	}
@@ -361,5 +372,48 @@ public class User {
 	public void addGallery(Publication p){
 		this.getGallery().add(p);
 	}
+	
+	 @JsonProperty("gallery")
+	 public List<String> getGalleryJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (Publication p : gallery) list.add(p.getTitle());
+	    	return list;
+	 }
+	 @JsonProperty("likes")
+	 public List<String> getGalleryLikesJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (PublicationLike l : likes) list.add(l.getPublication().getTitle());
+	    	return list;
+	 }
+	 @JsonProperty("comments")
+	 public List<String> getCommentsJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (Comment c : comments) list.add("@"+ c.getUser().getUsername()+ ":" + c.getText());
+	    	return list;
+	 }
+	 @JsonProperty("following")
+	 public List<String> getFollowingJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (User u : following) list.add("@"+ u.getUsername());
+	    	return list;
+	 }
+	 @JsonProperty("followers")
+	 public List<String> getFollowersJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (User u : followers) list.add("@"+ u.getUsername());
+	    	return list;
+	 }
+	 @JsonProperty("groups")
+	 public List<String> getGroupsJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (Grupo g : groups) list.add(g.getTitle());
+	    	return list;
+	 }
+	 @JsonProperty("publications")
+	 public List<String> getPublicationsJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (Publication p : userPublications) list.add(p.getTitle());
+	    	return list;
+	 }
 
 }

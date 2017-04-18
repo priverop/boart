@@ -4,9 +4,11 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,16 +17,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import es.boart.UserComponent;
 import es.boart.model.Comment;
 import es.boart.model.User;
-import es.boart.repository.UserRepository;
+import es.boart.repository.PublicationRepository;
+import es.boart.services.UserService;
 
 @Controller
 public class PublicProfileController {
 	
+	private final int DEFAULT_SIZE = 3;
+	private final int DEFAULT_PAGE = 0;
+	
 	@Autowired
-	private UserRepository userRepo;
+	private UserService userService;
 	
 	@Autowired
 	private UserComponent userSession;
+	
+	@Autowired
+	private PublicationRepository publicationRepo;
 	
 	@PostConstruct
 	public void init(){}
@@ -34,10 +43,10 @@ public class PublicProfileController {
 		
 		modelo.addAttribute("sesion_usuario", userSession.getUser());
 		
-		User profile_user = userRepo.findByUsername(nombreUsuario);
+		User profile_user = userService.findByUsername(nombreUsuario);
 		
 		if(userSession.getUser() != null){
-			modelo.addAttribute("hasFollower", profile_user.hasFollower(userRepo.findOne(userSession.getUser().getId())));
+			modelo.addAttribute("hasFollower", profile_user.hasFollower(userService.findOne(userSession.getUser().getId())));
 		}
 		else{
 			modelo.addAttribute("guest", true);
@@ -47,45 +56,55 @@ public class PublicProfileController {
 		modelo.addAttribute("reference", "profile");
 		modelo.addAttribute("IDLocation", profile_user.getId());
 		
+		modelo.addAttribute("user_publications", publicationRepo.findByUser(new PageRequest(DEFAULT_PAGE, DEFAULT_SIZE), profile_user));
+		modelo.addAttribute("showMore", profile_user.getPublications().size() > DEFAULT_SIZE);
+		
 		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
 		modelo.addAttribute("token", token.getToken());
 		
 		return "public_profile_template";
 	}	
 	
+	@GetMapping("/public_profile/pagination")
+	public String userPublicationPageable(Model modelo, @RequestParam("page") int page, @RequestParam("userId") long userId, HttpServletRequest request){
+		
+		CsrfToken token = (CsrfToken) request.getAttribute("_csrf");
+		modelo.addAttribute("token", token.getToken());
+		
+		User profile_user = userService.findOne(userId); 
+		
+		modelo.addAttribute("user_publications", publicationRepo.findByUser(new PageRequest(page, DEFAULT_SIZE), profile_user));
+		modelo.addAttribute("IDLocation", profile_user.getId());
+
+		return "userPublicationPage";
+	}
+	
 	@PostMapping("/addComment/profile")
 	public String addComment(@RequestParam String text, @RequestParam long idLocation){
-	
-		Comment newComment = new Comment(userSession.getUser(), text);
-		
-		User user = userRepo.findOne(idLocation);
-		user.getComments().add(newComment);
-		
-		userRepo.save(user);
-
+		userService.addComment(text, idLocation);		
+		User user = userService.findOne(idLocation);
 		return "redirect:/public_profile/"+user.getUsername();
 	}
 	
 	@RequestMapping("/follow/{idUser}")
 	public String addFollower(@PathVariable long idUser){
 		
-		User myUser = userRepo.findByUsername(userSession.getUser().getUsername()); 
-
-		myUser.addFollowing(userRepo.findOne(idUser));
+		User myUser = userService.findByUsername(userSession.getUser().getUsername()); 
+		User follow = userService.findOne(idUser);
 		
-		userRepo.save(userSession.getUser());
+		userService.followUser(myUser, follow);
 		
-		return "redirect:/public_profile/"+userRepo.findOne(idUser).getUsername();
+		return "redirect:/public_profile/"+follow.getUsername();
 	}
 	
 	@RequestMapping("/unfollow/{idUser}")
 	public String removeFollower(@PathVariable long idUser){
 		
-		User myUser = userRepo.findByUsername(userSession.getUser().getUsername()); 
+		User myUser = userService.findByUsername(userSession.getUser().getUsername()); 
+		User unfollow = userService.findOne(idUser);
+		
+		userService.unfollowUser(myUser, unfollow);
 
-		myUser.removeFollowing(userRepo.findOne(idUser));
-		userRepo.save(userSession.getUser());
-
-		return "redirect:/public_profile/"+userRepo.findOne(idUser).getUsername();
+		return "redirect:/public_profile/"+unfollow.getUsername();
 	}
 }
