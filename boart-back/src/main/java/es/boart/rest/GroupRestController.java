@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,8 +54,8 @@ public class GroupRestController {
 		}
 	}
 	
-	@GetMapping("/join/{idGroup}")
-	public ResponseEntity<Grupo> joinGroup(@PathVariable long idGroup){
+	@PostMapping("/join")
+	public ResponseEntity<Grupo> joinGroup(@RequestParam("id") long idGroup){
 		
 		if (userSession.getUser() != null) {
 			
@@ -77,7 +78,7 @@ public class GroupRestController {
 
 	}
 	
-	@GetMapping("/leave/{idGroup}")
+	@DeleteMapping("/leave/{idGroup}")
 	public ResponseEntity<Grupo> leaveGroup(@PathVariable long idGroup){
 		
 		if (userSession.getUser() != null) {
