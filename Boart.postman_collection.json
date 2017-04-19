@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Boart",
-		"_postman_id": "be17b826-ac0b-aae0-9863-a6e01553f3f9",
+		"_postman_id": "a00b5733-508f-2e4e-7b87-ac2d4f42da0e",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -30,10 +30,10 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/user/follow/31",
+			"name": "http://localhost:8400/api/user/following/",
 			"request": {
-				"url": "http://localhost:8400/api/user/follow/31",
-				"method": "GET",
+				"url": "http://localhost:8400/api/user/following/",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
@@ -42,20 +42,25 @@
 					}
 				],
 				"body": {
-					"mode": "file",
-					"file": {
-						"src": ""
-					}
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "31",
+							"type": "text",
+							"enabled": true
+						}
+					]
 				},
 				"description": "Juan follows nexmaniosis"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/user/unfollow/31",
+			"name": "http://localhost:8400/api/user/following/31",
 			"request": {
-				"url": "http://localhost:8400/api/user/unfollow/31",
-				"method": "GET",
+				"url": "http://localhost:8400/api/user/following/31",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Authorization",
@@ -77,7 +82,7 @@
 			"name": "http://localhost:8400/api/group/leave/4",
 			"request": {
 				"url": "http://localhost:8400/api/group/leave/4",
-				"method": "GET",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Authorization",
@@ -96,10 +101,10 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/group/join/4",
+			"name": "http://localhost:8400/api/group/join",
 			"request": {
-				"url": "http://localhost:8400/api/group/join/4",
-				"method": "GET",
+				"url": "http://localhost:8400/api/group/join",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
@@ -108,10 +113,15 @@
 					}
 				],
 				"body": {
-					"mode": "file",
-					"file": {
-						"src": ""
-					}
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "4",
+							"type": "text",
+							"enabled": true
+						}
+					]
 				},
 				"description": ""
 			},
@@ -146,9 +156,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/publication/list",
+			"name": "http://localhost:8400/api/publications",
 			"request": {
-				"url": "http://localhost:8400/api/publication/list/",
+				"url": "http://localhost:8400/api/publications",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -160,9 +170,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/publication/list/2",
+			"name": "http://localhost:8400/api/publications/?page=1",
 			"request": {
-				"url": "http://localhost:8400/api/publication/list/2",
+				"url": "http://localhost:8400/api/publications/?page=1",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -174,19 +184,19 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8400/api/publication/list/",
+			"name": "http://localhost:8400/api/publications/?page=0&filter=comments&tags=boart",
 			"request": {
-				"url": "http://localhost:8400/api/publication/list/",
-				"method": "POST",
+				"url": "http://localhost:8400/api/publications/?page=0&filter=comments&tags=boart",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "tags",
-							"value": "rap",
+							"key": "",
+							"value": "",
 							"type": "text",
-							"enabled": true
+							"enabled": false
 						}
 					]
 				},
@@ -200,7 +210,10 @@
 				"url": "http://localhost:8400/api/publication/2",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -315,7 +328,10 @@
 				"url": "http://localhost:8400/api/like/3",
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -326,7 +342,10 @@
 				"url": "http://localhost:8400/api/logout/",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
