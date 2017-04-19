@@ -22,7 +22,7 @@ import es.boart.services.PublicationService;
 import es.boart.services.UserService;
 
 @RestController
-@RequestMapping("/api/publication")
+@RequestMapping("/api")
 public class PublicationRestController {
 	
 	private final int DEFAULT_PAGE = 0;
@@ -36,36 +36,20 @@ public class PublicationRestController {
 	
 	@Autowired
 	PublicationService publicationService;
-	
-	@GetMapping("/list")
-	public Page<Publication> getPublications(){
-		return getPublications(DEFAULT_PAGE);
-	}
-	
-	@GetMapping("/list/{page}")
-	public Page<Publication> getPublications(@PathVariable int page){
-		return publicationService.publicationsNoTag(page, "latest");
-	}
-	
-	@PostMapping("/list/{page}")
-	public Object getPublications(@PathVariable int page, @RequestParam(value="filter",required=false) String filter, @RequestParam(value="tags",required=false) String tags){
+		
+	@GetMapping("/publications")
+	public Object getPublications(@RequestParam(value="page",required=false) Integer page, @RequestParam(value="filter",required=false) String filter, @RequestParam(value="tags",required=false) String tags){
 		if (filter == null) filter = "latest";
+		if (page == null) page = DEFAULT_PAGE;
 		List<String> lTags = publicationService.ParseTags(tags);
 		if (lTags.size() == 0)
 			return publicationService.publicationsNoTag(page, filter);
 		if (lTags.size() == 1)
 			return publicationService.publicationsOneTag(page, filter, lTags.get(0));
 		return publicationService.publicationsMultipleTag(filter, lTags);
-	}
+	}	
 	
-	@PostMapping("/list")
-	public Object getPublications(@RequestParam(value="filter",required=false) String filter, @RequestParam(value="tags",required=false) String tags){
-		return  getPublications(DEFAULT_PAGE, filter, tags);
-	}
-	
-	
-	
-	@GetMapping("/{id}")
+	@GetMapping("/publication/{id}")
 	public ResponseEntity<Publication> getPublication(@PathVariable long id) {
 
 		Publication p = publicationService.findOne(id);
@@ -76,13 +60,13 @@ public class PublicationRestController {
 		}
 	}
 	
-	@PostMapping("/{id}")
+	@PostMapping("/publication/{id}")
 	public ResponseEntity<Publication> postComment(@PathVariable long id, @RequestParam(value="comment") String comment) {
 		publicationService.addComment(comment, id);
 		return getPublication(id);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/publication/{id}")
 	public ResponseEntity<?> DeletePublication(@PathVariable String id) {
 		
 		if (userSession.getUser() != null) {
