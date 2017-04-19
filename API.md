@@ -2315,7 +2315,7 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
   ]
 }
 ```
-- POST (/api/user/following/) -> Usuario en sesión sigue a Usuario. Entrada: parámetro 'id' con el id del usuario a seguir.
+- POST (/following/) -> Usuario en sesión sigue a Usuario. Entrada: parámetro 'id' con el id del usuario a seguir.
 ```
 {
   "id": 3,
@@ -2386,7 +2386,7 @@ Todas las peticiones devuelven HttpStatus.OK si el recurso se encuentra, HttpSta
   ]
 }
 ```
-- DELETE (/api/user/following/{idUser}) -> Usuario en sesión deja de seguir a Usuario.
+- DELETE (/following/{idUser}) -> Usuario en sesión deja de seguir a Usuario.
 ```
 {
   "id": 3,
