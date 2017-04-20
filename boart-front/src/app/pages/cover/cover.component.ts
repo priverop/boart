@@ -8,6 +8,8 @@ import { AjaxService } from '../../services/ajax.service';
 })
 export class CoverComponent implements OnInit {
 
+  private publications = [];
+
   constructor(private ajaxService: AjaxService) { }
 
   ngOnInit() {
@@ -16,7 +18,7 @@ export class CoverComponent implements OnInit {
 
   private getPublications() {
     const endpoint = 'publications';
-    this.ajaxService.getRequest(endpoint).subscribe(result => console.log(result.json()));
+    this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json().content);
   }
 
 }

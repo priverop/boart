@@ -1,3 +1,39 @@
-<p>
-  cover works!
-</p>
+<!--<app-header></app-header>-->
+<article class="container-fluid">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
+    <ul>
+      <li><a href="#" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
+      <li><a href="#"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
+      <li><a href="#"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
+    </ul>
+    <!--<app-search></app-search>-->
+    <!--<app-tag-list></app-tag-list>-->
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+    <div id="columns">
+      <div *ngFor="let publication of publications" class="publication app_box publication_box">
+        <a href="/publication/{{ publication.id }}">
+          {{ publication.media }}
+          <p>{{ publication.title }}</p>
+          <div class="rating">
+            <a href="#">
+              <span class="glyphicon glyphicon-heart-empty like_icon" aria-hidden="true" id="{{ publication.id }}"></span>
+              <span class="rating-value">{{ publication.numberOfLikes }}</span>
+            </a>
+          </div>
+          <div class="comments">
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            <span class="numComments">{{ publication.numberOfComments }}</span>
+          </div>
+          <div class="tag_component">
+
+          </div>
+          <div class="divDate">
+            {{ publication.stringDate }}
+          </div>
+        </a>
+        <!--<script>checkMyLike({{id}})</script>-->
+      </div>
+    </div>
+  </div>
+</article>
