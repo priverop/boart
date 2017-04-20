@@ -137,6 +137,7 @@ public class Publication {
 	/**
 	 * @return the media
 	 */
+	@JsonIgnore
 	public String getMedia() {
 		switch (media_type) {
 			case 0:
@@ -159,6 +160,7 @@ public class Publication {
 	/**
 	 * @return the media_type
 	 */
+	@JsonIgnore
 	public int getMedia_type() {
 		return media_type;
 	}
@@ -322,6 +324,19 @@ public class Publication {
 	    		tagList.add(t.getTag());
 	    	}
 	    	return tagList;
+	 }
+	 
+	 @JsonProperty("media")
+	 public String getMediaJSON(){
+		 	String aux = getMedia();
+		 	aux = aux.substring(aux.indexOf("src=\"") + "src=\"".length());		 	
+	    	return aux.substring(0, aux.indexOf("\""));
+	 }
+	 @JsonProperty("media_type")
+	 public String getMediaTypeJSON(){
+		 if (media_type == 0)
+			 return "img";
+		return "iframe";
 	 }
 }
 		
