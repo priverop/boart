@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 /* PAGES */
 import { CoverComponent } from './pages/cover/cover.component';
+import { SafePipe } from './pages/cover/cover.component';
 
 /* COMPONENTS */
 
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    CoverComponent
+    CoverComponent,
+    SafePipe
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
