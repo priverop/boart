@@ -91,7 +91,6 @@ public class PublicationRestController {
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}	 		
-
 			
 		} else {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
