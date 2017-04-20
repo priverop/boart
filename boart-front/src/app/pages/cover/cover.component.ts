@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AjaxService } from '../../services/ajax.service';
 
 @Component({
   selector: 'app-cover',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoverComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ajaxService: AjaxService) { }
 
   ngOnInit() {
+    this.getPublications();
+  }
+
+  private getPublications() {
+    const endpoint = 'publications';
+    this.ajaxService.getRequest(endpoint).subscribe(result => console.log(result.json()));
   }
 
 }

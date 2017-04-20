@@ -13,6 +13,9 @@ import { CoverComponent } from './pages/cover/cover.component';
 
 /* COMPONENTS */
 
+/* SERVICES */
+import { AjaxService } from "./services/ajax.service";
+
 const appRoutes: Routes = [
   { path: '', component: CoverComponent}
 ];
@@ -29,7 +32,9 @@ const appRoutes: Routes = [
     HttpModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AjaxService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
