@@ -16,6 +16,15 @@ import { SafePipe } from './pages/cover/cover.component';
 
 /* SERVICES */
 import { AjaxService } from "./services/ajax.service";
+import { UploadComponent } from './pages/upload/upload.component';
+import { PublicationComponent } from './pages/publication/publication.component';
+import { GroupComponent } from './pages/group/group.component';
+import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
+import { PrivateProfileComponent } from './pages/private-profile/private-profile.component';
+import { CreateGroupComponent } from './pages/create-group/create-group.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppTagListComponent } from './components/app-tag-list/app-tag-list.component';
+import { AppSearchComponent } from './components/app-search/app-search.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent}
@@ -25,7 +34,16 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CoverComponent,
-    SafePipe
+    SafePipe,
+    UploadComponent,
+    PublicationComponent,
+    GroupComponent,
+    PublicProfileComponent,
+    PrivateProfileComponent,
+    CreateGroupComponent,
+    AppHeaderComponent,
+    AppTagListComponent,
+    AppSearchComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
