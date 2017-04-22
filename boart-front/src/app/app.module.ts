@@ -25,6 +25,7 @@ import { CreateGroupComponent } from './pages/create-group/create-group.componen
 import { AppHeaderComponent } from './components/app-header/app-header.component';
 import { AppTagListComponent } from './components/app-tag-list/app-tag-list.component';
 import { AppSearchComponent } from './components/app-search/app-search.component';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent}
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     CreateGroupComponent,
     AppHeaderComponent,
     AppTagListComponent,
-    AppSearchComponent
+    AppSearchComponent,
+    AppFooterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
