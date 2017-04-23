@@ -28,7 +28,8 @@ import { AppSearchComponent } from './components/app-search/app-search.component
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
 const appRoutes: Routes = [
-  { path: '', component: CoverComponent}
+  { path: '', component: CoverComponent},
+  { path: 'publication/:id', component: PublicationComponent}
 ];
 
 @NgModule({
