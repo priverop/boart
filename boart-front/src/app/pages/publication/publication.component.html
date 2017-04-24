@@ -15,8 +15,9 @@
             <h1 class="title">{{publication.title}}</h1>
             <h3 class="description">{{publication.description}}</h3>
             <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
-          	TAGLIST
-						FALTA ELIMINAR PUBLICACIÓN
+            <app-tag-list [tags]="publication.tags"> </app-tag-list> 
+            						
+            FALTA ELIMINAR PUBLICACIÓN
         		COMMENTS-COMPOENT
 				</div>
 </article>
