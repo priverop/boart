@@ -1,3 +1,8 @@
-<p>
-  app-tag-list works!
-</p>
+<div class="tag_component">
+	<form method="POST" class="tagForm" action="/" name="">
+		<input type="hidden" name="nTag" value="">
+		<input type="hidden" name="_csrf" value="" />
+		<input type="hidden" name="type" value="addTag" />
+		<span class="tag" onclick="">{{tag}}</span>
+	</form>
+</div>

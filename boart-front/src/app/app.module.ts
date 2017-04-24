@@ -29,7 +29,12 @@ import { AppFooterComponent } from './components/app-footer/app-footer.component
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent},
-  { path: 'publication/:id', component: PublicationComponent}
+  { path: 'publication/:id', component: PublicationComponent},
+  { path: 'upload', component: UploadComponent},
+  { path: 'group', component: GroupComponent},
+  { path: 'public-profile', component: PublicProfileComponent},
+  { path: 'private-profile', component: PrivateProfileComponent},
+  { path: 'create-group', component: CreateGroupComponent}
 ];
 
 @NgModule({
