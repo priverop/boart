@@ -13,17 +13,7 @@
     <div id="columns">
       <div *ngFor="let publication of publications" class="publication app_box publication_box">
         <a href="/publication/{{ publication.id }}">
-          <div [ngSwitch]="publication.media_type">
-                <div *ngSwitchCase="0">
-                  <img  class="img-responsive" src="{{publication.media}}" />
-                </div>
-                <div *ngSwitchCase="1">
-                    <iframe class="iframeAudio" scrolling="no" frameborder="no" [src]="publication.media | safe"></iframe>
-                </div>
-                <div *ngSwitchCase="2">
-                  <iframe class="iframeVideo" scrolling="no" frameborder="no" [src]="publication.media | safe"></iframe>
-                </div>
-            </div>
+            <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
           <p>{{ publication.title }}</p>
           <div class="rating">
             <a href="#">

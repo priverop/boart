@@ -27,6 +27,8 @@ import { AppTagListComponent } from './components/app-tag-list/app-tag-list.comp
 import { AppSearchComponent } from './components/app-search/app-search.component';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
+import { AppMediaComponent } from './components/app-media/app-media.component';
+
 const appRoutes: Routes = [
   { path: '', component: CoverComponent},
   { path: 'publication/:id', component: PublicationComponent},
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     AppHeaderComponent,
     AppTagListComponent,
     AppSearchComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    AppMediaComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
