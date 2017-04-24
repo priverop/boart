@@ -44,6 +44,17 @@ public class UserRestController {
 		}
 	}
 	
+	@GetMapping("/{username}")
+	public ResponseEntity<User> getUser(@PathVariable String username) {
+
+		User u = userService.findByUsername(username);
+		if (u != null) {
+			return new ResponseEntity<>(u, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@PostMapping("/following")
 	public ResponseEntity<User> followUser(@RequestParam("id") long userToFollowId){
 		

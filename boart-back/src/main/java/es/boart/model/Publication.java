@@ -295,7 +295,7 @@ public class Publication {
 	
 	 @JsonProperty("user")
 	 public String getGalleryJSON(){
-	    	return "@" + user.getUsername();
+	    	return user.getUsername();
 	 }
 	 
 	 @JsonProperty("comments")
