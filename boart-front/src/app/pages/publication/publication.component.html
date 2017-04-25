@@ -15,10 +15,10 @@
             <h1 class="title">{{publication.title}}</h1>
             <h3 class="description">{{publication.description}}</h3>
             <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
-            <app-tag-list [tags]="publication.tags"> </app-tag-list> 
-            						
+            <app-tag-list [tags]="publication.tags"> </app-tag-list>
+
             FALTA ELIMINAR PUBLICACIÓN
-        		COMMENTS-COMPOENT
+        		<app-comments></app-comments>
 				</div>
 </article>
 <app-footer></app-footer>

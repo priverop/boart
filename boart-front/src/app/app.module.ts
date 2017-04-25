@@ -29,6 +29,7 @@ import { AppFooterComponent } from './components/app-footer/app-footer.component
 
 import { AppMediaComponent } from './components/app-media/app-media.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CommentsComponent } from './components/comments/comments.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent},
@@ -57,7 +58,8 @@ const appRoutes: Routes = [
     AppSearchComponent,
     AppFooterComponent,
     AppMediaComponent,
-    LoginComponent
+    LoginComponent,
+    CommentsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
