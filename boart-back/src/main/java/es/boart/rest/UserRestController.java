@@ -33,7 +33,7 @@ public class UserRestController {
 		return userService.findAll();
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
 
 		User u = userService.findOne(id);
@@ -45,7 +45,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/{username}")
-	public ResponseEntity<User> getUser(@PathVariable String username) {
+	public ResponseEntity<User> getUserByName(@PathVariable String username) {
 
 		User u = userService.findByUsername(username);
 		if (u != null) {
