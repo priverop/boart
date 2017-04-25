@@ -4,9 +4,9 @@
     <div class="flex-row row">
       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
         <div class="app_box menuleft" id="boxDesc">
-          <img id="imgCabecera" src="{{img}}" />
-          <p class="title">title</p>
-          <blockquote><em>description</em></blockquote>
+          <img id="imgCabecera" src="{{group.img}}" />
+          <p class="title">{{group.title}}</p>
+          <blockquote><em>{{group.description}}</em></blockquote>
         </div>
       </div>
       <!-- {{^guest}}
@@ -63,20 +63,18 @@
               </div>
             </div>
           </div>
-          <!-- {{#publications}}
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
-          <div id="columns">
-          <div class="publication app_box">
-          {{{media}}}
-          <p>{{description}}</p>
-          <div class="rating">
-          <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">{{numberOfLikes}}</span></p>
-        </div>
-        {{> taglist_component}}
-      </div>
 
-    </div>
-  </div>
-  {{/publications}} -->
-</article>
-<app-footer></app-footer>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+            <div id="columns">
+              <div *ngFor="let publication of group.publications" class="publication app_box">
+                <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
+                <p>{{publication.description}}</p>
+                <div class="rating">
+                  <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">{{numberOfLikes}}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </article>
+        <app-footer></app-footer>
