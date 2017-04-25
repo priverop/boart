@@ -28,6 +28,7 @@ import { AppSearchComponent } from './components/app-search/app-search.component
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
 import { AppMediaComponent } from './components/app-media/app-media.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent},
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   { path: 'group/:id', component: GroupComponent},
   { path: 'public-profile/:username', component: PublicProfileComponent},
   { path: 'private-profile', component: PrivateProfileComponent},
-  { path: 'create-group', component: CreateGroupComponent}
+  { path: 'create-group', component: CreateGroupComponent},
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
@@ -54,7 +56,8 @@ const appRoutes: Routes = [
     AppTagListComponent,
     AppSearchComponent,
     AppFooterComponent,
-    AppMediaComponent
+    AppMediaComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

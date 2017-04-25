@@ -31,7 +31,6 @@ export class PublicationComponent implements OnInit {
   }
 
   private getUserFromPublication(){
-    console.log(this.publication);
     const endpoint = 'user/' + this.publication['user'];
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.userPublication = result.json();
