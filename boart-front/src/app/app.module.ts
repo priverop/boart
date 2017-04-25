@@ -33,8 +33,8 @@ const appRoutes: Routes = [
   { path: '', component: CoverComponent},
   { path: 'publication/:id', component: PublicationComponent},
   { path: 'upload', component: UploadComponent},
-  { path: 'group', component: GroupComponent},
-  { path: 'public-profile', component: PublicProfileComponent},
+  { path: 'group/:id', component: GroupComponent},
+  { path: 'public-profile/:username', component: PublicProfileComponent},
   { path: 'private-profile', component: PrivateProfileComponent},
   { path: 'create-group', component: CreateGroupComponent}
 ];
