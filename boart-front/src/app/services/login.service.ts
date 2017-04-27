@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { AjaxService } from './ajax.service';
+import { CanActivate } from '@angular/router';
 import 'rxjs/Rx';
 
 export interface User {
@@ -70,6 +71,11 @@ export class LoginService {
           return response;
         }
     );
+  }
+
+  canActivate() {
+      alert(this.isLogged)
+    return this.isLogged;
   }
 }
 

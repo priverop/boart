@@ -36,7 +36,7 @@ import { CommentsComponent } from './components/comments/comments.component';
 const appRoutes: Routes = [
   { path: '', component: CoverComponent},
   { path: 'publication/:id', component: PublicationComponent},
-  { path: 'upload', component: UploadComponent},
+  { path: 'upload', component: UploadComponent, canActivate: [LoginService]},
   { path: 'group/:id', component: GroupComponent},
   { path: 'public-profile/:username', component: PublicProfileComponent},
   { path: 'private-profile', component: PrivateProfileComponent},
