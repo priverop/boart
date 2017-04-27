@@ -33,7 +33,6 @@ export class CoverComponent implements OnInit {
 
   private getPublications() {
     const endpoint = 'publications?filter=' + this.filter;
-console.log(this.filter);
     this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json().content);
   }
 

@@ -35,7 +35,11 @@ export class AjaxService {
    * @param  {string} endpoint
    * @return {Observable}
    */
-  getRequest(endpoint): Observable<any> {
+  getRequest(endpoint, options?): Observable<any> {
+
+    if(options) {
+      return this.http.get(this.buildUrl(endpoint), options);
+    }
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
 
