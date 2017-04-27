@@ -20,20 +20,29 @@ export class CoverComponent implements OnInit {
 
   private publications = [];
 	filter;
+	tags = [];
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
       this.filter = params['filter'] || "latest";
+	this.tags = params['tags'] || [];
+    if (params['nTag'] !== undefined) this.tags.push(params['nTag']);
+    if (params['rTag'] !== undefined){
+        this.tags.splice(this.tags.indexOf(params['rTag']), 1);
+    }
+	this.getPublications();
     });
-    this.getPublications();
   }
 
   private getPublications() {
-    const endpoint = 'publications?filter=' + this.filter;
-    this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json().content);
+    const endpoint = 'publications?filter=' + this.filter + '&tags=' + this.tags.join(",");
+    console.log(this.tags.length);
+    if (this.tags.length > 1)
+        this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json());
+    else
+        this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json().content);
   }
 
 }

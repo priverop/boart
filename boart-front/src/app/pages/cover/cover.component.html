@@ -2,17 +2,17 @@
 <article class="container-fluid">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
     <ul>
-      <li><a href="/?filter=latest" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
-      <li><a href="/?filter=likes"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
-      <li><a href="/?filter=comments"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
+      <li><a routerLink="" [queryParams]="{filter: 'latest', tags: tags}" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
+      <li><a routerLink="/" [queryParams]="{filter: 'likes', tags: tags}"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
+      <li><a routerLink="/" [queryParams]="{filter: 'comments', tags: tags}"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
     </ul>
-    <!--<app-search></app-search>-->
+    <app-search [tags]="tags" [filter]="filter"></app-search>
     <!--<app-tag-list></app-tag-list>-->
   </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
     <div id="columns">
       <div *ngFor="let publication of publications" class="publication app_box publication_box">
-        <a href="/publication/{{ publication.id }}">
+        <a routerLink="/publication/{{ publication.id }}">
             <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
           <p>{{ publication.title }}</p>
           <div class="rating">
