@@ -4,12 +4,11 @@
       <!--  {{#error}}
       <p class="error">¡USUARIO/CONTRASEÑA INCORRECTA!</p>
       {{/error}} -->
-      <form action="/login" method="POST" >
-        <input type="text" name="username" placeholder="Usuario:"/>
-        <input type="password" name="password" placeholder="Contraseña:"/>
-        <input type="hidden" name="_csrf" value="{{token}}" />
+      <form>
+        <input #user type="text" name="username" placeholder="Usuario:"/>
+        <input #pass type="password" name="password" placeholder="Contraseña:"/>
         <div class="col-xs-8 col-xs-offset-2">
-          <input type="submit" placeholder="SUBMIT"/>
+          <input (click)="loginEvent($event, user.value, pass.value)" type="submit" placeholder="SUBMIT"/>
         </div>
       </form>
     </div>

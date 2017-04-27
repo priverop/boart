@@ -16,6 +16,8 @@ import { SafePipe } from './pages/cover/cover.component';
 
 /* SERVICES */
 import { AjaxService } from "./services/ajax.service";
+import { LoginService } from './services/login.service';
+
 import { UploadComponent } from './pages/upload/upload.component';
 import { PublicationComponent } from './pages/publication/publication.component';
 import { GroupComponent } from './pages/group/group.component';
@@ -69,7 +71,8 @@ const appRoutes: Routes = [
     NgbModule
   ],
   providers: [
-    AjaxService
+    AjaxService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
