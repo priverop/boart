@@ -28,9 +28,20 @@ public class LoginRestController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping("/")
+	@GetMapping("")
 	public ResponseEntity<?> login(){
-		return new ResponseEntity<>(HttpStatus.OK);
+		
+		if (!userSession.isLoggedUser()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		} else {
+			User loggedUser = userService.findByUsername(userSession.getUser().getUsername());
+			if (loggedUser != null) {
+				return new ResponseEntity<>(loggedUser, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
 	}
 
 }
