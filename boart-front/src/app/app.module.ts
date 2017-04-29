@@ -39,8 +39,8 @@ const appRoutes: Routes = [
   { path: 'upload', component: UploadComponent, canActivate: [LoginService]},
   { path: 'group/:id', component: GroupComponent},
   { path: 'public-profile/:username', component: PublicProfileComponent},
-  { path: 'private-profile', component: PrivateProfileComponent},
-  { path: 'create-group', component: CreateGroupComponent},
+  { path: 'private-profile', component: PrivateProfileComponent, canActivate: [LoginService]},
+  { path: 'create-group', component: CreateGroupComponent, canActivate: [LoginService]},
   { path: 'login', component: LoginComponent}
 ];
 

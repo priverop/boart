@@ -9,7 +9,7 @@ export class SafePipe implements PipeTransform {
   transform(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-} 
+}
 
 @Component({
   selector: 'app-cover',
@@ -38,7 +38,7 @@ export class CoverComponent implements OnInit {
 
   private getPublications() {
     const endpoint = 'publications?filter=' + this.filter + '&tags=' + this.tags.join(",");
-    console.log(this.tags.length);
+    
     if (this.tags.length > 1)
         this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json());
     else

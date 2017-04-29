@@ -7,7 +7,7 @@
 		<div>
 			<ul *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right">
 				<li>
-					<a class="custom_button alegreya" href="/group/create">
+					<a class="custom_button alegreya" routerLink="/create-group">
 						<i class="icofont icofont-ui-add"></i> Crear Grupo
 					</a>
 				</li>
@@ -17,7 +17,7 @@
 					</a>
 				</li>
 				<li>
-					<a class="custom_button alegreya" id="sign_in" href="/private-profile">
+					<a class="custom_button alegreya" id="sign_in" routerLink="/private-profile">
 						<i class="icofont icofont-ui-user"></i> {{loginService.user.name}}
 					</a>
 				</li>
