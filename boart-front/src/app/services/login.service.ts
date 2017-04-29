@@ -74,7 +74,6 @@ export class LoginService {
   }
 
   canActivate() {
-      alert(this.isLogged)
     return this.isLogged;
   }
 }

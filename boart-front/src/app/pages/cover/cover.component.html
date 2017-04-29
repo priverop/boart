@@ -13,21 +13,18 @@
     <div id="columns">
       <div *ngFor="let publication of publications" class="publication app_box publication_box">
         <a routerLink="/publication/{{ publication.id }}">
-            <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
+          <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
           <p>{{ publication.title }}</p>
           <div class="rating">
-            <a href="#">
               <span class="glyphicon glyphicon-heart-empty like_icon" aria-hidden="true" id="{{ publication.id }}"></span>
               <span class="rating-value">{{ publication.numberOfLikes }}</span>
-            </a>
           </div>
           <div class="comments">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
             <span class="numComments">{{ publication.numberOfComments }}</span>
           </div>
           <div class="tag_component">
-            <app-tag-list [tags]="publication.tags"> </app-tag-list> 
-
+            <app-tag-list [tags]="publication.tags"> </app-tag-list>
           </div>
           <div class="divDate">
             {{ publication.stringDate }}

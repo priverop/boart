@@ -6,7 +6,7 @@
         <div class="col-xs-12">
           <form action="/edit_profile" method="POST"  enctype="multipart/form-data">
             <div class="col-xs-5 img-edit-icon">
-              <img class="img-responsive" src="" WIDTH="100%" id="avatar">
+              <img class="img-responsive" src="{{user.img}}" WIDTH="100%" id="avatar">
               <input class="edit_profile" type="file" id="inputFile"  name="inputFile" style="display:none" />
               <div class="input-group-btn">
                 <i class="icofont icofont-pencil-alt-5"></i>
@@ -14,19 +14,19 @@
             </div>
             <div class="col-xs-7">
               <div class="input-group col-xs-12 edit-icon">
-                <input class="edit_profile" disabled="disabled" type="text" name="name" placeholder="Nombre:" value=""/>
+                <input class="edit_profile" disabled="disabled" type="text" name="name" placeholder="Nombre:" value="{{user.name}}"/>
                 <div class="input-group-btn">
                   <i class="icofont icofont-pencil-alt-5"></i>
                 </div>
               </div>
               <div class="input-group col-xs-12 edit-icon">
-                <input class="edit_profile" disabled="disabled" type="text" name="surname" placeholder="Apellidos:" value=""/>
+                <input class="edit_profile" disabled="disabled" type="text" name="surname" placeholder="Apellidos:" value="{{user.surname}}"/>
                 <div class="input-group-btn">
                   <i class="icofont icofont-pencil-alt-5"></i>
                 </div>
               </div>
               <div class="input-group col-xs-12 edit-icon">
-                <input class="edit_profile" disabled="disabled" type="text" name="username" placeholder="Usuario:" value=""/>
+                <input class="edit_profile" disabled="disabled" type="text" name="username" placeholder="Usuario:" value="{{user.username}}"/>
                 <div class="input-group-btn">
                   <i class="icofont icofont-pencil-alt-5"></i>
                 </div>
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="input-group col-xs-12 edit-icon">
-              <input class="edit_profile" disabled="disabled" type="text" name="description" placeholder="Usuario:" value=""/>
+              <input class="edit_profile" disabled="disabled" type="text" name="description" placeholder="Usuario:" value="{{user.description}}"/>
               <div class="input-group-btn">
                 <i class="icofont icofont-pencil-alt-5"></i>
               </div>
@@ -54,36 +54,29 @@
         <div class="col-xs-12 follow_list">
           <h2>Following:</h2>
           <ul>
-            <!-- {{#followings}}
-            <li>
-            <a href="/public_profile/{{username}}"><img src="{{img}}"/><span>{{username}}</span></a>
-          </li>
-          {{/followings}} -->
-        </ul>
-      </div>
+            <li *ngFor="let username of user.following">
+              <a href="/public-profile/{{username}}"><img src=""/><span>{{username}}</span></a>
+            </li>
+          </ul>
+        </div>
 
       <div class="col-xs-12 follow_list">
         <h2>Followers:</h2>
         <ul>
-          <!-- {{#followers}}
-          <li>
-          <a href="/public_profile/{{username}}"><img src="{{img}}"/><span>{{username}}</span></a>
+          <li *ngFor="let username of user.followers">
+          <a href="/public-profile/{{username}}"><img src=""/><span>{{username}}</span></a>
         </li>
-        {{/followers}} -->
       </ul>
     </div>
 
     <div class="col-xs-12 follow_list">
       <h2>Grupos:</h2>
       <ul>
-        <!-- {{#groups}}
-        <li>
-        <a href="/group/{{id}}"><img src="{{img}}"/><span>{{title}}</span></a>
-      </li>
-      {{/groups}} -->
-    </ul>
-  </div>
-
+        <li *ngFor="let group of user.groups">
+          <a href="/group/{{group}}"><img src=""/><span>{{group}}</span></a>
+        </li>
+      </ul>
+    </div>
 
   <div class="col-xs-12 social_nets ">
     <i class="icofont icofont_social icofont-social-500px "></i>
@@ -94,17 +87,15 @@
     <i class="icofont icofont_social icofont-social-youtube-play "></i>
   </div>
   <div class="col-xs-12 public_button ">
-    <a class="custom_button " href="./public_profile/">Ver perfil público</a>
+    <a class="custom_button " href="./public-profile/{{user.username}}">Ver perfil público</a>
   </div>
 
 </div>
 </div>
 <div class="col-xs-12 col-sm-8 profile_gallery ">
-  <!-- {{#gallery}}
-  <div class="publication app_box edit-gallery ">
-  <a href="/publication/{{id}}">{{{media}}}</a>
+  <div *ngFor="let p of user.publications" class="publication app_box edit-gallery">
+  <a href="#">{{p}}</a>
 </div>
-{{/gallery}} -->
 </div>
 </div>
 </article>

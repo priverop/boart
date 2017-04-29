@@ -48,10 +48,9 @@
 
 		<!-- Gallery -->
 		<div class="row" id="columns">
-		<!-- {{#gallery}}
-			<div class="app_box publication">{{{media}}}</div>
-		{{/gallery}} -->
+			<div *ngFor="let publication of user.gallery" class="app_box publication">{{publication}}</div>
 		</div>
-		<!-- {{> comments_component}} -->
+
+		<app-comments [comments]="user.comments"></app-comments>
 </article>
 <app-footer></app-footer>
