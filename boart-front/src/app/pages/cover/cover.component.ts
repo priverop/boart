@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable  } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
@@ -16,7 +16,6 @@ export class SafePipe implements PipeTransform {
   templateUrl: './cover.component.html',
   styleUrls: ['./cover.component.scss']
 })
-@Injectable()
 export class CoverComponent implements OnInit {
 
   private publications = [];
