@@ -2,11 +2,11 @@
 <article class="container-fluid">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
     <ul>
-      <li><a routerLink="" [queryParams]="{filter: 'latest', tags: tags}" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
-      <li><a routerLink="/" [queryParams]="{filter: 'likes', tags: tags}"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
-      <li><a routerLink="/" [queryParams]="{filter: 'comments', tags: tags}"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
+      <li><a  (click)="changeFilter('latest')" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
+      <li><a (click)="changeFilter('likes')"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
+      <li><a (click)="changeFilter('comments')"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
     </ul>
-    <app-search [tags]="tags" [filter]="filter"></app-search>
+    <app-search [tags]="tags" [filter]="filter" (addTagEvent) ="addTag($event)" (remTagEvent) ="removeTag($event)"></app-search>
     <!--<app-tag-list></app-tag-list>-->
   </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
@@ -36,5 +36,8 @@
         <!--<script>checkMyLike({{id}})</script>-->
       </div>
     </div>
+      			<div class="load_more">
+				<span (click)="getMorePublications()">Cargar más publicaciones</span>
+			</div>
   </div>
 </article>

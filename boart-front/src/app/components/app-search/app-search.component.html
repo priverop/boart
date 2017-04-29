@@ -2,7 +2,7 @@
   <input type="text" class="form-control"  placeholder="Añadir tag" [(ngModel)]='nTag'>
   <span class="input-group-addon">
     <button>
-        <a routerLink="" [queryParams]="{nTag: nTag, tags: tags, filter: filter}" class="active">
+        <a (click)="addTag(nTag)" class="active">
             <span class="glyphicon glyphicon-search"></span>
         </a>
     </button>
@@ -11,7 +11,7 @@
 
 <div class="tag_component">
 <div *ngFor="let tag of tags"class="tag_component">
-		<a routerLink="" [queryParams]="{rTag: tag, tags: tags, filter: filter}" class="active">
+		<a (click)="remTag(tag)" class="active">
             <span class="tag" onclick=""><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>{{tag}}</span>
         </a>
 </div>

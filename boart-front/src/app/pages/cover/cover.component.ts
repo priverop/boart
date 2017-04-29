@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable  } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
@@ -16,11 +16,13 @@ export class SafePipe implements PipeTransform {
   templateUrl: './cover.component.html',
   styleUrls: ['./cover.component.scss']
 })
+@Injectable()
 export class CoverComponent implements OnInit {
 
   private publications = [];
 	filter;
 	tags = [];
+private page;
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute) { }
 
@@ -32,17 +34,41 @@ export class CoverComponent implements OnInit {
     if (params['rTag'] !== undefined){
         this.tags.splice(this.tags.indexOf(params['rTag']), 1);
     }
+    this.page = 1;
 	this.getPublications();
     });
   }
 
   private getPublications() {
     const endpoint = 'publications?filter=' + this.filter + '&tags=' + this.tags.join(",");
-    console.log(this.tags.length);
     if (this.tags.length > 1)
         this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json());
     else
         this.ajaxService.getRequest(endpoint).subscribe(result => this.publications = result.json().content);
+  }
+  
+  public getMorePublications(){
+  const endpoint = 'publications?filter=' + this.filter + '&tags=' + this.tags.join(",") + '&page=' + this.page;
+    this.ajaxService.getRequest(endpoint).subscribe(result => Array.prototype.push.apply(this.publications,result.json().content));
+    this.page +=1;
+  }
+  
+  public changeFilter(filter){
+    this.filter = filter;
+    this.page = 1;
+    this.getPublications();
+  }
+  
+  public addTag(tag){
+    this.tags.push(tag);
+        this.page = 1;
+    this.getPublications();
+  }
+  
+public removeTag(tag){
+    this.tags.splice(this.tags.indexOf(tag), 1);
+        this.page = 1;
+    this.getPublications();
   }
 
 }

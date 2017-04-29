@@ -1,4 +1,4 @@
-import { Component, OnInit , Input} from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +8,21 @@ import { Component, OnInit , Input} from '@angular/core';
 export class AppSearchComponent implements OnInit {
  @Input() tags;
   @Input() filter;
+  @Output() addTagEvent = new EventEmitter<any>();
+  @Output() remTagEvent = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {
   }
+  
+  public addTag(tag){
+    this.addTagEvent.emit(tag);
+  }
+  
+  public remTag(tag){
+    this.remTagEvent.emit(tag);
+  }
+
 
 }
