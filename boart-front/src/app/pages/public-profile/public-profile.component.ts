@@ -34,8 +34,7 @@ export class PublicProfileComponent implements OnInit {
 
   followUser(){
     const endpoint = 'user/following';
-    let data = { id: this.user['id'] }; // NOT WORKING
-    this.ajaxService.postRequest(endpoint, data).subscribe(
+    this.ajaxService.postRequest(endpoint, "id=" + this.user['id']).subscribe(
       response => console.log(response),
       error => console.error(error)
     );
@@ -43,7 +42,10 @@ export class PublicProfileComponent implements OnInit {
 
   unfollowUser(){
     const endpoint = 'user/following/'+this.user['id'];
-    this.ajaxService.deleteRequest(endpoint).subscribe();
+    this.ajaxService.deleteRequest(endpoint).subscribe(
+      response => console.log(response),
+      error => console.error(error)
+    );
   }
 
 }

@@ -20,7 +20,7 @@
 		  				</div>
 		  				<div *ngIf="loginService.isLogged" class="follow">
 		  					<a *ngIf="!isFollowing" (click)="followUser()">SEGUIR</a>
-		  					<a *ngIf="isFollowing" (click)="unfollowUser()">DEJAR DE SEGUIR</a>
+		  					<a *ngIf="!isFollowing" (click)="unfollowUser()">DEJAR DE SEGUIR</a>
 		  				</div>
 		  			</div>
 
