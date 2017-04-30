@@ -87,7 +87,7 @@ export class AjaxService {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
 
-    return this.http.get(this.buildUrl(endpoint), { headers: headers });
+    return this.http.delete(this.buildUrl(endpoint), { headers: headers, withCredentials: true });
 
   }
 }

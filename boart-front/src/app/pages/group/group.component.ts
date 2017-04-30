@@ -36,7 +36,6 @@ export class GroupComponent implements OnInit {
 
   joinGroup(){
     const endpoint = 'group/join';
-    //let data = { id: this.groupID }; // NOT WORKING
     this.ajaxService.postRequest(endpoint, "id=" + this.groupID).subscribe(
       response => console.log(response),
       error => console.error(error)
@@ -45,7 +44,10 @@ export class GroupComponent implements OnInit {
 
   leaveGroup(){
     const endpoint = 'group/leave/'+this.groupID;
-    this.ajaxService.deleteRequest(endpoint).subscribe();
+    this.ajaxService.deleteRequest(endpoint).subscribe(
+      response => console.log(response),
+      error => console.error(error)
+    );
   }
 
 }
