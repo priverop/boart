@@ -32,6 +32,7 @@ import { AppFooterComponent } from './components/app-footer/app-footer.component
 import { AppMediaComponent } from './components/app-media/app-media.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent},
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
   { path: 'public-profile/:username', component: PublicProfileComponent},
   { path: 'private-profile', component: PrivateProfileComponent, canActivate: [LoginService]},
   { path: 'create-group', component: CreateGroupComponent, canActivate: [LoginService]},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
@@ -61,7 +63,8 @@ const appRoutes: Routes = [
     AppFooterComponent,
     AppMediaComponent,
     LoginComponent,
-    CommentsComponent
+    CommentsComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
