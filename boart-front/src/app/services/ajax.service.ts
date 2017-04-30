@@ -61,6 +61,12 @@ export class AjaxService {
     return this.http.post(this.buildUrl(endpoint), body, options);
 
   }
+  
+    multipartRequest(endpoint, body): Observable<any> {
+    let options = new RequestOptions({withCredentials: true }); //Necesario para que siga mandando el JSESSIONID
+    return this.http.post(this.buildUrl(endpoint), body, options);
+
+  }
 
   /**
    * putRequest - Generates ajax request.

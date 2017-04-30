@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Grupo {
 	
@@ -73,6 +76,7 @@ public class Grupo {
 	/**
 	 * @return the img
 	 */
+	@JsonIgnore
 	public String getImg() {
 		return img;
 	}
@@ -119,6 +123,11 @@ public class Grupo {
 	
 	public void addPublication(Publication p){
 		this.getPublications().add(p);
+	}
+	
+	@JsonProperty("img")
+	public String getImgJSON(){
+		return "http://localhost:8400/" + getImg();
 	}
 	
 }

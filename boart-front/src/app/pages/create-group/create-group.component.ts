@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CreateGroupComponent implements OnInit {
 
+  imageFile;
+
   constructor(private ajaxService: AjaxService, private router: Router) { }
 
   ngOnInit() {
@@ -20,16 +22,21 @@ export class CreateGroupComponent implements OnInit {
     event.preventDefault();
 
     const endpoint = 'group/create';
-    const options = {
-      title: title,
-      description: description,
-      file: image
-    };
+    
+    var formData:FormData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('inputImage', this.imageFile);
 
-    this.ajaxService.postRequest(endpoint, options).subscribe(
+    this.ajaxService.multipartRequest(endpoint, formData).subscribe(
       response => this.router.navigate(['/'])
       // Return to the new group
     );
+  }
+  
+  public fileChangeEvent(fileInput: any){
+    this.imageFile= fileInput.target.files[0];
+    console.log(fileInput.target.files[0]);
   }
 
 }
