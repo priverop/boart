@@ -233,7 +233,6 @@ public class Publication {
 	/**
 	 * @return the comentariosPublicacion
 	 */
-	@JsonIgnore
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -296,15 +295,6 @@ public class Publication {
 	 @JsonProperty("user")
 	 public String getGalleryJSON(){
 	    	return user.getUsername();
-	 }
-	 
-	 @JsonProperty("comments")
-	 public List<String> getCommentsJSON(){
-	    	ArrayList<String> commentList = new ArrayList<String>();
-	    	for (Comment c : comments){
-	    		commentList.add("@" + c.getUser().getUsername() + ": " + c.getText());
-	    	}
-	    	return commentList;
 	 }
 	
 	 @JsonProperty("likes")

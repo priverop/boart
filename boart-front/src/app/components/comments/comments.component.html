@@ -2,8 +2,7 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
 
     <div *ngFor="let comment of comments" class="comment">
-      <p>{{comment}}</p>
-      <!-- <span class="font_contrast"><strong>@</strong>: </span><span></span> -->
+      <span class="font_contrast"><a href="/public-profile/{{comment.user.username}}"><strong>@{{comment.user.username}}</strong>:</a> </span><span>{{comment.text}}</span>
     </div>
 
     <p class="font_contrast">Sé el primero en escribir un comentario</p>

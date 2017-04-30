@@ -1,6 +1,5 @@
 package es.boart.model;
 
-import java.security.acl.Group;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -259,7 +258,7 @@ public class User {
 	/**
 	 * @return the comments
 	 */
-	@JsonIgnore
+	
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -274,7 +273,6 @@ public class User {
 	/**
 	 * @return the galeria
 	 */
-	@JsonIgnore
 	public List<Publication> getGallery() {
 		return gallery;
 	}
@@ -333,7 +331,6 @@ public class User {
 	/**
 	 * @return the publications
 	 */
-	@JsonIgnore
 	public List<Publication> getPublications() {
 		return userPublications;
 	}
@@ -373,24 +370,13 @@ public class User {
 		this.getGallery().add(p);
 	}
 	
-	 @JsonProperty("gallery")
-	 public List<String> getGalleryJSON(){
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (Publication p : gallery) list.add(p.getTitle());
-	    	return list;
-	 }
 	 @JsonProperty("likes")
 	 public List<String> getGalleryLikesJSON(){
 	    	ArrayList<String> list = new ArrayList<String>();
 	    	for (PublicationLike l : likes) list.add(l.getPublication().getTitle());
 	    	return list;
 	 }
-	 @JsonProperty("comments")
-	 public List<String> getCommentsJSON(){
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (Comment c : comments) list.add("@"+ c.getUser().getUsername()+ ":" + c.getText());
-	    	return list;
-	 }
+	 
 	 @JsonProperty("following")
 	 public List<String> getFollowingJSON(){
 	    	ArrayList<String> list = new ArrayList<String>();

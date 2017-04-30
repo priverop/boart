@@ -18,17 +18,10 @@
 		  					<i class="icofont icofont_social icofont-social-instagram"></i>
 		  					<i class="icofont icofont_social icofont-social-linkedin"></i>
 		  				</div>
-		  				<!-- {{^guest}}
-		  				<div class="follow">
-		  					{{^hasFollower}}
-		  					<a href="/follow/{{id}}">SEGUIR</a>
-		  					{{/hasFollower}}
-
-		  					{{#hasFollower}}
-		  					<a href="/unfollow/{{id}}">DEJAR DE SEGUIR</a>
-		  					{{/hasFollower}}
+		  				<div *ngIf="loginService.isLogged" class="follow">
+		  					<a *ngIf="!isFollowing" (click)="followUser()">SEGUIR</a>
+		  					<a *ngIf="isFollowing" (click)="unfollowUser()">DEJAR DE SEGUIR</a>
 		  				</div>
-		  				{{/guest}} -->
 		  			</div>
 
 			</div>
@@ -48,7 +41,9 @@
 
 		<!-- Gallery -->
 		<div class="row" id="columns">
-			<div *ngFor="let publication of user.gallery" class="app_box publication">{{publication}}</div>
+			<div *ngFor="let publication of user.gallery" class="app_box publication">
+				<app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
+			</div>
 		</div>
 
 		<app-comments [comments]="user.comments"></app-comments>
