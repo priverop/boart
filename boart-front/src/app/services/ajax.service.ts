@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
@@ -56,9 +56,9 @@ export class AjaxService {
    */
   postRequest(endpoint, body): Observable<any> {
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-
-    return this.http.post(this.buildUrl(endpoint), body, { headers: headers });
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true }); //Necesario para que siga mandando el JSESSIONID
+    return this.http.post(this.buildUrl(endpoint), body, options);
 
   }
 
