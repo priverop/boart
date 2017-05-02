@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/logout")
 public class LogoutRestController {
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<?> logout(HttpSession session){
 		session.invalidate();
 		return new ResponseEntity<>(HttpStatus.OK);
