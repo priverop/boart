@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import {Injectable, OnInit, EventEmitter} from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { AjaxService } from './ajax.service';
 import { CanActivate } from '@angular/router';
@@ -15,6 +15,7 @@ export class LoginService {
 
   isLogged = false;
   user: User;
+  userUpdated: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: Http, private ajaxService: AjaxService) {
     this.reqIsLogged();
@@ -31,17 +32,21 @@ export class LoginService {
     this.ajaxService.getRequest('login', options).subscribe(
         response => this.processLogInResponse(response),
         error => {
+          console.log(error);
           if (error.status !== 401) {
             console.error('Error when asking if logged: ' +
                 JSON.stringify(error));
           }
+          this.userUpdated.emit(false);
         }
     );
   }
 
   private processLogInResponse(response) {
+    console.log(response);
     this.isLogged = true;
     this.user = response.json();
+    this.userUpdated.emit(true);
   }
 
   getLogin(user: string, pass: string) {

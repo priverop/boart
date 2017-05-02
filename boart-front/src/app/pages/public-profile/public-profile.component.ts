@@ -13,6 +13,8 @@ export class PublicProfileComponent implements OnInit {
   user = [];
   username: string;
   isFollowing = false;
+  userLogged: boolean;
+  isOwnProfile: boolean = true;
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
@@ -20,16 +22,36 @@ export class PublicProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.username = params['username'];
     });
-    this.getUser();
+    this.loginService.userUpdated.subscribe(
+      (userLogged) => {
+      this.userLogged = userLogged;
+        this.getUser();
+      }
+    )
   }
 
   private getUser(){
     const endpoint = 'user/'+this.username;
-    this.ajaxService.getRequest(endpoint).subscribe(result => this.user = result.json());
+    this.ajaxService.getRequest(endpoint).subscribe(result => {
+      this.user = result.json();
+      if(this.userLogged) {
+        this.checkOwnProfile();
+      }
+    });
   }
 
-  checkFollowing(){
+  private checkOwnProfile() {
+    if(this.loginService.isLogged) {
+      this.isOwnProfile = this.loginService.user['username'] == this.user['username'] ? true : false;
+      this.checkFollowing();
+    }
+  }
 
+  private checkFollowing(){
+    let followers = this.loginService.user['followers'].filter(follower => {
+      return follower == '@' + this.user['username'];
+    });
+    this.isFollowing = followers.length ? true : false;
   }
 
   followUser(){

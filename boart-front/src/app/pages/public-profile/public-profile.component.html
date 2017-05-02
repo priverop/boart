@@ -18,9 +18,9 @@
 		  					<i class="icofont icofont_social icofont-social-instagram"></i>
 		  					<i class="icofont icofont_social icofont-social-linkedin"></i>
 		  				</div>
-		  				<div *ngIf="loginService.isLogged" class="follow">
+		  				<div *ngIf="loginService.isLogged && !isOwnProfile" class="follow">
 		  					<a *ngIf="!isFollowing" (click)="followUser()">SEGUIR</a>
-		  					<a *ngIf="!isFollowing" (click)="unfollowUser()">DEJAR DE SEGUIR</a>
+		  					<a *ngIf="isFollowing" (click)="unfollowUser()">DEJAR DE SEGUIR</a>
 		  				</div>
 		  			</div>
 
