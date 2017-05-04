@@ -137,8 +137,15 @@ article {
       color: #58a50f;
     }
   }
+    
+    .filter{
+    cursor: pointer;
+}
 }
 
+.filter{
+    cursor: pointer;
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   /* $screen-sm-min*/

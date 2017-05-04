@@ -56,6 +56,25 @@ private page;
     this.filter = filter;
     this.page = 1;
     this.getPublications();
+    
+    document.getElementById('aLikes').className ='';
+	document.getElementById('aComments').className ='';
+	document.getElementById('aLatest').className ='';
+    
+    switch(filter){
+        case 'latest': {
+                document.getElementById('aLikes').className ='active';
+                break;
+        }
+        case 'comments': {
+                document.getElementById('aComments').className ='active';
+                break;
+        }
+        case 'likes': {
+                document.getElementById('aLatest').className ='active';
+                break;
+        }
+    }
   }
   
   public addTag(tag){

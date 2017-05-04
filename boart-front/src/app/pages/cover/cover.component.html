@@ -2,9 +2,9 @@
 <article class="container-fluid">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
     <ul>
-      <li><a  (click)="changeFilter('latest')" class="active"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
-      <li><a (click)="changeFilter('likes')"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
-      <li><a (click)="changeFilter('comments')"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
+      <li class="filter"><a  (click)="changeFilter('latest')" class="active" id="aLikes"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
+      <li class="filter"><a (click)="changeFilter('likes')" id="aLatest"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
+      <li class="filter"><a (click)="changeFilter('comments')" id="aComments"><i aria-hidden="true" class="icofont icofont-comment"></i>+ comentados</a></li>
     </ul>
     <app-search [tags]="tags" [filter]="filter" (addTagEvent) ="addTag($event)" (remTagEvent) ="removeTag($event)"></app-search>
     <!--<app-tag-list></app-tag-list>-->
