@@ -1,8 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import {style, animate, keyframes, transition, trigger} from "@angular/animations";
+
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
@@ -11,10 +13,21 @@ export class SafePipe implements PipeTransform {
   }
 }
 
+const moveDown = trigger('moveDown', [
+    transition('void => *', [
+        animate(600, keyframes([
+            style({opacity: 0, transform: 'translateY(-400px)', offset: 0}),
+            style({opacity: 0.8, transform: 'translateY(50px)', offset: .75}),
+            style({opacity: 1, transform: 'translateY(0)', offset: 1}),
+        ]))
+    ])
+]);
+
 @Component({
   selector: 'app-cover',
   templateUrl: './cover.component.html',
-  styleUrls: ['./cover.component.scss']
+  styleUrls: ['./cover.component.scss'],
+  animations: [ moveDown ]
 })
 export class CoverComponent implements OnInit {
 

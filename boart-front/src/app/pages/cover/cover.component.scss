@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+@import "../../../assets/_variables";
+
 article {
   .filter_publication {
     height: auto;
@@ -48,15 +50,16 @@ article {
       display: inline-block;
       font-size: 1.3em;
       margin-left: 10px;
+      color: $black-color-soft;
     }
     .rating {
       display: inline-block;
       font-size: 1.3em;
-      a {
+      span {
         display: inline;
         cursor: pointer;
         text-decoration: none;
-        color: black;
+        color: $black-color-soft;
         .rating-value {
           padding: 0px 5px;
         }
@@ -65,7 +68,7 @@ article {
     .numComments {
       padding: 0px 5px;
     }
-    .rating a {
+    .rating span {
       &:hover .like_icon, .like_icon.added {
         color: red;
       }
@@ -111,6 +114,7 @@ article {
     position: absolute;
     bottom: 10px;
     right: 15px;
+    color: $black-color-soft;
   }
   .iframeAudio {
     width: 100%;

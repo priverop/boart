@@ -11,7 +11,7 @@
   </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
     <div id="columns">
-      <div *ngFor="let publication of publications" class="publication app_box publication_box">
+      <div *ngFor="let publication of publications" class="publication app_box publication_box" [@moveDown]='state'>
         <a routerLink="/publication/{{ publication.id }}">
           <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
           <p>{{ publication.title }}</p>
