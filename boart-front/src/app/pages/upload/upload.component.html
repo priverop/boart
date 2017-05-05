@@ -34,11 +34,9 @@
              <div class="form-group">
                  <label for="inputTitle" class="col-sm-2 control-label">¿Dónde lo quieres publicar?</label>
                  <div class="col-sm-10">
-                   <select name="idGroup">
+                   <select (change)="changeGroup($event)"  name="idGroup">
                      <option value="0"> Público</option>
-                     <!-- {{#user_groups}}
-                       <option value="{{id}}"> {{title}}</option>
-             {{/user_groups}} -->
+                     <option [value]="group.id"  *ngFor="let group of groups"> {{group.title}}</option>
                      </select>
                  </div>
              </div>
@@ -84,7 +82,7 @@
 
              <div class="form-group">
                  <div class="col-sm-offset-2 col-sm-10">
-                     <button type="submit" class="btn btn-default" (click)='addPublication($event, inputTitle.value, inputDescription.value, inputTags.value, inputAudio.value, inputVideo.value)'>Enviar</button>
+                     <button type="submit" class="btn btn-default" (click)='addPublication($event, inputTitle.value, inputDescription.value, inputTags.value, inputAudio.value, inputVideo.value, inputGroup)'>Enviar</button>
                  </div>
              </div>
 
