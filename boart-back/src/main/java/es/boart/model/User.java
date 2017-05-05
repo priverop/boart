@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -396,10 +398,16 @@ public class User {
 	    	return list;
 	 }
 	 @JsonProperty("publications")
-	 public List<String> getPublicationsJSON(){
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (Publication p : userPublications) list.add(p.getTitle());
-	    	return list;
+	 public ArrayList<Map<String, Object>> getPublicationsJSON(){
+	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (Publication p : userPublications){
+	    		Map<String, Object> m = new HashMap<>();
+	    		m.put("title", p.getTitle());
+	    		m.put("description", p.getDescription());
+	    		m.put("id", p.getId());
+	    		array.add(m);
+	    	}	    						
+	    	return array;
 	 }
 
 }
