@@ -54,8 +54,8 @@
         <div class="col-xs-12 follow_list">
           <h2>Following:</h2>
           <ul>
-            <li *ngFor="let username of user.following">
-              <a href="/public-profile/{{username}}"><img src=""/><span>{{username}}</span></a>
+            <li *ngFor="let user of user.following">
+              <a routerLink="/public-profile/{{user.username}}"><img src="{{user.img}}"/><span>{{user.username}}</span></a>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@
         <h2>Followers:</h2>
         <ul>
           <li *ngFor="let username of user.followers">
-          <a href="/public-profile/{{username}}"><img src=""/><span>{{username}}</span></a>
+          <a routerLink="/public-profile/{{user.username}}"><img src="{{user.img}}"/><span>{{user.username}}</span></a>
         </li>
       </ul>
     </div>
@@ -73,7 +73,7 @@
       <h2>Grupos:</h2>
       <ul>
         <li *ngFor="let group of user.groups">
-          <a href="/group/{{group}}"><img src=""/><span>{{group}}</span></a>
+          <a routerLink="/group/{{group.id}}"><img src="{{group.img}}"/><span>{{group.title}}</span></a>
         </li>
       </ul>
     </div>
@@ -93,8 +93,8 @@
 </div>
 </div>
 <div class="col-xs-12 col-sm-8 profile_gallery ">
-  <div *ngFor="let p of user.publications" class="publication app_box edit-gallery">
-  <a href="#">{{p}}</a>
+  <div *ngFor="let p of user.gallery" class="publication app_box edit-gallery">
+  <a routerLink="/publication/{{p.id}}"><app-media url="{{p.media}}" media_type="{{p.media_type}}"></app-media></a>
 </div>
 </div>
 </div>

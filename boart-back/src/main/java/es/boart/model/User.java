@@ -380,22 +380,38 @@ public class User {
 	 }
 	 
 	 @JsonProperty("following")
-	 public List<String> getFollowingJSON(){
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (User u : following) list.add("@"+ u.getUsername());
-	    	return list;
+	 public ArrayList<Map<String, Object>> getFollowingJSON(){
+	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (User u : following){
+		    	Map<String, Object> m = new HashMap<>();
+	    		m.put("username", u.getUsername());
+	    		m.put("img", u.getImg());
+	    		array.add(m);
+	    	}	    						
+    	return array;
 	 }
 	 @JsonProperty("followers")
-	 public List<String> getFollowersJSON(){
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (User u : followers) list.add("@"+ u.getUsername());
-	    	return list;
+	 public ArrayList<Map<String, Object>> getFollowersJSON(){
+	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (User u : followers) {
+		    	Map<String, Object> m = new HashMap<>();
+	    		m.put("username", u.getUsername());
+	    		m.put("img", u.getImg());
+	    		array.add(m);
+	    	}	    						
+    	return array;
 	 }
 	 @JsonProperty("groups")
-	 public List<String> getGroupsJSON(){
-	    	ArrayList<String> list = new ArrayList<String>();
-	    	for (Grupo g : groups) list.add(g.getTitle());
-	    	return list;
+	 public ArrayList<Map<String, Object>> getGroupsJSON(){
+		 	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (Grupo g : groups){
+		    	Map<String, Object> m = new HashMap<>();
+	    		m.put("title", g.getTitle());
+	    		m.put("img", g.getImg());
+	    		m.put("id", g.getId());
+	    		array.add(m);
+	    		}	    						
+	    	return array;
 	 }
 	 @JsonProperty("publications")
 	 public ArrayList<Map<String, Object>> getPublicationsJSON(){
@@ -404,6 +420,8 @@ public class User {
 	    		Map<String, Object> m = new HashMap<>();
 	    		m.put("title", p.getTitle());
 	    		m.put("description", p.getDescription());
+	    		m.put("media", p.getMedia());
+	    		m.put("media_type", p.getMedia_type());
 	    		m.put("id", p.getId());
 	    		array.add(m);
 	    	}	    						
