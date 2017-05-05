@@ -105,9 +105,7 @@ public class UserRestController {
 	public ResponseEntity<User> newUser(User nUser){
 		
 		User newUser = userService.registerUser(nUser.getUsername(), nUser.getName(), nUser.getSurname(), nUser.getPassword());
-		
-		System.out.println(newUser.getUsername());
-		
+				
 		if (newUser != null) {
 			return new ResponseEntity<>(newUser, HttpStatus.OK);
 		} else {
