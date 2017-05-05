@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   api: {
-    url: 'http://localhost:8400/api/'
+    url: 'http://192.168.99.100:8400/api/'
   }
 };
