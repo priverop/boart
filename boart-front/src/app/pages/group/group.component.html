@@ -13,7 +13,7 @@
 
       <div *ngIf="loginService.isLogged" class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
         <div class="app_box menuleft">
-          <a class="title" *ngIf="!userBelongs" (click)="leaveGroup()">DEJAR EL GRUPO</a>
+          <a class="title" *ngIf="userBelongs" (click)="leaveGroup()">DEJAR EL GRUPO</a>
           <a class="title" *ngIf="!userBelongs" (click)="joinGroup()">ÚNETE</a>
         </div>
       </div>

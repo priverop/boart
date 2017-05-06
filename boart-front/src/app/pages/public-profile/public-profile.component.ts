@@ -36,22 +36,20 @@ export class PublicProfileComponent implements OnInit {
       this.user = result.json();
       if(this.userLogged) {
         this.checkOwnProfile();
+        this.checkFollowing();
       }
     });
   }
 
   private checkOwnProfile() {
-    if(this.loginService.isLogged) {
       this.isOwnProfile = this.loginService.user['username'] == this.user['username'] ? true : false;
-      this.checkFollowing();
-    }
   }
 
   private checkFollowing(){
-    let followers = this.loginService.user['followers'].filter(follower => {
-      return follower == '@' + this.user['username'];
+    let following = this.loginService.user['following'].filter(following => {
+      return following.username == this.user['username'];
     });
-    this.isFollowing = followers.length ? true : false;
+    this.isFollowing = following.length ? true : false;
   }
 
   followUser(){

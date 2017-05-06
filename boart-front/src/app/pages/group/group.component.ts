@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
-import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -21,7 +21,12 @@ export class GroupComponent implements OnInit {
       this.groupID = +params['id'];
     });
     this.getGroup();
-    this.checkUserBelongs();
+
+    if(this.loginService.isLogged) {
+      console.log("Estás logueado");
+      this.checkUserBelongs();
+    }
+    console.log("No estás logueado jajaj");
   }
 
   private getGroup(){
@@ -30,8 +35,10 @@ export class GroupComponent implements OnInit {
   }
 
   private checkUserBelongs(){
-    // var number = this.loginService.user['groups'].find(x => x === this.group['title']);
-
+    let userBelongs = this.loginService.user['groups'].filter(group => {
+      return group.id == this.groupID;
+    });
+    this.userBelongs = userBelongs.length ? true : false;
   }
 
   joinGroup(){
