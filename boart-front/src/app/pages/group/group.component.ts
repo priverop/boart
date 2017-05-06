@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GroupComponent implements OnInit {
 
-  group = [];
+  group = {};
   groupID: number;
   userBelongs = false;
 
@@ -22,11 +22,14 @@ export class GroupComponent implements OnInit {
     });
     this.getGroup();
 
-    if(this.loginService.isLogged) {
-      console.log("Estás logueado");
-      this.checkUserBelongs();
-    }
-    console.log("No estás logueado jajaj");
+    this.loginService.userUpdated.subscribe(
+        (userLogged) => {
+            userLogged;
+            if(userLogged) {
+                this.checkUserBelongs();
+            }
+        }
+    );
   }
 
   private getGroup(){
@@ -44,7 +47,10 @@ export class GroupComponent implements OnInit {
   joinGroup(){
     const endpoint = 'group/join';
     this.ajaxService.postRequest(endpoint, "id=" + this.groupID).subscribe(
-      response => console.log(response),
+      response => {
+        this.group = response.json();
+        this.userBelongs = true;
+      },
       error => console.error(error)
     );
   }
@@ -52,7 +58,10 @@ export class GroupComponent implements OnInit {
   leaveGroup(){
     const endpoint = 'group/leave/'+this.groupID;
     this.ajaxService.deleteRequest(endpoint).subscribe(
-      response => console.log(response),
+        response => {
+          this.group = response.json();
+          this.userBelongs = false;
+        },
       error => console.error(error)
     );
   }

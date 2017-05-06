@@ -55,7 +55,7 @@ article {
     .rating {
       display: inline-block;
       font-size: 1.3em;
-      span {
+      a {
         display: inline;
         cursor: pointer;
         text-decoration: none;
@@ -68,7 +68,7 @@ article {
     .numComments {
       padding: 0px 5px;
     }
-    .rating span {
+    .rating a {
       &:hover .like_icon, .like_icon.added {
         color: red;
       }

@@ -16,8 +16,10 @@
           <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
           <p>{{ publication.title }}</p>
           <div class="rating">
-              <span class="glyphicon glyphicon-heart-empty like_icon" aria-hidden="true" id="{{ publication.id }}"></span>
+            <a href="#" id="{{ publication.id }}">
+              <span class="glyphicon glyphicon-heart-empty like_icon" aria-hidden="true" id="{{id}}"></span>
               <span class="rating-value">{{ publication.numberOfLikes }}</span>
+            </a>
           </div>
           <div class="comments">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
