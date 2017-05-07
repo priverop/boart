@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.boart.UserComponent;
@@ -92,6 +94,25 @@ public class LikeRestController {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 			
+	}
+	
+	@GetMapping("/check/{publicationId}")
+	public ResponseEntity<String> checkLike(@PathVariable String publicationId){
+
+		Publication p = publicationService.findOne(Long.parseLong(publicationId));
+		
+		if(userSession.getUser() != null){ 
+			User u = userService.findOne(userSession.getUser().getId());
+			boolean check = p.checkUserLikesThis(u);
+		
+			if(check){
+				return new ResponseEntity<>("true", HttpStatus.OK);
+			}
+			else{
+				return new ResponseEntity<>("false", HttpStatus.OK);
+			}
+		}
+		 return new ResponseEntity<>("false", HttpStatus.OK);
 	}
 
 }
