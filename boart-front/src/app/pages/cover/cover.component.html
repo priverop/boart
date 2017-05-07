@@ -24,7 +24,7 @@
           <p>{{ publication.title }}</p>
           <div class="rating">
             <a href="#" id="{{ publication.id }}">
-              <span class="glyphicon glyphicon-heart-empty like_icon" aria-hidden="true" id="{{id}}"></span>
+              <span class="glyphicon glyphicon-heart-empty like_icon" [ngClass]="{'added': publication.ownLike}" aria-hidden="true" id="{{id}}"></span>
               <span class="rating-value">{{ publication.numberOfLikes }}</span>
             </a>
           </div>
