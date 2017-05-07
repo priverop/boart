@@ -179,6 +179,15 @@ public class BuildBBDD {
 
 		publicationRepository.save(lPublications);
 		
+		/* Group Publications */
+		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://www.hhgroups.com/imagenes/artistas/gata-cattana-artista.jpg");
+		groupRepository.save(rap);
+		rap.addPublication(lPublications.get(0));
+		rap.addMember(juan);
+		rap.addMember(emilio);
+		rap.addMember(concha);
+		groupRepository.save(rap); 
+		
 		addTags(lPublications.get(0), Arrays.asList("rap", "gata", "cattana", "dep"));
 		addTags(lPublications.get(1), Arrays.asList("epic", "galaxy", "god", "dark", "photo", "boart"));
 		addTags(lPublications.get(2), Arrays.asList("epic", "dark", "wolf"));
@@ -245,16 +254,6 @@ public class BuildBBDD {
 		}
 		
 		publicationRepository.save(lPublications);
-
-		
-		/* Group Publications */
-		Grupo rap = new Grupo("Rap Femenino", "Rap internacional hecho por mujeres.", "http://www.hhgroups.com/imagenes/artistas/gata-cattana-artista.jpg");
-		groupRepository.save(rap);
-		rap.addPublication(lPublications.get(0));
-		rap.addMember(juan);
-		rap.addMember(emilio);
-		rap.addMember(concha);
-		groupRepository.save(rap);
 
 	}
 	
