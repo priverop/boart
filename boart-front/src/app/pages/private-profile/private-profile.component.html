@@ -51,7 +51,7 @@
           </form>
         </div>
 
-        <div class="col-xs-12 follow_list">
+        <div *ngIf="!emptyFollowings" class="col-xs-12 follow_list">
           <h2>Following:</h2>
           <ul>
             <li *ngFor="let user of user.following">
@@ -60,7 +60,7 @@
           </ul>
         </div>
 
-      <div class="col-xs-12 follow_list">
+      <div *ngIf="!emptyFollowers" class="col-xs-12 follow_list">
         <h2>Followers:</h2>
         <ul>
           <li *ngFor="let user of user.followers">
@@ -69,7 +69,7 @@
       </ul>
     </div>
 
-    <div class="col-xs-12 follow_list">
+    <div *ngIf="!emptyGroups" class="col-xs-12 follow_list">
       <h2>Grupos:</h2>
       <ul>
         <li *ngFor="let group of user.groups">
@@ -78,17 +78,17 @@
       </ul>
     </div>
 
-  <div class="col-xs-12 social_nets ">
-    <i class="icofont icofont_social icofont-social-500px "></i>
-    <i class="icofont icofont_social icofont-social-facebook "></i>
-    <i class="icofont icofont_social icofont-social-twitter "></i>
-    <i class="icofont icofont_social icofont-social-instagram "></i>
-    <i class="icofont icofont_social icofont-social-linkedin "></i>
-    <i class="icofont icofont_social icofont-social-youtube-play "></i>
-  </div>
-  <div class="col-xs-12 public_button ">
-    <a class="custom_button " href="./public-profile/{{user.username}}">Ver perfil público</a>
-  </div>
+    <div class="col-xs-12 social_nets ">
+      <i class="icofont icofont_social icofont-social-500px "></i>
+      <i class="icofont icofont_social icofont-social-facebook "></i>
+      <i class="icofont icofont_social icofont-social-twitter "></i>
+      <i class="icofont icofont_social icofont-social-instagram "></i>
+      <i class="icofont icofont_social icofont-social-linkedin "></i>
+      <i class="icofont icofont_social icofont-social-youtube-play "></i>
+    </div>
+    <div class="col-xs-12 public_button ">
+      <a class="custom_button " href="./public-profile/{{user.username}}">Ver perfil público</a>
+    </div>
 
 </div>
 </div>
