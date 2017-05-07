@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-comments',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CommentsComponent implements OnInit {
     @Input() comments;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }

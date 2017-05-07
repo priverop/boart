@@ -44,7 +44,7 @@ export class PublicProfileComponent implements OnInit {
   }
 
   private checkEmptyPublications(){
-    this.emptyPublications = this.user['publications'] >= 0;
+    this.emptyPublications = this.user['publications'] == 0;
   }
 
   private checkOwnProfile() {
