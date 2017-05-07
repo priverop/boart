@@ -1,0 +1,381 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Boart",
+		"_postman_id": "a00b5733-508f-2e4e-7b87-ac2d4f42da0e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8400/api/login/",
+			"request": {
+				"url": "http://localhost:8400/api/login/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": ""
+					}
+				},
+				"description": "Login with Juan."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/user/following/",
+			"request": {
+				"url": "http://localhost:8400/api/user/following/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "31",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Juan follows nexmaniosis"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/user/following/31",
+			"request": {
+				"url": "http://localhost:8400/api/user/following/31",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": ""
+					}
+				},
+				"description": "Juan unfollows Nexmaniosis"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/group/leave/4",
+			"request": {
+				"url": "http://localhost:8400/api/group/leave/4",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": ""
+					}
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/group/join",
+			"request": {
+				"url": "http://localhost:8400/api/group/join",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "4",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/private_profile",
+			"request": {
+				"url": "http://localhost:8400/api/private_profile",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/user/new?username=username&surname=surname&name=name&password=pass",
+			"request": {
+				"url": "http://localhost:8400/api/user/new?username=username&surname=surname&name=name&password=pass",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/publications",
+			"request": {
+				"url": "http://localhost:8400/api/publications",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/publications/?page=1",
+			"request": {
+				"url": "http://localhost:8400/api/publications/?page=1",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/publications/?page=0&filter=comments&tags=boart",
+			"request": {
+				"url": "http://localhost:8400/api/publications/?page=0&filter=comments&tags=boart",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/publication/2",
+			"request": {
+				"url": "http://localhost:8400/api/publication/2",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/user/",
+			"request": {
+				"url": "http://localhost:8400/api/user/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/user/3",
+			"request": {
+				"url": "http://localhost:8400/api/user/3",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/group/",
+			"request": {
+				"url": "http://localhost:8400/api/group/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/group/4",
+			"request": {
+				"url": "http://localhost:8400/api/group/4",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8400/api/user/3",
+			"request": {
+				"url": "http://127.0.0.1:8400/api/user/3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "comment",
+							"value": "Hola, bienvenido a BOART",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/like/",
+			"request": {
+				"url": "http://localhost:8400/api/like/",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "publicationId",
+							"value": "3",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/like/3",
+			"request": {
+				"url": "http://localhost:8400/api/like/3",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8400/api/logout/",
+			"request": {
+				"url": "http://localhost:8400/api/logout/",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8400/api/publication/3",
+			"request": {
+				"url": "http://127.0.0.1:8400/publication/user/3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic anVhbjpqdWFuanVhbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "comment",
+							"value": "Hola, bienvenido a BOART",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

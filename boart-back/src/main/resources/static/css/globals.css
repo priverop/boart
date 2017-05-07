@@ -105,6 +105,11 @@ body .box_signin .icofont-lock, body .box_signin .icofont-user, body .box_signup
   /*$font-contrast; */
   font-size: 3em;
 }
+
+body input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #efefef inset;
+}
+
 body .box_signin [type=text], body .box_signup [type=text] {
   display: block;
   margin: 0 auto;
@@ -119,6 +124,22 @@ body .box_signin [type=text], body .box_signup [type=text] {
   background-color: rgba(0, 0, 0, 0);
   /*$black-color;*/
 }
+
+body .box_signin [type=password], body .box_signup [type=password] {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 45px;
+  line-height: 45px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: black;
+  background-color: rgba(0, 0, 0, 0);
+  /*$black-color;*/
+}
+
 body .box_signin [type=submit], body .box_signup [type=submit] {
   margin-top: 25px;
   width: 100%;
@@ -131,10 +152,26 @@ body .box_signin [type=submit], body .box_signup [type=submit] {
   font-weight: 400;
   font-size: 1em;
 }
+
+body .box_signin [type=submit]:disabled, body .box_signup [type=submit]:disabled {
+	background-color: #d2d2d2;
+}
+
 body .box_signin [type='text']:focus, body .box_signup [type='text']:focus {
   outline: none;
   border-color: rgba(88, 165, 15, 0.75);
   /* $font-contrast; */
+}
+
+body .box_signin [type='password']:focus, body .box_signup [type='password']:focus {
+  outline: none;
+  border-color: rgba(88, 165, 15, 0.75);
+  /* $font-contrast; */
+}
+
+body .box_signup [type='text']:disabled, body .box_signup [type='password']:disabled {
+	color: #d2d2d2;
+	cursor: pointer;
 }
 
 input[type=range] {
@@ -223,4 +260,19 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #8BC34A;
+}
+
+input[type=submit] {
+    color: rgba(88, 165, 15, 0.75);
+    background-color: #fff;
+    border: 1px solid rgba(88, 165, 15, 0.75);
+    font-weight: bold;
+    padding: 5px 15px;
+    margin: 10px 0px;
+    display: inline-block;
+}
+
+input[type=submit]:hover {
+    color: #fff;
+    background-color: rgba(88, 165, 15, 0.75);
 }

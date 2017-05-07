@@ -1,5 +1,10 @@
 <div class="tag_component">
-  <span class="tag"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>escultura</span>
-  <span class="tag"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>fotografía</span>
-  <span class="tag"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>dibujo</span>
-</div>
+	{{#tags}}
+	<form method="POST" class="tagForm" action="/" name="{{tag}}Form">
+		<input type="hidden" name="nTag" value="{{tag}}"> 
+		<input type="hidden" name="_csrf" value="{{token}}" /> 
+		<input type="hidden" name="type" value="addTag" /> 
+		<span class="tag" onclick="{{tag}}Form.submit()">{{tag}}</span>																
+	</form>							
+	{{/tags}}  
+</div>      

@@ -18,5 +18,9 @@ public class UserComponent {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public boolean isLoggedUser() {
+		return this.user != null;
+	}
 
 }

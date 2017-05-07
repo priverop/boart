@@ -1,0 +1,16 @@
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4 app_box box_signin">
+      <form>
+        <input #name type="text" name="name" placeholder="Nombre:"/>
+        <input #surname type="text" name="surname" placeholder="Apellidos:"/>
+        <input #username type="text" name="username" placeholder="Usuario:"/>
+        <input #password type="password" name="password" placeholder="Contraseña:"/>
+        <div class="col-xs-8 col-xs-offset-2">
+          <input (click)="registerEvent($event, name.value, surname.value, username.value, password.value)" type="submit" placeholder="SUBMIT"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</article>
+

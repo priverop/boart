@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AjaxService } from '../../services/ajax.service';
+import { LoginService } from '../../services/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -7,41 +10,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroupComponent implements OnInit {
 
-  private publicationsMock;
+  group = {};
+  groupID: number;
+  userBelongs = false;
 
-  constructor() {
-    this.publicationsMock = [
-      {
-        img: "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "http://mamiverse.com/es/wp-content/uploads/2016/01/T%C3%A9cnicas-fotogr%C3%A1ficas-El-arte-de-las-fotos-art%C3%ADsticas-Photo3.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "https://fografiasartisticas.files.wordpress.com/2013/04/fotografias-artisticas-2.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "http://mamiverse.com/es/wp-content/uploads/2016/01/T%C3%A9cnicas-fotogr%C3%A1ficas-El-arte-de-las-fotos-art%C3%ADsticas-Photo3.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },
-      {
-        img: "https://fografiasartisticas.files.wordpress.com/2013/04/fotografias-artisticas-2.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      },      {
-        img: "http://i797.photobucket.com/albums/yy260/soyhanechan/01.jpg",
-        text: "Donec a fermentum nisi. Integer dolor est, commodo ut sagittis vitae, egestas at augue. Suspendisse id nulla ac urna vestibulum mattis."
-      }
-    ]
-  }
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.groupID = +params['id'];
+    });
+    this.getGroup();
+
+    this.loginService.userUpdated.subscribe(
+        (userLogged) => {
+            userLogged;
+            if(userLogged) {
+                this.checkUserBelongs();
+            }
+        }
+    );
+  }
+
+  private getGroup(){
+    const endpoint = 'group/'+this.groupID;
+    this.ajaxService.getRequest(endpoint).subscribe(result => this.group = result.json());
+  }
+
+  private checkUserBelongs(){
+    let userBelongs = this.loginService.user['groups'].filter(group => {
+      return group.id == this.groupID;
+    });
+    this.userBelongs = userBelongs.length ? true : false;
+  }
+
+  joinGroup(){
+    const endpoint = 'group/join';
+    this.ajaxService.postRequest(endpoint, "id=" + this.groupID).subscribe(
+      response => {
+        this.group = response.json();
+        this.userBelongs = true;
+      },
+      error => console.error(error)
+    );
+  }
+
+  leaveGroup(){
+    const endpoint = 'group/leave/'+this.groupID;
+    this.ajaxService.deleteRequest(endpoint).subscribe(
+        response => {
+          this.group = response.json();
+          this.userBelongs = false;
+        },
+      error => console.error(error)
+    );
   }
 
 }

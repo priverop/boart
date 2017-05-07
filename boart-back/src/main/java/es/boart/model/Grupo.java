@@ -1,12 +1,18 @@
 package es.boart.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class Grupo {
@@ -18,8 +24,10 @@ public class Grupo {
 	private String title;
 	private String description;
 	private String img;
-	@OneToMany(mappedBy="group")
-	private List<GroupMember> groupMembers;
+	@ManyToMany
+	private List<User> groupMembers = new ArrayList<>();
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Publication> publications = new ArrayList<>();
 	
 	/**
 	 * @param title
@@ -34,6 +42,13 @@ public class Grupo {
 	
 	public Grupo(){}
 	
+	/**
+	 * @return the id
+	 */
+	public long getId() {
+		return id;
+	}
+
 	/**
 	 * @return the title
 	 */
@@ -61,6 +76,7 @@ public class Grupo {
 	/**
 	 * @return the img
 	 */
+	@JsonIgnore
 	public String getImg() {
 		return img;
 	}
@@ -73,15 +89,45 @@ public class Grupo {
 	/**
 	 * @return the miembroGrupos
 	 */
-	public List<GroupMember> getMiembroGrupos() {
+	public List<User> getMiembroGrupos() {
 		return groupMembers;
-	}
+	}	
+
 	/**
-	 * @param groupMembers the miembroGrupos to set
+	 * @return the publications
 	 */
-	public void setMiembroGrupos(List<GroupMember> groupMembers) {
-		this.groupMembers = groupMembers;
+	public List<Publication> getPublications() {
+		return publications;
 	}
 	
+	/**
+	 * @param publications the publications to set
+	 */
+	public void setPublications(List<Publication> publications) {
+		this.publications = publications;
+	}
+	
+	/* CUSTOM METHODS */
+
+	public void addMember(User user){
+		this.groupMembers.add(user);
+	}
+	
+	public void removeMember(User user){
+		this.groupMembers.remove(user);
+	}
+	
+	public boolean hasUser(User user){
+		return this.groupMembers.contains(user);
+	}
+	
+	public void addPublication(Publication p){
+		this.getPublications().add(p);
+	}
+	
+	@JsonProperty("img")
+	public String getImgJSON(){
+		return "http://localhost:8400/" + getImg();
+	}
 	
 }

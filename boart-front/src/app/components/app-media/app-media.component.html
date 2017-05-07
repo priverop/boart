@@ -1,0 +1,11 @@
+<div [ngSwitch]="media_type">
+  <div *ngSwitchCase="0">
+    <img class="img-responsive" src="{{url}}" />
+  </div>
+  <div *ngSwitchCase="1">
+    <iframe class="iframeAudio" scrolling="no" frameborder="no" [src]="url | safe"></iframe>
+  </div>
+  <div *ngSwitchCase="2">
+    <iframe class="iframeVideo" scrolling="no" frameborder="no" [src]="url | safe"></iframe>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<app-header></app-header>
+<article class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 app_box user_info">
+					<div class="col-xs-12 col-sm-4">
+						<img class="img-responsive" src="{{user.img}}">
+					</div>
+					<div class="col-xs-12 col-sm-8">
+						<div class="col-xs-12">
+							<h1>{{user.name}}</h1>
+							<h2>@{{user.username}}</h2>
+			  				<blockquote>{{user.description}}</blockquote>
+		  				</div>
+		  				<!--<div class="col-xs-12 social_nets">
+		  					<i class="icofont icofont_social icofont-social-500px"></i>
+		  					<i class="icofont icofont_social icofont-social-facebook"></i>
+		  					<i class="icofont icofont_social icofont-social-twitter"></i>
+		  					<i class="icofont icofont_social icofont-social-instagram"></i>
+		  					<i class="icofont icofont_social icofont-social-linkedin"></i>
+		  				</div>-->
+		  				<div *ngIf="loginService.isLogged && !isOwnProfile" class="follow">
+		  					<a *ngIf="!isFollowing" (click)="followUser()">SEGUIR</a>
+		  					<a *ngIf="isFollowing" (click)="unfollowUser()">DEJAR DE SEGUIR</a>
+		  				</div>
+		  			</div>
+
+			</div>
+
+			<div *ngIf="!emptyPublications" class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
+				<h2>Últimas Publicaciones</h2>
+				<div *ngFor="let publication of user.publications" id="publicationWrapper">
+					<p class="title">
+						<a routerLink="/publication/{{publication.id}}">
+							<span class="glyphicon glyphicon-picture"></span>
+							{{publication.title}}
+						</a>
+					</p>
+					<p class="description"><em>{{publication.description}}</em></p>
+				</div>
+			<!--{{#showMore}}
+			<div class="load_more">
+				<span>Cargar más publicaciones</span>
+			</div>
+			{{/showMore}} -->
+			</div>
+		</div>
+
+		<!-- Gallery -->
+		<div class="row" id="columns">
+			<div *ngFor="let publication of user.gallery" class="app_box publication">
+                <a routerLink="/publication/{{publication.id}}"><app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media></a>
+			</div>
+		</div>
+
+		<app-comments [comments]="user.comments"></app-comments>
+</article>
+<app-footer></app-footer>

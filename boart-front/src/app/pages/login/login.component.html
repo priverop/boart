@@ -1,19 +1,16 @@
-<app-header></app-header>
-<div class="container syncopate">
-    <div class="app_box" id="box">
-        <img src="/assets/boart_colores.png" id="logo" />
-        <div id="containerForm">
-            <p id="labelEntrar" class="font_contrast"><b>Entrar a Boart</b></p>
-            <div class="input-group">
-                <span class="input-group-addon glyphicon glyphicon-user white" id="basic-addon1"></span>
-                <input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon glyphicon glyphicon-asterisk white" id="basic-addon1"></span>
-                <input type="password" class="form-control" placeholder="Contraseña" aria-describedby="basic-addon1">
-            </div>
+<article class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12  col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4 app_box box_signin">
+      <!--  {{#error}}
+      <p class="error">¡USUARIO/CONTRASEÑA INCORRECTA!</p>
+      {{/error}} -->
+      <form>
+        <input #user type="text" name="username" placeholder="Usuario:"/>
+        <input #pass type="password" name="password" placeholder="Contraseña:"/>
+        <div class="col-xs-8 col-xs-offset-2">
+          <input (click)="loginEvent($event, user.value, pass.value)" type="submit" placeholder="SUBMIT"/>
         </div>
-        <p><a class="btn btn-primary btn-lg" id="enviar" href="#" role="button">Enviar</a></p>
+      </form>
     </div>
-</div>
-<app-footer></app-footer>
+  </div>
+</article>

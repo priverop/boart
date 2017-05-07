@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/private_profile").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/upload").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/group/create").hasAnyRole("USER");
 
         // Login form
         http.formLogin().loginPage("/login");
@@ -45,6 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/like");
+        web.ignoring().antMatchers("/pageable");
     }
 
     @Override

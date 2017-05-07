@@ -1,0 +1,111 @@
+<app-header></app-header>
+<article class="container-fluid">
+    <div class="col-xs-12 app_box user_profile">
+        <div class="col-xs-12 col-sm-4">
+            <div class="row user_info box_signup">
+                <div class="col-xs-12">
+                    <form action="/edit_profile" method="POST" enctype="multipart/form-data">
+                        <div class="col-xs-5 img-edit-icon">
+                            <img class="img-responsive" src="{{user.img}}" WIDTH="100%" id="avatar">
+                            <input class="edit_profile" type="file" id="inputFile" name="inputFile"
+                                   style="display:none"/>
+                            <div class="input-group-btn">
+                                <i class="icofont icofont-pencil-alt-5"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="input-group col-xs-12 edit-icon">
+                                <input class="edit_profile" disabled="disabled" type="text" name="name"
+                                       placeholder="Nombre:" value="{{user.name}}"/>
+                                <div class="input-group-btn">
+                                    <i class="icofont icofont-pencil-alt-5"></i>
+                                </div>
+                            </div>
+                            <div class="input-group col-xs-12 edit-icon">
+                                <input class="edit_profile" disabled="disabled" type="text" name="surname"
+                                       placeholder="Apellidos:" value="{{user.surname}}"/>
+                                <div class="input-group-btn">
+                                    <i class="icofont icofont-pencil-alt-5"></i>
+                                </div>
+                            </div>
+                            <div class="input-group col-xs-12 edit-icon">
+                                <input class="edit_profile" disabled="disabled" type="text" name="username"
+                                       placeholder="Usuario:" value="{{user.username}}"/>
+                                <div class="input-group-btn">
+                                    <i class="icofont icofont-pencil-alt-5"></i>
+                                </div>
+                            </div>
+                            <div class="input-group col-xs-12 edit-icon">
+                                <input class="edit_profile" disabled="disabled" type="text" name="password"
+                                       placeholder="Contraseña"/>
+                                <div class="input-group-btn">
+                                    <i class="icofont icofont-pencil-alt-5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group col-xs-12 edit-icon">
+                            <input class="edit_profile" disabled="disabled" type="text" name="description"
+                                   placeholder="Usuario:" value="{{user.description}}"/>
+                            <div class="input-group-btn">
+                                <i class="icofont icofont-pencil-alt-5"></i>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="_csrf" value=""/>
+                        <input type="hidden" name="id" value=""/>
+                        <input class="send_form" disabled="disabled" type="submit" placeholder="SUBMIT"/>
+                    </form>
+                </div>
+
+                <div *ngIf="!emptyFollowings" class="col-xs-12 follow_list">
+                    <h2>Following:</h2>
+                    <ul>
+                        <li *ngFor="let user of user.following">
+                            <a routerLink="/public-profile/{{user.username}}"><img src="{{user.img}}"/><span>{{user.username}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div *ngIf="!emptyFollowers" class="col-xs-12 follow_list">
+                    <h2>Followers:</h2>
+                    <ul>
+                        <li *ngFor="let user of user.followers">
+                            <a routerLink="/public-profile/{{user.username}}"><img src="{{user.img}}"/><span>{{user.username}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div *ngIf="!emptyGroups" class="col-xs-12 follow_list">
+                    <h2>Grupos:</h2>
+                    <ul>
+                        <li *ngFor="let group of user.groups">
+                            <a routerLink="/group/{{group.id}}"><img
+                                    src="{{group.img}}"/><span>{{group.title}}</span></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--<div class="col-xs-12 social_nets ">
+                  <i class="icofont icofont_social icofont-social-500px "></i>
+                  <i class="icofont icofont_social icofont-social-facebook "></i>
+                  <i class="icofont icofont_social icofont-social-twitter "></i>
+                  <i class="icofont icofont_social icofont-social-instagram "></i>
+                  <i class="icofont icofont_social icofont-social-linkedin "></i>
+                  <i class="icofont icofont_social icofont-social-youtube-play "></i>
+                </div>-->
+                <div class="col-xs-12 public_button ">
+                    <a class="custom_button" routerLink="/public-profile/{{user.username}}">Ver perfil público</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 profile_gallery ">
+            <div *ngFor="let p of user.gallery" class="publication app_box edit-gallery">
+                <a routerLink="/publication/{{p.id}}">
+                    <app-media url="{{p.media}}" media_type="{{p.media_type}}"></app-media>
+                </a>
+            </div>
+        </div>
+    </div>
+</article>
+<app-footer></app-footer>

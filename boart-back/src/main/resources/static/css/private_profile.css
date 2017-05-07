@@ -57,56 +57,27 @@
 .user_profile .user_info {
   margin: 0 0 10px 0;
 }
-.user_profile .edit-icon {
+.user_profile .edit-icon, .user_profile .img-edit-icon {
   cursor: pointer;
 }
-.user_profile .edit-icon i {
+.user_profile .edit-icon i, .user_profile .img-edit-icon i {
   opacity: 0;
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;
   transition: all .5s ease;
+  font-size: 20px;
+  padding: 10px;
 }
-.user_profile .edit-icon:hover {
+.user_profile .img-edit-icon i {
+	margin-left: 50px;
+}
+.user_profile .edit-icon:hover, .user_profile .img-edit-icon:hover {
   color: rgba(0, 0, 0, 0.5);
 }
-.user_profile .edit-icon:hover i {
+.user_profile .edit-icon:hover i, .user_profile .img-edit-icon:hover i {
   color: rgba(0, 0, 0, 0.7);
   opacity: 1;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
-}
-.user_profile .edit-img {
-  cursor: pointer;
-  position: relative;
-  width: 300px;
-}
-.user_profile .edit-img .veil {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  opacity: 0;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
-  font-size: 2em;
-}
-.user_profile .edit-img:hover {
-  color: rgba(0, 0, 0, 0.5);
-}
-.user_profile .edit-img:hover .veil {
-  color: rgba(0, 0, 0, 0.7);
-  opacity: 1;
-  -webkit-transition: all .5s ease;
-  -moz-transition: all .5s ease;
-  -o-transition: all .5s ease;
-  transition: all .5s ease;
-}
-.user_profile .edit-img:hover img {
-  opacity: 0.5;
   -webkit-transition: all .5s ease;
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;
@@ -144,4 +115,28 @@
   -moz-transition: all .5s ease;
   -o-transition: all .5s ease;
   transition: all .5s ease;
+}
+
+.user_profile .follow_list ul {
+	list-style: none;
+}
+
+.user_profile .follow_list ul li {
+	display: inline-block;
+	margin: 10px;
+}
+
+.user_profile .follow_list ul li a {
+	color: #000;
+}
+
+.user_profile .follow_list ul li img {
+	width: 64px;
+	margin: 5px;
+	display: block;
+}
+
+.user_profile .follow_list ul li span {
+	text-align: center;
+	display: block;
 }

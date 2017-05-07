@@ -11,13 +11,13 @@
 }
 .overlay .box_signin {
   display: none;
-  background-color: #fff;
+  background-color: #efefef;
   text-align: center;
   padding: 20px 15px;
 }
 .overlay .box_signup {
   display: none;
-  background-color: #fff;
+  background-color: #efefef;
   text-align: center;
   padding: 20px 15px;
 }

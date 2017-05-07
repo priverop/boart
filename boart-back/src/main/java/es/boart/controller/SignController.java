@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import es.boart.UserComponent;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
+import es.boart.services.UserService;
 //import es.boart.service.BoartMailAPI;
 
 @Controller
@@ -24,9 +25,9 @@ public class SignController {
 	
 	//@Autowired
 	//BoartMailAPI boartMailAPI;
-	
+
 	@Autowired
-	private UserComponent userSession;
+	private UserService userService;
 	
 	@RequestMapping("/login")
 	public String loginPage(Model modelo, HttpServletRequest request){
@@ -50,16 +51,13 @@ public class SignController {
 	@PostMapping("/register")
 	public String register(User usuario){
 		
-		User newUser = new User(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword(), usuario.getMail() );
-		
-		userRepo.save(newUser);
-		userSession.setUser(usuario);
-		
-		String message = "Bienvenido " + usuario.getName() + ", gracias por registrarte en Boart.";
-		
-		//boartMailAPI.sendEmail(usuario.getMail(), "boarturjc@gmail.com", "Registro en Boart", message);
+		userService.registerUser(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword());
 
-		return "redirect:/";
+		String message = "Bienvenido " + usuario.getName() + ", gracias por registrarte en Boart.";
+
+        //boartMailAPI.sendEmail(usuario.getMail(), "boarturjc@gmail.com", "Registro en Boart", message);
+
+		return "redirect:/private_profile";
 	}
 	
 	@RequestMapping("/logout")

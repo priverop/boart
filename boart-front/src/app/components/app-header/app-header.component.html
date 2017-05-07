@@ -1,0 +1,44 @@
+<div class="menu">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a href="/"><img
+				src="http://localhost:8400/files/logo_2D_white_shadow_bold.png"></a>
+		</div>
+		<div>
+			<ul *ngIf="loginService.isLogged" class="nav navbar-nav navbar-right">
+				<li>
+					<a class="custom_button alegreya" routerLink="/create-group">
+						<i class="icofont icofont-ui-add"></i> Crear Grupo
+					</a>
+				</li>
+				<li>
+					<a class="custom_button alegreya" routerLink="/upload">
+						<i class="icofont icofont-upload-alt"></i> Subir
+					</a>
+				</li>
+				<li>
+					<a class="custom_button alegreya" id="sign_in" routerLink="/private-profile">
+						<i class="icofont icofont-ui-user"></i> {{loginService.user.name}}
+					</a>
+				</li>
+				<li>
+					<a class="custom_button alegreya" (click)="logoutEvent()" href="#">
+						<i class="icofont icofont-ui-unlock"></i> Logout
+					</a>
+				</li>
+			</ul>
+			<ul *ngIf="!loginService.isLogged" class="nav navbar-nav navbar-right">
+				<li>
+					<a class="custom_button alegreya" id="sing_up" routerLink="/register">
+						<i class="icofont icofont-ui-user"></i>Sign Up
+					</a>
+				</li>
+				<li>
+					<a class="custom_button alegreya" id="sing_in" routerLink="/login">
+						<i class="icofont icofont-ui-lock"></i> Login
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

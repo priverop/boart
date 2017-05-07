@@ -1,10 +1,22 @@
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
-	<div *ngFor="let comment of commentsMocks" class="comment">
-		<p><span class="font_contrast"><strong>@{{comment.user}}</strong>: </span><span>{{comment.text}}</span></p>
-	</div>
-	<form>
-		<div class="form-group">
-			<textarea placeholder="Comentario"></textarea>
-		</div>
-	</form>
+<div class="comments_container">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 app_box comments_box">
+
+    <div *ngFor="let comment of comments" class="comment">
+      <span class="font_contrast"><a href="/public-profile/{{comment.user.username}}"><strong>@{{comment.user.username}}</strong>:</a> </span><span>{{comment.text}}</span>
+    </div>
+
+    <p class="font_contrast">Sé el primero en escribir un comentario</p>
+
+    <div *ngIf="loginService.isLogged" class="form-group">
+      <form action="/addComment/" method="post">
+        <textarea class="col-xs-8" placeholder="Comentario" name="text"></textarea>
+        <input type="hidden" name="idLocation" value="" />
+        <input type="hidden" name="_csrf" value="" />
+        <input type="submit" />
+      </form>
+    </div>
+
+    <p *ngIf="!loginService.isLogged" class="font_contrast">Registrate o inicia sesion para comentar.</p>
+
+  </div>
 </div>

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -9,62 +10,75 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 /* PAGES */
-import { PublicComponent } from './pages/public/public.component';
-import { PublicationComponent } from './pages/publication/publication.component';
-import { SingupComponent } from './pages/singup/singup.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { SelfProfileComponent } from './pages/self-profile/self-profile.component';
-import { GroupComponent } from './pages/group/group.component';
-import { UploadComponent } from './pages/upload/upload.component';
-
-
+import { CoverComponent } from './pages/cover/cover.component';
+import { SafePipe } from './pages/cover/cover.component';
 
 /* COMPONENTS */
-import { HeaderComponent } from './components/header/header.component';
-import { SearchComponent } from './components/search/search.component';
-import { TagListComponent } from './components/tag-list/tag-list.component';
+
+/* SERVICES */
+import { AjaxService } from "./services/ajax.service";
+import { LoginService } from './services/login.service';
+
+import { UploadComponent } from './pages/upload/upload.component';
+import { PublicationComponent } from './pages/publication/publication.component';
+import { GroupComponent } from './pages/group/group.component';
+import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
+import { PrivateProfileComponent } from './pages/private-profile/private-profile.component';
+import { CreateGroupComponent } from './pages/create-group/create-group.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AppTagListComponent } from './components/app-tag-list/app-tag-list.component';
+import { AppSearchComponent } from './components/app-search/app-search.component';
+import { AppFooterComponent } from './components/app-footer/app-footer.component';
+
+import { AppMediaComponent } from './components/app-media/app-media.component';
+import { LoginComponent } from './pages/login/login.component';
 import { CommentsComponent } from './components/comments/comments.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { LoginOverlayComponent } from './components/login-overlay/login-overlay.component';
-
-
+import { RegisterComponent } from './pages/register/register.component';
 
 const appRoutes: Routes = [
-  { path: 'profile', component: ProfileComponent},
-  { path: 'selfprofile', component: SelfProfileComponent},
-  { path: 'publication', component: PublicationComponent},
-  { path: 'upload', component: UploadComponent },
-  { path: 'group', component: GroupComponent },
-  { path: '', component: PublicComponent}
+  { path: '', component: CoverComponent},
+  { path: 'publication/:id', component: PublicationComponent},
+  { path: 'upload', component: UploadComponent, canActivate: [LoginService]},
+  { path: 'group/:id', component: GroupComponent},
+  { path: 'public-profile/:username', component: PublicProfileComponent},
+  { path: 'private-profile', component: PrivateProfileComponent, canActivate: [LoginService]},
+  { path: 'create-group', component: CreateGroupComponent, canActivate: [LoginService]},
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PublicComponent,
-    PublicationComponent,
-    HeaderComponent,
-    SearchComponent,
-    TagListComponent,
-    SingupComponent,
-    LoginComponent,
-    ProfileComponent,
-    CommentsComponent,
-    SelfProfileComponent,
-    GroupComponent,
-    FooterComponent,
+    CoverComponent,
+    SafePipe,
     UploadComponent,
-    LoginOverlayComponent
+    PublicationComponent,
+    GroupComponent,
+    PublicProfileComponent,
+    PrivateProfileComponent,
+    CreateGroupComponent,
+    AppHeaderComponent,
+    AppTagListComponent,
+    AppSearchComponent,
+    AppFooterComponent,
+    AppMediaComponent,
+    LoginComponent,
+    CommentsComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AjaxService,
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

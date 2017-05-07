@@ -6,5 +6,4 @@ import es.boart.model.Tag;
 
 public interface TagRepository extends JpaRepository <Tag, Long>{
 	Tag findByTag(String tag);
-
 }

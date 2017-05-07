@@ -1,6 +1,7 @@
 package es.boart.model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,12 +11,18 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import es.boart.boartUtils;
 
 @Entity
 public class Publication {
@@ -29,23 +36,27 @@ public class Publication {
 	@ManyToOne
 	private User user;
 	private String title;
-	private String description;
 	
 	@Column( length = 512 )
+	private String description;
+	
 	private String media;
 	
 	private int media_type;
 	private Timestamp date;
+	private String stringDate;
 	private int num_visits;
 	private int numberOfLikes;
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="publication")
-	private List<PublicationLike> likes;
+	private List<PublicationLike> likes = new ArrayList<>();
 
-	@ManyToMany(mappedBy="publications") 
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy="publications") 
 	private Set<Tag> tags;
+	private int numberOfComments;
+
 
 	public Publication(){}
 
@@ -69,6 +80,8 @@ public class Publication {
 		this.num_visits = DEFAULT_VISITS;
 		this.tags = new HashSet<>();
 		this.numberOfLikes = 0;
+		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
+		this.numberOfComments = comments.size();
 	}
 	
 	/**
@@ -81,6 +94,7 @@ public class Publication {
 	/**
 	 * @return the user
 	 */
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -123,8 +137,17 @@ public class Publication {
 	/**
 	 * @return the media
 	 */
+	@JsonIgnore
 	public String getMedia() {
-		return media;
+		switch (media_type) {
+			case 0:
+				return boartUtils.getImgEmbedLeft() + media + boartUtils.getImgEmbedRight();
+			case 1:
+				return boartUtils.getAudioEmbedLeft() + media + boartUtils.getAudioEmbedRight();
+			case 2:
+				return boartUtils.getVideoEmbedLeft() + media + boartUtils.getVideoEmbedRight();
+		}
+		return "Error. Multimedia no encontrado";		
 	}
 
 	/**
@@ -148,6 +171,7 @@ public class Publication {
 		this.media_type = tipo_media;
 	}
 
+	
 	/**
 	 * @return the date
 	 */
@@ -160,8 +184,13 @@ public class Publication {
 	 */
 	public void setDate(Timestamp fecha) {
 		this.date = fecha;
+		this.stringDate = "Publicado el " + new SimpleDateFormat("dd/MM/yyyy").format(date) + " a las " + new SimpleDateFormat("HH:mm").format(date);
 	}
 
+	public String getStringDate() {
+		return stringDate;
+	}
+	
 	/**
 	 * @return the num_visits
 	 */
@@ -179,6 +208,7 @@ public class Publication {
 	/**
 	 * @return the likes
 	 */
+	@JsonIgnore
 	public List<PublicationLike> getLikes() {
 		return likes;
 	}
@@ -214,6 +244,7 @@ public class Publication {
 		this.comments = comentariosPublicacion;
 	}
 	
+	@JsonIgnore
 	public Set<Tag> getTags() {
 		return tags;
 	}
@@ -236,8 +267,60 @@ public class Publication {
 		this.numberOfLikes = numberOfLikes;
 	}
 	
-	
 
+	public int getNumberOfComments() {
+		return numberOfComments;
+	}
+
+	public void setNumberOfComments(int numberOfComments) {
+		this.numberOfComments = numberOfComments;
+	}	
+	
+	/* CUSTOM METHOD */
+	
+	public boolean checkUserLikesThis(User user){
+				
+		for(PublicationLike like:this.getLikes()){
+			if(like.getUser() == user){
+				System.out.println("SEHHH");
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	
+	 @JsonProperty("user")
+	 public String getGalleryJSON(){
+	    	return user.getUsername();
+	 }
+	
+	 @JsonProperty("likes")
+	 public List<String> getLikesJSON(){
+	    	ArrayList<String> likeList = new ArrayList<String>();
+	    	for (PublicationLike l : likes){
+	    		likeList.add("@" + l.getUser().getUsername());
+	    	}
+	    	return likeList;
+	 }
+	
+	 @JsonProperty("tags")
+	 public List<String> gettagsJSON(){
+	    	ArrayList<String> tagList = new ArrayList<String>();
+	    	for (Tag t : tags){
+	    		tagList.add(t.getTag());
+	    	}
+	    	return tagList;
+	 }
+	 
+	 @JsonProperty("media")
+	 public String getMediaJSON(){
+		 	String aux = getMedia();
+		 	aux = aux.substring(aux.indexOf("src=\"") + "src=\"".length());		 	
+	    	return aux.substring(0, aux.indexOf("\""));
+	 }
 }
 		
 	

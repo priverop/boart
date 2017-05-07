@@ -1,13 +1,21 @@
-@import "../../../assets/_variables";
-
-.comments_box{
-  padding: 20px 40px;
-  margin: 45px 0px;
-  .comment{
-    display: inline-block;
+.comments_box {
+  padding: 10px 20px;
+  .comment {
+    display: block;
     margin: 10px 0px;
   }
-  textarea{
+  textarea {
+    display: block;
+    margin: 10px 0px;
     width: 100%;
+    min-height: 60px;
   }
+}
+
+.comments_container {
+  padding: 15px;
+}
+
+.comments_box input[type=submit] {
+  display: block;
 }

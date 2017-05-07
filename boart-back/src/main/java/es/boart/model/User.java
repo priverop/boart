@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
@@ -13,9 +15,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 public class User {
@@ -36,33 +42,43 @@ public class User {
 	private String img;
 	private int visits; 
 	private Timestamp signInDate;
+
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publication> gallery = new ArrayList<>();
+
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-	private List<PublicationLike> likes;
-	@OneToMany(mappedBy="user")
-	private List<GroupMember> groupMembers;
+	private List<PublicationLike> likes = new ArrayList<>();
+
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
+
+	@ManyToMany
+	private List<User> following = new ArrayList<>();
+
+	@ManyToMany(mappedBy="following")
+	private List<User> followers = new ArrayList<>();
+
 	@ElementCollection(fetch = FetchType.EAGER)
-	 private List<String> roles;
+	private List<String> roles;
+
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<SocialNet> RRSS = new ArrayList<>();
 	
+	@ManyToMany(mappedBy="groupMembers")
+	private List<Grupo> groups = new ArrayList<>();
+
+	@OneToMany(mappedBy="user")
+	private List<Publication> userPublications = new ArrayList<>();
+
+
 	/**
 	 * @param username
 	 * @param name
 	 * @param surname
 	 * @param password
-	 * @param img
-	 * @param visits
-	 * @param nivelSeguridad
-	 * @param date
-	 * @param date2
-	 * @param likes
-	 * @param gallery
+	 * @param roles
 	 */
-	public User(String username, String name, String surname, String password, String mail, String... roles) {
+	public User(String username, String name, String surname, String password, String img, String mail, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
@@ -72,13 +88,18 @@ public class User {
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
 		// Imagen por defecto
-		this.img = DEFAULT_IMG;
+		this.img = img;
 		// Fecha actual
 		Date date = new Date();
 		
 		this.signInDate = new Timestamp(date.getTime());
 	}
-	
+	/**
+	 * @param username
+	 * @param name
+	 * @param surname
+	 * @param password
+	 */
 	public User(String username, String name, String surname, String password, String mail) {
 		this.username = username;
 		this.name = name;
@@ -171,6 +192,7 @@ public class User {
 	/**
 	 * @return the password
 	 */
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
@@ -239,23 +261,9 @@ public class User {
 	}
 
 	/**
-	 * @return the miembroGrupos
-	 */
-	public List<GroupMember> getMiembroGrupos() {
-		return groupMembers;
-	}
-
-	/**
-	 * @param groupMembers the miembroGrupos to set
-	 */
-	public void setMiembroGrupos(List<GroupMember> groupMembers) {
-		this.groupMembers = groupMembers;
-	}
-
-
-	/**
 	 * @return the comments
 	 */
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -294,6 +302,29 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
+	/**
+	 * @return the following
+	 */
+	@JsonIgnore
+	public List<User> getFollowing() {
+		return following;
+	}
+
+	/**
+	 * @return the followers
+	 */
+	@JsonIgnore
+	public List<User> getFollowers() {
+		return followers;
+	}
+
+	/**
+	 * @return the groups
+	 */
+	@JsonIgnore
+	public List<Grupo> getGroups() {
+		return groups;
+	}
 
 	/**
 	 * @return the mail
@@ -308,5 +339,110 @@ public class User {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+
+	/**
+	 * @param groups the groups to set
+	 */
+	public void setGroups(List<Grupo> groups) {
+		this.groups = groups;
+	}
+
+	/**
+	 * @return the publications
+	 */
+	public List<Publication> getPublications() {
+		return userPublications;
+	}
+	/**
+	 * @param publications the publications to set
+	 */
+	public void setPublications(List<Publication> publications) {
+		this.userPublications = publications;
+	}
+	/* -------------- /*
+	/* CUSTOM METHODS */
+	/* -------------- /*
+
+	/* Followers */
+	public void addFollowing(User following){
+		this.following.add(following);
+	}
+
+	public void removeFollowing(User following){
+		this.following.remove(following);
+	}
+
+	public void addFollower(User follower){
+		this.followers.add(follower);
+	}
+
+	public boolean hasFollowing(User myUser){
+		return this.getFollowing().contains(myUser);
+	}
+
+	public boolean hasFollower(User myUser){
+		return this.getFollowers().contains(myUser);
+	}
+
+	/* Gallery */
+	public void addGallery(Publication p){
+		this.getGallery().add(p);
+	}
+
+	 @JsonProperty("likes")
+	 public List<String> getGalleryLikesJSON(){
+	    	ArrayList<String> list = new ArrayList<String>();
+	    	for (PublicationLike l : likes) list.add(l.getPublication().getTitle());
+	    	return list;
+	 }
+
+	 @JsonProperty("following")
+	 public ArrayList<Map<String, Object>> getFollowingJSON(){
+	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (User u : following){
+		    	Map<String, Object> m = new HashMap<>();
+	    		m.put("username", u.getUsername());
+	    		m.put("img", u.getImg());
+	    		array.add(m);
+	    	}
+    	return array;
+	 }
+	 @JsonProperty("followers")
+	 public ArrayList<Map<String, Object>> getFollowersJSON(){
+	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (User u : followers) {
+		    	Map<String, Object> m = new HashMap<>();
+	    		m.put("username", u.getUsername());
+	    		m.put("img", u.getImg());
+	    		array.add(m);
+	    	}
+    	return array;
+	 }
+	 @JsonProperty("groups")
+	 public ArrayList<Map<String, Object>> getGroupsJSON(){
+		 	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (Grupo g : groups){
+		    	Map<String, Object> m = new HashMap<>();
+	    		m.put("title", g.getTitle());
+	    		m.put("img", g.getImg());
+	    		m.put("id", g.getId());
+	    		array.add(m);
+	    		}
+	    	return array;
+	 }
+	 @JsonProperty("publications")
+	 public ArrayList<Map<String, Object>> getPublicationsJSON(){
+	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
+	    	for (Publication p : userPublications){
+	    		Map<String, Object> m = new HashMap<>();
+	    		m.put("title", p.getTitle());
+	    		m.put("description", p.getDescription());
+	    		m.put("media", p.getMedia());
+	    		m.put("media_type", p.getMedia_type());
+	    		m.put("id", p.getId());
+	    		array.add(m);
+	    	}
+	    	return array;
+	 }
 
 }

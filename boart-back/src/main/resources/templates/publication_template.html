@@ -26,11 +26,21 @@
         </div>
 
         <div class="col-xs-12 col-sm-8 app_box publication_wrapper">
+
             <h1 class="title">{{title}}</h1>
             <h3 class="description">{{description}}</h3>
-            <img class="img-responsive" src="{{media}}">
-            {{> taglist_component}}
-        </div>
+            {{{media}}}
+            	{{> taglist_component}}
+            	
+            {{#canDelete}}
+		  		<form action="/publication/delete" method="POST" class="delete_publication">
+		            <input type="hidden" name="idPublication" value="{{id}}" />
+		            <input type="hidden" name="_csrf" value="{{token}}" />
+		            <div>
+		            	<label>Eliminar publicación: </label><input type="submit" value="Eliminar"/>
+		            </div>
+		        </form>
+			{{/canDelete}}
         {{> comments_component}}
     {{/publication}}
     </article>

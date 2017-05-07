@@ -8,10 +8,20 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/public_profile.css">
+    <link rel="stylesheet" href="../css/spinner.css">
     <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/public_profile.js"></script>
 </head>
 
 <body>
+	<div class="spinner_overlay">
+		<div class="sk-folding-cube">
+		  <div class="sk-cube1 sk-cube"></div>
+		  <div class="sk-cube2 sk-cube"></div>
+		  <div class="sk-cube4 sk-cube"></div>
+		  <div class="sk-cube3 sk-cube"></div>
+		</div>
+	</div>
     {{> header_component}}
     <article class="container-fluid">
     {{#usuario}}
@@ -33,19 +43,40 @@
 		  					<i class="icofont icofont_social icofont-social-instagram"></i>
 		  					<i class="icofont icofont_social icofont-social-linkedin"></i>
 		  				</div>
+		  				{{^guest}}
+		  				<div class="follow">
+		  					{{^hasFollower}}
+		  					<a href="/follow/{{id}}">SEGUIR</a>
+		  					{{/hasFollower}}
+		  					
+		  					{{#hasFollower}}
+		  					<a href="/unfollow/{{id}}">DEJAR DE SEGUIR</a>
+		  					{{/hasFollower}}
+		  				</div>
+		  				{{/guest}}
 		  			</div>
 		  		
 			</div>
+			
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
-				<p class="title"><a href="#"><span class="glyphicon glyphicon-picture"></span>Anochecer con V</a></p>
-				<p class="description"><em>Fotografía de un anochecer en Vallekas City.</em></p>
+				<h2>Últimas Publicaciones</h2>
+				<div id="publicationWrapper">
+					{{#user_publications}}
+						{{> userPublicationItem}}
+					{{/user_publications}}
+				</div>
+			{{#showMore}}
+			<div class="load_more">
+				<span>Cargar más publicaciones</span>
+			</div>
+			{{/showMore}}
 			</div>
 		</div>
 		
 		<!-- Gallery -->
 		<div class="row" id="columns">
 		{{#gallery}}
-			<div class="app_box publication"><img src="{{media}}"></div>
+			<div class="app_box publication">{{{media}}}</div>
 		{{/gallery}}
 		</div>
 		{{> comments_component}}
