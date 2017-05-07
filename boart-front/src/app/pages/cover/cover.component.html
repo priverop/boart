@@ -10,9 +10,11 @@
     <app-search [tags]="tags" [filter]="filter" (addTagEvent) ="addTag($event)" (remTagEvent) ="removeTag($event)"></app-search>
     <!--<app-tag-list></app-tag-list>-->
   </div>
-      <div class="app_box" *ngIf="loginService.isLogged">
+      <div class="app_box groups" *ngIf="loginService.isLogged && groups.length > 0">
           <h2>Tus Grupos</h2>
-            
+        <div *ngFor="let group of groups">
+          <a routerLink="/group/{{group.id}}"><img src="{{group.img}}" class="img-responsive"/><span>{{group.title}}</span></a>
+        </div>
       </div>
       
     </div>

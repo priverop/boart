@@ -145,8 +145,22 @@ article {
     .filter{
     cursor: pointer;
 }
-}
 
+}
+    .groups{
+        a {
+        color: black;
+        }
+        text-align: center;
+        img {
+            width:40;
+            max-width: 70px;
+            margin: auto;
+        }
+        div {
+            margin: 5px;
+        }
+    }
 .filter{
     cursor: pointer;
 }

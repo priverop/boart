@@ -37,13 +37,17 @@ export class CoverComponent implements OnInit {
 	tags = [];
 private page;
   private userID: number;
+  private groups = [];
 
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit() {
-console.log(this.loginService);
-console.log(this.loginService.isLogged);
+this.loginService.userUpdated.subscribe(
+      (userLogged) => {
+      this.groups = this.loginService.user["groups"];
+      console.log(this.groups);
+});
     this.route.queryParams.subscribe(params => {
       this.filter = params['filter'] || "latest";
 	this.tags = params['tags'] || [];
