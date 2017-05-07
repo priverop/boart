@@ -24,7 +24,7 @@
         <!--<a routerLink="/publication/{{ publication.id }}">-->
         <a>
           <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
-          <p>{{ publication.title }}</p>
+          <p routerLink="/publication/{{ publication.id }}">{{ publication.title }}</p>
           <div class="rating">
             <a id="{{ publication.id }}">
               <span (click)="likeHandler(publication)" class="glyphicon glyphicon-heart-empty like_icon" [ngClass]="{'added': publication.ownLike}" aria-hidden="true" id="{{id}}"></span>
