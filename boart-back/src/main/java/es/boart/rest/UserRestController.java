@@ -104,7 +104,7 @@ public class UserRestController {
 	@PostMapping("")
 	public ResponseEntity<User> newUser(User nUser){
 		
-		User newUser = userService.registerUser(nUser.getUsername(), nUser.getName(), nUser.getSurname(), nUser.getPassword());
+		User newUser = userService.registerUser(nUser.getUsername(), nUser.getName(), nUser.getSurname(), nUser.getPassword(), nUser.getMail());
 				
 		if (newUser != null) {
 			return new ResponseEntity<>(newUser, HttpStatus.OK);
@@ -113,9 +113,10 @@ public class UserRestController {
 		}
 	}
 	
-	@PostMapping("/{id}")
-	public ResponseEntity<User> addComment(@PathVariable long id, @RequestParam("comment") String comment) {
-		userService.addComment(comment, id);
-		return getUser(id);
+	@PostMapping("/{username}")
+	public ResponseEntity<User> addComment(@PathVariable String username, @RequestParam("comment") String comment) {
+		User u = userService.findByUsername(username);
+		userService.addComment(comment, u.getId());
+		return getUser(u.getId());
 	}	
 }

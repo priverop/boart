@@ -48,6 +48,21 @@ export class AjaxService {
   }
 
   /**
+   * getRequest - Generates ajax request.
+   *
+   * @param  {string} endpoint
+   * @return {Observable}
+   */
+  getRequestCredentials(endpoint): Observable<any> {
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true }); //Necesario para que siga mandando el JSESSIONID
+
+    return this.http.get(this.buildUrl(endpoint), options);
+
+  }
+
+  /**
    * postRequest - Generates ajax request.
    *
    * @param  {string} endpoint

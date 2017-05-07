@@ -67,7 +67,7 @@ public class LikeController {
  }
 
 	// Return true if the User has liked the publication
-	@GetMapping("/checkLike")
+	@GetMapping("/like/check")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@ResponseBody
 	public ResponseEntity<String> checkLike(@RequestParam("id") long idPublication){

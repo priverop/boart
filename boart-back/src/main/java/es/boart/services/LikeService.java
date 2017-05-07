@@ -33,24 +33,33 @@ public class LikeService {
 		likeRepository.delete(like);
 	}
 	
+	public void addLike(Publication publication, User user) {
+		PublicationLike newLike = new PublicationLike(user, publication);
+		publication.addLike(newLike);
+		this.save(newLike);
+		publicationService.save(publication);
+	}
+	
+	public void deleteLike(Publication publication, User user, PublicationLike like) {
+		publication.removeLike(like);
+		this.delete(like);
+		publicationService.save(publication);
+	}
+	
 	public boolean hasLike(Publication publication, User user) {
 		
 		PublicationLike like = this.findByPublicationIdAndUserId(publication.getId(), user.getId());
 		
 		if(like == null) {
-			PublicationLike newLike = new PublicationLike(user, publication);
-			publication.addLike(newLike);
-			this.save(newLike);
-			publicationService.save(publication);
 			return false;
 		} else {
-			publication.removeLike(like);
-			this.delete(like);
-			publicationService.save(publication);
 			return true;
 		} 
 		
 	}
 	
-
+	public PublicationLike getLike (Publication publication, User user) {
+		return this.findByPublicationIdAndUserId(publication.getId(), user.getId());
+	}
+	
 }

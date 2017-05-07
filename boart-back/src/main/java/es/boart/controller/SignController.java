@@ -15,6 +15,7 @@ import es.boart.UserComponent;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
 import es.boart.services.UserService;
+import es.boart.service.BoartMailAPI;
 
 @Controller
 public class SignController {
@@ -22,8 +23,9 @@ public class SignController {
 	@Autowired
 	private UserRepository userRepo;
 	
+	@Autowired
+	BoartMailAPI boartMailAPI;
 
-	
 	@Autowired
 	private UserService userService;
 	
@@ -49,8 +51,12 @@ public class SignController {
 	@PostMapping("/register")
 	public String register(User usuario){
 		
-		userService.registerUser(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword());
-		
+		userService.registerUser(usuario.getUsername(), usuario.getName(), usuario.getSurname(), usuario.getPassword(), usuario.getMail());
+
+		String message = "Bienvenido " + usuario.getName() + ", gracias por registrarte en Boart.";
+
+        boartMailAPI.sendEmail(usuario.getMail(), "boarturjc@gmail.com", "Registro en Boart", message);
+
 		return "redirect:/private_profile";
 	}
 	

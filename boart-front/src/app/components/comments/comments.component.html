@@ -6,15 +6,15 @@
     </div>
 
     <p class="font_contrast">Sé el primero en escribir un comentario</p>
-    <!-- {{#sesion_usuario}} -->
-    <div class="form-group">
-      <form action="/addComment/" method="post">
-        <textarea class="col-xs-8" placeholder="Comentario" name="text"></textarea>
-        <input type="hidden" name="idLocation" value="" />
-        <input type="hidden" name="_csrf" value="" />
-        <input type="submit" />
+
+    <div *ngIf="loginService.isLogged" class="form-group">
+      <form>
+        <textarea #text class="col-xs-8" placeholder="Comentario"></textarea>
+        <input (click)="sendComment($event, text)" type="submit" />
       </form>
     </div>
-    <!-- {{/sesion_usuario}} -->
+
+    <p *ngIf="!loginService.isLogged" class="font_contrast">Registrate o inicia sesion para comentar.</p>
+
   </div>
 </div>

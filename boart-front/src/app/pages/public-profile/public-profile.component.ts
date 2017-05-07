@@ -15,17 +15,18 @@ export class PublicProfileComponent implements OnInit {
   isFollowing = false;
   userLogged: boolean;
   isOwnProfile: boolean = true;
+  emptyPublications: boolean;
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.username = params['username'];
+      this.getUser();
     });
     this.loginService.userUpdated.subscribe(
       (userLogged) => {
       this.userLogged = userLogged;
-        this.getUser();
       }
     )
   }
@@ -36,28 +37,34 @@ export class PublicProfileComponent implements OnInit {
       this.user = result.json();
       if(this.userLogged) {
         this.checkOwnProfile();
+        this.checkFollowing();
+        this.checkEmptyPublications();
       }
     });
   }
 
+  private checkEmptyPublications(){
+    this.emptyPublications = this.user['publications'] == 0;
+  }
+
   private checkOwnProfile() {
-    if(this.loginService.isLogged) {
       this.isOwnProfile = this.loginService.user['username'] == this.user['username'] ? true : false;
-      this.checkFollowing();
-    }
   }
 
   private checkFollowing(){
-    let followers = this.loginService.user['followers'].filter(follower => {
-      return follower == '@' + this.user['username'];
+    let following = this.loginService.user['following'].filter(following => {
+      return following.username == this.user['username'];
     });
-    this.isFollowing = followers.length ? true : false;
+    this.isFollowing = following.length ? true : false;
   }
 
   followUser(){
     const endpoint = 'user/following';
     this.ajaxService.postRequest(endpoint, "id=" + this.user['id']).subscribe(
-      response => console.log(response),
+      response => {
+        this.user = response.json();
+        this.isFollowing = true;
+      },
       error => console.error(error)
     );
   }
@@ -65,7 +72,10 @@ export class PublicProfileComponent implements OnInit {
   unfollowUser(){
     const endpoint = 'user/following/'+this.user['id'];
     this.ajaxService.deleteRequest(endpoint).subscribe(
-      response => console.log(response),
+      response => {
+        this.user = response.json();
+        this.isFollowing = false;
+      },
       error => console.error(error)
     );
   }

@@ -1,3 +1,7 @@
+a {
+  cursor: pointer;
+}
+
 #imgCabecera {
   max-width: 70%;
   max-height: 70%;
@@ -8,6 +12,27 @@
   margin-bottom: 10px;
   height: 100%;
   padding: 10px;
+}
+
+.members ul {
+  list-style: none;
+  padding: 0;
+  li {
+    display: inline-block;
+    margin: 10px;
+    a {
+      color: #000;
+    }
+    img {
+      width: 54px;
+      margin: 5px;
+      display: block;
+    }
+    span {
+      text-align: center;
+      display: block;
+    }
+  }
 }
 
 #boxDesc {

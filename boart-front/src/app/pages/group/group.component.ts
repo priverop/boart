@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
-import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -10,7 +10,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class GroupComponent implements OnInit {
 
-  group = [];
+  group = {};
   groupID: number;
   userBelongs = false;
 
@@ -21,7 +21,15 @@ export class GroupComponent implements OnInit {
       this.groupID = +params['id'];
     });
     this.getGroup();
-    this.checkUserBelongs();
+
+    this.loginService.userUpdated.subscribe(
+        (userLogged) => {
+            userLogged;
+            if(userLogged) {
+                this.checkUserBelongs();
+            }
+        }
+    );
   }
 
   private getGroup(){
@@ -30,14 +38,19 @@ export class GroupComponent implements OnInit {
   }
 
   private checkUserBelongs(){
-    // var number = this.loginService.user['groups'].find(x => x === this.group['title']);
-
+    let userBelongs = this.loginService.user['groups'].filter(group => {
+      return group.id == this.groupID;
+    });
+    this.userBelongs = userBelongs.length ? true : false;
   }
 
   joinGroup(){
     const endpoint = 'group/join';
     this.ajaxService.postRequest(endpoint, "id=" + this.groupID).subscribe(
-      response => console.log(response),
+      response => {
+        this.group = response.json();
+        this.userBelongs = true;
+      },
       error => console.error(error)
     );
   }
@@ -45,7 +58,10 @@ export class GroupComponent implements OnInit {
   leaveGroup(){
     const endpoint = 'group/leave/'+this.groupID;
     this.ajaxService.deleteRequest(endpoint).subscribe(
-      response => console.log(response),
+        response => {
+          this.group = response.json();
+          this.userBelongs = false;
+        },
       error => console.error(error)
     );
   }
