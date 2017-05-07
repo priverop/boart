@@ -104,7 +104,7 @@ public class UserRestController {
 	@PostMapping("")
 	public ResponseEntity<User> newUser(User nUser){
 		
-		User newUser = userService.registerUser(nUser.getUsername(), nUser.getName(), nUser.getSurname(), nUser.getPassword());
+		User newUser = userService.registerUser(nUser.getUsername(), nUser.getName(), nUser.getSurname(), nUser.getPassword(), nUser.getMail());
 				
 		if (newUser != null) {
 			return new ResponseEntity<>(newUser, HttpStatus.OK);

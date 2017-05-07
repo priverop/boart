@@ -12,6 +12,7 @@ import es.boart.model.Grupo;
 import es.boart.model.Publication;
 import es.boart.model.User;
 import es.boart.repository.UserRepository;
+import es.boart.service.BoartMailAPI;
 
 @Service
 public class UserService {
@@ -22,6 +23,9 @@ public class UserService {
 	private UserComponent userSession;
 	@Autowired
 	private UploadService uploadService;
+	@Autowired
+	BoartMailAPI boartMailAPI;
+
 	
 	public User findOne(long id){
 		return userRepository.findOne(id);
@@ -53,10 +57,16 @@ public class UserService {
 		
 	}
 	
-	public User registerUser(String username, String name, String surname, String password){
-		User newUser = new User(username, name, surname, password);
+	public User registerUser(String username, String name, String surname, String password, String mail){
+		
+		User newUser = new User(username, name, surname, password, mail);
+		
 		userRepository.save(newUser);
 		
+		String message = "Bienvenido " + newUser.getName() + ", gracias por registrarte en Boart.";
+
+        boartMailAPI.sendEmail(newUser.getMail(), "boarturjc@gmail.com", "Registro en Boart", message);
+
 		return newUser;
 	}
 	

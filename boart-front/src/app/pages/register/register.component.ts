@@ -16,13 +16,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerEvent(event: any, name: string, surname: string, username: string, password: string) {
+  registerEvent(event: any, name: string, surname: string, username: string, mail: string, password: string) {
 
     let formData = new URLSearchParams();
 
     formData.set('name', name);
     formData.set('surname', name);
     formData.set('username', username);
+    formData.set('mail', mail);
     formData.set('password', password);
 
     let endpoint = 'user';
