@@ -127,7 +127,7 @@ export class CoverComponent implements OnInit {
 
     public checkLike(publicationId, publication) {
         const endpoint = "like/check/" + publicationId;
-        this.ajaxService.getRequest(endpoint).subscribe(response => {
+        this.ajaxService.getRequestCredentials(endpoint).subscribe(response => {
             publication['ownLike'] = response.json();
         });
     }
