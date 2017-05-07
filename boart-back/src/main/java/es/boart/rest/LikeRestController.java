@@ -39,7 +39,7 @@ public class LikeRestController {
 	@Autowired
 	private PublicationService publicationService;
 	
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<PublicationLike> addLike(@RequestParam String publicationId){		
 				
 		if (userSession.getUser() != null) {
