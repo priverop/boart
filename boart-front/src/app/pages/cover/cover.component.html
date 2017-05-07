@@ -1,6 +1,7 @@
 <app-header></app-header>
 <article class="container-fluid">
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 filter_publication app_box">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+    <div class="filter_publication app_box">
     <ul>
       <li class="filter"><a  (click)="changeFilter('latest')" class="active" id="aLikes"><i aria-hidden="true" class="icofont icofont-newspaper"></i>+ nuevos</a></li>
       <li class="filter"><a (click)="changeFilter('likes')" id="aLatest"><i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>+ valorados</a></li>
@@ -9,6 +10,12 @@
     <app-search [tags]="tags" [filter]="filter" (addTagEvent) ="addTag($event)" (remTagEvent) ="removeTag($event)"></app-search>
     <!--<app-tag-list></app-tag-list>-->
   </div>
+      <div class="app_box" *ngIf="loginService.isLogged">
+          <h2>Tus Grupos</h2>
+            
+      </div>
+      
+    </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
     <div id="columns">
       <div *ngFor="let publication of publications" class="publication app_box publication_box" [@moveDown]='state'>

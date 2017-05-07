@@ -3,6 +3,7 @@ import { AjaxService } from '../../services/ajax.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer} from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 import {style, animate, keyframes, transition, trigger} from "@angular/animations";
 
 @Pipe({ name: 'safe' })
@@ -35,10 +36,14 @@ export class CoverComponent implements OnInit {
 	filter;
 	tags = [];
 private page;
+  private userID: number;
 
-  constructor(private ajaxService: AjaxService, private route: ActivatedRoute) { }
+
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit() {
+console.log(this.loginService);
+console.log(this.loginService.isLogged);
     this.route.queryParams.subscribe(params => {
       this.filter = params['filter'] || "latest";
 	this.tags = params['tags'] || [];
