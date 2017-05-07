@@ -19,12 +19,13 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
     <div id="columns">
       <div *ngFor="let publication of publications" class="publication app_box publication_box" [@moveDown]='state'>
-        <a routerLink="/publication/{{ publication.id }}">
+        <!--<a routerLink="/publication/{{ publication.id }}">-->
+        <a>
           <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
           <p>{{ publication.title }}</p>
           <div class="rating">
-            <a href="#" id="{{ publication.id }}">
-              <span class="glyphicon glyphicon-heart-empty like_icon" [ngClass]="{'added': publication.ownLike}" aria-hidden="true" id="{{id}}"></span>
+            <a id="{{ publication.id }}">
+              <span (click)="likeHandler(publication)" class="glyphicon glyphicon-heart-empty like_icon" [ngClass]="{'added': publication.ownLike}" aria-hidden="true" id="{{id}}"></span>
               <span class="rating-value">{{ publication.numberOfLikes }}</span>
             </a>
           </div>

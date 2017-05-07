@@ -5,6 +5,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../services/login.service';
 import {style, animate, keyframes, transition, trigger} from "@angular/animations";
+import {URLSearchParams} from "@angular/http";
 
 @Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
@@ -121,6 +122,7 @@ export class CoverComponent implements OnInit {
         for (let i in this.publications) {
             this.checkLike(this.publications[i].id, this.publications[i])
         }
+        console.log(this.publications)
     }
 
     public checkLike(publicationId, publication) {
@@ -128,6 +130,43 @@ export class CoverComponent implements OnInit {
         this.ajaxService.getRequest(endpoint).subscribe(response => {
             publication['ownLike'] = response.json();
         });
+    }
+
+    public likeHandler(publication) {
+        console.log(publication)
+        if (this.loginService.isLogged) {
+            return publication['ownLike'] ? this.removeLike(publication) : this.addLike(publication) ;
+        }
+    }
+
+    public addLike(publication) {
+
+        let formData = new URLSearchParams();
+
+        formData.set('publicationId', publication.id);
+
+        let endpoint = 'like';
+
+        this.ajaxService.postRequest(endpoint, formData).subscribe(
+            response => {
+               publication['ownLike'] = true;
+               publication['numberOfLikes']++;
+            },
+            error => console.log(error)
+        );
+    }
+
+    public removeLike(publication) {
+
+        let endpoint = 'like/' + publication.id;
+
+        this.ajaxService.deleteRequest(endpoint).subscribe(
+            response => {
+                publication['ownLike'] = false;
+                publication['numberOfLikes']--;
+            },
+            error => console.log(error)
+        );
     }
 
 }
