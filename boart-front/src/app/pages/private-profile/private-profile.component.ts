@@ -21,9 +21,17 @@ export class PrivateProfileComponent implements OnInit {
     this.userID = this.loginService.user.id;
 
     this.getUser();
-    this.checkEmptyFollowers();
-    this.checkEmptyFollowings();
-    this.checkEmptyGroups();
+
+    this.loginService.userUpdated.subscribe(
+        (userLogged) => {
+          userLogged;
+          if(userLogged) {
+            this.checkEmptyFollowers();
+            this.checkEmptyFollowings();
+            this.checkEmptyGroups();
+          }
+        }
+    );
   }
 
   private getUser(){
