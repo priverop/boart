@@ -8,11 +8,9 @@
     <p class="font_contrast">Sé el primero en escribir un comentario</p>
 
     <div *ngIf="loginService.isLogged" class="form-group">
-      <form action="/addComment/" method="post">
-        <textarea class="col-xs-8" placeholder="Comentario" name="text"></textarea>
-        <input type="hidden" name="idLocation" value="" />
-        <input type="hidden" name="_csrf" value="" />
-        <input type="submit" />
+      <form>
+        <textarea #text class="col-xs-8" placeholder="Comentario"></textarea>
+        <input (click)="sendComment($event, text)" type="submit" />
       </form>
     </div>
 

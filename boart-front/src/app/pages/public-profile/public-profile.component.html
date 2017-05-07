@@ -48,10 +48,10 @@
 		<!-- Gallery -->
 		<div class="row" id="columns">
 			<div *ngFor="let publication of user.gallery" class="app_box publication">
-                <a routerLink="/publication/{{publication.id}}"><app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media></a>
+      	<a routerLink="/publication/{{publication.id}}"><app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media></a>
 			</div>
 		</div>
 
-		<app-comments [comments]="user.comments"></app-comments>
+		<app-comments [comments]="user.comments" location="{{user.username}}" location_type="profile"></app-comments>
 </article>
 <app-footer></app-footer>
