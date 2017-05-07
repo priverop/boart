@@ -63,7 +63,7 @@
       <div class="col-xs-12 follow_list">
         <h2>Followers:</h2>
         <ul>
-          <li *ngFor="let username of user.followers">
+          <li *ngFor="let user of user.followers">
           <a routerLink="/public-profile/{{user.username}}"><img src="{{user.img}}"/><span>{{user.username}}</span></a>
         </li>
       </ul>

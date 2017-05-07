@@ -22,11 +22,11 @@ export class PublicProfileComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.username = params['username'];
+      this.getUser();
     });
     this.loginService.userUpdated.subscribe(
       (userLogged) => {
       this.userLogged = userLogged;
-        this.getUser();
       }
     )
   }
