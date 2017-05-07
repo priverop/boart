@@ -21,36 +21,25 @@ export class PrivateProfileComponent implements OnInit {
     this.userID = this.loginService.user.id;
 
     this.getUser();
-
-    this.loginService.userUpdated.subscribe(
-        (userLogged) => {
-          userLogged;
-          if(userLogged) {
-            this.checkEmptyFollowers();
-            this.checkEmptyFollowings();
-            this.checkEmptyGroups();
-          }
-        }
-    );
   }
 
   private getUser(){
     const endpoint = 'user/id/'+this.userID;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.user = result.json();
+      this.checkEmptyFollowers();
+      this.checkEmptyFollowings();
+      this.checkEmptyGroups();
     });
   }
 
   private checkEmptyFollowers(){
-    console.log("followers"+ (this.user['followers'] == 0));
     this.emptyFollowers = this.user['followers'] == 0;
   }
   private checkEmptyFollowings(){
-    console.log("following"+ (this.user['following'] == 0));
     this.emptyFollowings = this.user['following'] == 0;
   }
   private checkEmptyGroups(){
-    console.log("groups"+ (this.user['groups'] == 0));
     this.emptyGroups = this.user['groups'] == 0;
   }
 
