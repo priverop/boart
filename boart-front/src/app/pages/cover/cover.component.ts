@@ -47,6 +47,8 @@ export class CoverComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(this.loginService.isLogged)
+                this.groups = this.loginService.user["groups"];
     this.loginService.userUpdated.subscribe(
       (userLogged) => {
         this.getUserGroups();
