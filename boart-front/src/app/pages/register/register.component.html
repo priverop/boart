@@ -5,9 +5,10 @@
         <input #name type="text" name="name" placeholder="Nombre:"/>
         <input #surname type="text" name="surname" placeholder="Apellidos:"/>
         <input #username type="text" name="username" placeholder="Usuario:"/>
+        <input #mail type="text" name="mail" placeholder="Mail:"/>
         <input #password type="password" name="password" placeholder="Contraseña:"/>
         <div class="col-xs-8 col-xs-offset-2">
-          <input (click)="registerEvent($event, name.value, surname.value, username.value, password.value)" type="submit" placeholder="SUBMIT"/>
+          <input (click)="registerEvent($event, name.value, surname.value, username.value, mail.value, password.value)" type="submit" placeholder="SUBMIT"/>
         </div>
       </form>
     </div>

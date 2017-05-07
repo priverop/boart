@@ -38,38 +38,39 @@ public class User {
 	private String surname;
 	private String description;
 	private String password;
+	private String mail;
 	private String img;
 	private int visits; 
 	private Timestamp signInDate;
-	
+
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Publication> gallery = new ArrayList<>();
-	
+
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<PublicationLike> likes = new ArrayList<>();
-	
+
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments = new ArrayList<>();
-	
+
 	@ManyToMany
 	private List<User> following = new ArrayList<>();
-	
+
 	@ManyToMany(mappedBy="following")
 	private List<User> followers = new ArrayList<>();
-	
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	
+
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<SocialNet> RRSS = new ArrayList<>();
 	
 	@ManyToMany(mappedBy="groupMembers")
 	private List<Grupo> groups = new ArrayList<>();
-	
+
 	@OneToMany(mappedBy="user")
 	private List<Publication> userPublications = new ArrayList<>();
-	
-	
+
+
 	/**
 	 * @param username
 	 * @param name
@@ -77,11 +78,12 @@ public class User {
 	 * @param password
 	 * @param roles
 	 */
-	public User(String username, String name, String surname, String password, String img, String... roles) {
+	public User(String username, String name, String surname, String password, String img, String mail, String... roles) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = new BCryptPasswordEncoder().encode(password);
+		this.mail = mail;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		// Descripción nuevo usuario
 		this.description = DEFAULT_DESCRIPTION;
@@ -98,11 +100,12 @@ public class User {
 	 * @param surname
 	 * @param password
 	 */
-	public User(String username, String name, String surname, String password) {
+	public User(String username, String name, String surname, String password, String mail) {
 		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.password = new BCryptPasswordEncoder().encode(password);
+		this.mail = mail;
 		this.roles = new ArrayList<>();
 		this.roles.add("ROLE_USER");
 		// Descripción nuevo usuario
@@ -260,7 +263,7 @@ public class User {
 	/**
 	 * @return the comments
 	 */
-	
+
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -314,7 +317,7 @@ public class User {
 	public List<User> getFollowers() {
 		return followers;
 	}
-	
+
 	/**
 	 * @return the groups
 	 */
@@ -324,12 +327,26 @@ public class User {
 	}
 
 	/**
+	 * @return the mail
+	 */
+	public String getMail() {
+		return mail;
+	}
+
+	/**
+	 * @param mail the mail to set
+	 */
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	/**
 	 * @param groups the groups to set
 	 */
 	public void setGroups(List<Grupo> groups) {
 		this.groups = groups;
 	}
-	
+
 	/**
 	 * @return the publications
 	 */
@@ -345,24 +362,24 @@ public class User {
 	/* -------------- /*
 	/* CUSTOM METHODS */
 	/* -------------- /*
-	
+
 	/* Followers */
 	public void addFollowing(User following){
 		this.following.add(following);
 	}
-	
+
 	public void removeFollowing(User following){
 		this.following.remove(following);
 	}
-	
+
 	public void addFollower(User follower){
 		this.followers.add(follower);
 	}
-	
+
 	public boolean hasFollowing(User myUser){
 		return this.getFollowing().contains(myUser);
 	}
-	
+
 	public boolean hasFollower(User myUser){
 		return this.getFollowers().contains(myUser);
 	}
@@ -371,14 +388,14 @@ public class User {
 	public void addGallery(Publication p){
 		this.getGallery().add(p);
 	}
-	
+
 	 @JsonProperty("likes")
 	 public List<String> getGalleryLikesJSON(){
 	    	ArrayList<String> list = new ArrayList<String>();
 	    	for (PublicationLike l : likes) list.add(l.getPublication().getTitle());
 	    	return list;
 	 }
-	 
+
 	 @JsonProperty("following")
 	 public ArrayList<Map<String, Object>> getFollowingJSON(){
 	    	ArrayList<Map<String, Object>> array = new ArrayList<>();
@@ -387,7 +404,7 @@ public class User {
 	    		m.put("username", u.getUsername());
 	    		m.put("img", u.getImg());
 	    		array.add(m);
-	    	}	    						
+	    	}
     	return array;
 	 }
 	 @JsonProperty("followers")
@@ -398,7 +415,7 @@ public class User {
 	    		m.put("username", u.getUsername());
 	    		m.put("img", u.getImg());
 	    		array.add(m);
-	    	}	    						
+	    	}
     	return array;
 	 }
 	 @JsonProperty("groups")
@@ -410,7 +427,7 @@ public class User {
 	    		m.put("img", g.getImg());
 	    		m.put("id", g.getId());
 	    		array.add(m);
-	    		}	    						
+	    		}
 	    	return array;
 	 }
 	 @JsonProperty("publications")
@@ -424,7 +441,7 @@ public class User {
 	    		m.put("media_type", p.getMedia_type());
 	    		m.put("id", p.getId());
 	    		array.add(m);
-	    	}	    						
+	    	}
 	    	return array;
 	 }
 
