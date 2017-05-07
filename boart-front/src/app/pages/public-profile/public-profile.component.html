@@ -8,8 +8,8 @@
 					<div class="col-xs-12 col-sm-8">
 						<div class="col-xs-12">
 							<h1>{{user.name}}</h1>
-							<h2><em>@{{user.username}}</em></h2>
-			  				<blockquote><em>{{user.description}}</em></blockquote>
+							<h2>@{{user.username}}</h2>
+			  				<blockquote>{{user.description}}</blockquote>
 		  				</div>
 		  				<div class="col-xs-12 social_nets">
 		  					<i class="icofont icofont_social icofont-social-500px"></i>
@@ -26,12 +26,17 @@
 
 			</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
+			<div *ngIf="!emptyPublications" class="col-xs-12 col-sm-12 col-md-12 col-lg-4 app_box user_publications">
 				<h2>Últimas Publicaciones</h2>
-				 <div *ngFor="let publication of user.publications" id="publicationWrapper">
-                        <p class="title"><a routerLink="/publication/{{publication.id}}"><span class="glyphicon glyphicon-picture"></span>{{publication.title}}</a></p>
-                        <p class="description"><em>{{publication.description}}</em></p>
-                </div>
+				<div *ngFor="let publication of user.publications" id="publicationWrapper">
+					<p class="title">
+						<a routerLink="/publication/{{publication.id}}">
+							<span class="glyphicon glyphicon-picture"></span>
+							{{publication.title}}
+						</a>
+					</p>
+					<p class="description"><em>{{publication.description}}</em></p>
+				</div>
 			<!--{{#showMore}}
 			<div class="load_more">
 				<span>Cargar más publicaciones</span>

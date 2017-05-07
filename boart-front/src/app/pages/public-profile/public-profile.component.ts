@@ -15,6 +15,7 @@ export class PublicProfileComponent implements OnInit {
   isFollowing = false;
   userLogged: boolean;
   isOwnProfile: boolean = true;
+  emptyPublications: boolean;
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
@@ -37,8 +38,13 @@ export class PublicProfileComponent implements OnInit {
       if(this.userLogged) {
         this.checkOwnProfile();
         this.checkFollowing();
+        this.checkEmptyPublications();
       }
     });
+  }
+
+  private checkEmptyPublications(){
+    this.emptyPublications = this.user['publications'] >= 0;
   }
 
   private checkOwnProfile() {
@@ -55,7 +61,10 @@ export class PublicProfileComponent implements OnInit {
   followUser(){
     const endpoint = 'user/following';
     this.ajaxService.postRequest(endpoint, "id=" + this.user['id']).subscribe(
-      response => console.log(response),
+      response => {
+        this.user = response.json();
+        this.isFollowing = true;
+      },
       error => console.error(error)
     );
   }
@@ -63,7 +72,10 @@ export class PublicProfileComponent implements OnInit {
   unfollowUser(){
     const endpoint = 'user/following/'+this.user['id'];
     this.ajaxService.deleteRequest(endpoint).subscribe(
-      response => console.log(response),
+      response => {
+        this.user = response.json();
+        this.isFollowing = false;
+      },
       error => console.error(error)
     );
   }
