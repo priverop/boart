@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
-import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../../services/login.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-publication',
@@ -12,14 +13,23 @@ export class PublicationComponent implements OnInit {
   publication = [];
   userPublication = [];
   publicationID: number;
+  isMine = false;
 
-  constructor(private ajaxService: AjaxService, private route: ActivatedRoute) { }
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.publicationID = +params['id'];
     });
     this.getPublication();
+    this.loginService.userUpdated.subscribe(
+        (userLogged) => {
+            userLogged;
+            if(userLogged) {
+                this.checkMyPublication();
+            }
+        }
+    );
   }
 
   private getPublication(){
@@ -36,4 +46,19 @@ export class PublicationComponent implements OnInit {
       this.userPublication = result.json();
     });
   }
+
+  private checkMyPublication(){
+    if(this.publication['user'] === this.loginService.user['username'])
+      this.isMine = true;
+  }
+
+  private deletePublication(event: any){
+    event.preventDefault();
+    const endpoint = 'publication/' + this.publicationID;
+    this.ajaxService.deleteRequest(endpoint).subscribe(
+      response => this.router.navigate(['/']),
+      error => console.error(error)
+    );
+  }
+
 }

@@ -17,7 +17,13 @@
             <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
             <app-tag-list [tags]="publication.tags"> </app-tag-list>
 
-            FALTA ELIMINAR PUBLICACIÓN
+            <div *ngIf="isMine">
+              <form class="delete_publication">
+                <div>
+                  <label>Eliminar publicación: </label><input (click)="deletePublication($event)" type="submit" value="Eliminar"/>
+                </div>
+              </form>
+            </div>
         		<app-comments [comments]="publication.comments"></app-comments>
 				</div>
 </article>
