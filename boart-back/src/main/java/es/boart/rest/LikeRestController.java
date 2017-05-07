@@ -50,8 +50,13 @@ public class LikeRestController {
 				
 				Publication publication = publicationService.findOne(Long.parseLong(publicationId));
 				
-				return likeService.hasLike(publication, user) ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<>(HttpStatus.OK);
-
+				if(likeService.hasLike(publication, user)) {
+					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				} else {
+					likeService.addLike(publication, user);
+					return new ResponseEntity<>(HttpStatus.OK);
+				}
+				
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} 	
@@ -73,8 +78,12 @@ public class LikeRestController {
 				
 				Publication publication = publicationService.findOne(Long.parseLong(publicationId));
 
-				return likeService.hasLike(publication, user) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-				
+				if(likeService.hasLike(publication, user)) {
+					likeService.deleteLike(publication, user, likeService.getLike(publication, user));
+					return new ResponseEntity<>(HttpStatus.OK);
+				} else {
+					return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+				}				
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} 	
