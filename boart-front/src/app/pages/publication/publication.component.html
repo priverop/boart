@@ -1,17 +1,18 @@
 <app-header></app-header>
 <article class="container-fluid">
-        <div class="col-xs-12 col-sm-4 app_box user_wrapper">
-            <img class="img-responsive" src="{{userPublication.img}}">
-            <h2 class="user"><a href="./public-profile/{{userPublication.username}}">@{{userPublication.username}}</a></h2>
-            <div class="share_publication">
-                <a href="#"><i class="icofont icofont_social icofont-social-twitter"></i></a>
-                <a href="#"><i class="icofont icofont_social icofont-social-facebook"></i></a>
-                <a href="#"><i class="icofont icofont_social icofont-social-google-plus"></i></a>
+        <div class="col-xs-12 col-sm-4 ">
+            <div class="app_box user_wrapper">
+                <img class="img-responsive" src="{{userPublication.img}}">
+                <h2 class="user"><a href="./public-profile/{{userPublication.username}}">@{{userPublication.username}}</a></h2>
+                <div class="share_publication">
+                    <a href="#"><i class="icofont icofont_social icofont-social-twitter"></i></a>
+                    <a href="#"><i class="icofont icofont_social icofont-social-facebook"></i></a>
+                    <a href="#"><i class="icofont icofont_social icofont-social-google-plus"></i></a>
+                </div>
             </div>
         </div>
-
-        <div class="col-xs-12 col-sm-8 app_box publication_wrapper">
-
+       <div class="col-xs-12 col-sm-8">
+        <div class="app_box publication_wrapper">
             <h1 class="title">{{publication.title}}</h1>
             <h3 class="description">{{publication.description}}</h3>
             <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
@@ -24,7 +25,10 @@
                 </div>
               </form>
             </div>
+                <div>
         		<app-comments [comments]="publication.comments"></app-comments>
+                    </div>
 				</div>
+        </div>
 </article>
 <app-footer></app-footer>
