@@ -5,7 +5,5 @@
 
 export const environment = {
   production: false,
-  api: {
-    url: 'http://192.168.99.100:8400/api/'
-  }
+  BACK_PATH: 'http://192.168.99.100:8400'
 };

@@ -16,16 +16,9 @@ services:
       - 8400:8400
     depends_on:
       - db
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    links:
-      - db:mysql
+  front:
+    build: boart-front/
     ports:
-      - 8181:80
-    restart: always
-    environment:
-      MYSQL_USERNAME: db
-      MYSQL_ROOT_PASSWORD: db
-      PMA_ARBITRARY: 1
-      PMA_HOST: mysql
+      - 4200:80
+    depends_on:
+      - back
