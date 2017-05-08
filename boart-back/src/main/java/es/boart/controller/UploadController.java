@@ -32,7 +32,7 @@ import es.boart.services.UploadService;
 @Controller
 public class UploadController {
 	
-	private final static String IMG_PATH 					= "src/main/resources/static/img/";
+	private final static String IMG_PATH = "src/main/resources/static/img/";
 	@Autowired
 	private UserComponent userSession;
 	@Autowired

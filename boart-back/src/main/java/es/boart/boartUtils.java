@@ -1,7 +1,7 @@
 package es.boart;
 
 public class boartUtils {
-	static String imgEmbedLeft = "<img  class=\"img-responsive\" src=\"http://localhost:8400/files/";
+	static String imgEmbedLeft = "<img  class=\"img-responsive\" src=\"http://192.168.99.100:8400/img/";
 	static String imgEmbedRight = "\">";
 	static String audioEmbedLeft = "<iframe class=\"iframeAudio\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/";
 	static String audioEmbedRight = "&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false\"></iframe>";
