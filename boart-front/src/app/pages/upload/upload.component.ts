@@ -36,22 +36,14 @@ export class UploadComponent implements OnInit {
 
 addPublication(event: any, title:string, description: string, tags:string, audio, video, group){
     event.preventDefault();
-
-console.log(title);
-console.log(description);
-console.log(tags);
-
     const endpoint = 'upload/';
-    console.log(tags.split('\n').join(','));
     var formData:FormData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
     formData.append('tags', tags.split('\n').join(','));
     formData.append('type', this.mediaType);
     formData.append('idGroup', this.selGroup);
-    
-    console.log(group);
-    
+        
     switch (this.mediaType){
         case 'img':{
             formData.append('media', this.imageFile);
@@ -67,16 +59,12 @@ console.log(tags);
         }
     }
     
-    console.log(formData);
-
     this.ajaxService.multipartRequest(endpoint, formData).subscribe(
       response => this.router.navigate(['/'])
-      // Return to the new group
     );
    }
     public fileChangeEvent(fileInput: any){
       this.imageFile= fileInput.target.files[0];
-    console.log(fileInput.target.files[0]);
   }
   
   showHide(type){
