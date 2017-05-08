@@ -49,7 +49,7 @@ public class GroupService {
 		if(group.getTitle() != null && group.getDescription() != null && !file.getOriginalFilename().equals("")){
 			String media = uploadService.prepareImage(file);
 			if (!media.equals(null))
-			group.setImg("/files/" + media);
+			group.setImg("img/" + media);
 		}
 		else{
 			return null;
