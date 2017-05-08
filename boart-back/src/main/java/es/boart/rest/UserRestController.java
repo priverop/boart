@@ -113,10 +113,29 @@ public class UserRestController {
 		}
 	}
 	
-	@PostMapping("/{username}")
-	public ResponseEntity<User> addComment(@PathVariable String username, @RequestParam("comment") String comment) {
-		User u = userService.findByUsername(username);
-		userService.addComment(comment, u.getId());
-		return getUser(u.getId());
-	}	
+	@PostMapping("/comment")
+	public ResponseEntity<User> addComment(@RequestParam(value="username") String username, @RequestParam(value="comment") String comment) {
+		
+		if (userSession.getUser() != null) {
+			
+			User user = userService.findOne(userSession.getUser().getId());
+			
+			User u = userService.findByUsername(username);
+			
+			userService.addComment(comment, u.getId());
+			
+			return getUser(u.getId());
+			
+		} else {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+		
+	}
+	
+//	@PostMapping("/{username}")
+//	public ResponseEntity<User> addComment(@PathVariable String username, @RequestParam("comment") String comment) {
+//		User u = userService.findByUsername(username);
+//		userService.addComment(comment, u.getId());
+//		return getUser(u.getId());
+//	}	
 }

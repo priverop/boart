@@ -29,8 +29,7 @@ export class CreateGroupComponent implements OnInit {
     formData.append('inputImage', this.imageFile);
 
     this.ajaxService.multipartRequest(endpoint, formData).subscribe(
-      response => this.router.navigate(['/'])
-      // Return to the new group
+      response => this.router.navigate(['group/' + response.json().id])
     );
   }
   
