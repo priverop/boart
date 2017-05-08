@@ -3,6 +3,9 @@
 ## Descripción
 Aplicación web dedicada a la publicación y rating de arte. Podrás subir elementos artísticos (fotos, dibujos, música, videos artísticos...) y votar las publicaciones que más te gusten. Las que más gusten aparecerán en portada. Se podrá filtrar por tipo de arte, género, etiquetas... El usuario también dispondrá de una página personal con su galería personal. 
 
+## Docker
+Para ejecutar la app basta con irse a la raíz del proyecto y hacer docker-compose up --build
+
 ### Parte pública
 - La portada tendrá tres vistas: lo mejor valorado, lo más comentado y lo nuevo. Tiene el buscador con etiquetas para filtrar. Estas tres pestañas, a la hora de mostrar publicaciones, se basan en un algoritmo que tiene en cuenta la clave principal (más ratio votos positivos /negativos, o comentarios o fecha más reciente), además de tus gustos personales (como se explica en la parte privada), y por supuesto del tiempo; para evitar que siempre estén las mismas en los primeros puestos.
 - Puedes ver las publicaciones (otra vista), donde podrás comentar (si estás logueado) y acceder a los perfiles de los usuarios (si estás logueado; otra vista). 
