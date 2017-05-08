@@ -30,7 +30,10 @@ Para ejecutar la app basta con irse a la raíz del proyecto y hacer docker-compo
 ![Diagrama](http://i.imgur.com/w0wUk5I.png)
 
 ## Diagrama clases
-![Diagrama](http://i.imgur.com/Mw3IiBK.jpg)
+![Diagrama](http://i.imgur.com/t19ZDun.jpg)
+
+## Diagrama clases (Angular)
+![Diagrama](http://i.imgur.com/HoymL6k.jpg)
 
 ## API REST
 [DOCUMENTACIN](https://github.com/priverop/boart/blob/master/API.md)
