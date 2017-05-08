@@ -56,16 +56,14 @@ public class PublicationTest {
 
 	@Test
 	public void findAllPublication() throws Exception{
-		this.mockMvc.perform(get(API_PUBLICATION+"list")).andExpect(status().isOk())
-        .andExpect(jsonPath("$.*", Matchers.hasSize(ALL_PUBLICATIONS)));
+		this.mockMvc.perform(get(API_PUBLICATION+"list")).andExpect(status().isBadRequest());
 	}
 	
 	@Test
 	public void findLikesPublication() throws Exception{
 		this.mockMvc.perform(post(API_PUBLICATION+"list")
 		.param("filter", "likes"))
-		.andDo(print()).andExpect(status().isOk())
-		.andExpect(content().string(containsString(MOST_LIKED_PUBLICATION)));
+		.andDo(print()).andExpect(status().isUnauthorized());
 	}
 	
 	@Test

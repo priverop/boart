@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  db:
+    image: mysql:latest
+    ports:
+      - 8200:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: db
+      MYSQL_DATABASE: db
+      MYSQL_USER: db
+      MYSQL_PASSWORD: db
+  back:
+    build: boart-back/
+    ports:
+      - 8400:8400
+    depends_on:
+      - db
+  front:
+    build: boart-front/
+    ports:
+      - 4200:80
+    depends_on:
+      - back
