@@ -10,7 +10,7 @@
     <div *ngIf="loginService.isLogged" class="form-group">
       <form>
         <textarea #text class="col-xs-8" placeholder="Comentario"></textarea>
-        <input (click)="sendComment($event, text)" type="submit" />
+        <input (click)="sendComment($event, text.value)" type="submit" />
       </form>
     </div>
 

@@ -80,4 +80,8 @@ export class PublicProfileComponent implements OnInit {
     );
   }
 
+  public writtenComment(event) {
+    this.user = event;
+  }
+
 }

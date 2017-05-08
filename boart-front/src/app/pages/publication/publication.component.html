@@ -26,7 +26,7 @@
         </form>
       </div>
       <div>
-        <app-comments [comments]="publication.comments" location="{{publication.id}}" location_type="publication"></app-comments>
+        <app-comments (writtenComment)="writtenComment($event)" [comments]="publication.comments" location="{{publication.id}}" location_type="publication"></app-comments>
       </div>
     </div>
   </div>

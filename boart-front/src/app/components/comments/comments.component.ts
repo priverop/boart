@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { AjaxService } from '../../services/ajax.service';
 import { Router } from '@angular/router';
+import {URLSearchParams} from "@angular/http";
 
 @Component({
   selector: 'app-comments',
@@ -12,6 +13,7 @@ export class CommentsComponent implements OnInit {
     @Input() comments;
     @Input() location_type;
     @Input() location;
+    @Output() writtenComment = new EventEmitter();
 
   constructor(private loginService: LoginService, private ajaxService: AjaxService, private router: Router) { }
 
@@ -19,6 +21,7 @@ export class CommentsComponent implements OnInit {
   }
 
   private sendComment(event:any, text: any){
+
     event.preventDefault();
 
     if(this.location_type == "publication"){
@@ -31,19 +34,35 @@ export class CommentsComponent implements OnInit {
   }
 
   private sendPublicationComment(text: any){
-    const endpoint = 'publication/' + this.location;
-    this.ajaxService.postRequest(endpoint, "comment="+text).subscribe(
-      response => this.router.navigate([endpoint]),
+
+    let formData = new URLSearchParams();
+
+    formData.set('id', this.location);
+    formData.set('comment', text);
+
+    const endpoint = 'publication/comment';
+
+    this.ajaxService.postRequest(endpoint, formData).subscribe(
+      response => this.writtenComment.emit(response.json()),
       error => console.log(error)
     );
+
   }
 
   private sendProfileComment(text: any){
-    const endpoint = 'user/' + this.location;
-    this.ajaxService.postRequest(endpoint, "comment="+text).subscribe(
-      response => this.router.navigate([endpoint]),
-      error => console.log(error)
+
+    let formData = new URLSearchParams();
+
+    formData.set('username', this.location);
+    formData.set('comment', text);
+
+    const endpoint = 'user/comment';
+
+    this.ajaxService.postRequest(endpoint, formData).subscribe(
+        response => this.writtenComment.emit(response.json()),
+        error => console.log(error)
     );
+
   }
 
 }

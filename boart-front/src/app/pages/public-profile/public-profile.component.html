@@ -52,6 +52,6 @@
 			</div>
 		</div>
 
-		<app-comments [comments]="user.comments" location="{{user.username}}" location_type="profile"></app-comments>
+		<app-comments (writtenComment)="writtenComment($event)" [comments]="user.comments" location="{{user.username}}" location_type="profile"></app-comments>
 </article>
 <app-footer></app-footer>

@@ -61,4 +61,8 @@ export class PublicationComponent implements OnInit {
     );
   }
 
+  public writtenComment(event) {
+    this.publication = event;
+  }
+
 }

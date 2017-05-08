@@ -60,6 +60,23 @@ public class PublicationRestController {
 		}
 	}
 	
+	@PostMapping("/publication/comment")
+	public ResponseEntity<Publication> addComment(@RequestParam(value="id") long id, @RequestParam(value="comment") String comment) {
+		
+		if (userSession.getUser() != null) {
+			
+			User user = userService.findOne(userSession.getUser().getId());
+															
+			publicationService.addComment(comment, id);
+
+			return getPublication(id);
+			
+		} else {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+		
+	}
+	
 	@PostMapping("/publication/{id}")
 	public ResponseEntity<Publication> postComment(@PathVariable long id, @RequestParam(value="comment") String comment) {
 		publicationService.addComment(comment, id);
