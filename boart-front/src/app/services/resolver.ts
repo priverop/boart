@@ -21,6 +21,8 @@ export class UserResolve implements Resolve<any> {
 
         return this.ajaxService.getRequest('login', options).map(
             response => {
+                console.log(response.json());
+                this.loginService.user = response.json();
                 this.loginService.isLogged = true;
             }
         ).toPromise().catch(err => {
