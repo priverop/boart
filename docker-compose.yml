@@ -11,14 +11,16 @@ services:
       MYSQL_USER: db
       MYSQL_PASSWORD: db
   back:
-    image: boart/boart_back
+    build: boart-back/
     ports:
       - 8400:8400
     depends_on:
       - db
+    volumes_from:
+      - front
   front:
-    image: boart/boart_front
+    build: boart-front/
     ports:
       - 4200:80
-    depends_on:
-      - back
+    volumes:
+      - /usr/share/nginx/html/img
