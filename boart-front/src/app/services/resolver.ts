@@ -4,13 +4,14 @@ import {Injectable} from "@angular/core";
 import {RequestOptions, Headers} from "@angular/http";
 import {AjaxService} from "./ajax.service";
 import {Observable} from "rxjs";
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class UserResolve implements Resolve<any> {
 
     constructor(private loginService: LoginService, private ajaxService: AjaxService) {}
 
-    resolve (route: ActivatedRouteSnapshot){
+    resolve (route: ActivatedRouteSnapshot): Promise<any>{
 
         const headers = new Headers({
             'X-Requested-With': 'XMLHttpRequest'
@@ -22,8 +23,8 @@ export class UserResolve implements Resolve<any> {
             response => {
                 this.loginService.isLogged = true;
             }
-        ).subscribe(
-            error => console.log(`Error: ${error}`)
-        );
+        ).toPromise().catch(err => {
+            console.log(err)
+        })
     }
 }
