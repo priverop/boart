@@ -23,8 +23,7 @@ export class UserResolve implements Resolve<any> {
                 this.loginService.isLogged = true;
             }
         ).subscribe(
-            error => {
-                console.log(error)
-            });
+            error => console.log(`Error: ${error}`)
+        );
     }
 }

@@ -13,29 +13,27 @@ export class PublicProfileComponent implements OnInit {
   user = [];
   username: string;
   isFollowing = false;
-  userLogged: boolean;
   isOwnProfile: boolean = true;
   emptyPublications: boolean;
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.username = params['username'];
+    });
+
+    this.route.data.subscribe(data => {
       this.getUser();
     });
-    this.loginService.userUpdated.subscribe(
-      (userLogged) => {
-      this.userLogged = userLogged;
-      }
-    )
   }
 
   private getUser(){
     const endpoint = 'user/'+this.username;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.user = result.json();
-      if(this.userLogged) {
+      if(this.loginService.isLogged) {
         this.checkOwnProfile();
         this.checkFollowing();
         this.checkEmptyPublications();
@@ -62,7 +60,6 @@ export class PublicProfileComponent implements OnInit {
     const endpoint = 'user/following';
     this.ajaxService.postRequest(endpoint, "id=" + this.user['id']).subscribe(
       response => {
-        this.user = response.json();
         this.isFollowing = true;
       },
       error => console.error(error)
@@ -73,7 +70,6 @@ export class PublicProfileComponent implements OnInit {
     const endpoint = 'user/following/'+this.user['id'];
     this.ajaxService.deleteRequest(endpoint).subscribe(
       response => {
-        this.user = response.json();
         this.isFollowing = false;
       },
       error => console.error(error)
