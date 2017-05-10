@@ -21,6 +21,16 @@ export class LoginService {
     this.reqIsLogged();
   }
 
+  x () {
+      const headers = new Headers({
+          'X-Requested-With': 'XMLHttpRequest'
+      });
+
+      const options = new RequestOptions({ withCredentials: true, headers });
+
+      return this.ajaxService.getRequest('login', options);
+  }
+
   reqIsLogged() {
 
     const headers = new Headers({
@@ -38,7 +48,6 @@ export class LoginService {
   }
 
   private processLogInResponse(response) {
-    console.log(response);
     this.isLogged = true;
     this.user = response.json();
     this.userUpdated.emit(true);

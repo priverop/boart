@@ -34,17 +34,18 @@ import { AppMediaComponent } from './components/app-media/app-media.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { RegisterComponent } from './pages/register/register.component';
+import {UserResolve} from "./services/resolver";
 
 const appRoutes: Routes = [
-  { path: '', component: CoverComponent},
-  { path: 'publication/:id', component: PublicationComponent},
-  { path: 'upload', component: UploadComponent, canActivate: [LoginService]},
-  { path: 'group/:id', component: GroupComponent},
-  { path: 'public-profile/:username', component: PublicProfileComponent},
-  { path: 'private-profile', component: PrivateProfileComponent, canActivate: [LoginService]},
-  { path: 'create-group', component: CreateGroupComponent, canActivate: [LoginService]},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: '', component: CoverComponent, resolve: {items: UserResolve}},
+  { path: 'publication/:id', component: PublicationComponent, resolve: {items: UserResolve}},
+  { path: 'upload', component: UploadComponent, canActivate: [LoginService], resolve: {items: UserResolve}},
+  { path: 'group/:id', component: GroupComponent, resolve: {items: UserResolve}},
+  { path: 'public-profile/:username', component: PublicProfileComponent, resolve: {items: UserResolve}},
+  { path: 'private-profile', component: PrivateProfileComponent, canActivate: [LoginService], resolve: {items: UserResolve}},
+  { path: 'create-group', component: CreateGroupComponent, canActivate: [LoginService], resolve: {items: UserResolve}},
+  { path: 'login', component: LoginComponent, resolve: {items: UserResolve}},
+  { path: 'register', component: RegisterComponent, resolve: {items: UserResolve}}
 ];
 
 @NgModule({
@@ -77,7 +78,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     AjaxService,
-    LoginService
+    LoginService,
+    UserResolve
   ],
   bootstrap: [AppComponent]
 })

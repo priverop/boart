@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '@angular/router';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-group',
@@ -10,7 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GroupComponent implements OnInit {
 
-  group = {};
+  group = {
+
+  };
   groupID: number;
   userBelongs = false;
 
@@ -22,25 +25,20 @@ export class GroupComponent implements OnInit {
       this.groupID = +params['id'];
     });
 
-    this.getGroup();
+    this.route.data.subscribe(data => {
+        this.getGroup();
+    });
 
-    if(this.loginService.isLogged) {
-        this.checkUserBelongs();
-    }
-
-    this.loginService.userUpdated.subscribe(
-        (userLogged) => {
-            userLogged;
-            if(userLogged) {
-                this.checkUserBelongs();
-            }
-        }
-    );
   }
 
   private getGroup(){
     const endpoint = 'group/'+this.groupID;
-    this.ajaxService.getRequest(endpoint).subscribe(result => this.group = result.json());
+    this.ajaxService.getRequest(endpoint).subscribe(result => {
+        this.group = result.json();
+        if(this.loginService.isLogged) {
+            this.checkUserBelongs();
+        }
+    });
   }
 
   private checkUserBelongs(){
