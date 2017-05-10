@@ -63,7 +63,7 @@ public class PublicationTest {
 	public void findLikesPublication() throws Exception{
 		this.mockMvc.perform(post(API_PUBLICATION+"list")
 		.param("filter", "likes"))
-		.andDo(print()).andExpect(status().isUnauthorized());
+		.andDo(print()).andExpect(status().isBadRequest());
 	}
 	
 	@Test
