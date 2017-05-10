@@ -45,7 +45,9 @@ const appRoutes: Routes = [
   { path: 'private-profile', component: PrivateProfileComponent, canActivate: [LoginService], resolve: {items: UserResolve}},
   { path: 'create-group', component: CreateGroupComponent, canActivate: [LoginService], resolve: {items: UserResolve}},
   { path: 'login', component: LoginComponent, resolve: {items: UserResolve}},
-  { path: 'register', component: RegisterComponent, resolve: {items: UserResolve}}
+  { path: 'register', component: RegisterComponent, resolve: {items: UserResolve}},
+  { path: '**', component: CoverComponent }
+
 ];
 
 @NgModule({

@@ -47,12 +47,7 @@ export class CoverComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.loginService.isLogged)
-                this.groups = this.loginService.user["groups"];
-    this.loginService.userUpdated.subscribe(
-      (userLogged) => {
-        this.getUserGroups();
-      });
+
     this.route.queryParams.subscribe(params => {
       this.filter = params['filter'] || "latest";
       this.tags = params['tags'] || [];
@@ -63,12 +58,15 @@ export class CoverComponent implements OnInit {
       this.page = 1;
       this.getPublications();
     });
+
+    this.route.data.subscribe(data => {
+      this.getUserGroups();
+    });
     }
 
     private getUserGroups(){
       if(this.loginService.isLogged){
         this.groups = this.loginService.user["groups"];
-        console.log(this.groups);
       }
     }
 

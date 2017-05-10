@@ -18,18 +18,14 @@ export class PublicationComponent implements OnInit {
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.publicationID = +params['id'];
     });
-    this.getPublication();
-    this.loginService.userUpdated.subscribe(
-        (userLogged) => {
-            userLogged;
-            if(userLogged) {
-                this.checkMyPublication();
-            }
-        }
-    );
+
+    this.route.data.subscribe(data => {
+      this.getPublication();
+    });
   }
 
   private getPublication(){
@@ -44,6 +40,9 @@ export class PublicationComponent implements OnInit {
     const endpoint = 'user/' + this.publication['user'];
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.userPublication = result.json();
+      if(this.loginService.isLogged) {
+        this.checkMyPublication();
+      }
     });
   }
 
