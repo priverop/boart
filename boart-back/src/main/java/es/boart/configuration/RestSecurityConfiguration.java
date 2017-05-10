@@ -24,18 +24,19 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.antMatcher("/api/**");
 		
 		// URLs that need authentication to access to it
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/private_profile/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/private_profile/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/publication/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/like/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/like/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/group/create/").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/group/leave/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/group/join/**").hasRole("USER");
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/publication/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/user/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/follow/**").hasRole("USER");	
-		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/unfollow/**").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/private_profile/**").hasRole("USER");
+		//http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/private_profile/**").hasRole("USER");
+		//http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/publication/**").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/like/**").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/like/**").hasRole("USER");
+		//http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/upload/").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/group/create/").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/group/leave/**").hasRole("USER");
+		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/group/join/**").hasRole("USER");
+		//http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/publication/**").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/user/**").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/follow/**").hasRole("USER");	
+		//http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/unfollow/**").hasRole("USER");	
 
 
 

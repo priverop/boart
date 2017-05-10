@@ -127,7 +127,7 @@ public class Grupo {
 	
 	@JsonProperty("img")
 	public String getImgJSON(){
-		return "http://localhost:8400/" + getImg();
+		return getImg();
 	}
 	
 }

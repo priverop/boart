@@ -21,7 +21,7 @@ import es.boart.repository.TagRepository;
 
 @Service
 public class UploadService {
-	private final static String IMG_PATH 					= "src/main/resources/static/img/";
+	private final static String IMG_PATH 					= "usr/share/nginx/html/img";
 	private final String SOUNDCLOUD_EMBED_URL 		= "http://soundcloud.com/oembed?format=json&url=https://soundcloud.com/";
 	private final String SOUNDCLOUD_IFRAME_PARAM 	= "&iframe=true";
 	private final int IMAGE_TYPE = 0;
