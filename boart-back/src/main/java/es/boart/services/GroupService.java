@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import es.boart.UserComponent;
 import es.boart.model.Grupo;
 import es.boart.model.User;
 import es.boart.repository.GroupRepository;
@@ -21,6 +22,8 @@ public class GroupService {
 	private GroupRepository groupRepository;
 	@Autowired
 	private UploadService uploadService;
+	@Autowired
+	private UserComponent userSession;
 	
 	public Grupo findOne(long id){
 		return groupRepository.findOne(id);
@@ -49,11 +52,12 @@ public class GroupService {
 		if(group.getTitle() != null && group.getDescription() != null && !file.getOriginalFilename().equals("")){
 			String media = uploadService.prepareImage(file);
 			if (!media.equals(null))
-			group.setImg("img/" + media);
+			group.setImg("/img/" + media);
 		}
 		else{
 			return null;
 		}		
+		group.addMember(userSession.getUser());
 		save(group);		
 		return group;
 	}
