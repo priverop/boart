@@ -17,10 +17,16 @@ export class GroupComponent implements OnInit {
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
       this.groupID = +params['id'];
     });
+
     this.getGroup();
+
+    if(this.loginService.isLogged) {
+        this.checkUserBelongs();
+    }
 
     this.loginService.userUpdated.subscribe(
         (userLogged) => {
@@ -41,6 +47,7 @@ export class GroupComponent implements OnInit {
     let userBelongs = this.loginService.user['groups'].filter(group => {
       return group.id == this.groupID;
     });
+    console.log(userBelongs);
     this.userBelongs = userBelongs.length ? true : false;
   }
 
