@@ -15,7 +15,6 @@ export class LoginService {
 
   isLogged = false;
   user: User;
-  userUpdated: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: Http, private ajaxService: AjaxService, private router: Router) {
     this.reqIsLogged();
@@ -41,16 +40,13 @@ export class LoginService {
 
     this.ajaxService.getRequest('login', options).subscribe(
         response => this.processLogInResponse(response),
-        error => {
-          this.userUpdated.emit(false);
-        }
+        error => {}
     );
   }
 
   private processLogInResponse(response) {
     this.isLogged = true;
     this.user = response.json();
-    this.userUpdated.emit(true);
   }
 
   getLogin(user: string, pass: string) {
