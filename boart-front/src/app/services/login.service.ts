@@ -1,7 +1,7 @@
 import {Injectable, OnInit, EventEmitter} from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { AjaxService } from './ajax.service';
-import { CanActivate } from '@angular/router';
+import {CanActivate, Router} from '@angular/router';
 import 'rxjs/Rx';
 
 export interface User {
@@ -17,7 +17,7 @@ export class LoginService {
   user: User;
   userUpdated: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: Http, private ajaxService: AjaxService) {
+  constructor(private http: Http, private ajaxService: AjaxService, private router: Router) {
     this.reqIsLogged();
   }
 
@@ -32,11 +32,6 @@ export class LoginService {
     this.ajaxService.getRequest('login', options).subscribe(
         response => this.processLogInResponse(response),
         error => {
-          console.log(error);
-          if (error.status !== 401) {
-            console.error('Error when asking if logged: ' +
-                JSON.stringify(error));
-          }
           this.userUpdated.emit(false);
         }
     );
@@ -79,7 +74,10 @@ export class LoginService {
   }
 
   canActivate() {
-    return this.isLogged;
+      if(!this.isLogged) {
+          this.router.navigate(['/login']);
+      }
+      return this.isLogged;
   }
 }
 
