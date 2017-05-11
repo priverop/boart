@@ -14,6 +14,7 @@ export class PublicationComponent implements OnInit {
   userPublication = [];
   publicationID: number;
   isMine = false;
+  hasComments: boolean = false;
 
   constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private router: Router) { }
 
@@ -32,6 +33,9 @@ export class PublicationComponent implements OnInit {
     const endpoint = 'publication/'+this.publicationID;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.publication = result.json();
+      if(this.publication['comments'].length > 0){
+        this.hasComments = true;
+      }
       this.getUserFromPublication();
     });
   }

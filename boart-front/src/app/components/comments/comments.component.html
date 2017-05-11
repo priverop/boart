@@ -5,7 +5,7 @@
       <span class="font_contrast"><a routerLink="/public-profile/{{comment.user.username}}"><strong>@{{comment.user.username}}</strong>:</a> </span><span>{{comment.text}}</span>
     </div>
 
-    <p class="font_contrast">Sé el primero en escribir un comentario</p>
+    <p *ngIf="!hasComments" class="font_contrast">Sé el primero en escribir un comentario</p>
 
     <div *ngIf="loginService.isLogged" class="form-group">
       <form>
