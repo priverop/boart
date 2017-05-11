@@ -22,7 +22,7 @@ export class CreateGroupComponent implements OnInit {
     event.preventDefault();
 
     const endpoint = 'group/create';
-    
+
     var formData:FormData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
@@ -32,10 +32,9 @@ export class CreateGroupComponent implements OnInit {
       response => this.router.navigate(['group/' + response.json().id])
     );
   }
-  
+
   public fileChangeEvent(fileInput: any){
     this.imageFile= fileInput.target.files[0];
-    console.log(fileInput.target.files[0]);
   }
 
 }

@@ -45,7 +45,6 @@ export class GroupComponent implements OnInit {
     let userBelongs = this.loginService.user['groups'].filter(group => {
       return group.id == this.groupID;
     });
-    console.log(userBelongs);
     this.userBelongs = userBelongs.length ? true : false;
   }
 
