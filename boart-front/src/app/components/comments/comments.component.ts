@@ -11,6 +11,7 @@ import {URLSearchParams} from "@angular/http";
 })
 export class CommentsComponent implements OnInit {
     @Input() comments;
+    @Input() hasComments;
     @Input() location_type;
     @Input() location;
     @Output() writtenComment = new EventEmitter();
