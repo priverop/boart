@@ -5,10 +5,11 @@
             <div class="row user_info box_signup">
                 <div class="col-xs-12">
                   <form>
-                      <div class="col-xs-5 img-edit-icon">
-                          <img class="img-responsive" src="{{user.img}}" WIDTH="100%" id="avatar" (click)="clickImg()">
-                          <input class="edit_profile" type="file" id="inputFile" #inputFile
-                                 style="display:none" (change)="changeImg($event)"/>
+                      <div class="col-xs-5 img-edit-icon" (click)="enableControl($event)">
+                          <img *ngIf="!uploadOK" class="img-responsive" src="{{user.img}}" WIDTH="100%" id="avatar" (click)="clickImg()">
+                          <input #inputFile id="inputFile" class="edit_profile" type="file"
+                                 style="display:none" accept="image/*" (change)="changeImg($event)"/>
+                          <span *ngIf="uploadOK">Imagen Subida! Pulsa Enviar.</span>
                           <div class="input-group-btn">
                               <i class="icofont icofont-pencil-alt-5"></i>
                           </div>
