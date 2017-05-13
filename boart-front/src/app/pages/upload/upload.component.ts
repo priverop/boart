@@ -13,11 +13,11 @@ import {Title} from '@angular/platform-browser';
 })
 export class UploadComponent implements OnInit {
 
-      imageFile;
-       mediaType = "img";
+  imageFile;
+  mediaType = "img";
   private userID: number;
-      groups = [];
-      selGroup = "0";
+  groups = [];
+  selGroup = "0";
 
   constructor(private ajaxService: AjaxService, private router: Router,private loginService: LoginService, private titleService: Title) {
   }
@@ -28,14 +28,14 @@ export class UploadComponent implements OnInit {
     this.getUserGroups();
   }
 
-    private getUserGroups(){
+  private getUserGroups(){
     const endpoint = 'user/id/'+this.userID;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.groups = result.json().groups;
     });
-}
+  }
 
-addPublication(event: any, title:string, description: string, tags:string, audio, video, group){
+  addPublication(event: any, title:string, description: string, tags:string, audio, video, group){
     event.preventDefault();
     const endpoint = 'upload/';
     var formData:FormData = new FormData();
@@ -46,47 +46,47 @@ addPublication(event: any, title:string, description: string, tags:string, audio
     formData.append('idGroup', this.selGroup);
 
     switch (this.mediaType){
-        case 'img':{
-            formData.append('media', this.imageFile);
-            break;
-        }
-        case 'audio':{
-            formData.append('media', audio);
-            break;
-        }
-        case 'video':{
-            formData.append('media', video);
-            break;
-        }
+      case 'img':{
+        formData.append('media', this.imageFile);
+        break;
+      }
+      case 'audio':{
+        formData.append('media', audio);
+        break;
+      }
+      case 'video':{
+        formData.append('media', video);
+        break;
+      }
     }
 
     this.ajaxService.multipartRequest(endpoint, formData).subscribe(
       response => this.router.navigate(['/'])
     );
-   }
-    public fileChangeEvent(fileInput: any){
-      this.imageFile= fileInput.target.files[0];
+  }
+  public fileChangeEvent(fileInput: any){
+    this.imageFile = fileInput.target.files[0];
   }
 
   showHide(type){
-	var groupImagen = document.getElementById("groupImagen");
-	var groupAudio = document.getElementById("groupAudio");
-	var groupVideo = document.getElementById("groupVideo");
-	var optionsRadios1 = <HTMLInputElement>document.getElementById("optionsRadios1");
-	var optionsRadios2 = <HTMLInputElement>document.getElementById("optionsRadios2");
-	var optionsRadios3 = <HTMLInputElement>document.getElementById("optionsRadios3");
+    var groupImagen = document.getElementById("groupImagen");
+    var groupAudio = document.getElementById("groupAudio");
+    var groupVideo = document.getElementById("groupVideo");
+    var optionsRadios1 = <HTMLInputElement>document.getElementById("optionsRadios1");
+    var optionsRadios2 = <HTMLInputElement>document.getElementById("optionsRadios2");
+    var optionsRadios3 = <HTMLInputElement>document.getElementById("optionsRadios3");
 
-	groupImagen.style.display = optionsRadios1.checked ? "block" : "none";
-	groupAudio.style.display = optionsRadios2.checked ? "block" : "none";
-	groupVideo.style.display = optionsRadios3.checked ? "block" : "none";
+    groupImagen.style.display = optionsRadios1.checked ? "block" : "none";
+    groupAudio.style.display = optionsRadios2.checked ? "block" : "none";
+    groupVideo.style.display = optionsRadios3.checked ? "block" : "none";
 
-	(<HTMLInputElement>document.getElementById("inputFile")).value="";
-	(<HTMLInputElement>document.getElementById("txtAudio")).value="";
-	(<HTMLInputElement>document.getElementById("txtVideo")).value="";
-	document.getElementById("divRetoques").style.display = "none";
+    (<HTMLInputElement>document.getElementById("inputFile")).value="";
+    (<HTMLInputElement>document.getElementById("txtAudio")).value="";
+    (<HTMLInputElement>document.getElementById("txtVideo")).value="";
+    document.getElementById("divRetoques").style.display = "none";
     this.mediaType= type;
-};
-    changeGroup(event){
-        this.selGroup = event.target.value;
-    }
+  }
+  changeGroup(event){
+    this.selGroup = event.target.value;
+  }
 }
