@@ -3,7 +3,7 @@ import { AjaxService } from '../../services/ajax.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { FormGroup, FormControl, Validators, FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import {Title} from '@angular/platform-browser';
 
 
 @Component({
@@ -19,14 +19,15 @@ export class UploadComponent implements OnInit {
       groups = [];
       selGroup = "0";
 
-  constructor(private ajaxService: AjaxService, private router: Router,private loginService: LoginService) {
+  constructor(private ajaxService: AjaxService, private router: Router,private loginService: LoginService, private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle("Boart - Nueva Publicación");
     this.userID = this.loginService.user.id;
     this.getUserGroups();
   }
-  
+
     private getUserGroups(){
     const endpoint = 'user/id/'+this.userID;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
@@ -43,12 +44,12 @@ addPublication(event: any, title:string, description: string, tags:string, audio
     formData.append('tags', tags.split('\n').join(','));
     formData.append('type', this.mediaType);
     formData.append('idGroup', this.selGroup);
-        
+
     switch (this.mediaType){
         case 'img':{
             formData.append('media', this.imageFile);
             break;
-        } 
+        }
         case 'audio':{
             formData.append('media', audio);
             break;
@@ -58,7 +59,7 @@ addPublication(event: any, title:string, description: string, tags:string, audio
             break;
         }
     }
-    
+
     this.ajaxService.multipartRequest(endpoint, formData).subscribe(
       response => this.router.navigate(['/'])
     );
@@ -66,7 +67,7 @@ addPublication(event: any, title:string, description: string, tags:string, audio
     public fileChangeEvent(fileInput: any){
       this.imageFile= fileInput.target.files[0];
   }
-  
+
   showHide(type){
 	var groupImagen = document.getElementById("groupImagen");
 	var groupAudio = document.getElementById("groupAudio");
@@ -74,11 +75,11 @@ addPublication(event: any, title:string, description: string, tags:string, audio
 	var optionsRadios1 = <HTMLInputElement>document.getElementById("optionsRadios1");
 	var optionsRadios2 = <HTMLInputElement>document.getElementById("optionsRadios2");
 	var optionsRadios3 = <HTMLInputElement>document.getElementById("optionsRadios3");
-	
+
 	groupImagen.style.display = optionsRadios1.checked ? "block" : "none";
 	groupAudio.style.display = optionsRadios2.checked ? "block" : "none";
 	groupVideo.style.display = optionsRadios3.checked ? "block" : "none";
-	
+
 	(<HTMLInputElement>document.getElementById("inputFile")).value="";
 	(<HTMLInputElement>document.getElementById("txtAudio")).value="";
 	(<HTMLInputElement>document.getElementById("txtVideo")).value="";

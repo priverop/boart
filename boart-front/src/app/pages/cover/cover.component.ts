@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AjaxService} from '../../services/ajax.service';
 import {Pipe, PipeTransform} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, Title} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../services/login.service';
 import {style, animate, keyframes, transition, trigger} from "@angular/animations";
@@ -43,10 +43,11 @@ export class CoverComponent implements OnInit {
   private groups = [];
 
 
-  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) {
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle("Boart - Cover");
 
     this.route.queryParams.subscribe(params => {
       this.filter = params['filter'] || "latest";

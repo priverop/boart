@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-publication',
@@ -16,7 +17,7 @@ export class PublicationComponent implements OnInit {
   isMine = false;
   hasComments: boolean = false;
 
-  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private router: Router) { }
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private router: Router, private titleService: Title) { }
 
   ngOnInit() {
 
@@ -27,12 +28,14 @@ export class PublicationComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.getPublication();
     });
+
   }
 
   private getPublication(){
     const endpoint = 'publication/'+this.publicationID;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
       this.publication = result.json();
+      this.titleService.setTitle("Boart - "+this.publication['title']);
       if(this.publication['comments'].length > 0){
         this.hasComments = true;
       }

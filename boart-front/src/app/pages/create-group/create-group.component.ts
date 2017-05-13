@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import { CoverComponent } from '../../pages/cover/cover.component';
 import { AjaxService } from '../../services/ajax.service';
 import { Router } from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-group',
@@ -13,9 +14,10 @@ export class CreateGroupComponent implements OnInit {
 
   imageFile;
 
-  constructor(private ajaxService: AjaxService, private router: Router) { }
+  constructor(private ajaxService: AjaxService, private router: Router, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Boart - Crear Grupo");
   }
 
   createGroup(event: any, title: string, description: string, image: File){

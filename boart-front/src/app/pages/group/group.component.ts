@@ -3,6 +3,7 @@ import { AjaxService } from '../../services/ajax.service';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '@angular/router';
 import {Observable} from "rxjs";
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-group',
@@ -17,7 +18,7 @@ export class GroupComponent implements OnInit {
   groupID: number;
   userBelongs = false;
 
-  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private titleService: Title) { }
 
   ngOnInit() {
 
@@ -28,13 +29,13 @@ export class GroupComponent implements OnInit {
     this.route.data.subscribe(data => {
         this.getGroup();
     });
-
   }
 
   private getGroup(){
     const endpoint = 'group/'+this.groupID;
     this.ajaxService.getRequest(endpoint).subscribe(result => {
         this.group = result.json();
+        this.titleService.setTitle("Boart - "+this.group['title']);
         if(this.loginService.isLogged) {
             this.checkUserBelongs();
         }

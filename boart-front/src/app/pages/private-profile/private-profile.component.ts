@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { AjaxService } from '../../services/ajax.service';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-private-profile',
@@ -15,9 +16,10 @@ export class PrivateProfileComponent implements OnInit {
   emptyFollowings: boolean = true;
   emptyGroups: boolean = true;
 
-  constructor(private loginService: LoginService, private ajaxService: AjaxService) { }
+  constructor(private loginService: LoginService, private ajaxService: AjaxService, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Boart - Mi Perfil");
     this.userID = this.loginService.user.id;
 
     this.getUser();

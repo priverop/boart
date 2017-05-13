@@ -3,6 +3,7 @@ import {AjaxService} from "../../services/ajax.service";
 import {Router} from "@angular/router";
 import {URLSearchParams} from "@angular/http";
 import {LoginService} from "../../services/login.service";
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,10 @@ import {LoginService} from "../../services/login.service";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private ajaxService: AjaxService, private router: Router, private loginService: LoginService) { }
+  constructor(private ajaxService: AjaxService, private router: Router, private loginService: LoginService, private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle("Boart - Registro");
   }
 
   registerEvent(event: any, name: string, surname: string, username: string, mail: string, password: string) {

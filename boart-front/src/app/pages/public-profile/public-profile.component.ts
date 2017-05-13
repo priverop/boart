@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AjaxService } from '../../services/ajax.service';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-public-profile',
@@ -16,7 +17,7 @@ export class PublicProfileComponent implements OnInit {
   isOwnProfile: boolean = true;
   emptyPublications: boolean;
 
-  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService) { }
+  constructor(private ajaxService: AjaxService, private route: ActivatedRoute, private loginService: LoginService, private titleService: Title) { }
 
   ngOnInit() {
 
@@ -27,6 +28,8 @@ export class PublicProfileComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.getUser();
     });
+
+    this.titleService.setTitle("Boart - "+this.username);
   }
 
   private getUser(){
