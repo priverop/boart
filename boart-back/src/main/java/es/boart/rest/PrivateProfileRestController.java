@@ -52,7 +52,6 @@ public class PrivateProfileRestController {
 			@RequestParam(value="password", required=false) String password,
 			@RequestParam(value="inputImage", required=false) MultipartFile file){
 		
-		System.out.println("Description: "+description);
 		User modifiedUser = new User(username, name, surname, description);
 		
 		if (userSession.getUser() != null) {
