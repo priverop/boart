@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     let formData = new URLSearchParams();
 
     formData.set('name', name);
-    formData.set('surname', name);
+    formData.set('surname', surname);
     formData.set('username', username);
     formData.set('mail', mail);
     formData.set('password', password);
