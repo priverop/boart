@@ -57,7 +57,7 @@ public class GroupService {
 		else{
 			return null;
 		}		
-		group.addMember(userSession.getUser());
+		
 		save(group);		
 		return group;
 	}
