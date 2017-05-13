@@ -1,17 +1,10 @@
 package es.boart.rest;
 
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,15 +44,27 @@ public class PrivateProfileRestController {
 	}
 	
 	@PutMapping("/")
-	public ResponseEntity<User> putPrivateProfile8(User modifiedUser, @RequestParam(value="inputImage", required=false) MultipartFile file){
-				
+	public ResponseEntity<User> updateProfile(
+			@RequestParam(value="name", required=false) String name,
+			@RequestParam(value="surname", required=false) String surname,
+			@RequestParam(value="username", required=false) String username,
+			@RequestParam(value="description", required=false) String description,
+			@RequestParam(value="password", required=false) String password,
+			@RequestParam(value="inputImage", required=false) MultipartFile file){
+		
+		System.out.println("Description: "+description);
+		User modifiedUser = new User(username, name, surname, description);
+		
 		if (userSession.getUser() != null) {
 			
-			User user = userService.findOne(userSession.getUser().getId());
-						
+			long id = userSession.getUser().getId();
+			
+			User user = userService.findOne(id); 
+
 			if (user != null) {
-				userService.setUser(user, modifiedUser, file);
-				return new ResponseEntity<>(user, HttpStatus.OK);
+				userService.setUser(id, modifiedUser, file);
+				User resultUser = userService.findOne(id);
+				return new ResponseEntity<>(resultUser, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			} 	

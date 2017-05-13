@@ -118,6 +118,13 @@ public class User {
 		this.signInDate = new Timestamp(date.getTime());
 	}
 	
+	public User(String username, String name, String surname, String description) {
+		this.username = username;
+		this.name = name;
+		this.surname = surname;
+		this.description = description;
+	}
+	
 	public User(){}
 
 	

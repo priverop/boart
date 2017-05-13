@@ -4,57 +4,48 @@
         <div class="col-xs-12 col-sm-4">
             <div class="row user_info box_signup">
                 <div class="col-xs-12">
-                    <form action="/edit_profile" method="POST" enctype="multipart/form-data">
-                        <div class="col-xs-5 img-edit-icon">
-                            <img class="img-responsive" src="{{user.img}}" WIDTH="100%" id="avatar">
-                            <input class="edit_profile" type="file" id="inputFile" name="inputFile"
-                                   style="display:none"/>
-                            <div class="input-group-btn">
-                                <i class="icofont icofont-pencil-alt-5"></i>
-                            </div>
-                        </div>
-                        <div class="col-xs-7">
-                            <div class="input-group col-xs-12 edit-icon">
-                                <input class="edit_profile" disabled="disabled" type="text" name="name"
-                                       placeholder="Nombre:" value="{{user.name}}"/>
-                                <div class="input-group-btn">
-                                    <i class="icofont icofont-pencil-alt-5"></i>
-                                </div>
-                            </div>
-                            <div class="input-group col-xs-12 edit-icon">
-                                <input class="edit_profile" disabled="disabled" type="text" name="surname"
-                                       placeholder="Apellidos:" value="{{user.surname}}"/>
-                                <div class="input-group-btn">
-                                    <i class="icofont icofont-pencil-alt-5"></i>
-                                </div>
-                            </div>
-                            <div class="input-group col-xs-12 edit-icon">
-                                <input class="edit_profile" disabled="disabled" type="text" name="username"
-                                       placeholder="Usuario:" value="{{user.username}}"/>
-                                <div class="input-group-btn">
-                                    <i class="icofont icofont-pencil-alt-5"></i>
-                                </div>
-                            </div>
-                            <div class="input-group col-xs-12 edit-icon">
-                                <input class="edit_profile" disabled="disabled" type="text" name="password"
-                                       placeholder="Contraseña"/>
-                                <div class="input-group-btn">
-                                    <i class="icofont icofont-pencil-alt-5"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input-group col-xs-12 edit-icon">
-                            <input class="edit_profile" disabled="disabled" type="text" name="description"
-                                   placeholder="Usuario:" value="{{user.description}}"/>
-                            <div class="input-group-btn">
-                                <i class="icofont icofont-pencil-alt-5"></i>
-                            </div>
-                        </div>
+                  <form>
+                      <div class="col-xs-5 img-edit-icon">
+                          <img class="img-responsive" src="{{user.img}}" WIDTH="100%" id="avatar" (click)="clickImg()">
+                          <input class="edit_profile" type="file" id="inputFile" #inputFile
+                                 style="display:none" (change)="changeImg($event)"/>
+                          <div class="input-group-btn">
+                              <i class="icofont icofont-pencil-alt-5"></i>
+                          </div>
+                      </div>
+                      <div class="col-xs-7">
+                          <div class="input-group col-xs-12 edit-icon" (click)="enableControl($event)">
+                              <input #name name="name" class="edit_profile" (click)="enableControl($event)" disabled="disabled" type="text"
+                                     placeholder="Nombre:" value="{{user.name}}"/>
+                              <div class="input-group-btn">
+                                  <i class="icofont icofont-pencil-alt-5"></i>
+                              </div>
+                          </div>
+                          <div class="input-group col-xs-12 edit-icon" (click)="enableControl($event)">
+                              <input #surname name="surname" class="edit_profile" disabled="disabled" type="text"
+                                     placeholder="Apellidos:" value="{{user.surname}}"/>
+                              <div class="input-group-btn">
+                                  <i class="icofont icofont-pencil-alt-5"></i>
+                              </div>
+                          </div>
+                          <div class="input-group col-xs-12 edit-icon" (click)="enableControl($event)">
+                              <input #username name="username" class="edit_profile" disabled="disabled" type="text"
+                                     placeholder="Usuario:" value="{{user.username}}"/>
+                              <div class="input-group-btn">
+                                  <i class="icofont icofont-pencil-alt-5"></i>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="input-group col-xs-12 edit-icon" (click)="enableControl($event)">
+                          <input #description name="description" class="edit_profile" disabled="disabled" type="text"
+                                 placeholder="Usuario:" value="{{user.description}}"/>
+                          <div class="input-group-btn">
+                              <i class="icofont icofont-pencil-alt-5"></i>
+                          </div>
+                      </div>
 
-                        <input type="hidden" name="_csrf" value=""/>
-                        <input type="hidden" name="id" value=""/>
-                        <input class="send_form" disabled="disabled" type="submit" placeholder="SUBMIT"/>
-                    </form>
+                      <input id="send_form" class="send_form" (click)="updateUser($event, username.value, name.value, surname.value, description.value, inputFile.value)" disabled="disabled" type="submit" placeholder="SUBMIT"/>
+                  </form>
                 </div>
 
                 <div *ngIf="!emptyFollowings" class="col-xs-12 follow_list">

@@ -59,7 +59,7 @@ public class PrivateProfileController {
 			
 			User user = userService.findOne(usuario.getId());
 			
-			userService.setUser(user, usuario, file);
+			userService.setUser(usuario.getId(), usuario, file);
 
 		}
 

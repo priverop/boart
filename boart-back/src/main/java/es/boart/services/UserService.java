@@ -79,8 +79,10 @@ public class UserService {
 		}
 	}
 	
-	public void setUser(User user, User modifiedUser, MultipartFile file) {
+	public void setUser(long id, User modifiedUser, MultipartFile file) {
 		
+		User user = this.findOne(id);
+
 		if(modifiedUser.getName() != null){
 			user.setName(modifiedUser.getName());
 		}
@@ -99,12 +101,12 @@ public class UserService {
 		
 		if(modifiedUser.getDescription() != null){
 			user.setDescription(modifiedUser.getDescription());
-		}		
+		}
 		
-		if(!file.getOriginalFilename().equals("")){
+		if(file != null && !file.getOriginalFilename().equals("")){
 			String media = uploadService.prepareImage(file);
 			if (!media.equals(null)){
-				user.setImg("/files/" + media);
+				user.setImg("/img/" + media);
 			}	
 		}
 		

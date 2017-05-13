@@ -15,6 +15,7 @@ export class PrivateProfileComponent implements OnInit {
   emptyFollowers: boolean = true;
   emptyFollowings: boolean = true;
   emptyGroups: boolean = true;
+  imageFile;
 
   constructor(private loginService: LoginService, private ajaxService: AjaxService, private titleService: Title) { }
 
@@ -23,6 +24,39 @@ export class PrivateProfileComponent implements OnInit {
     this.userID = this.loginService.user.id;
 
     this.getUser();
+  }
+
+  private enableControl(event:any){
+    event.target.disabled = false;
+    (<HTMLInputElement>document.getElementById("send_form")).disabled = false;
+  }
+
+  private clickImg(){
+    console.log(this.user);
+    (<HTMLInputElement>document.getElementById("inputFile")).click();
+  }
+
+  updateUser(event: any, username: string, name: string, surname: string, description: string, inputFile: any){
+    event.preventDefault();
+    const endpoint = 'private_profile/';
+
+    var formData = new URLSearchParams();
+    formData.set('username', username);
+    formData.set('name', name);
+    formData.set('surname', surname);
+    formData.set('description', description);
+    formData.set('inputImage', inputFile);
+
+    this.ajaxService.multipartPutRequest(endpoint, formData).subscribe(
+      response => console.log("ok "+response),
+      error => console.log("error "+error)
+    );
+  }
+  changeImg(fileInput: any){
+    console.log((<HTMLInputElement>document.getElementById("inputFile")).value);
+    this.imageFile= fileInput.target.files[0];
+    (<HTMLImageElement>document.getElementById("avatar")).src= (<HTMLInputElement>document.getElementById("inputFile")).value;
+
   }
 
   private getUser(){

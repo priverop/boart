@@ -79,7 +79,7 @@ export class AjaxService {
 
   multipartRequest(endpoint, body): Observable<any> {
 
-    let options = new RequestOptions({withCredentials: true }); //Necesario para que siga mandando el JSESSIONID
+    let options = new RequestOptions({withCredentials: true });
     return this.http.post(this.buildUrl(endpoint), body, options);
 
   }
@@ -95,7 +95,22 @@ export class AjaxService {
 
     let headers = new Headers({ 'Content-Type': 'application/json' });
 
-    return this.http.post(this.buildUrl(endpoint), body, { headers: headers });
+    return this.http.put(this.buildUrl(endpoint), body, { headers: headers });
+
+  }
+
+  /**
+   * multipartPutRequest - Generates ajax request.
+   *
+   * @param  {string} endpoint
+   * @param  {object} body
+   * @return {Observable}
+   */
+  multipartPutRequest(endpoint, body): Observable<any> {
+
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.put(this.buildUrl(endpoint), body.toString(), options);
 
   }
 
