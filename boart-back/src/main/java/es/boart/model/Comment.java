@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Comment {
 	
@@ -38,6 +41,7 @@ public class Comment {
 	/**
 	 * @return the user
 	 */
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -73,5 +77,8 @@ public class Comment {
 	}
 
 	
-
+	 @JsonProperty("user")
+	 public String getUserJSON(){
+		return user.getUsername();
+	 }
 }
