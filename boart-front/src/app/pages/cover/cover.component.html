@@ -20,30 +20,7 @@
     </div>
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
     <div id="columns">
-      <div *ngFor="let publication of publications" class="publication app_box publication_box" [@moveDown]='state'>
-        <!--<a routerLink="/publication/{{ publication.id }}">-->
-        <a>
-          <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
-          <p routerLink="/publication/{{ publication.id }}" class="title_publication">{{ publication.title }}</p>
-          <div class="rating">
-            <a id="{{ publication.id }}">
-              <span (click)="likeHandler(publication)" class="glyphicon glyphicon-heart-empty like_icon" [ngClass]="{'added': publication.ownLike}" aria-hidden="true" id="{{id}}"></span>
-              <span class="rating-value">{{ publication.numberOfLikes }}</span>
-            </a>
-          </div>
-          <div class="comments">
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-            <span class="numComments">{{ publication.numberOfComments }}</span>
-          </div>
-          <div class="tag_component">
-            <app-tag-list [tags]="publication.tags"> </app-tag-list>
-          </div>
-          <div class="divDate">
-            {{ publication.stringDate }}
-          </div>
-        </a>
-        <!--<script>checkMyLike({{id}})</script>-->
-      </div>
+          <app-publication-detail *ngFor="let publication of publications" [publication]="publication"></app-publication-detail>
     </div>
       			<div class="load_more">
 				<span (click)="getMorePublications()">Cargar más publicaciones</span>

@@ -26,65 +26,12 @@
           </ul>
         </div>
       </div>
-
-      <!-- <div class="col-xs-12 col-sm-4 col-md-4 col-lg-12" style="padding:0px">
-        <div class="filter_publication app_box">
-          <ul>
-            <li>
-              <a href="#" class="active">
-                <i aria-hidden="true" class="icofont icofont-newspaper"></i>
-                + nuevos
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="glyphicon glyphicon-heart-empty"></i>
-                + valorados
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i aria-hidden="true" class="icofont icofont-comment"></i>
-                + comentados
-              </a>
-            </li>
-          </ul>
-          <div class="input-group stylish-input-group">
-            <input type="text" class="form-control" placeholder="Añadir tag">
-            <span class="input-group-addon">
-              <button type="submit">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-          <div class="tag_component">
-            <span class="tag">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              escultura
-            </span>
-            <span class="tag">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              fotografía
-            </span>
-            <span class="tag">
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              dibujo
-            </span>
-          </div>
-        </div>
-      </div> -->
     </div><!--  row -->
   </div><!--  menuleft -->
 
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
     <div id="columns">
-      <div *ngFor="let publication of group.publications" class="publication app_box">
-        <app-media url="{{publication.media}}" media_type="{{publication.media_type}}"></app-media>
-        <p>{{publication.description}}</p>
-        <div class="rating">
-          <p><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><span class="rating-value">{{numberOfLikes}}</span></p>
-        </div>
-      </div>
+          <app-publication-detail *ngFor="let publication of group.publications" [publication]="publication"></app-publication-detail>
     </div>
   </div>
 

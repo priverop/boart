@@ -35,6 +35,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { RegisterComponent } from './pages/register/register.component';
 import {UserResolve} from "./services/resolver";
+import { AppPublicationDetailComponent } from './components/app-publication-detail/app-publication-detail.component';
 
 const appRoutes: Routes = [
   { path: '', component: CoverComponent, resolve: {items: UserResolve}},
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
     AppMediaComponent,
     LoginComponent,
     CommentsComponent,
-    RegisterComponent
+    RegisterComponent,
+    AppPublicationDetailComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

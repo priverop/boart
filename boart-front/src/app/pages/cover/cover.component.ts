@@ -4,8 +4,6 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer, Title} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {LoginService} from '../../services/login.service';
-import {style, animate, keyframes, transition, trigger} from "@angular/animations";
-import {URLSearchParams} from "@angular/http";
 
 @Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
@@ -17,21 +15,12 @@ export class SafePipe implements PipeTransform {
   }
 }
 
-const moveDown = trigger('moveDown', [
-  transition('void => *', [
-    animate(600, keyframes([
-      style({opacity: 0, transform: 'translateY(-400px)', offset: 0}),
-      style({opacity: 0.8, transform: 'translateY(50px)', offset: .75}),
-      style({opacity: 1, transform: 'translateY(0)', offset: 1}),
-    ]))
-  ])
-]);
+
 
 @Component({
   selector: 'app-cover',
   templateUrl: './cover.component.html',
   styleUrls: ['./cover.component.scss'],
-  animations: [moveDown]
 })
 export class CoverComponent implements OnInit {
 
@@ -76,12 +65,10 @@ export class CoverComponent implements OnInit {
       if (this.tags.length > 1)
       this.ajaxService.getRequest(endpoint).subscribe(result => {
         this.publications = result.json();
-        this.checkLikes();
       });
       else
       this.ajaxService.getRequest(endpoint).subscribe(result => {
         this.publications = result.json().content;
-        this.checkLikes();
       });
     }
 
@@ -126,55 +113,6 @@ export class CoverComponent implements OnInit {
       this.tags.splice(this.tags.indexOf(tag), 1);
       this.page = 1;
       this.getPublications();
-    }
-
-    public checkLikes() {
-      for (let i in this.publications) {
-        this.checkLike(this.publications[i].id, this.publications[i])
-      }
-    }
-
-    public checkLike(publicationId, publication) {
-      const endpoint = "like/check/" + publicationId;
-      this.ajaxService.getRequestCredentials(endpoint).subscribe(response => {
-        publication['ownLike'] = response.json();
-      });
-    }
-
-    public likeHandler(publication) {
-      if (this.loginService.isLogged) {
-        return publication['ownLike'] ? this.removeLike(publication) : this.addLike(publication) ;
-      }
-    }
-
-    public addLike(publication) {
-
-      let formData = new URLSearchParams();
-
-      formData.set('publicationId', publication.id);
-
-      let endpoint = 'like';
-
-      this.ajaxService.postRequest(endpoint, formData).subscribe(
-        response => {
-          publication['ownLike'] = true;
-          publication['numberOfLikes']++;
-        },
-        error => console.log(error)
-      );
-    }
-
-    public removeLike(publication) {
-
-      let endpoint = 'like/' + publication.id;
-
-      this.ajaxService.deleteRequest(endpoint).subscribe(
-        response => {
-          publication['ownLike'] = false;
-          publication['numberOfLikes']--;
-        },
-        error => console.log(error)
-      );
     }
 
   }
