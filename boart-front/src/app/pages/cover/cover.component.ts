@@ -76,7 +76,6 @@ export class CoverComponent implements OnInit {
       if (this.tags.length > 1)
       this.ajaxService.getRequest(endpoint).subscribe(result => {
         this.publications = result.json();
-        console.log(this.publications);
         this.checkLikes();
       });
       else
@@ -133,7 +132,6 @@ export class CoverComponent implements OnInit {
       for (let i in this.publications) {
         this.checkLike(this.publications[i].id, this.publications[i])
       }
-      console.log(this.publications)
     }
 
     public checkLike(publicationId, publication) {
@@ -144,7 +142,6 @@ export class CoverComponent implements OnInit {
     }
 
     public likeHandler(publication) {
-      console.log(publication)
       if (this.loginService.isLogged) {
         return publication['ownLike'] ? this.removeLike(publication) : this.addLike(publication) ;
       }
