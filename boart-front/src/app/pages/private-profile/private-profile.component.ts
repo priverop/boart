@@ -16,7 +16,7 @@ export class PrivateProfileComponent implements OnInit {
   emptyFollowings: boolean = true;
   emptyGroups: boolean = true;
   imageFile;
-  uploadOK:boolean = false;
+  objImg;
 
   constructor(private loginService: LoginService, private ajaxService: AjaxService, private titleService: Title) { }
 
@@ -32,7 +32,7 @@ export class PrivateProfileComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("send_form")).disabled = false;
   }
 
-  updateUser(event: any, username: string, name: string, surname: string, description: string, inputFile: any){
+  updateUser(event: any, username: string, name: string, surname: string, description: string, inputImage: any){
     event.preventDefault();
     const endpoint = 'private_profile/';
 
@@ -41,21 +41,40 @@ export class PrivateProfileComponent implements OnInit {
     formData.set('name', name);
     formData.set('surname', surname);
     formData.set('description', description);
-    formData.set('inputImage', this.imageFile);
 
-    this.ajaxService.multipartPutRequest(endpoint, formData).subscribe(
+    this.ajaxService.putRequest(endpoint, formData).subscribe(
       response => console.log("ok "+response),
       error => console.log("error "+error)
     );
+    
+    if (this.objImg !== undefined) {
+        var formData2:FormData = new FormData();
+        formData2.append('inputImage', this.imageFile);
+        this.ajaxService.multipartPutRequest(endpoint, formData2).subscribe(
+          response => console.log("ok "+response),
+          error => console.log("error "+error)
+        );
+    }
   }
 
   private clickImg(){
+      this.objImg = document.getElementById("avatar");
     (<HTMLInputElement>document.getElementById("inputFile")).click();
   }
 
   changeImg(fileInput: any){
+   if (fileInput.target.files && fileInput.target.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = (event) => {
+     this.objImg.src= (<FileReader>event.target).result;
+    }
+
+    reader.readAsDataURL(fileInput.target.files[0]);
+  }
+  
+  
     this.imageFile = fileInput.target.files[0];
-    this.uploadOK = true;
   }
 
   private getUser(){

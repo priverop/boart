@@ -92,11 +92,9 @@ export class AjaxService {
    * @return {Observable}
    */
   putRequest(endpoint, body): Observable<any> {
-
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-
-    return this.http.put(this.buildUrl(endpoint), body, { headers: headers });
-
+    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let options = new RequestOptions({ headers: headers, withCredentials: true });
+    return this.http.put(this.buildUrl(endpoint), body.toString(), options);
   }
 
   /**
@@ -106,13 +104,11 @@ export class AjaxService {
    * @param  {object} body
    * @return {Observable}
    */
-  multipartPutRequest(endpoint, body): Observable<any> {
-
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-    let options = new RequestOptions({ headers: headers, withCredentials: true });
-    return this.http.put(this.buildUrl(endpoint), body.toString(), options);
-
+multipartPutRequest(endpoint, body): Observable<any> {
+    let options = new RequestOptions({  withCredentials: true });
+    return this.http.put(this.buildUrl(endpoint), body, options);
   }
+
 
   /**
    * deleteRequest - Generates ajax request.
