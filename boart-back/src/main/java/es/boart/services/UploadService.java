@@ -92,7 +92,6 @@ public class UploadService {
 				Files.copy(file.getInputStream(), rootLocation.resolve(media));
 			}
 			catch(Exception e){
-				System.out.println("Error copying image file to: "+rootLocation.resolve(media));
 				media = null;
 			}			
 			return media;
@@ -108,7 +107,6 @@ public class UploadService {
 			    }
 			}			
 			catch(Exception e){
-				System.out.println("Error reading SoundCloud URL.");
 			}
 			
 			String media = sb.toString(); //Óscar: Hay que ver si consigo que el JSON devuelve el iframe como quiero para coger el iframe de el directametne

@@ -282,7 +282,6 @@ public class Publication {
 				
 		for(PublicationLike like:this.getLikes()){
 			if(like.getUser() == user){
-				System.out.println("SEHHH");
 				return true;
 			}
 		}

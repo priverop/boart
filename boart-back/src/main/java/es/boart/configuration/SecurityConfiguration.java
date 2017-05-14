@@ -19,9 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	
-    	System.out.println("sadfasdf");
-    	
+    	    	
     	// Public pages
         http.authorizeRequests().antMatchers("/").permitAll();
 

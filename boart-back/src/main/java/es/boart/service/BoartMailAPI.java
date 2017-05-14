@@ -21,8 +21,6 @@ public class BoartMailAPI {
 		boartMsg.setTo(toAddress);
 		boartMsg.setSubject(subject);
 		boartMsg.setText(msgBody);
-		System.out.println(boartMsg);
-		System.out.println(boartMail);
 		boartMail.send(boartMsg);
 	}
 }
