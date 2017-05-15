@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { AjaxService } from '../../services/ajax.service';
 import {Title} from '@angular/platform-browser';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-private-profile',
@@ -18,7 +20,7 @@ export class PrivateProfileComponent implements OnInit {
   imageFile;
   objImg;
 
-  constructor(private loginService: LoginService, private ajaxService: AjaxService, private titleService: Title) { }
+  constructor(private loginService: LoginService, private ajaxService: AjaxService, private titleService: Title, private router: Router) { }
 
   ngOnInit() {
     this.titleService.setTitle("Boart - Mi Perfil");
@@ -55,6 +57,8 @@ export class PrivateProfileComponent implements OnInit {
           error => console.log("error "+error)
         );
     }
+    
+    this.router.navigate(['/']);
   }
 
   private clickImg(){
