@@ -38,6 +38,9 @@ Para ejecutar la app basta con irse a la raíz del proyecto y hacer docker-compo
 ## API REST
 [DOCUMENTACIN](https://github.com/priverop/boart/blob/master/API.md)
 
+## VIDEO FUNCIONAMIENTO
+www.youtube.com/watch?v=V0u22DKVAGU
+
 ## Trello
 https://trello.com/b/fG0uTmVa
 
