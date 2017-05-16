@@ -45,9 +45,9 @@
              <div class="form-group" >
                  <label for="inputTitle" class="col-sm-2 control-label">Tipo de publicación</label>
                  <div class="col-sm-10">
-                     <input type="radio" [(ngModel)]="typeFile.optionsRadios"  #optionsRadios name="optionsRadios" id="optionsRadios1" value="img" checked> Imagen
-                     <input type="radio" [(ngModel)]="typeFile.optionsRadios" #optionsRadios name="optionsRadios"  id="optionsRadios2" value="audio"> Audio
-                     <input type="radio" [(ngModel)]="typeFile.optionsRadios" #optionsRadios name="optionsRadios"  id="optionsRadios3" value="video"> Video
+                     <input type="radio" [(ngModel)]="typeFile.optionsRadios"  #optionsRadios name="optionsRadios" id="optionsRadios1" value="img" (click)="showHide('img')" checked> Imagen
+                     <input type="radio" [(ngModel)]="typeFile.optionsRadios" #optionsRadios name="optionsRadios"  id="optionsRadios2" value="audio" (click)="showHide('audio')"> Audio
+                     <input type="radio" [(ngModel)]="typeFile.optionsRadios" #optionsRadios name="optionsRadios"  id="optionsRadios3" value="video" (click)="showHide('video')"> Video
                  </div>
              </div>
 
