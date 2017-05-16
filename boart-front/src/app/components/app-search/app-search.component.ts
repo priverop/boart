@@ -18,6 +18,7 @@ export class AppSearchComponent implements OnInit {
   
   public addTag(tag){
     this.addTagEvent.emit(tag);
+      (<HTMLInputElement>document.getElementById('txtTag')).value= "";
   }
   
   public remTag(tag){

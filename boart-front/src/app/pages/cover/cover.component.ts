@@ -104,9 +104,12 @@ export class CoverComponent implements OnInit {
     }
 
     public addTag(tag) {
+    console.log(tag);
+    if(tag !== undefined){
       this.tags.push(tag);
       this.page = 1;
       this.getPublications();
+    }
     }
 
     public removeTag(tag) {
