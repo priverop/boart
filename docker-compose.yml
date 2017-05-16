@@ -11,7 +11,7 @@ services:
       MYSQL_USER: db
       MYSQL_PASSWORD: db
   back:
-    build: boart-back/
+    image: boart/boart-back
     ports:
       - 8400:8400
     depends_on:
@@ -19,7 +19,7 @@ services:
     volumes_from:
       - front
   front:
-    build: boart-front/
+    image: boart/boart-front
     ports:
       - 4200:80
     volumes:
