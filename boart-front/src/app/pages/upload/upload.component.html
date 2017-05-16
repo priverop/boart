@@ -45,16 +45,16 @@
              <div class="form-group" >
                  <label for="inputTitle" class="col-sm-2 control-label">Tipo de publicación</label>
                  <div class="col-sm-10">
-                     <input type="radio" #optionsRadios name="optionsRadios" id="optionsRadios1" value="img" (click)="showHide('img')" checked> Imagen
-                     <input type="radio" #optionsRadios name="optionsRadios"  id="optionsRadios2" value="audio" (click)="showHide('audio')"> Audio
-                     <input type="radio" #optionsRadios name="optionsRadios"  id="optionsRadios3" value="video" (click)="showHide('video')"> Video
+                     <input type="radio" [(ngModel)]="typeFile.optionsRadios"  #optionsRadios name="optionsRadios" id="optionsRadios1" value="img" checked> Imagen
+                     <input type="radio" [(ngModel)]="typeFile.optionsRadios" #optionsRadios name="optionsRadios"  id="optionsRadios2" value="audio"> Audio
+                     <input type="radio" [(ngModel)]="typeFile.optionsRadios" #optionsRadios name="optionsRadios"  id="optionsRadios3" value="video"> Video
                  </div>
              </div>
 
              <div class="form-group" id="groupImagen">
                  <label for="inputFile" class="col-sm-2 control-label">Archivo</label>
                  <div class="col-sm-10">
-                     <input type="file" name="file" id="inputFile" class="file" accept="image/*" (change)="fileChangeEvent($event)" />
+                     <input type="file" name="file" id="inputFile" class="file" accept="image/*" (change)="readURL($event.target)" />
                  </div>
              </div>
 
@@ -87,80 +87,81 @@
              </div>
 
            </form>
-       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="divRetoques" style="display:none">
+       </div>
+       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" id="divRetoques" *ngIf="typeFile.optionsRadios == 'img'">
 
          <h2 class="alegreya">Editor de imágenes.</h2>
 
          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
            <label for="blur">Blur</label>
        <div class="input-group col-xs-10">
-          <input name="blur" id="blur" type="range" min="0" max="100" value="0" />
+          <input name="blur" id="blur" type="range" min="0" max="100" value="0" #blur (change)="setRange('blur', blur.value)"/>
           <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{blur.value}}</span>
             </div>
        </div>
 
        <label for="brightness">Brightness</label>
        <div class="input-group col-xs-10">
-             <input name="brightness" id="brightness" type="range" min="0" max="10" step="0.1" value="1" />
-             <div class="input-group-btn">
-             <span class="filter_value">0</span>
+           <input name="brightness" id="brightness" type="range" min="0" max="10" step="0.1" value="1" #brightness (change)="setRange('brightness', brightness.value)" />
+           <div class="input-group-btn">
+                 <span class="filter_value">{{brightness.value}}</span>
             </div>
        </div>
 
        <label for="contrast">Contrast</label>
        <div class="input-group col-xs-10">
-             <input name="contrast" id="contrast" type="range" min="0" max="10" step="0.1" value="1" />
+             <input name="contrast" id="contrast" type="range" min="0" max="10" step="0.1" value="1" #contrast (change)="setRange('contrast', contrast.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{contrast.value}}</span>
             </div>
        </div>
 
        <label for="grayscale">Grayscale</label>
        <div class="input-group col-xs-10">
-             <input name="grayscale" id="grayscale" type="range" min="0" max="1" step="0.01" value="0" />
+             <input name="grayscale" id="grayscale" type="range" min="0" max="1" step="0.01" value="0" #grayscale (change)="setRange('grayscale', grayscale.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{grayscale.value}}</span>
             </div>
        </div>
 
-       <label for="huerotate">Huerotate</label>
+       <label for="hue-rotate">Huerotate</label>
        <div class="input-group col-xs-10">
-             <input name="hue-rotate" id="hue-rotate" type="range" min="0" max="360" value="0" />
+             <input name="hue-rotate" id="hue-rotate" type="range" min="0" max="360" value="0" #huerotate (change)="setRange('hue-rotate', huerotate.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{huerotate.value}}</span>
             </div>
        </div>
 
        <label for="invert">Invert</label>
        <div class="input-group col-xs-10">
-             <input name="invert" id="invert" type="range" min="0" max="1" step="0.01" value="0" />
+             <input name="invert" id="invert" type="range" min="0" max="1" step="0.01" value="0" #invert (change)="setRange('invert', invert.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{invert.value}}</span>
             </div>
        </div>
 
        <label for="opacity">Opacity</label>
        <div class="input-group col-xs-10">
-             <input name="opacity" id="opacity" type="range" min="0" max="100" value="100" />
+             <input name="opacity" id="opacity" type="range" min="0" max="100" value="100" #opacity (change)="setRange('opacity', opacity.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{opacity.value}}</span>
             </div>
        </div>
 
        <label for="saturate">Saturate</label>
        <div class="input-group col-xs-10">
-             <input name="saturate" id="saturate" type="range" min="0" max="10" step="0.1" value="1" />
+             <input name="saturate" id="saturate" type="range" min="0" max="10" step="0.1" value="1" #saturate (change)="setRange('saturate', saturate.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{saturate.value}}</span>
             </div>
        </div>
 
        <label for="sepia">Sepia</label>
        <div class="input-group col-xs-10">
-             <input name="sepia" id="sepia" type="range" min="0" max="1" step="0.01" value="0" />
+             <input name="sepia" id="sepia" type="range" min="0" max="1" step="0.01" value="0" #sepia (change)="setRange('sepia', sepia.value)" />
              <div class="input-group-btn">
-             <span class="filter_value">0</span>
+             <span class="filter_value">{{sepia.value}}</span>
             </div>
        </div>
 

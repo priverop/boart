@@ -18,6 +18,8 @@ export class UploadComponent implements OnInit {
   private userID: number;
   groups = [];
   selGroup = "0";
+  private typeFile;
+  private filters: Array<any>;
 
   constructor(private ajaxService: AjaxService, private router: Router,private loginService: LoginService, private titleService: Title) {
   }
@@ -26,6 +28,10 @@ export class UploadComponent implements OnInit {
     this.titleService.setTitle("Boart - Nueva Publicación");
     this.userID = this.loginService.user.id;
     this.getUserGroups();
+    this.typeFile = {
+      optionsRadios: 'img'
+    };
+    this.filters = [];
   }
 
   private getUserGroups(){
@@ -38,7 +44,7 @@ export class UploadComponent implements OnInit {
   addPublication(event: any, title:string, description: string, tags:string, audio, video, group){
     event.preventDefault();
     const endpoint = 'upload/';
-    var formData:FormData = new FormData();
+    let formData:FormData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
     formData.append('tags', tags.split('\n').join(','));
@@ -69,12 +75,12 @@ export class UploadComponent implements OnInit {
   }
 
   showHide(type){
-    var groupImagen = document.getElementById("groupImagen");
-    var groupAudio = document.getElementById("groupAudio");
-    var groupVideo = document.getElementById("groupVideo");
-    var optionsRadios1 = <HTMLInputElement>document.getElementById("optionsRadios1");
-    var optionsRadios2 = <HTMLInputElement>document.getElementById("optionsRadios2");
-    var optionsRadios3 = <HTMLInputElement>document.getElementById("optionsRadios3");
+    let groupImagen = document.getElementById("groupImagen");
+    let groupAudio = document.getElementById("groupAudio");
+    let groupVideo = document.getElementById("groupVideo");
+    let optionsRadios1 = <HTMLInputElement>document.getElementById("optionsRadios1");
+    let optionsRadios2 = <HTMLInputElement>document.getElementById("optionsRadios2");
+    let optionsRadios3 = <HTMLInputElement>document.getElementById("optionsRadios3");
 
     groupImagen.style.display = optionsRadios1.checked ? "block" : "none";
     groupAudio.style.display = optionsRadios2.checked ? "block" : "none";
@@ -88,5 +94,58 @@ export class UploadComponent implements OnInit {
   }
   changeGroup(event){
     this.selGroup = event.target.value;
+  }
+
+  readURL(input) {
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
+
+      reader.onload = function (e) {
+        document.getElementById("image").style.display = "block";
+        document.getElementById("image").setAttribute('src', e.target['result']);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  editImage () {
+
+  let concatValue = "";
+
+  for (let filter in this.filters) {
+    let value = this.filters[filter];
+    concatValue = concatValue + ' ' + filter + '(' + value + ')';
+  }
+
+  document.getElementById("image").style.filter = concatValue;
+
+};
+
+  setFilter(filter, value) {
+    this.filters[filter] = value;
+    this.editImage();
+  };
+
+  setValue (name, value) {
+
+  switch(name) {
+    case 'blur':
+      value = value + 'px';
+      break;
+    case 'hue-rotate':
+      value = value + 'deg';
+      break;
+    case 'opacity':
+      value = value + '%';
+      break;
+    default:
+      value;
+  }
+  return value;
+}
+
+  setRange(filter, value) {
+    this.setFilter(filter, this.setValue(filter, value));
   }
 }
